@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-oct-2017 21:28:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bd.model.Posee" table="posee" catalog="roomguard" optimistic-lock="version">
+        <id name="idMaster" type="java.lang.Integer">
+            <column name="idMaster" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="aulainf" class="bd.model.Aulainf" fetch="select">
+            <column name="id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="aulamm" class="bd.model.Aulamm" update="false" insert="false" fetch="select">
+            <column name="id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="aulasr" class="bd.model.Aulasr" update="false" insert="false" fetch="select">
+            <column name="id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="diareserva" class="bd.model.Diareserva" fetch="select">
+            <column name="fecha" length="10" not-null="true" />
+            <column name="horaInicio" length="8" not-null="true" />
+            <column name="horaFin" length="8" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

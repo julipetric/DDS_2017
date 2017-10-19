@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-oct-2017 21:28:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bd.model.Tienedocente" table="tienedocente" catalog="roomguard" optimistic-lock="version">
+        <id name="idMaster" type="int">
+            <column name="idMaster" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="docente" class="bd.model.Docente" fetch="select">
+            <column name="idDocente" not-null="true" />
+        </many-to-one>
+        <many-to-one name="reserva" class="bd.model.Reserva" fetch="select">
+            <column name="id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-oct-2017 21:28:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bd.model.Diareserva" table="diareserva" catalog="roomguard" optimistic-lock="version">
+        <composite-id name="id" class="bd.model.DiareservaId">
+            <key-property name="fecha" type="date">
+                <column name="fecha" length="10" />
+            </key-property>
+            <key-property name="horaInicio" type="time">
+                <column name="horaInicio" length="8" />
+            </key-property>
+            <key-property name="horaFin" type="time">
+                <column name="horaFin" length="8" />
+            </key-property>
+        </composite-id>
+        <set name="tienediareservas" table="tienediareserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fecha" length="10" not-null="true" />
+                <column name="horaInicio" length="8" not-null="true" />
+                <column name="horaFin" length="8" not-null="true" />
+            </key>
+            <one-to-many class="bd.model.Tienediareserva" />
+        </set>
+        <set name="posees" table="posee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fecha" length="10" not-null="true" />
+                <column name="horaInicio" length="8" not-null="true" />
+                <column name="horaFin" length="8" not-null="true" />
+            </key>
+            <one-to-many class="bd.model.Posee" />
+        </set>
+    </class>
+</hibernate-mapping>

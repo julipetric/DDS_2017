@@ -7,6 +7,8 @@ package Control;
 
 import Clases.Bedel;
 import Clases.Turno;
+import bd.dto.HibernateUtil;
+import org.hibernate.Session;
 
 /**
  *
@@ -18,17 +20,13 @@ public class GestorBedel {
     }
     
     public void registrarBedel(Bedel bedel){
-     //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
-
+     
     }
     
     public Bedel buscarBedel(String n, Turno t){
-     //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
-    return new Bedel();}
+          Session session = HibernateUtil.getSessionFactory().openSession();
+          Bedel bedel = (Bedel) session.get(Bedel.class,n);    
+    return bedel;}
     
     private void eliminarBedel(Bedel bedel){
      //IMPLEMENTAR GATITOS

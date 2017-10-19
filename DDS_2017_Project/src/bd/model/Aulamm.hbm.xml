@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-oct-2017 21:28:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bd.model.Aulamm" table="aulamm" catalog="roomguard" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="capacidad" type="int">
+            <column name="capacidad" not-null="true" />
+        </property>
+        <property name="pizzaron" type="string">
+            <column name="pizzaron" length="6" not-null="true" />
+        </property>
+        <property name="habilitada" type="binary">
+            <column name="habilitada" not-null="true" />
+        </property>
+        <property name="ca&#241;on" type="binary">
+            <column name="ca&#241;on" not-null="true" />
+        </property>
+        <property name="ac" type="binary">
+            <column name="ac" not-null="true" />
+        </property>
+        <property name="ubicacion" type="binary">
+            <column name="ubicacion" not-null="true" />
+        </property>
+        <property name="computadora" type="binary">
+            <column name="computadora" not-null="true" />
+        </property>
+        <property name="televisor" type="binary">
+            <column name="televisor" not-null="true" />
+        </property>
+        <property name="dvd" type="binary">
+            <column name="dvd" not-null="true" />
+        </property>
+        <set name="posees" table="posee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id" not-null="true" />
+            </key>
+            <one-to-many class="bd.model.Posee" />
+        </set>
+    </class>
+</hibernate-mapping>
