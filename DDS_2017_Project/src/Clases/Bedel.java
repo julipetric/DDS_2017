@@ -11,7 +11,8 @@ package Clases;
  */
 public class Bedel extends Usuario{
 
-    public Bedel() {
+    public Bedel(String id, String password, String nombre, String apellido, Turno turno) {
+        super(id, password, nombre, apellido, turno);
     }
 
     public String getId() {

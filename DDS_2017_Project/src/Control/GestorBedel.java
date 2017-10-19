@@ -20,7 +20,7 @@ public class GestorBedel {
     }
     
     public void registrarBedel(Bedel bedel){
-     
+     //cargar a BD
     }
     
     public Bedel buscarBedel(String n, Turno t){

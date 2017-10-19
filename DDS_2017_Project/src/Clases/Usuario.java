@@ -15,4 +15,17 @@ public abstract class Usuario {
     public String nombre;
     public String apellido;
     public Turno turno;
+
+    public Usuario(String id, String password, String nombre, String apellido, Turno turno) {
+        this.id = id;
+        this.password = password;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.turno = turno;
+    }
+
+ 
+    
+    
+    
 }

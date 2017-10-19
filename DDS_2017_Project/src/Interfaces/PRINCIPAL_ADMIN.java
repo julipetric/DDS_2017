@@ -160,6 +160,11 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
         );
 
         jButton11.setText("NUEVO BEDEL");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("BUSCAR BEDEL");
 
@@ -225,6 +230,11 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        REGISTRAR_BEDEL ventana = new REGISTRAR_BEDEL();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
