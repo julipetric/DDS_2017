@@ -1,0 +1,8 @@
+bajen esto (xampp):  https://www.apachefriends.org/es/index.html
+
+sirve para ejecutar el mysql en su pc.
+
+y esto (heidiSQL): https://www.heidisql.com/download.php
+
+es la base de datos, copien y peguen el archivo "baseDeDatos.sql" en la consola
+de heidi para cargar la bd ya hecha.
