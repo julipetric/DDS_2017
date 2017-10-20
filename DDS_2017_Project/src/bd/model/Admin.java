@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 18-oct-2017 21:28:21 by Hibernate Tools 4.3.1
+// Generated 19-oct-2017 21:55:45 by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package bd.model;
 public class Admin  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String nombre;
      private String apellido;
      private String password;
@@ -17,18 +17,17 @@ public class Admin  implements java.io.Serializable {
     public Admin() {
     }
 
-    public Admin(int id, String nombre, String apellido, String password) {
-       this.id = id;
+    public Admin(String nombre, String apellido, String password) {
        this.nombre = nombre;
        this.apellido = apellido;
        this.password = password;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getNombre() {

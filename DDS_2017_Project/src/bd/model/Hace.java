@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 18-oct-2017 21:28:21 by Hibernate Tools 4.3.1
+// Generated 19-oct-2017 21:55:45 by Hibernate Tools 4.3.1
 
 
 
@@ -9,28 +9,23 @@ package bd.model;
 public class Hace  implements java.io.Serializable {
 
 
-     private int idMaster;
+     private Integer idMaster;
      private Bedel bedel;
      private Reserva reserva;
 
     public Hace() {
     }
 
-	
-    public Hace(int idMaster) {
-        this.idMaster = idMaster;
-    }
-    public Hace(int idMaster, Bedel bedel, Reserva reserva) {
-       this.idMaster = idMaster;
+    public Hace(Bedel bedel, Reserva reserva) {
        this.bedel = bedel;
        this.reserva = reserva;
     }
    
-    public int getIdMaster() {
+    public Integer getIdMaster() {
         return this.idMaster;
     }
     
-    public void setIdMaster(int idMaster) {
+    public void setIdMaster(Integer idMaster) {
         this.idMaster = idMaster;
     }
     public Bedel getBedel() {

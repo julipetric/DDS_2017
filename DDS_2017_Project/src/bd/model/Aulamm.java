@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 18-oct-2017 21:28:21 by Hibernate Tools 4.3.1
+// Generated 19-oct-2017 21:55:45 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Aulamm  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private int capacidad;
      private String pizzaron;
      private byte[] habilitada;
@@ -27,8 +27,7 @@ public class Aulamm  implements java.io.Serializable {
     }
 
 	
-    public Aulamm(int id, int capacidad, String pizzaron, byte[] habilitada, byte[] cañon, byte[] ac, byte[] ubicacion, byte[] computadora, byte[] televisor, byte[] dvd) {
-        this.id = id;
+    public Aulamm(int capacidad, String pizzaron, byte[] habilitada, byte[] cañon, byte[] ac, byte[] ubicacion, byte[] computadora, byte[] televisor, byte[] dvd) {
         this.capacidad = capacidad;
         this.pizzaron = pizzaron;
         this.habilitada = habilitada;
@@ -39,8 +38,7 @@ public class Aulamm  implements java.io.Serializable {
         this.televisor = televisor;
         this.dvd = dvd;
     }
-    public Aulamm(int id, int capacidad, String pizzaron, byte[] habilitada, byte[] cañon, byte[] ac, byte[] ubicacion, byte[] computadora, byte[] televisor, byte[] dvd, Set posees) {
-       this.id = id;
+    public Aulamm(int capacidad, String pizzaron, byte[] habilitada, byte[] cañon, byte[] ac, byte[] ubicacion, byte[] computadora, byte[] televisor, byte[] dvd, Set posees) {
        this.capacidad = capacidad;
        this.pizzaron = pizzaron;
        this.habilitada = habilitada;
@@ -53,11 +51,11 @@ public class Aulamm  implements java.io.Serializable {
        this.posees = posees;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public int getCapacidad() {

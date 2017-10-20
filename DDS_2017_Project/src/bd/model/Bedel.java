@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 18-oct-2017 21:28:21 by Hibernate Tools 4.3.1
+// Generated 19-oct-2017 21:55:45 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,9 +11,10 @@ import java.util.Set;
 public class Bedel  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String nombre;
      private String apellido;
+     private String nombreUsuario;
      private String password;
      private String turno;
      private Set haces = new HashSet(0);
@@ -22,27 +23,27 @@ public class Bedel  implements java.io.Serializable {
     }
 
 	
-    public Bedel(int id, String nombre, String apellido, String password, String turno) {
-        this.id = id;
+    public Bedel(String nombre, String apellido, String nombreUsuario, String password, String turno) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.turno = turno;
     }
-    public Bedel(int id, String nombre, String apellido, String password, String turno, Set haces) {
-       this.id = id;
+    public Bedel(String nombre, String apellido, String nombreUsuario, String password, String turno, Set haces) {
        this.nombre = nombre;
        this.apellido = apellido;
+       this.nombreUsuario = nombreUsuario;
        this.password = password;
        this.turno = turno;
        this.haces = haces;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getNombre() {
@@ -58,6 +59,13 @@ public class Bedel  implements java.io.Serializable {
     
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+    public String getNombreUsuario() {
+        return this.nombreUsuario;
+    }
+    
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
     public String getPassword() {
         return this.password;

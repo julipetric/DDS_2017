@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 18-oct-2017 21:28:21 by Hibernate Tools 4.3.1
+// Generated 19-oct-2017 21:55:45 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,42 +11,40 @@ import java.util.Set;
 public class Reserva  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String tipoAula;
      private int cantidadAlumnos;
      private String nombreCurso;
      private String periodo;
-     private Set tienediareservas = new HashSet(0);
      private Set haces = new HashSet(0);
+     private Set tienediareservas = new HashSet(0);
      private Set tienedocentes = new HashSet(0);
 
     public Reserva() {
     }
 
 	
-    public Reserva(int id, String tipoAula, int cantidadAlumnos, String nombreCurso, String periodo) {
-        this.id = id;
+    public Reserva(String tipoAula, int cantidadAlumnos, String nombreCurso, String periodo) {
         this.tipoAula = tipoAula;
         this.cantidadAlumnos = cantidadAlumnos;
         this.nombreCurso = nombreCurso;
         this.periodo = periodo;
     }
-    public Reserva(int id, String tipoAula, int cantidadAlumnos, String nombreCurso, String periodo, Set tienediareservas, Set haces, Set tienedocentes) {
-       this.id = id;
+    public Reserva(String tipoAula, int cantidadAlumnos, String nombreCurso, String periodo, Set haces, Set tienediareservas, Set tienedocentes) {
        this.tipoAula = tipoAula;
        this.cantidadAlumnos = cantidadAlumnos;
        this.nombreCurso = nombreCurso;
        this.periodo = periodo;
-       this.tienediareservas = tienediareservas;
        this.haces = haces;
+       this.tienediareservas = tienediareservas;
        this.tienedocentes = tienedocentes;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getTipoAula() {
@@ -77,19 +75,19 @@ public class Reserva  implements java.io.Serializable {
     public void setPeriodo(String periodo) {
         this.periodo = periodo;
     }
-    public Set getTienediareservas() {
-        return this.tienediareservas;
-    }
-    
-    public void setTienediareservas(Set tienediareservas) {
-        this.tienediareservas = tienediareservas;
-    }
     public Set getHaces() {
         return this.haces;
     }
     
     public void setHaces(Set haces) {
         this.haces = haces;
+    }
+    public Set getTienediareservas() {
+        return this.tienediareservas;
+    }
+    
+    public void setTienediareservas(Set tienediareservas) {
+        this.tienediareservas = tienediareservas;
     }
     public Set getTienedocentes() {
         return this.tienedocentes;

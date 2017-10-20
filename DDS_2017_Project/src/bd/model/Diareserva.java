@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 18-oct-2017 21:28:21 by Hibernate Tools 4.3.1
+// Generated 19-oct-2017 21:55:45 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,8 +12,8 @@ public class Diareserva  implements java.io.Serializable {
 
 
      private DiareservaId id;
-     private Set tienediareservas = new HashSet(0);
      private Set posees = new HashSet(0);
+     private Set tienediareservas = new HashSet(0);
 
     public Diareserva() {
     }
@@ -22,10 +22,10 @@ public class Diareserva  implements java.io.Serializable {
     public Diareserva(DiareservaId id) {
         this.id = id;
     }
-    public Diareserva(DiareservaId id, Set tienediareservas, Set posees) {
+    public Diareserva(DiareservaId id, Set posees, Set tienediareservas) {
        this.id = id;
-       this.tienediareservas = tienediareservas;
        this.posees = posees;
+       this.tienediareservas = tienediareservas;
     }
    
     public DiareservaId getId() {
@@ -35,19 +35,19 @@ public class Diareserva  implements java.io.Serializable {
     public void setId(DiareservaId id) {
         this.id = id;
     }
-    public Set getTienediareservas() {
-        return this.tienediareservas;
-    }
-    
-    public void setTienediareservas(Set tienediareservas) {
-        this.tienediareservas = tienediareservas;
-    }
     public Set getPosees() {
         return this.posees;
     }
     
     public void setPosees(Set posees) {
         this.posees = posees;
+    }
+    public Set getTienediareservas() {
+        return this.tienediareservas;
+    }
+    
+    public void setTienediareservas(Set tienediareservas) {
+        this.tienediareservas = tienediareservas;
     }
 
 

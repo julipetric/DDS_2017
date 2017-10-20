@@ -5,10 +5,12 @@
  */
 package Control;
 
-import Clases.Bedel;
+import bd.model.Bedel;
 import Clases.Turno;
 import bd.dto.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -20,13 +22,22 @@ public class GestorBedel {
     }
     
     public void registrarBedel(Bedel bedel){
-     //cargar a BD
+     SessionFactory sesion = HibernateUtil.getSessionFactory();
+     Session session = sesion.openSession();
+     Transaction tx = session.beginTransaction();
+     session.save(bedel);
+     tx.commit();
+     session.close();
     }
     
     public Bedel buscarBedel(String n, Turno t){
-          Session session = HibernateUtil.getSessionFactory().openSession();
-          Bedel bedel = (Bedel) session.get(Bedel.class,n);    
-    return bedel;}
+     SessionFactory sesion = HibernateUtil.getSessionFactory();
+     Session session = sesion.openSession();
+     Transaction tx = session.beginTransaction();
+     Bedel bedel = (Bedel) session.get(Bedel.class,1);    
+     tx.commit();
+     session.close();
+     return bedel;}
     
     private void eliminarBedel(Bedel bedel){
      //IMPLEMENTAR GATITOS

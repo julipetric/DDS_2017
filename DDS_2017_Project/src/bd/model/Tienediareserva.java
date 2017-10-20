@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 18-oct-2017 21:28:21 by Hibernate Tools 4.3.1
+// Generated 19-oct-2017 21:55:45 by Hibernate Tools 4.3.1
 
 
 
@@ -9,24 +9,23 @@ package bd.model;
 public class Tienediareserva  implements java.io.Serializable {
 
 
-     private int idMaster;
+     private Integer idMaster;
      private Diareserva diareserva;
      private Reserva reserva;
 
     public Tienediareserva() {
     }
 
-    public Tienediareserva(int idMaster, Diareserva diareserva, Reserva reserva) {
-       this.idMaster = idMaster;
+    public Tienediareserva(Diareserva diareserva, Reserva reserva) {
        this.diareserva = diareserva;
        this.reserva = reserva;
     }
    
-    public int getIdMaster() {
+    public Integer getIdMaster() {
         return this.idMaster;
     }
     
-    public void setIdMaster(int idMaster) {
+    public void setIdMaster(Integer idMaster) {
         this.idMaster = idMaster;
     }
     public Diareserva getDiareserva() {

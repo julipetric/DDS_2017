@@ -17,7 +17,7 @@ USE `roomguard`;
 
 -- Volcando estructura para tabla roomguard.admin
 CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 -- Volcando estructura para tabla roomguard.aulainf
 CREATE TABLE IF NOT EXISTS `aulainf` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `capacidad` int(11) NOT NULL,
   `pizzaron` enum('TIZA','BLANCO') NOT NULL,
   `habilitada` binary(1) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `aulainf` (
 
 -- Volcando estructura para tabla roomguard.aulamm
 CREATE TABLE IF NOT EXISTS `aulamm` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `capacidad` int(11) NOT NULL,
   `pizzaron` enum('TIZA','BLANCO') NOT NULL,
   `habilitada` binary(1) NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `aulamm` (
 
 -- Volcando estructura para tabla roomguard.aulasr
 CREATE TABLE IF NOT EXISTS `aulasr` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `capacidad` int(11) NOT NULL,
   `pizzaron` enum('TIZA','BLANCO') NOT NULL,
   `habilitada` binary(1) NOT NULL,
@@ -87,16 +87,22 @@ CREATE TABLE IF NOT EXISTS `aulasr` (
 
 -- Volcando estructura para tabla roomguard.bedel
 CREATE TABLE IF NOT EXISTS `bedel` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
+  `nombreUsuario` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `turno` enum('MAÑANA','TARDE','NOCHE') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.bedel: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.bedel: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `bedel` DISABLE KEYS */;
+INSERT INTO `bedel` (`id`, `nombre`, `apellido`, `nombreUsuario`, `password`, `turno`) VALUES
+	(1, 'asda', 'asdas', 'asd', '123', 'MAÑANA'),
+	(2, 'adsad', 'asda', 'sda', '123', 'TARDE'),
+	(3, 'sdasd', 'asdas', 'asdas', '123', 'MAÑANA'),
+	(4, 'Tomas', 'Fleitas', 'ElTomaa', '123', 'TARDE');
 /*!40000 ALTER TABLE `bedel` ENABLE KEYS */;
 
 
@@ -115,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `diareserva` (
 
 -- Volcando estructura para tabla roomguard.docente
 CREATE TABLE IF NOT EXISTS `docente` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `apellido` varchar(50) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -129,9 +135,9 @@ CREATE TABLE IF NOT EXISTS `docente` (
 
 -- Volcando estructura para tabla roomguard.hace
 CREATE TABLE IF NOT EXISTS `hace` (
-  `idMaster` int(11) NOT NULL,
-  `idReserva` int(11) DEFAULT NULL,
-  `idBedel` int(11) DEFAULT NULL,
+  `idMaster` int(11) NOT NULL AUTO_INCREMENT,
+  `idReserva` int(11) NOT NULL,
+  `idBedel` int(11) NOT NULL,
   PRIMARY KEY (`idMaster`),
   KEY `FK_hace_reserva` (`idReserva`),
   KEY `FK_hace_bedel` (`idBedel`),
@@ -152,12 +158,12 @@ CREATE TABLE IF NOT EXISTS `posee` (
   `horaInicio` time NOT NULL,
   `horaFin` time NOT NULL,
   PRIMARY KEY (`idMaster`),
-  KEY `FK_Posee_diareserva` (`fecha`,`horaInicio`,`horaFin`),
   KEY `FK_posee_aulasr` (`id`),
-  CONSTRAINT `FK_Posee_aula` FOREIGN KEY (`id`) REFERENCES `aulamm` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_Posee_diareserva` FOREIGN KEY (`fecha`, `horaInicio`, `horaFin`) REFERENCES `diareserva` (`fecha`, `horaInicio`, `horaFin`) ON DELETE CASCADE ON UPDATE CASCADE,
+  KEY `FK_posee_diareserva` (`fecha`,`horaInicio`,`horaFin`),
   CONSTRAINT `FK_posee_aulainf` FOREIGN KEY (`id`) REFERENCES `aulainf` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_posee_aulasr` FOREIGN KEY (`id`) REFERENCES `aulasr` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_posee_aulamm` FOREIGN KEY (`id`) REFERENCES `aulamm` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_posee_aulasr` FOREIGN KEY (`id`) REFERENCES `aulasr` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_posee_diareserva` FOREIGN KEY (`fecha`, `horaInicio`, `horaFin`) REFERENCES `diareserva` (`fecha`, `horaInicio`, `horaFin`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla roomguard.posee: ~0 rows (aproximadamente)
@@ -167,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `posee` (
 
 -- Volcando estructura para tabla roomguard.reserva
 CREATE TABLE IF NOT EXISTS `reserva` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `tipoAula` enum('MULTIMEDIOS','INFORMATICA','SINRECURSOS') NOT NULL,
   `cantidadAlumnos` int(10) NOT NULL,
   `nombreCurso` varchar(50) NOT NULL,
@@ -182,16 +188,16 @@ CREATE TABLE IF NOT EXISTS `reserva` (
 
 -- Volcando estructura para tabla roomguard.tienediareserva
 CREATE TABLE IF NOT EXISTS `tienediareserva` (
-  `idMaster` int(11) NOT NULL,
+  `idMaster` int(11) NOT NULL AUTO_INCREMENT,
   `id` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `horaInicio` time NOT NULL,
   `horaFin` time NOT NULL,
   PRIMARY KEY (`idMaster`),
-  KEY `FK_tiene_reserva` (`id`),
-  KEY `FK_tiene_diareserva` (`fecha`,`horaInicio`,`horaFin`),
-  CONSTRAINT `FK_tiene_diareserva` FOREIGN KEY (`fecha`, `horaInicio`, `horaFin`) REFERENCES `diareserva` (`fecha`, `horaInicio`, `horaFin`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_tiene_reserva` FOREIGN KEY (`id`) REFERENCES `reserva` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `FK_tienediareserva_reserva` (`id`),
+  KEY `FK_tienediareserva_diareserva` (`fecha`,`horaInicio`,`horaFin`),
+  CONSTRAINT `FK_tienediareserva_diareserva` FOREIGN KEY (`fecha`, `horaInicio`, `horaFin`) REFERENCES `diareserva` (`fecha`, `horaInicio`, `horaFin`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_tienediareserva_reserva` FOREIGN KEY (`id`) REFERENCES `reserva` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla roomguard.tienediareserva: ~0 rows (aproximadamente)
@@ -201,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `tienediareserva` (
 
 -- Volcando estructura para tabla roomguard.tienedocente
 CREATE TABLE IF NOT EXISTS `tienedocente` (
-  `idMaster` int(11) NOT NULL,
+  `idMaster` int(11) NOT NULL AUTO_INCREMENT,
   `id` int(11) NOT NULL,
   `idDocente` int(11) NOT NULL,
   PRIMARY KEY (`idMaster`),

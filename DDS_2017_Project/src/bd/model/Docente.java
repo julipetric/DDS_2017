@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 18-oct-2017 21:28:21 by Hibernate Tools 4.3.1
+// Generated 19-oct-2017 21:55:45 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Docente  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String apellido;
      private String nombre;
      private String email;
@@ -21,25 +21,23 @@ public class Docente  implements java.io.Serializable {
     }
 
 	
-    public Docente(int id, String apellido, String nombre, String email) {
-        this.id = id;
+    public Docente(String apellido, String nombre, String email) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.email = email;
     }
-    public Docente(int id, String apellido, String nombre, String email, Set tienedocentes) {
-       this.id = id;
+    public Docente(String apellido, String nombre, String email, Set tienedocentes) {
        this.apellido = apellido;
        this.nombre = nombre;
        this.email = email;
        this.tienedocentes = tienedocentes;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getApellido() {
