@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaces;
+
 import Clases.Turno;
 import Control.GestorBedel;
 import bd.model.Bedel;
@@ -14,14 +15,16 @@ import java.util.Arrays;
  * @author rodri
  */
 public class REGISTRAR_BEDEL extends javax.swing.JFrame {
-GestorBedel controlador;
+
+    GestorBedel controlador;
+
     /**
      * Creates new form NUEVOBEDEL
      */
     public REGISTRAR_BEDEL() {
         controlador = new GestorBedel();
         initComponents();
-       
+
     }
 
     @SuppressWarnings("unchecked")
@@ -160,42 +163,42 @@ GestorBedel controlador;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String error = "",passNueva="";
+        String error = "", passNueva = "";
         char[] pass1 = jPasswordField1.getPassword();
-       char[] pass2=jPasswordField2.getPassword();
-       jLabel8.setText("");
-       if( pass1.length ==  pass2.length){
-        for (int i = 0; i <  pass1.length; i++) {  
-        if(pass1[i] != pass2[i]){
-   
-             error+="Las password no coinciden";
-             break;
-         }else{passNueva+=pass1[i];} 
+        char[] pass2 = jPasswordField2.getPassword();
+        jLabel8.setText("");
+        if (pass1.length == pass2.length) {
+            for (int i = 0; i < pass1.length; i++) {
+                if (pass1[i] != pass2[i]) {
+
+                    error += "Las password no coinciden";
+                    break;
+                } else {
+                    passNueva += pass1[i];
+                }
+            }
+
         }
-        
-       } 
-       if(jTextField2.getText().isEmpty() || jTextField1.getText().isEmpty() || jTextField4.getText().isEmpty()) {
-       error+="Complete todos los campos";
-       }
-       if(jComboBox2.getSelectedIndex() == 0){
-       error+="Seleccione un turno";
-       }
-       jLabel8.setText(error);
-       if(error==""){
-       jLabel8.setText("");
-       Bedel b1 = new Bedel(jTextField1.getText(),jTextField4.getText(),jTextField2.getText(),passNueva,jComboBox2.getSelectedItem().toString().toUpperCase()); 
-       
-       controlador.registrarBedel(b1);
-       System.exit(0); 
-       this.dispose();
-       }
- 
-         
-       
+        if (jTextField2.getText().isEmpty() || jTextField1.getText().isEmpty() || jTextField4.getText().isEmpty()) {
+            error += "Complete todos los campos";
+        }
+        if (jComboBox2.getSelectedIndex() == 0) {
+            error += "Seleccione un turno";
+        }
+        jLabel8.setText(error);
+        if (error == "") {
+            jLabel8.setText("");
+            Bedel b1 = new Bedel(jTextField1.getText(), jTextField4.getText(), jTextField2.getText(), passNueva, jComboBox2.getSelectedItem().toString().toUpperCase());
+
+            controlador.registrarBedel(b1);
+            System.exit(0);
+            this.dispose();
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       System.exit(0); 
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
