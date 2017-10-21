@@ -70,9 +70,9 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
 
         jLabel6.setText("Contraseña");
 
-        jPasswordField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jPasswordField1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel7.setText("Repetir coontraseña");
+        jLabel7.setText("Repetir contraseña");
 
         jButton1.setBackground(new java.awt.Color(0, 102, 255));
         jButton1.setText("Aceptar");
@@ -180,10 +180,10 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
 
         }
         if (jTextField2.getText().isEmpty() || jTextField1.getText().isEmpty() || jTextField4.getText().isEmpty()) {
-            error += "Complete todos los campos";
+            error += "Complete todos los campos ";
         }
         if (jComboBox2.getSelectedIndex() == 0) {
-            error += "Seleccione un turno";
+            error += " Seleccione un turno";
         }
         jLabel8.setText(error);
         if (error == "") {
