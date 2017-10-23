@@ -418,6 +418,10 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         if(jCheckBox10.isSelected()) {diasDeSemana.add(3);}//miercoles
         if(jCheckBox11.isSelected()) {diasDeSemana.add(4);}//jueves
         if(jCheckBox12.isSelected()) {diasDeSemana.add(5);}//viernes
+        
+        
+        
+        
         try {
             inicio1C = sdf.parse("15/03/2017");
         } catch (ParseException ex) {
