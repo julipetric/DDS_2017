@@ -5,15 +5,24 @@
  */
 package Interfaces;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author rodri
  */
 public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
-    /**
-     * Creates new form REGISTRAR_RESERVA
-     */
+    private ArrayList<Date> dias;
+    private Calendar calendario;
+    private Date inicio1C;
+    private Date fin1C;
+    private Date inicio2C;
+    private Date fin2C;
+    
+    
     public REGISTRAR_RESERVA() {
         initComponents();
     }
