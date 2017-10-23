@@ -403,10 +403,13 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
+        Date inicio = new Date();
+        Date fin = new Date();
+        Calendar aux = Calendar.getInstance();
         //comportamiento del botón aceptar
         calendario = Calendar.getInstance();
         diasDeSemana = new ArrayList();
-        //calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
+//        calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
        //SE AGREGAN LOS DIAS DE LA SEMANA - EN ENTEROS - QUE ESTÁN SELECCIONADOS
         if(jCheckBox8.isSelected()){ diasDeSemana.add(1);}//lunes
         if(jCheckBox9.isSelected()){diasDeSemana.add(2);}//martes
@@ -435,6 +438,43 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         }
         
        //Las fechas están verificadas
+       
+       System.out.println(jComboBox1.getSelectedItem());
+       System.out.println(jComboBox1.getSelectedIndex());
+       
+      //SETEO DE LAS FECHAS INICIAL Y FINAL DE LAS RESERVAS A REALIZAR
+       if(jRadioButton4.isSelected()){
+           if(jComboBox1.getSelectedIndex()== 0){
+               inicio = inicio1C;
+               fin = fin2C;
+           }
+           if(jComboBox1.getSelectedIndex() == 1){
+               inicio = inicio1C;
+               fin = fin1C;
+           }
+           if(jComboBox1.getSelectedIndex() == 2){
+               inicio = inicio2C;
+               fin = fin2C;
+           }
+       }
+       
+       
+       
+       
+    for (int i=0; i<diasDeSemana.size(); i++){
+        aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial
+        //Seteo en primer dia de semana
+        boolean j = true;
+        while(j){
+            if(aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) j = false;
+            else aux.add(Calendar.DATE, 1);               
+        }
+        //Sale aux en el primer dia de la semana que coincide
+        
+        while (aux.before(fin)){//while para 
+
+        }
+    }
        
         
         
