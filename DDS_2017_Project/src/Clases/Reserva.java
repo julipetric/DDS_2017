@@ -17,14 +17,14 @@ public class Reserva {
     public Integer cantidadAlumnos;
     public String nombreCurso;
     public Docente docente;
-    public ArrayList<DiaReserva> diaReserva;
+    public ArrayList<DiaReserva> diasReserva;
 
     public Reserva() {
-        diaReserva = new ArrayList<>();
+        diasReserva = new ArrayList<>();
     }
     
     public Reserva( TipoDeAula tipo, Periodo periodo, Integer cantidadAlumnos, String nombreCurso){
-        diaReserva = new ArrayList<>();
+        diasReserva = new ArrayList<>();
     }
     
     

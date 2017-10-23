@@ -16,6 +16,7 @@ public class DiaReserva {
     public Date fecha;
     public String horaInicio;
     public String horaFin;
+    private Aula aula;
 
     public DiaReserva(Date fecha, String horarioInicio, String horaFin) {
     }
@@ -43,6 +44,15 @@ public class DiaReserva {
     public void setHoraFin(String horaFin) {
         this.horaFin = horaFin;
     }
+
+    public Aula getAula() {
+        return aula;
+    }
+
+    public void setAula(Aula aula) {
+        this.aula = aula;
+    }
+    
     
     
 }

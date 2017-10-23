@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Clases.DiaReserva;
 import Clases.Periodo;
 import Clases.Reserva;
 import Clases.TipoDeAula;
@@ -122,7 +123,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jLabel14.setText("Cantidad de alumnos");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar cantidad" }));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar cantidad", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", " " }));
 
         jLabel15.setText("Nombre del curso / catedra / seminario");
 
@@ -477,7 +478,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        }
        
        
-       
+    
+    //SE AGREGAN LOS DIASRESERVA, LUEGO SE USAN PARA BUSCAR LOS AULAS DISPONIBLES   
+      
     if (jRadioButton4.isSelected()){//Si es periódica   
         for (int i=0; i<diasDeSemana.size(); i++){
             aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial
@@ -489,12 +492,12 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
             }
             //Sale aux en el primer dia de la semana que coincide
 
-            while (aux.before(fin)){//while para 
+            while (aux.before(fin)){//while para agregar los dias de reserva
 
-                //dia y la hora extraida de la ventana
-                //voy sumando de a 7 dias a aux
-                //reservas.add(new Reserva(new Diareserva(aux.getTime(), )));
+                reserva.diasReserva.add(new DiaReserva(aux.getTime(), horariosPorDia.get(i).horainicio, horariosPorDia.get(i).horafin));
+                aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
             }
+            //se va a incrementar i, se vuelve al dia de hor, se acomoda en el siguiente dia seleccionado y se agregan todos los dias reserva
         }
     } 
     else{//SI ES ESPORÁDICA
