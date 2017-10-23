@@ -414,6 +414,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        jRadioButton4.setSelected(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
     
+    public void actualizarDiasReserva ( ArrayList<DiaReserva> list ){
+        diasReserva = list;
+    }
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -519,7 +522,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //ACCION DE NUEVO DIA
-        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(diasReserva);
+        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(diasReserva, this);
         ventana_NUEVO_DIA.setVisible(true);
         
     }//GEN-LAST:event_jButton3ActionPerformed

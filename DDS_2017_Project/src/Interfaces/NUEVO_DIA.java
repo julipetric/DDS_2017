@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Clases.DiaReserva;
+import bd.model.Diareserva;
 import java.util.ArrayList;
 
 /**
@@ -15,10 +16,13 @@ import java.util.ArrayList;
 public class NUEVO_DIA extends javax.swing.JFrame {
 
     private ArrayList<DiaReserva> diasReserva;
+    private REGISTRAR_RESERVA ventana;
     
-    public NUEVO_DIA( ArrayList<DiaReserva> list) {
+    public NUEVO_DIA( ArrayList<DiaReserva> list, REGISTRAR_RESERVA vent) {
         initComponents();
         diasReserva = list;
+        ventana = vent;
+        
     }
 
     /**
@@ -78,9 +82,19 @@ public class NUEVO_DIA extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 102, 255));
         jButton1.setText("Aceptar");
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,6 +137,17 @@ public class NUEVO_DIA extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // COMPORTAMIENTO DEL BOTÓN ACEPTAR
+        diasReserva.add(new DiaReserva(jDateChooser1.getDate(), jComboBox3.getSelectedItem().toString(), jComboBox4.getSelectedItem().toString()));
+        ventana.actualizarDiasReserva(diasReserva);//se actualiza la lista en la ventana original
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
