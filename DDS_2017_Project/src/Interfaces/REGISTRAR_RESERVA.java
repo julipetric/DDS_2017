@@ -6,10 +6,14 @@
 package Interfaces;
 
 import static com.sun.org.apache.bcel.internal.Repository.instanceOf;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,6 +28,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Date inicio2C;
     private Date fin2C;
     private ArrayList diasDeSemana;
+    public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     
     public REGISTRAR_RESERVA() {
@@ -408,8 +413,28 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         if(jCheckBox10.isSelected()) {diasDeSemana.add(3);}//miercoles
         if(jCheckBox11.isSelected()) {diasDeSemana.add(4);}//jueves
         if(jCheckBox12.isSelected()) {diasDeSemana.add(5);}//viernes
+        try {
+            inicio1C = sdf.parse("15/03/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fin1C = sdf.parse("9/06/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            inicio2C = sdf.parse("08/07/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fin2C = sdf.parse("25/12/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        
+       //Las fechas están verificadas
        
         
         
