@@ -5,7 +5,9 @@
  */
 package Interfaces;
 
+import Clases.Periodo;
 import Clases.Reserva;
+import Clases.TipoDeAula;
 import Clases.horariosAUX;
 import static com.sun.org.apache.bcel.internal.Repository.instanceOf;
 import java.text.ParseException;
@@ -28,9 +30,11 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Date inicio1C;
     private Date fin1C;
     private Date inicio2C;
+    private Periodo periodo;
     private Date fin2C;
+    private TipoDeAula tipo;
     private ArrayList diasDeSemana;
-    private ArrayList<Reserva> reservas;
+    private Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
@@ -112,7 +116,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jLabel12.setText("Tipo de aula");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar tipo" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar tipo", "MULTIMEDIOS", "INFORMATICA", "SINRECURSOS" }));
 
         jLabel13.setText("Apellido del docente");
 
@@ -413,6 +417,12 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         //comportamiento del botón aceptar
         calendario = Calendar.getInstance();
         diasDeSemana = new ArrayList();
+        tipo = TipoDeAula.valueOf(jComboBox5.getSelectedItem().toString());
+        if (jRadioButton4.isSelected()){//Asignación del período según sea periodica o esporádica
+        periodo = Periodo.valueOf(jComboBox1.getSelectedItem().toString());}
+        else{periodo = Periodo.NONE;}
+        //SE INICIALIZA LA RESERVA CON LOS DATOS BÁSICOS, FALTA DOCENTE
+        reserva= new Reserva(tipo, periodo, Integer.parseInt(jComboBox6.getSelectedItem().toString()), jTextField3.getText());//faltaría construir el docente y otras cosas
 //        calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
        //SE AGREGAN LOS DIAS DE LA SEMANA - EN ENTEROS - QUE ESTÁN SELECCIONADOS
         if(jCheckBox8.isSelected()){ diasDeSemana.add(1);horariosPorDia.add(new horariosAUX(jComboBox3.getSelectedItem().toString(),jComboBox4.getSelectedItem().toString() ));}//lunes
@@ -468,25 +478,28 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        
        
        
-       
-    for (int i=0; i<diasDeSemana.size(); i++){
-        aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial
-        //Seteo en primer dia de semana
-        boolean j = true;
-        while(j){
-            if(aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) j = false;
-            else aux.add(Calendar.DATE, 1);               
+    if (jRadioButton4.isSelected()){//Si es periódica   
+        for (int i=0; i<diasDeSemana.size(); i++){
+            aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial
+            //Seteo en primer dia de semana
+            boolean j = true;
+            while(j){
+                if(aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) j = false;
+                else aux.add(Calendar.DATE, 1);               
+            }
+            //Sale aux en el primer dia de la semana que coincide
+
+            while (aux.before(fin)){//while para 
+
+                //dia y la hora extraida de la ventana
+                //voy sumando de a 7 dias a aux
+                //reservas.add(new Reserva(new Diareserva(aux.getTime(), )));
+            }
         }
-        //Sale aux en el primer dia de la semana que coincide
-        
-        while (aux.before(fin)){//while para 
-            reservas.add(new Reserva(new DiaReserva)) 
-            //dia y la hora extraida de la ventana
-            //voy sumando de a 7 dias a aux
-//            reservas.add(new Reserva(new Diareserva(aux.getTime(), )));
-        }
+    } 
+    else{//SI ES ESPORÁDICA
+        //IMPLEMENTAR
     }
-       
         
         
         

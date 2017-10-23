@@ -5,6 +5,8 @@
  */
 package Clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Tomas
@@ -15,14 +17,17 @@ public class Reserva {
     public Integer cantidadAlumnos;
     public String nombreCurso;
     public Docente docente;
-    public DiaReserva diaReserva;
+    public ArrayList<DiaReserva> diaReserva;
 
     public Reserva() {
+        diaReserva = new ArrayList<>();
     }
     
-    public Reserva(DiaReserva diaReserva, TipoDeAula tipo, Periodo periodo, Integer cantidadAlumnos, String nombreCurso, Docente docente){
-        //constructor
+    public Reserva( TipoDeAula tipo, Periodo periodo, Integer cantidadAlumnos, String nombreCurso){
+        diaReserva = new ArrayList<>();
     }
+    
+    
 
     public Periodo getPeriodo() {
         return periodo;
