@@ -400,12 +400,20 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        
         //comportamiento del botón aceptar
         calendario = Calendar.getInstance();
+        diasDeSemana = new ArrayList();
         //calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
-        if(jCheckBox8.isEnabled()) diasDeSemana.add(1);//lunes
-        if(jCheckBox9.isEnabled()) diasDeSemana.add(2);//martes
-        if(jCheckBox10.isEnabled()) diasDeSemana.add(3);//miercoles
-        if(jCheckBox11.isEnabled()) diasDeSemana.add(4);//jueves
-        if(jCheckBox12.isEnabled()) diasDeSemana.add(6);//viernes
+       //SE AGREGAN LOS DIAS DE LA SEMANA - EN ENTEROS - QUE ESTÁN SELECCIONADOS
+        if(jCheckBox8.isSelected()){ diasDeSemana.add(1);}//lunes
+        if(jCheckBox9.isSelected()){diasDeSemana.add(2);}//martes
+        if(jCheckBox10.isSelected()) {diasDeSemana.add(3);}//miercoles
+        if(jCheckBox11.isSelected()) {diasDeSemana.add(4);}//jueves
+        if(jCheckBox12.isSelected()) {diasDeSemana.add(5);}//viernes
+        
+        
+       
+        
+        
+        
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
