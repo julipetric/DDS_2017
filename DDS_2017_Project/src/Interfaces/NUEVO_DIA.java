@@ -8,6 +8,7 @@ package Interfaces;
 import Clases.DiaReserva;
 import bd.model.Diareserva;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -18,9 +19,8 @@ public class NUEVO_DIA extends javax.swing.JFrame {
     private ArrayList<DiaReserva> diasReserva;
     private REGISTRAR_RESERVA ventana;
     
-    public NUEVO_DIA( ArrayList<DiaReserva> list, REGISTRAR_RESERVA vent) {
+    public NUEVO_DIA(REGISTRAR_RESERVA vent) {
         initComponents();
-        diasReserva = list;
         ventana = vent;
         
     }
@@ -68,7 +68,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NUEVO DIA");
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
@@ -144,8 +144,13 @@ public class NUEVO_DIA extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // COMPORTAMIENTO DEL BOTÓN ACEPTAR
-        diasReserva.add(new DiaReserva(jDateChooser1.getDate(), jComboBox3.getSelectedItem().toString(), jComboBox4.getSelectedItem().toString()));
-        ventana.actualizarDiasReserva(diasReserva);//se actualiza la lista en la ventana original
+        System.out.println(jDateChooser1.getDate());
+        System.out.println(jComboBox3.getSelectedItem().toString());
+        System.out.println(jComboBox4.getSelectedItem().toString());
+        Date fecha = jDateChooser1.getDate();
+        DiaReserva dia = new DiaReserva(fecha, jComboBox3.getSelectedItem().toString(), jComboBox4.getSelectedItem().toString());
+        ventana.actualizarDiasReserva(dia);
+        //ventana.actualizarDiasReserva(diasReserva);//se actualiza la lista en la ventana original
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

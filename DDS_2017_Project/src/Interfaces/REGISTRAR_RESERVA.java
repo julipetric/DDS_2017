@@ -43,6 +43,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     
     public REGISTRAR_RESERVA() {
         initComponents();
+        diasReserva = new ArrayList<>();
     }
 
     
@@ -414,8 +415,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        jRadioButton4.setSelected(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
     
-    public void actualizarDiasReserva ( ArrayList<DiaReserva> list ){
-        diasReserva = list;
+    public void actualizarDiasReserva ( DiaReserva dia ){
+        diasReserva.add(dia);
     }
     
     
@@ -431,7 +432,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         if (jRadioButton4.isSelected()){//Asignación del período según sea periodica o esporádica
         periodo = Periodo.valueOf(jComboBox1.getSelectedItem().toString());}
         else{periodo = Periodo.NONE;}
-        diasReserva = new ArrayList<>();
+        
         //SE INICIALIZA LA RESERVA CON LOS DATOS BÁSICOS, FALTA DOCENTE
         reserva= new Reserva(tipo, periodo, Integer.parseInt(jComboBox6.getSelectedItem().toString()), jTextField3.getText());//faltaría construir el docente y otras cosas
 //        calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
@@ -522,7 +523,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //ACCION DE NUEVO DIA
-        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(diasReserva, this);
+        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(this);
         ventana_NUEVO_DIA.setVisible(true);
         
     }//GEN-LAST:event_jButton3ActionPerformed
