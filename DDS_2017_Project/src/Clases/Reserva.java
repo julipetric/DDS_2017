@@ -14,6 +14,7 @@ public class Reserva {
     public TipoDeAula tipoDeAula;
     public Integer cantidadAlumnos;
     public String nombreCurso;
+    public Docente docente;
 
     public Reserva() {
     }

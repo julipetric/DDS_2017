@@ -10,5 +10,5 @@ package Clases;
  * @author Tomas
  */
 public enum Periodo {
-    PRIMERO,SEGUNDO,ANUAL;
+    PRIMERO,SEGUNDO,ANUAL, NONE;
 }
