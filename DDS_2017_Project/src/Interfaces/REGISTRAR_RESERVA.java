@@ -144,6 +144,11 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(0, 204, 0));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setText("+");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Agregar nuevo día");
 
@@ -509,6 +514,13 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //ACCION DE NUEVO DIA
+        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA();
+        ventana_NUEVO_DIA.setVisible(true);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
