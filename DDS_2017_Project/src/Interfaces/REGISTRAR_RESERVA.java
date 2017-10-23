@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Clases.Reserva;
 import static com.sun.org.apache.bcel.internal.Repository.instanceOf;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +29,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Date inicio2C;
     private Date fin2C;
     private ArrayList diasDeSemana;
+    private ArrayList<Reserva> reservas;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     
@@ -472,7 +474,10 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         //Sale aux en el primer dia de la semana que coincide
         
         while (aux.before(fin)){//while para 
-
+            //aca qhabría que agregar a una lista un monton de reservas en donde se les vaya poniendo el 
+            //dia y la hora extraida de la ventana
+            //voy sumando de a 7 dias a aux
+//            reservas.add(new Reserva(new Diareserva(aux.getTime(), )));
         }
     }
        

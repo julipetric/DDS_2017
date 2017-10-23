@@ -14,10 +14,10 @@ import java.util.Date;
  */
 public class DiaReserva {
     public Date fecha;
-    public Time horarioInicio;
+    public Time horaInicio;
     public Time horaFin;
 
-    public DiaReserva() {
+    public DiaReserva(Date fecha, String horarioInicio, String horaFin) {
     }
 
     public Date getFecha() {
@@ -25,7 +25,7 @@ public class DiaReserva {
     }
 
     public Time getHorarioInicio() {
-        return horarioInicio;
+        return horaInicio;
     }
 
     public Time getHoraFin() {
@@ -37,7 +37,7 @@ public class DiaReserva {
     }
 
     public void setHorarioInicio(Time horarioInicio) {
-        this.horarioInicio = horarioInicio;
+        this.horaInicio = horarioInicio;
     }
 
     public void setHoraFin(Time horaFin) {

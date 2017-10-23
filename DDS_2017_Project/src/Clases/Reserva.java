@@ -15,8 +15,13 @@ public class Reserva {
     public Integer cantidadAlumnos;
     public String nombreCurso;
     public Docente docente;
+    public DiaReserva diaReserva;
 
     public Reserva() {
+    }
+    
+    public Reserva(DiaReserva diaReserva, TipoDeAula tipo, Periodo periodo, Integer cantidadAlumnos, String nombreCurso, Docente docente){
+        //constructor
     }
 
     public Periodo getPeriodo() {
