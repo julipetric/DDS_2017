@@ -5,9 +5,11 @@
  */
 package Interfaces;
 
+import static com.sun.org.apache.bcel.internal.Repository.instanceOf;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -21,6 +23,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Date fin1C;
     private Date inicio2C;
     private Date fin2C;
+    private ArrayList diasDeSemana;
     
     
     public REGISTRAR_RESERVA() {
@@ -390,9 +393,19 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         
        jRadioButton4.setSelected(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
-    //comportamiento del botón aceptar
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
+        //comportamiento del botón aceptar
+        calendario = Calendar.getInstance();
+        //calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
+        if(jCheckBox8.isEnabled()) diasDeSemana.add(1);//lunes
+        if(jCheckBox9.isEnabled()) diasDeSemana.add(2);//martes
+        if(jCheckBox10.isEnabled()) diasDeSemana.add(3);//miercoles
+        if(jCheckBox11.isEnabled()) diasDeSemana.add(4);//jueves
+        if(jCheckBox12.isEnabled()) diasDeSemana.add(6);//viernes
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
