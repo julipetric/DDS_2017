@@ -150,6 +150,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
         Date fecha = jDateChooser1.getDate();
         DiaReserva dia = new DiaReserva(fecha, jComboBox3.getSelectedItem().toString(), jComboBox4.getSelectedItem().toString());
         ventana.actualizarDiasReserva(dia);
+        ventana.llenarTabla();
         //ventana.actualizarDiasReserva(diasReserva);//se actualiza la lista en la ventana original
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

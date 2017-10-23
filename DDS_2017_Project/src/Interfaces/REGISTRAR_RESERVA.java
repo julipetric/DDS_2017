@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -38,12 +39,17 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
     private ArrayList<DiaReserva> diasReserva;
+    private DefaultTableModel modelo;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     
     public REGISTRAR_RESERVA() {
         initComponents();
         diasReserva = new ArrayList<>();
+        modelo = (DefaultTableModel) jTable1.getModel();
+        jTable1.setModel(modelo);
+       
+        
     }
 
     
@@ -417,6 +423,24 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     
     public void actualizarDiasReserva ( DiaReserva dia ){
         diasReserva.add(dia);
+        System.out.println(diasReserva.size());
+        
+        System.out.println(diasReserva.get(0).fecha);
+        
+    }
+    
+    public void llenarTabla(){//función que llena tabla cuando se agregan nevos dias
+        Object fila[] = new Object[modelo.getColumnCount()];
+        
+        for(int i=0; i<diasReserva.size(); i++){
+            
+                fila[0]= diasReserva.get(i).fecha;
+                fila[1]= diasReserva.get(i).horaInicio;
+                fila[2]= diasReserva.get(i).horaFin;
+                modelo.addRow(fila);//volcar en cuadro en vez de tabla xq es un quilombo
+        }
+       
+        
     }
     
     
