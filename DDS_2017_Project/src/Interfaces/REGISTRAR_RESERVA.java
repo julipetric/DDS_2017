@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Clases.Reserva;
+import Clases.horariosAUX;
 import static com.sun.org.apache.bcel.internal.Repository.instanceOf;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,6 +31,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Date fin2C;
     private ArrayList diasDeSemana;
     private ArrayList<Reserva> reservas;
+    private ArrayList<horariosAUX> horariosPorDia;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     
@@ -413,11 +415,11 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         diasDeSemana = new ArrayList();
 //        calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
        //SE AGREGAN LOS DIAS DE LA SEMANA - EN ENTEROS - QUE ESTÁN SELECCIONADOS
-        if(jCheckBox8.isSelected()){ diasDeSemana.add(1);}//lunes
-        if(jCheckBox9.isSelected()){diasDeSemana.add(2);}//martes
-        if(jCheckBox10.isSelected()) {diasDeSemana.add(3);}//miercoles
-        if(jCheckBox11.isSelected()) {diasDeSemana.add(4);}//jueves
-        if(jCheckBox12.isSelected()) {diasDeSemana.add(5);}//viernes
+        if(jCheckBox8.isSelected()){ diasDeSemana.add(1);horariosPorDia.add(new horariosAUX(jComboBox3.getSelectedItem().toString(),jComboBox4.getSelectedItem().toString() ));}//lunes
+        if(jCheckBox9.isSelected()){diasDeSemana.add(2);horariosPorDia.add(new horariosAUX(jComboBox7.getSelectedItem().toString(),jComboBox8.getSelectedItem().toString() ));}//martes
+        if(jCheckBox10.isSelected()) {diasDeSemana.add(3);horariosPorDia.add(new horariosAUX(jComboBox9.getSelectedItem().toString(),jComboBox10.getSelectedItem().toString() ));}//miercoles
+        if(jCheckBox11.isSelected()) {diasDeSemana.add(4);horariosPorDia.add(new horariosAUX(jComboBox11.getSelectedItem().toString(),jComboBox12.getSelectedItem().toString() ));}//jueves
+        if(jCheckBox12.isSelected()) {diasDeSemana.add(5);horariosPorDia.add(new horariosAUX(jComboBox13.getSelectedItem().toString(),jComboBox14.getSelectedItem().toString() ));}//viernes
         
         
         
@@ -478,7 +480,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         //Sale aux en el primer dia de la semana que coincide
         
         while (aux.before(fin)){//while para 
-            //aca qhabría que agregar a una lista un monton de reservas en donde se les vaya poniendo el 
+            reservas.add(new Reserva(new DiaReserva)) 
             //dia y la hora extraida de la ventana
             //voy sumando de a 7 dias a aux
 //            reservas.add(new Reserva(new Diareserva(aux.getTime(), )));
