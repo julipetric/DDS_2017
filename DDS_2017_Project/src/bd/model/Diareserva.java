@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 19-oct-2017 21:55:45 by Hibernate Tools 4.3.1
+// Generated 24-oct-2017 11:41:08 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
