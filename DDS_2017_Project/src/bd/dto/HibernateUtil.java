@@ -12,18 +12,16 @@ import org.hibernate.SessionFactory;
  * Hibernate Utility class with a convenient method to get Session Factory
  * object.
  *
- * @author Tomas
+ * @author santi_000
  */
 public class HibernateUtil {
 
     private static final SessionFactory sessionFactory;
-  
     
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
             // config file.
-            
             sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
         } catch (Throwable ex) {
             // Log the exception. 
@@ -31,7 +29,7 @@ public class HibernateUtil {
             throw new ExceptionInInitializerError(ex);
         }
     }
-      
+    
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }

@@ -423,6 +423,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     
     public void actualizarDiasReserva ( DiaReserva dia ){
         diasReserva.add(dia);
+<<<<<<< HEAD
         System.out.println(diasReserva.size());
         
         System.out.println(diasReserva.get(0).fecha);
@@ -440,6 +441,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                 modelo.addRow(fila);//volcar en cuadro en vez de tabla xq es un quilombo
         }
        
+=======
+>>>>>>> master
         
     }
     
@@ -457,7 +460,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         periodo = Periodo.valueOf(jComboBox1.getSelectedItem().toString());}
         else{periodo = Periodo.NONE;}
         
-        //SE INICIALIZA LA RESERVA CON LOS DATOS BÁSICOS, FALTA DOCENTE
+        //SE INICIALIZA LA RESERVA CON LOS DATOS BÁSICOS, FALTA DOCENTE yTIPO DE AULA
         reserva= new Reserva(tipo, periodo, Integer.parseInt(jComboBox6.getSelectedItem().toString()), jTextField3.getText());//faltaría construir el docente y otras cosas
 //        calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
        //SE AGREGAN LOS DIAS DE LA SEMANA - EN ENTEROS - QUE ESTÁN SELECCIONADOS
@@ -493,8 +496,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         
        //Las fechas están verificadas
        
-       System.out.println(jComboBox1.getSelectedItem());
-       System.out.println(jComboBox1.getSelectedIndex());
+       
        
       //SETEO DE LAS FECHAS INICIAL Y FINAL DE LAS RESERVAS A REALIZAR
        if(jRadioButton4.isSelected()){
@@ -518,7 +520,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
       
     if (jRadioButton4.isSelected()){//Si es periódica   
         for (int i=0; i<diasDeSemana.size(); i++){
-            aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial
+            aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial CAMBIAR
             //Seteo en primer dia de semana
             boolean j = true;
             while(j){
