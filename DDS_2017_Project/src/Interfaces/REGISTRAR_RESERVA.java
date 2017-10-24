@@ -423,10 +423,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     
     public void actualizarDiasReserva ( DiaReserva dia ){
         diasReserva.add(dia);
-<<<<<<< HEAD
 
-=======
->>>>>>> master
         System.out.println(diasReserva.size());
         
         System.out.println(diasReserva.get(0).fecha);
@@ -444,10 +441,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                 modelo.addRow(fila);//volcar en cuadro en vez de tabla xq es un quilombo
         }
        
-<<<<<<< HEAD
 
-=======
->>>>>>> master
         
     }
     

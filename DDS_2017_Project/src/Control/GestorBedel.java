@@ -19,83 +19,90 @@ import org.hibernate.Transaction;
  * @author Tomas
  */
 public class GestorBedel {
+
     private REGISTRAR_BEDEL ventana;
 
     public GestorBedel() {
     }
-    
-    public void validar(REGISTRAR_BEDEL v1){
-       ventana=v1;
-       String passNueva = "";
-       Boolean error = false;
-     
-      
-        char[] pass1 = ventana.contra;
-        char[] pass2 = ventana.contra2;
-        
-        if (pass1.length == pass2.length) {
-            for (int i = 0; i < pass1.length; i++) {
-                if (pass1[i] != pass2[i]) {
 
-                    error = true;
-                    ventana.errorContra();
-                    ventana.errorContra2();
-                    break;
-                } else {
-                    passNueva += pass1[i];
-                }
-            }
+    public void validar(REGISTRAR_BEDEL v1) {
+        ventana = v1;
+        String passNueva = "";
+        Boolean error = false;
 
+        String pass1 = "";
+        String pass2 = "";
+
+        for (int i = 0; i < ventana.contra.length; i++) {
+            pass1 += ventana.contra[i];
         }
-        else{
-                    error = true;
-                    ventana.errorContra();
-                    ventana.errorContra2();
-                    
+        for (int i = 0; i < ventana.contra2.length; i++) {
+            pass2 += ventana.contra2[i];
         }
-        if (ventana.usuario.isEmpty()) {               // || ventana.nombre.isEmpty() || ventana.apellido.isEmpty()) {
+
+        if (pass1.equals(pass2) && !pass1.isEmpty() && !pass2.isEmpty()) {
+            ventana.contraOk();
+            ventana.contra2Ok();
+        } else {
+            error = true;
+            ventana.errorContra();
+            ventana.errorContra2();
+        }
+
+        if (ventana.usuario.isEmpty()) {
             error = true;
             ventana.errorUsuario();
+        } else {
+            ventana.usuarioOk();
         }
-        if (ventana.turno == null) {
-           
+        if (ventana.nombre.isEmpty()) {
+            error = true;
+            ventana.errorNombre();
+        } else {
+            ventana.nombreOk();
         }
-        //ventana.jLabel8.setText(error);
-        if (error = false) {
+        if (ventana.apellido.isEmpty()) {
+            error = true;
+            ventana.errorApellido();
+        } else {
+            ventana.apellidoOk();
+        }
+        //llamada a dao si esta todo piola
+        if (error == false) {
             UsuarioDAO dao = new UsuarioDAO();
-            //dao.crear();
-            //ventana.jLabel8.setText("");
-            
-            //A dao, Bedel b1 = new Bedel(ventana.jTextField1.getText(), jTextField4.getText(), jTextField2.getText(), passNueva, jComboBox2.getSelectedItem().toString().toUpperCase());
+            Bedel b1 = new Bedel(ventana.nombre, ventana.apellido, ventana.usuario, pass1, ventana.turno.toString());
+            dao.crear(b1);
 
-        }  
+        }
 
     }
-    
-    public Bedel buscarBedel(String n, Turno t){
-     SessionFactory sesion = HibernateUtil.getSessionFactory();
-     Session session = sesion.openSession();
-     Transaction tx = session.beginTransaction();
-     Bedel bedel = (Bedel) session.get(Bedel.class,1);    
-     tx.commit();
-     session.close();
-     return bedel;}
-    
-    private void eliminarBedel(Bedel bedel){
-     //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
+
+    public Bedel buscarBedel(String n, Turno t) {
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session = sesion.openSession();
+        Transaction tx = session.beginTransaction();
+        Bedel bedel = (Bedel) session.get(Bedel.class, 1);
+        tx.commit();
+        session.close();
+        return bedel;
     }
-    
-    private void modificarBedel(Bedel bedel,String nombre,String apellido,String email,Turno turno){
-     //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
+
+    private void eliminarBedel(Bedel bedel) {
+        //IMPLEMENTAR GATITOS
+        //IMPLEMENTAR GATITOS 
+        //IMPLEMENTAR GATITOS
     }
-    
-    private Boolean validarDatos(String id,String password1,String password2,String nombre,String apellido,Turno turno){
-     //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
-    return true;}
+
+    private void modificarBedel(Bedel bedel, String nombre, String apellido, String email, Turno turno) {
+        //IMPLEMENTAR GATITOS
+        //IMPLEMENTAR GATITOS 
+        //IMPLEMENTAR GATITOS
+    }
+
+    private Boolean validarDatos(String id, String password1, String password2, String nombre, String apellido, Turno turno) {
+        //IMPLEMENTAR GATITOS
+        //IMPLEMENTAR GATITOS 
+        //IMPLEMENTAR GATITOS
+        return true;
+    }
 }

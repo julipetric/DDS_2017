@@ -21,8 +21,6 @@ public class UsuarioDAO {
     }
     
     public void crear(Bedel bedel){
-        
-     
      SessionFactory sesion = HibernateUtil.getSessionFactory();
      Session session = sesion.openSession();
      Transaction tx = session.beginTransaction();

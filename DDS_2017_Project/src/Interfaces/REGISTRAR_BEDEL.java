@@ -47,10 +47,28 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
          jLabel6.setForeground(Color.red);
     }
     public void errorContra2 (){
-         jLabel2.setForeground(Color.red);
+         jLabel7.setForeground(Color.red);
     }
     public void errorTurno (){
-         jLabel7.setForeground(Color.red);
+         jLabel4.setForeground(Color.red);
+    }
+    public void nombreOk (){
+         jLabel2.setForeground(Color.black);
+    }
+    public void usuarioOk (){
+         jLabel5.setForeground(Color.black);
+    }
+    public void apellidoOk (){
+         jLabel3.setForeground(Color.black);
+    }
+    public void contraOk (){
+         jLabel6.setForeground(Color.black);
+    }
+    public void contra2Ok (){
+         jLabel7.setForeground(Color.black);
+    }
+    public void turnoOk (){
+         jLabel4.setForeground(Color.black);
     }
    
 
