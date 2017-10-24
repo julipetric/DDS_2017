@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 19-oct-2017 21:55:45 by Hibernate Tools 4.3.1
+// Generated 24-oct-2017 11:41:08 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -84,7 +84,7 @@ public class Aulamm  implements java.io.Serializable {
     }
     
     public void setCañon(byte[] cañon) {
-        this.cañon = cañon;
+        this.cañon=cañon;
     }
     public byte[] getAc() {
         return this.ac;
