@@ -7,6 +7,8 @@ package Control;
 
 import bd.model.Bedel;
 import Clases.Turno;
+import DAO.UsuarioDAO;
+import Interfaces.REGISTRAR_BEDEL;
 import bd.dto.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,17 +19,57 @@ import org.hibernate.Transaction;
  * @author Tomas
  */
 public class GestorBedel {
+    private REGISTRAR_BEDEL ventana;
 
     public GestorBedel() {
     }
     
-    public void registrarBedel(Bedel bedel){
-     SessionFactory sesion = HibernateUtil.getSessionFactory();
-     Session session = sesion.openSession();
-     Transaction tx = session.beginTransaction();
-     session.save(bedel);
-     tx.commit();
-     session.close();
+    public void validar(REGISTRAR_BEDEL v1){
+       ventana=v1;
+       String passNueva = "";
+       Boolean error = false;
+     
+      
+        char[] pass1 = ventana.contra;
+        char[] pass2 = ventana.contra2;
+        
+        if (pass1.length == pass2.length) {
+            for (int i = 0; i < pass1.length; i++) {
+                if (pass1[i] != pass2[i]) {
+
+                    error = true;
+                    ventana.errorContra();
+                    ventana.errorContra2();
+                    break;
+                } else {
+                    passNueva += pass1[i];
+                }
+            }
+
+        }
+        else{
+                    error = true;
+                    ventana.errorContra();
+                    ventana.errorContra2();
+                    
+        }
+        if (ventana.usuario.isEmpty()) {               // || ventana.nombre.isEmpty() || ventana.apellido.isEmpty()) {
+            error = true;
+            ventana.errorUsuario();
+        }
+        if (ventana.turno == null) {
+           
+        }
+        //ventana.jLabel8.setText(error);
+        if (error = false) {
+            UsuarioDAO dao = new UsuarioDAO();
+            //dao.crear();
+            //ventana.jLabel8.setText("");
+            
+            //A dao, Bedel b1 = new Bedel(ventana.jTextField1.getText(), jTextField4.getText(), jTextField2.getText(), passNueva, jComboBox2.getSelectedItem().toString().toUpperCase());
+
+        }  
+
     }
     
     public Bedel buscarBedel(String n, Turno t){
