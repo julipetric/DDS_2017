@@ -7,9 +7,14 @@ package DAO;
 
 import bd.dto.HibernateUtil;
 import bd.model.Bedel;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -17,6 +22,11 @@ import org.hibernate.Transaction;
  */
 public class UsuarioDAO {
 
+    private Connection con;
+    private ResultSet rs;
+    private ResultSetMetaData rsmd;
+    private String consulta;
+    
     public UsuarioDAO() {
     }
     
@@ -27,6 +37,19 @@ public class UsuarioDAO {
      session.save(bedel);
      tx.commit();
      session.close();
+    }
+
+    public void consultaNombreUsuario(String usuario) {
+       
+     consulta = usuario;
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session = sesion.openSession();
+        Transaction tx = session.beginTransaction();
+        Criteria criterio = session.createCriteria(Bedel.class);
+        criterio.add(Restrictions.eq("nombreUsuario",consulta));
+        System.out.println(criterio.list());
+         tx.commit();
+       session.close();
     }
     
     

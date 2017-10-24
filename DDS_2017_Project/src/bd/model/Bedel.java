@@ -11,7 +11,6 @@ import java.util.Set;
 public class Bedel  implements java.io.Serializable {
 
 
-     private Integer id;
      private String nombre;
      private String apellido;
      private String nombreUsuario;
@@ -38,14 +37,8 @@ public class Bedel  implements java.io.Serializable {
        this.turno = turno;
        this.haces = haces;
     }
-   
-    public Integer getId() {
-        return this.id;
-    }
+
     
-    public void setId(Integer id) {
-        this.id = id;
-    }
     public String getNombre() {
         return this.nombre;
     }

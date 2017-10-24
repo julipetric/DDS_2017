@@ -55,6 +55,12 @@ public class GestorBedel {
         } else {
             ventana.usuarioOk();
         }
+        
+        // VEMOS SI YA EXISTE EL NOMBRE DE USUARIO
+        UsuarioDAO dao1 = new UsuarioDAO();
+        dao1.consultaNombreUsuario(ventana.usuario);
+        
+        
         if (ventana.nombre.isEmpty()) {
             error = true;
             ventana.errorNombre();
