@@ -220,7 +220,9 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
+        CONFIRMACION_CANCELACION v3 = new CONFIRMACION_CANCELACION(this);
+        v3.setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
