@@ -22,14 +22,14 @@ public class Bedel  implements java.io.Serializable {
     }
 
 	
-    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno) {
+    public Bedel(String nombreUsuario, String password, String nombre, String apellido, String turno) {
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.password = password;
         this.turno = turno;
     }
-    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno, Set haces) {
+    public Bedel(String nombreUsuario, String password, String nombre, String apellido, String turno, Set haces) {
        this.nombreUsuario = nombreUsuario;
        this.nombre = nombre;
        this.apellido = apellido;

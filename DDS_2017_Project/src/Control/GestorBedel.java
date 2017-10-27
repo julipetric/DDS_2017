@@ -76,7 +76,7 @@ public class GestorBedel {
         //llamada a dao si esta todo piola
         if (error == false) {
             UsuarioDAO dao = new UsuarioDAO();
-            Bedel b1 = new Bedel(ventana.nombre, ventana.apellido, ventana.usuario, pass1, ventana.turno.toString());
+            Bedel b1 = new Bedel(ventana.usuario, pass1, ventana.nombre, ventana.apellido, ventana.turno.toString());
             dao.crear(b1);
 
         }

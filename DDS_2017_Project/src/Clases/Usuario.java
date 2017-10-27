@@ -10,6 +10,7 @@ package Clases;
  * @author Tomas
  */
 public abstract class Usuario {
+    
     public String id;
     public String password;
     public String nombre;
@@ -21,9 +22,4 @@ public abstract class Usuario {
         this.nombre = nombre;
         this.apellido = apellido;
     }
-
- 
-    
-    
-    
 }
