@@ -33,6 +33,15 @@ public class GestorBedel {
         String pass1 = "";
         String pass2 = "";
 
+        if ((ventana.contra.length < 8 || ventana.contra.length > 32) || (ventana.contra2.length < 8 || ventana.contra2.length > 32)) {
+            error = true;
+            ventana.errorContra();
+            ventana.errorContra2();
+        } else {
+            ventana.contraOk();
+            ventana.contra2Ok();
+        }
+
         for (int i = 0; i < ventana.contra.length; i++) {
             pass1 += ventana.contra[i];
         }
@@ -40,7 +49,7 @@ public class GestorBedel {
             pass2 += ventana.contra2[i];
         }
 
-        if (pass1.equals(pass2) && !pass1.isEmpty() && !pass2.isEmpty()) {
+        if ((pass1.equals(pass2) && !pass1.isEmpty() && !pass2.isEmpty()) && ventana.contra.length > 7 && ventana.contra.length < 33 && ventana.contra2.length > 7 && ventana.contra2.length < 33) {
             ventana.contraOk();
             ventana.contra2Ok();
         } else {
@@ -55,12 +64,11 @@ public class GestorBedel {
         } else {
             ventana.usuarioOk();
         }
-        
+
         // VEMOS SI YA EXISTE EL NOMBRE DE USUARIO
         UsuarioDAO dao1 = new UsuarioDAO();
         //dao1.consultaNombreUsuario(ventana.usuario);
-        
-        
+
         if (ventana.nombre.isEmpty()) {
             error = true;
             ventana.errorNombre();
@@ -73,6 +81,7 @@ public class GestorBedel {
         } else {
             ventana.apellidoOk();
         }
+
         //llamada a dao si esta todo piola
         if (error == false) {
             UsuarioDAO dao = new UsuarioDAO();

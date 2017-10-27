@@ -27,32 +27,30 @@ public class UsuarioDAO {
     private ResultSet rs;
     private ResultSetMetaData rsmd;
     private String consulta;
-    
+
     public UsuarioDAO() {
     }
 
-    public void crear(Bedel bedel){
-     SessionFactory sesion = HibernateUtil.getSessionFactory();
-     Session session = sesion.openSession();
-     Transaction tx = session.beginTransaction();
-     session.save(bedel);
-     tx.commit();
-     session.close();
+    public void crear(Bedel bedel) {
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session = sesion.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(bedel);
+        tx.commit();
+        session.close();
     }
 
     public void consultaNombreUsuario(String usuario) {
-       
-     consulta = usuario;
+
+        consulta = usuario;
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
         Criteria criterio = session.createCriteria(Bedel.class);
-        criterio.add(Restrictions.eq("nombreUsuario",consulta));
+        criterio.add(Restrictions.eq("nombreUsuario", consulta));
         System.out.println(criterio.list());
-         tx.commit();
-       session.close();
+        tx.commit();
+        session.close();
     }
-    
-    
-    
+
 }
