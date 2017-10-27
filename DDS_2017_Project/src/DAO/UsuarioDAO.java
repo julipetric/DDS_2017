@@ -10,6 +10,7 @@ import bd.model.Bedel;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,7 +30,7 @@ public class UsuarioDAO {
     
     public UsuarioDAO() {
     }
-    
+
     public void crear(Bedel bedel){
      SessionFactory sesion = HibernateUtil.getSessionFactory();
      Session session = sesion.openSession();

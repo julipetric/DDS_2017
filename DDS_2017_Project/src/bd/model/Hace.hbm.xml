@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24-oct-2017 11:41:09 by Hibernate Tools 4.3.1 -->
+<!-- Generated 27-oct-2017 10:12:54 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="bd.model.Hace" table="hace" catalog="roomguard" optimistic-lock="version">
         <id name="idMaster" type="java.lang.Integer">
@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <many-to-one name="bedel" class="bd.model.Bedel" fetch="select">
-            <column name="idBedel" not-null="true" />
+            <column name="idBedel" length="50" not-null="true" />
         </many-to-one>
         <many-to-one name="reserva" class="bd.model.Reserva" fetch="select">
             <column name="idReserva" not-null="true" />

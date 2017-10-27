@@ -1,20 +1,19 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.1.28-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.1.10-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win32
--- HeidiSQL Versión:             9.4.0.5125
+-- HeidiSQL Versión:             9.3.0.4984
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
 
 -- Volcando estructura de base de datos para roomguard
 CREATE DATABASE IF NOT EXISTS `roomguard` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `roomguard`;
+
 
 -- Volcando estructura para tabla roomguard.admin
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -29,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 DELETE FROM `admin`;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla roomguard.aulainf
 CREATE TABLE IF NOT EXISTS `aulainf` (
@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `aulainf` (
 DELETE FROM `aulainf`;
 /*!40000 ALTER TABLE `aulainf` DISABLE KEYS */;
 /*!40000 ALTER TABLE `aulainf` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla roomguard.aulamm
 CREATE TABLE IF NOT EXISTS `aulamm` (
@@ -68,6 +69,7 @@ DELETE FROM `aulamm`;
 /*!40000 ALTER TABLE `aulamm` DISABLE KEYS */;
 /*!40000 ALTER TABLE `aulamm` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla roomguard.aulasr
 CREATE TABLE IF NOT EXISTS `aulasr` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -86,26 +88,28 @@ DELETE FROM `aulasr`;
 /*!40000 ALTER TABLE `aulasr` DISABLE KEYS */;
 /*!40000 ALTER TABLE `aulasr` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla roomguard.bedel
 CREATE TABLE IF NOT EXISTS `bedel` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `nombreUsuario` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `turno` enum('MAÑANA','TARDE','NOCHE') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`nombreUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.bedel: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.bedel: ~5 rows (aproximadamente)
 DELETE FROM `bedel`;
 /*!40000 ALTER TABLE `bedel` DISABLE KEYS */;
-INSERT INTO `bedel` (`id`, `nombre`, `apellido`, `nombreUsuario`, `password`, `turno`) VALUES
-	(1, 'asda', 'asdas', 'asd', '123', 'MAÑANA'),
-	(2, 'adsad', 'asda', 'sda', '123', 'TARDE'),
-	(3, 'sdasd', 'asdas', 'asdas', '123', 'MAÑANA'),
-	(4, 'Tomas', 'Fleitas', 'ElTomaa', '123', 'TARDE');
+INSERT INTO `bedel` (`nombre`, `apellido`, `nombreUsuario`, `password`, `turno`) VALUES
+	('ANDA', 'ANDA', 'ANDA', '123', 'NOCHE'),
+	('asda', 'asdas', 'asd', '123', 'MAÑANA'),
+	('sdasd', 'asdas', 'asdas', '123', 'MAÑANA'),
+	('Tomas', 'Fleitas', 'ElTomaa', '123', 'TARDE'),
+	('adsad', 'asda', 'sda', '123', 'TARDE');
 /*!40000 ALTER TABLE `bedel` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla roomguard.diareserva
 CREATE TABLE IF NOT EXISTS `diareserva` (
@@ -119,6 +123,7 @@ CREATE TABLE IF NOT EXISTS `diareserva` (
 DELETE FROM `diareserva`;
 /*!40000 ALTER TABLE `diareserva` DISABLE KEYS */;
 /*!40000 ALTER TABLE `diareserva` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla roomguard.docente
 CREATE TABLE IF NOT EXISTS `docente` (
@@ -134,22 +139,24 @@ DELETE FROM `docente`;
 /*!40000 ALTER TABLE `docente` DISABLE KEYS */;
 /*!40000 ALTER TABLE `docente` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla roomguard.hace
 CREATE TABLE IF NOT EXISTS `hace` (
   `idMaster` int(11) NOT NULL AUTO_INCREMENT,
   `idReserva` int(11) NOT NULL,
-  `idBedel` int(11) NOT NULL,
+  `idBedel` varchar(50) NOT NULL,
   PRIMARY KEY (`idMaster`),
   KEY `FK_hace_reserva` (`idReserva`),
   KEY `FK_hace_bedel` (`idBedel`),
-  CONSTRAINT `FK_hace_bedel` FOREIGN KEY (`idBedel`) REFERENCES `bedel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_hace_reserva` FOREIGN KEY (`idReserva`) REFERENCES `reserva` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_hace_bedel` FOREIGN KEY (`idBedel`) REFERENCES `bedel` (`nombreUsuario`),
+  CONSTRAINT `FK_hace_reserva` FOREIGN KEY (`idReserva`) REFERENCES `reserva` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla roomguard.hace: ~0 rows (aproximadamente)
 DELETE FROM `hace`;
 /*!40000 ALTER TABLE `hace` DISABLE KEYS */;
 /*!40000 ALTER TABLE `hace` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla roomguard.posee
 CREATE TABLE IF NOT EXISTS `posee` (
@@ -172,6 +179,7 @@ DELETE FROM `posee`;
 /*!40000 ALTER TABLE `posee` DISABLE KEYS */;
 /*!40000 ALTER TABLE `posee` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla roomguard.reserva
 CREATE TABLE IF NOT EXISTS `reserva` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -186,6 +194,7 @@ CREATE TABLE IF NOT EXISTS `reserva` (
 DELETE FROM `reserva`;
 /*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
 /*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla roomguard.tienediareserva
 CREATE TABLE IF NOT EXISTS `tienediareserva` (
@@ -206,6 +215,7 @@ DELETE FROM `tienediareserva`;
 /*!40000 ALTER TABLE `tienediareserva` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tienediareserva` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla roomguard.tienedocente
 CREATE TABLE IF NOT EXISTS `tienedocente` (
   `idMaster` int(11) NOT NULL AUTO_INCREMENT,
@@ -222,8 +232,6 @@ CREATE TABLE IF NOT EXISTS `tienedocente` (
 DELETE FROM `tienedocente`;
 /*!40000 ALTER TABLE `tienedocente` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tienedocente` ENABLE KEYS */;
-
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-roomguardbedel

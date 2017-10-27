@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 24-oct-2017 11:41:08 by Hibernate Tools 4.3.1
+// Generated 27-oct-2017 10:12:53 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,9 +11,9 @@ import java.util.Set;
 public class Bedel  implements java.io.Serializable {
 
 
+     private String nombreUsuario;
      private String nombre;
      private String apellido;
-     private String nombreUsuario;
      private String password;
      private String turno;
      private Set haces = new HashSet(0);
@@ -22,23 +22,29 @@ public class Bedel  implements java.io.Serializable {
     }
 
 	
-    public Bedel(String nombre, String apellido, String nombreUsuario, String password, String turno) {
+    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno) {
+        this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.turno = turno;
     }
-    public Bedel(String nombre, String apellido, String nombreUsuario, String password, String turno, Set haces) {
+    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno, Set haces) {
+       this.nombreUsuario = nombreUsuario;
        this.nombre = nombre;
        this.apellido = apellido;
-       this.nombreUsuario = nombreUsuario;
        this.password = password;
        this.turno = turno;
        this.haces = haces;
     }
-
+   
+    public String getNombreUsuario() {
+        return this.nombreUsuario;
+    }
     
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
     public String getNombre() {
         return this.nombre;
     }
@@ -52,13 +58,6 @@ public class Bedel  implements java.io.Serializable {
     
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-    public String getNombreUsuario() {
-        return this.nombreUsuario;
-    }
-    
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
     }
     public String getPassword() {
         return this.password;
