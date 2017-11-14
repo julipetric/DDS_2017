@@ -5,11 +5,13 @@
  */
 package Control;
 
+import Clases.PoliticaSeguridad;
 import bd.model.Bedel;
 import Clases.Turno;
 import DAO.UsuarioDAO;
 import Interfaces.REGISTRAR_BEDEL;
 import bd.dto.HibernateUtil;
+import java.util.Arrays;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -25,71 +27,29 @@ public class GestorBedel {
     public GestorBedel() {
     }
 
-    public void validar(REGISTRAR_BEDEL v1) {
-        ventana = v1;
-        String passNueva = "";
-        Boolean error = false;
+    public boolean validar(String nombre, String apellido, String usuario, Turno turno, char[] contra, char[] contra2) {
+        PoliticaSeguridad politica;
+        politica = new PoliticaSeguridad();
 
-        String pass1 = "";
-        String pass2 = "";
-
-        if ((ventana.contra.length < 8 || ventana.contra.length > 32) || (ventana.contra2.length < 8 || ventana.contra2.length > 32)) {
-            error = true;
-            ventana.errorContra();
-            ventana.errorContra2();
-        } else {
-            ventana.contraOk();
-            ventana.contra2Ok();
-        }
-
-        for (int i = 0; i < ventana.contra.length; i++) {
-            pass1 += ventana.contra[i];
-        }
-        for (int i = 0; i < ventana.contra2.length; i++) {
-            pass2 += ventana.contra2[i];
-        }
-
-        if ((pass1.equals(pass2) && !pass1.isEmpty() && !pass2.isEmpty()) && ventana.contra.length > 7 && ventana.contra.length < 33 && ventana.contra2.length > 7 && ventana.contra2.length < 33) {
-            ventana.contraOk();
-            ventana.contra2Ok();
-        } else {
-            error = true;
-            ventana.errorContra();
-            ventana.errorContra2();
-        }
-
-        if (ventana.usuario.isEmpty()) {
-            error = true;
-            ventana.errorUsuario();
-        } else {
-            ventana.usuarioOk();
-        }
-
+        boolean error, errorp;
+        error=false;
+        errorp=politica.validar(contra, contra2);    
+       
         // VEMOS SI YA EXISTE EL NOMBRE DE USUARIO
-        UsuarioDAO dao1 = new UsuarioDAO();
+        //UsuarioDAO dao1 = new UsuarioDAO();
         //dao1.consultaNombreUsuario(ventana.usuario);
 
-        if (ventana.nombre.isEmpty()) {
-            error = true;
-            ventana.errorNombre();
-        } else {
-            ventana.nombreOk();
-        }
-        if (ventana.apellido.isEmpty()) {
-            error = true;
-            ventana.errorApellido();
-        } else {
-            ventana.apellidoOk();
+        if (usuario==null || apellido==null) { 
+            error=true;
         }
 
         //llamada a dao si esta todo piola
-        if (error == false) {
+        if (error==false && errorp==false) {
             UsuarioDAO dao = new UsuarioDAO();
-            Bedel b1 = new Bedel(ventana.usuario, pass1, ventana.nombre, ventana.apellido, ventana.turno.toString());
+            Bedel b1 = new Bedel(usuario, Arrays.toString(contra), nombre, apellido, turno.toString());
             dao.crear(b1);
-
         }
-
+        return error;
     }
 
     public Bedel buscarBedel(String n, Turno t) {

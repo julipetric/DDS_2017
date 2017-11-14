@@ -39,9 +39,6 @@ public class UsuarioDAO {
         session.save(bedel);
         tx.commit();
         session.close();
-        TODO_OK v1 = new TODO_OK();
-        v1.setLocationRelativeTo(null);
-        v1.setVisible(true);
     }
 
     public void consultaNombreUsuario(String usuario) {

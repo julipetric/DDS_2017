@@ -7,9 +7,7 @@ package Interfaces;
 
 import Clases.Turno;
 import Control.GestorBedel;
-import bd.model.Bedel;
 import java.awt.Color;
-import java.util.Arrays;
 
 /**
  *
@@ -18,6 +16,8 @@ import java.util.Arrays;
 public class REGISTRAR_BEDEL extends javax.swing.JFrame {
 
     GestorBedel controlador;
+    
+    
     public String usuario;
     public String apellido;
     public String nombre;
@@ -25,11 +25,9 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
     public char[] contra2;
     public Turno turno;
 
-    /**
-     * Creates new form NUEVOBEDEL
-     */
+
     public REGISTRAR_BEDEL() {
-        controlador = new GestorBedel();
+        controlador = new GestorBedel();        
         initComponents();
        
     }
@@ -215,7 +213,12 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         contra2=pass2TextField.getPassword();
         turno=Turno.valueOf(turnoComboBox.getSelectedItem().toString());
         
-        controlador.validar(this);
+        boolean caca=controlador.validar(nombre, apellido, usuario, turno, contra, contra2);
+        if(caca==true){
+            ERROR_EN_DATOS ve = new ERROR_EN_DATOS();
+            ve.setVisible(true);
+        }
+       
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
