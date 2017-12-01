@@ -238,6 +238,11 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         if(datosError.get(3)) errorTurno();
         if(datosError.get(4)) errorContra();
         if(datosError.get(5)) errorContra2();
+        
+        if(!datosInvalidos){
+            TODO_OK bien = new TODO_OK();
+            bien.setVisible(true);
+        }
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
