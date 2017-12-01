@@ -11,6 +11,7 @@ import Clases.Turno;
 import DAO.UsuarioDAO;
 import Interfaces.REGISTRAR_BEDEL;
 import bd.dto.HibernateUtil;
+import java.util.ArrayList;
 import java.util.Arrays;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,24 +28,43 @@ public class GestorBedel {
     public GestorBedel() {
     }
 
-    public boolean validar(String nombre, String apellido, String usuario, Turno turno, char[] contra, char[] contra2) {
+    public boolean validar(String nombre, String apellido, String usuario, Turno turno, char[] contra, char[] contra2, ArrayList<Boolean> errores) {
         PoliticaSeguridad politica;
         politica = new PoliticaSeguridad();
 
         boolean error, errorp;
-        error=false;
-        errorp=politica.validar(contra, contra2);    
-       
+        error = false;
+        errorp = politica.validar(contra, contra2);
+        if (errorp) {
+            errores.set(4, true);
+            errores.set(5, true);
+        }
+
         // VEMOS SI YA EXISTE EL NOMBRE DE USUARIO
         //UsuarioDAO dao1 = new UsuarioDAO();
         //dao1.consultaNombreUsuario(ventana.usuario);
+        if (usuario.equals("")) {
+            errores.set(0, true);
+            error = true;
+        }
 
-        if (usuario==null || apellido==null) { 
-            error=true;
+        if (apellido.equals("")) {
+            errores.set(1, true);
+            error = true;
+        }
+        
+        if(usuario.equals("")){
+            errores.set(2, true);
+            error = true;
+        }
+        
+        if(turno == null){
+           errores.set(3, true);
+            error = true; 
         }
 
         //llamada a dao si esta todo piola
-        if (error==false && errorp==false) {
+        if (error == false && errorp == false) {
             UsuarioDAO dao = new UsuarioDAO();
             Bedel b1 = new Bedel(usuario, Arrays.toString(contra), nombre, apellido, turno.toString());
             dao.crear(b1);

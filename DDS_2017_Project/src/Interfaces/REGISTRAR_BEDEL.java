@@ -8,6 +8,7 @@ package Interfaces;
 import Clases.Turno;
 import Control.GestorBedel;
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,59 +17,68 @@ import java.awt.Color;
 public class REGISTRAR_BEDEL extends javax.swing.JFrame {
 
     GestorBedel controlador;
-    
-    
+
     public String usuario;
     public String apellido;
     public String nombre;
     public char[] contra;
     public char[] contra2;
     public Turno turno;
-
+    //arreglo booleano para identificar que dio error
+    public ArrayList<Boolean> datosError;
 
     public REGISTRAR_BEDEL() {
-        controlador = new GestorBedel();        
+        controlador = new GestorBedel();
         initComponents();
-       
     }
-    
-    public void errorNombre (){
-         jLabel2.setForeground(Color.red);
+
+    public void errorNombre() {
+        jLabel2.setForeground(Color.red);
     }
-    public void errorUsuario (){
-         jLabel5.setForeground(Color.red);
+
+    public void errorUsuario() {
+        jLabel5.setForeground(Color.red);
     }
-    public void errorApellido (){
-         jLabel3.setForeground(Color.red);
+
+    public void errorApellido() {
+        jLabel3.setForeground(Color.red);
     }
-    public void errorContra (){
-         jLabel6.setForeground(Color.red);
+
+    public void errorContra() {
+        jLabel6.setForeground(Color.red);
     }
-    public void errorContra2 (){
-         jLabel7.setForeground(Color.red);
+
+    public void errorContra2() {
+        jLabel7.setForeground(Color.red);
     }
-    public void errorTurno (){
-         jLabel4.setForeground(Color.red);
+
+    public void errorTurno() {
+        jLabel4.setForeground(Color.red);
     }
-    public void nombreOk (){
-         jLabel2.setForeground(Color.black);
+
+    public void nombreOk() {
+        jLabel2.setForeground(Color.black);
     }
-    public void usuarioOk (){
-         jLabel5.setForeground(Color.black);
+
+    public void usuarioOk() {
+        jLabel5.setForeground(Color.black);
     }
-    public void apellidoOk (){
-         jLabel3.setForeground(Color.black);
+
+    public void apellidoOk() {
+        jLabel3.setForeground(Color.black);
     }
-    public void contraOk (){
-         jLabel6.setForeground(Color.black);
+
+    public void contraOk() {
+        jLabel6.setForeground(Color.black);
     }
-    public void contra2Ok (){
-         jLabel7.setForeground(Color.black);
+
+    public void contra2Ok() {
+        jLabel7.setForeground(Color.black);
     }
-    public void turnoOk (){
-         jLabel4.setForeground(Color.black);
+
+    public void turnoOk() {
+        jLabel4.setForeground(Color.black);
     }
-   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -206,25 +216,34 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
-        nombre=nombreTextField.getText();
-        apellido=lastnameTextField.getText();
-        usuario=usernameTextField.getText();
-        contra=pass1TextField.getPassword();
-        contra2=pass2TextField.getPassword();
-        turno=Turno.valueOf(turnoComboBox.getSelectedItem().toString());
+        nombre = nombreTextField.getText();
+        apellido = lastnameTextField.getText();
+        usuario = usernameTextField.getText();
+        contra = pass1TextField.getPassword();
+        contra2 = pass2TextField.getPassword();
+        turno = Turno.valueOf(turnoComboBox.getSelectedItem().toString());
+        datosError = new ArrayList<>();
         
-        boolean caca=controlador.validar(nombre, apellido, usuario, turno, contra, contra2);
-        if(caca==true){
-            ERROR_EN_DATOS ve = new ERROR_EN_DATOS();
-            ve.setVisible(true);
+        //se inicializa el arreglo de tipos de error
+        for(int i=0; i<6; i++){
+            datosError.add(false);
         }
-       
+
+        boolean datosInvalidos = controlador.validar(nombre, apellido, usuario, turno, contra, contra2, datosError);
+        
+        //se colorean los datos invalidos
+        if(datosError.get(0)) errorNombre();
+        if(datosError.get(1)) errorApellido();
+        if(datosError.get(2)) errorUsuario();
+        if(datosError.get(3)) errorTurno();
+        if(datosError.get(4)) errorContra();
+        if(datosError.get(5)) errorContra2();
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CONFIRMACION_CANCELACION v3 = new CONFIRMACION_CANCELACION(this);
         v3.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
