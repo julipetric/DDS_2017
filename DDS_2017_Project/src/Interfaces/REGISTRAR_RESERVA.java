@@ -33,7 +33,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Periodo periodo;
     private Date fin2C;
     private TipoDeAula tipo;
-    private ArrayList diasDeSemana;
+    private ArrayList<Integer> diasDeSemana;
     private Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
     private ArrayList<DiaReserva> diasReserva;
@@ -218,7 +218,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANUAL", "1º CUATRIMESTRE", "2º CUATRIMESTRE", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANUAL", "PRIMERO", "SEGUNDO", "NONE", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -419,29 +419,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        jRadioButton4.setSelected(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
     
-    public void actualizarDiasReserva ( DiaReserva dia ){
-        diasReserva.add(dia);
-
-        System.out.println(diasReserva.size());
-        
-        System.out.println(diasReserva.get(0).fecha);
-        
-    }
     
-    public void llenarTabla(){//función que llena tabla cuando se agregan nevos dias
-        Object fila[] = new Object[modelo.getColumnCount()];
-        
-        for(int i=0; i<diasReserva.size(); i++){
-            
-                fila[0]= diasReserva.get(i).fecha;
-                fila[1]= diasReserva.get(i).horaInicio;
-                fila[2]= diasReserva.get(i).horaFin;
-                modelo.addRow(fila);//volcar en cuadro en vez de tabla xq es un quilombo
-        }
-       
-
-        
-    }
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -451,7 +429,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         Calendar aux = Calendar.getInstance();
         //comportamiento del botón aceptar
         calendario = Calendar.getInstance();
-        diasDeSemana = new ArrayList();
+        diasDeSemana = new ArrayList<>();
+        horariosPorDia = new ArrayList<>();
         tipo = TipoDeAula.valueOf(jComboBox5.getSelectedItem().toString());
         if (jRadioButton4.isSelected()){//Asignación del período según sea periodica o esporádica
         periodo = Periodo.valueOf(jComboBox1.getSelectedItem().toString());}
@@ -467,7 +446,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         if(jCheckBox11.isSelected()) {diasDeSemana.add(4);horariosPorDia.add(new horariosAUX(jComboBox11.getSelectedItem().toString(),jComboBox12.getSelectedItem().toString() ));}//jueves
         if(jCheckBox12.isSelected()) {diasDeSemana.add(5);horariosPorDia.add(new horariosAUX(jComboBox13.getSelectedItem().toString(),jComboBox14.getSelectedItem().toString() ));}//viernes
         
-        
+        //HASTA ACA SE GUARDA TODO CORRECTO EN LOS ARREGLOS DE LOS DIAS Y HORARIOS  
         
         
         try {
@@ -496,6 +475,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        
        
       //SETEO DE LAS FECHAS INICIAL Y FINAL DE LAS RESERVAS A REALIZAR
+      //VER BIEN LAS FECHAS ESTAS
        if(jRadioButton4.isSelected()){
            if(jComboBox1.getSelectedIndex()== 0){
                inicio = inicio1C;
@@ -515,24 +495,40 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     
     //SE AGREGAN LOS DIASRESERVA, LUEGO SE USAN PARA BUSCAR LOS AULAS DISPONIBLES   
       
-    if (jRadioButton4.isSelected()){//Si es periódica   
+    if (jRadioButton4.isSelected()){//<------RESERV PERIODICA
+        Boolean h = false;
         for (int i=0; i<diasDeSemana.size(); i++){
+            System.out.println("for");
             aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial CAMBIAR
             //Seteo en primer dia de semana
             boolean j = true;
             while(j){
+                System.out.println("0");
                 if(aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) j = false;
                 else aux.add(Calendar.DATE, 1);               
             }
             //Sale aux en el primer dia de la semana que coincide
-
-            while (aux.before(fin)){//while para agregar los dias de reserva
-
+            if(aux.getTime().compareTo(fin)<0){
+                h= true;
+            }
+            else{
+                h = false;
+            }
+            while (h){//while para agregar los dias de reserva
+                System.out.println("2");
                 reserva.diasReserva.add(new DiaReserva(aux.getTime(), horariosPorDia.get(i).horainicio, horariosPorDia.get(i).horafin));
                 aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
+                //SE CHEQUEA h
+                if(aux.getTime().compareTo(fin)<0){
+                    h= true;
+                }
+                else{
+                    h = false;
+                }
             }
             //se va a incrementar i, se vuelve al dia de hor, se acomoda en el siguiente dia seleccionado y se agregan todos los dias reserva
         }
+       //aca ya estan generados todos los diasreserva iniciales de nuestra reserva periodica
     } 
     else{//SI ES ESPORÁDICA
         //IMPLEMENTAR
