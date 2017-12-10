@@ -18,6 +18,8 @@ public class Reserva {
     public String nombreCurso;
     public Docente docente;
     public ArrayList<DiaReserva> diasReserva;
+    public ArrayList<DiaReserva> diasReservaEsporadica;
+    
 
     public Reserva() {
         diasReserva = new ArrayList<>();
