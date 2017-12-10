@@ -33,7 +33,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Periodo periodo;
     private Date fin2C;
     private TipoDeAula tipo;
-    private ArrayList diasDeSemana;
+    private ArrayList<Integer> diasDeSemana;
     private Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
     private ArrayList<DiaReserva> diasReserva;
@@ -46,7 +46,10 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         diasReserva = new ArrayList<>();
         modelo = (DefaultTableModel) jTable1.getModel();
         jTable1.setModel(modelo);
-       
+        jRadioButton1.setSelected(false);
+        jRadioButton4.setSelected(true);
+        jButton3.setEnabled(false);
+        jTable1.setEnabled(false);
         
     }
 
@@ -113,9 +116,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jLabel7.setText("Horarios");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inicio" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45\t" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Final" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
@@ -178,21 +181,21 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inicio" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Final" }));
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inicio" }));
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Final" }));
+        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inicio" }));
+        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Final" }));
+        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inicio" }));
+        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Final" }));
+        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
         jLabel9.setText("Lunes");
 
@@ -218,7 +221,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANUAL", "1º CUATRIMESTRE", "2º CUATRIMESTRE", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANUAL", "PRIMERO", "SEGUNDO", "NONE", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -412,36 +415,54 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
          jRadioButton1.setSelected(false);
+         
+         jButton3.setEnabled(false);
+         jTable1.setEnabled(false);
+         
+         jComboBox1.setEnabled(true);
+         jCheckBox8.setEnabled(true);
+         jCheckBox9.setEnabled(true);
+         jCheckBox10.setEnabled(true);
+         jCheckBox11.setEnabled(true);
+         jCheckBox12.setEnabled(true);
+         jComboBox3.setEnabled(true);
+         jComboBox4.setEnabled(true);
+         jComboBox7.setEnabled(true);
+         jComboBox8.setEnabled(true);
+         jComboBox9.setEnabled(true);
+         jComboBox10.setEnabled(true);
+         jComboBox11.setEnabled(true);
+         jComboBox12.setEnabled(true);
+         jComboBox13.setEnabled(true);
+         jComboBox14.setEnabled(true);
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         
        jRadioButton4.setSelected(false);
+       
+         jButton3.setEnabled(true);
+         jTable1.setEnabled(true);
+         
+         jComboBox1.setEnabled(false);
+         jCheckBox8.setEnabled(false);
+         jCheckBox9.setEnabled(false);
+         jCheckBox10.setEnabled(false);
+         jCheckBox11.setEnabled(false);
+         jCheckBox12.setEnabled(false);
+         jComboBox3.setEnabled(false);
+         jComboBox4.setEnabled(false);
+         jComboBox7.setEnabled(false);
+         jComboBox8.setEnabled(false);
+         jComboBox9.setEnabled(false);
+         jComboBox10.setEnabled(false);
+         jComboBox11.setEnabled(false);
+         jComboBox12.setEnabled(false);
+         jComboBox13.setEnabled(false);
+         jComboBox14.setEnabled(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
     
-    public void actualizarDiasReserva ( DiaReserva dia ){
-        diasReserva.add(dia);
-
-        System.out.println(diasReserva.size());
-        
-        System.out.println(diasReserva.get(0).fecha);
-        
-    }
     
-    public void llenarTabla(){//función que llena tabla cuando se agregan nevos dias
-        Object fila[] = new Object[modelo.getColumnCount()];
-        
-        for(int i=0; i<diasReserva.size(); i++){
-            
-                fila[0]= diasReserva.get(i).fecha;
-                fila[1]= diasReserva.get(i).horaInicio;
-                fila[2]= diasReserva.get(i).horaFin;
-                modelo.addRow(fila);//volcar en cuadro en vez de tabla xq es un quilombo
-        }
-       
-
-        
-    }
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -451,7 +472,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         Calendar aux = Calendar.getInstance();
         //comportamiento del botón aceptar
         calendario = Calendar.getInstance();
-        diasDeSemana = new ArrayList();
+        diasDeSemana = new ArrayList<>();
+        horariosPorDia = new ArrayList<>();
         tipo = TipoDeAula.valueOf(jComboBox5.getSelectedItem().toString());
         if (jRadioButton4.isSelected()){//Asignación del período según sea periodica o esporádica
         periodo = Periodo.valueOf(jComboBox1.getSelectedItem().toString());}
@@ -467,7 +489,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         if(jCheckBox11.isSelected()) {diasDeSemana.add(4);horariosPorDia.add(new horariosAUX(jComboBox11.getSelectedItem().toString(),jComboBox12.getSelectedItem().toString() ));}//jueves
         if(jCheckBox12.isSelected()) {diasDeSemana.add(5);horariosPorDia.add(new horariosAUX(jComboBox13.getSelectedItem().toString(),jComboBox14.getSelectedItem().toString() ));}//viernes
         
-        
+        //HASTA ACA SE GUARDA TODO CORRECTO EN LOS ARREGLOS DE LOS DIAS Y HORARIOS  
         
         
         try {
@@ -496,6 +518,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        
        
       //SETEO DE LAS FECHAS INICIAL Y FINAL DE LAS RESERVAS A REALIZAR
+      //VER BIEN LAS FECHAS ESTAS
        if(jRadioButton4.isSelected()){
            if(jComboBox1.getSelectedIndex()== 0){
                inicio = inicio1C;
@@ -515,24 +538,40 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     
     //SE AGREGAN LOS DIASRESERVA, LUEGO SE USAN PARA BUSCAR LOS AULAS DISPONIBLES   
       
-    if (jRadioButton4.isSelected()){//Si es periódica   
+    if (jRadioButton4.isSelected()){//<------RESERV PERIODICA
+        Boolean h = false;
         for (int i=0; i<diasDeSemana.size(); i++){
+            System.out.println("for");
             aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial CAMBIAR
             //Seteo en primer dia de semana
             boolean j = true;
             while(j){
+                System.out.println("0");
                 if(aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) j = false;
                 else aux.add(Calendar.DATE, 1);               
             }
             //Sale aux en el primer dia de la semana que coincide
-
-            while (aux.before(fin)){//while para agregar los dias de reserva
-
+            if(aux.getTime().compareTo(fin)<0){
+                h= true;
+            }
+            else{
+                h = false;
+            }
+            while (h){//while para agregar los dias de reserva
+                System.out.println("2");
                 reserva.diasReserva.add(new DiaReserva(aux.getTime(), horariosPorDia.get(i).horainicio, horariosPorDia.get(i).horafin));
                 aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
+                //SE CHEQUEA h
+                if(aux.getTime().compareTo(fin)<0){
+                    h= true;
+                }
+                else{
+                    h = false;
+                }
             }
             //se va a incrementar i, se vuelve al dia de hor, se acomoda en el siguiente dia seleccionado y se agregan todos los dias reserva
         }
+       //aca ya estan generados todos los diasreserva iniciales de nuestra reserva periodica
     } 
     else{//SI ES ESPORÁDICA
         //IMPLEMENTAR
