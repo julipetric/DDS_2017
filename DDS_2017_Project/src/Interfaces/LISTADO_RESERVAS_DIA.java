@@ -191,6 +191,22 @@ public class LISTADO_RESERVAS_DIA extends javax.swing.JFrame {
         }
         else{
            jLabel5.setVisible(false);
+           dia = jTextField1.getText();
+           if (jComboBox2.getSelectedItem().toString().equals("TODAS")){
+               tipo = "*";
+           }
+           else{
+               tipo = jComboBox2.getSelectedItem().toString();
+           }
+           
+           if(jComboBox3.getSelectedItem().toString().equals("TODAS")){
+               aula = "*";
+           }
+           else{
+               aula = jComboBox3.getSelectedItem().toString();
+           }
+           
+           gestor.listaReservasDia(dia, tipo, aula);
         }
        // gestor.listaReservasDia(dia, tipo, aula)
     }//GEN-LAST:event_jButton1ActionPerformed

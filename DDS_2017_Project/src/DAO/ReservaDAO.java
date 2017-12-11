@@ -5,10 +5,19 @@
  */
 package DAO;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+
 /**
  *
  * @author santi_000
  */
 public class ReservaDAO {
+    private Connection con;
+    private ResultSet rs;
+    private ResultSetMetaData rsmd;
     
+    public ReservaDAO() {
+    }
 }

@@ -6,7 +6,10 @@
 package Control;
 
 import Clases.Reserva;
+import DAO.ReservaDAO;
+import bd.model.Bedel;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -31,10 +34,13 @@ public class GestorDeReservas {
     
     public ArrayList listaReservasDia(String dia, String tipo, String aula){
    
+        ReservaDAO dao = new ReservaDAO();
+        List<Reserva> reservasdao = dao.read(apellido,turno);
+        return reservasdao;
+    
         
         
-        
-    return new ArrayList();
+    
     }
     
     public ArrayList listarReservasCurso(String curso){
