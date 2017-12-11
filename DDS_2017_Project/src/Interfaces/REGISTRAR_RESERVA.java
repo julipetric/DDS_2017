@@ -8,7 +8,6 @@ package Interfaces;
 import Clases.DiaReserva;
 import Clases.Periodo;
 import Clases.Reserva;
-import Clases.TablaDiasEsporadicosTableModel;
 import Clases.TipoDeAula;
 import Clases.horariosAUX;
 import java.text.ParseException;
@@ -18,7 +17,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -38,16 +41,14 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     public Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
     
-    private TablaDiasEsporadicosTableModel modelo;
+    
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     
     public REGISTRAR_RESERVA() {
         initComponents();
         
-        modelo = new TablaDiasEsporadicosTableModel();
-
-        jTable1.setModel(this.modelo);
+        
         
         jRadioButton1.setSelected(false);
         jRadioButton4.setSelected(true);
@@ -188,7 +189,28 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jLabel8.setText("Agregar nuevo día");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Dia", "Inicio", "Fin"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
@@ -453,6 +475,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
          jButton3.setEnabled(true);
          jTable1.setEnabled(true);
          
+         
          jComboBox1.setEnabled(false);
          jCheckBox8.setEnabled(false);
          jCheckBox9.setEnabled(false);
@@ -472,19 +495,18 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
     
     
-    public void actualizarDiasReservaEsporadica(){
+    public void agregarFilaATabla(DiaReserva dia){
         
-        
-        modelo.setDiasReservaEsporadica(this.reserva.diasReservaEsporadica);
-        for(int i=0; i<this.reserva.diasReservaEsporadica.size(); i++){
-            System.out.println(this.reserva.diasReservaEsporadica.get(i).fecha.toString() + this.reserva.diasReservaEsporadica.get(i).horaInicio + this.reserva.diasReservaEsporadica.get(i).horaFin);
-        }
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        Object rowData[] = new Object[3];
+        rowData[0] = "...";
+        rowData[1] = dia.horaInicio;
+        rowData[2] = dia.horaFin;
+        modelo.addRow(rowData);
         
     }
     
-       public void metodo1(){
-           System.out.println(this.reserva.diasReservaEsporadica.size());
-       }
+       
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
         Date inicio = new Date();

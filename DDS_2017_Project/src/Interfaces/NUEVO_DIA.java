@@ -238,8 +238,9 @@ public class NUEVO_DIA extends javax.swing.JFrame {
                 jLabel3.setVisible(false); //TODO OK, FECHA Y HORA, AGREGAR DIARESERVA A LA LISTA
                 
                 
-                reserva.diasReservaEsporadica.add(new DiaReserva(jDateChooser1.getDate(),jComboBox3.getSelectedItem().toString(),jComboBox4.getSelectedItem().toString() ));//agrego el dia
-                
+                DiaReserva dia = new DiaReserva(jDateChooser1.getDate(),jComboBox3.getSelectedItem().toString(),jComboBox4.getSelectedItem().toString() );
+                reserva.diasReservaEsporadica.add(dia);//agrego el dia
+                ventana.agregarFilaATabla(dia);
             }
                        
         }
