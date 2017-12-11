@@ -32,10 +32,10 @@ public class GestorDeReservas {
                //IMPLEMENTAR GATITOS
     }
     
-    public ArrayList listaReservasDia(String dia, String tipo, String aula){
+    public List listaReservasDia(String dia, String tipo, String aula){
    
         ReservaDAO dao = new ReservaDAO();
-        List<Reserva> reservasdao = dao.read(apellido,turno);
+        List<Reserva> reservasdao = dao.read(dia,tipo, aula);
         return reservasdao;
     
         
