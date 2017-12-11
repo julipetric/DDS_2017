@@ -18,7 +18,11 @@ public class DiaReserva {
     public String horaFin;
     private Aula aula;
 
-    public DiaReserva(Date fecha, String horarioInicio, String horaFin) {
+    public DiaReserva(Date f, String horarioInicio, String horarioFin) {
+        fecha = f;
+        horaInicio = horarioInicio;
+        horaFin = horarioFin;
+        
     }
 
     public Date getFecha() {

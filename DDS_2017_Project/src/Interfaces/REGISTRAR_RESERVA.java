@@ -499,7 +499,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[3];
-        rowData[0] = "...";
+        rowData[0] = dia.fecha.toString();
+       
         rowData[1] = dia.horaInicio;
         rowData[2] = dia.horaFin;
         modelo.addRow(rowData);
