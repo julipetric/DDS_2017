@@ -10,6 +10,7 @@ import Clases.AulaInformatica;
 import Clases.AulaMultimedia;
 import Clases.AulaSinRecursos;
 import Clases.TipoDeAula;
+import Control.GestorDeAulas;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -171,12 +172,17 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
+        GestorDeAulas gestor = new GestorDeAulas();
+
         String idAula = (String) aulaNum.getSelectedItem();
         Integer capacidad = Integer.parseInt((String) aulaCapacidad.getSelectedItem());
         TipoDeAula tipo = (TipoDeAula) aulaTipo.getSelectedItem();
         ArrayList<Aula> listaAulas = new ArrayList<>();
         if (idAula != null) {
-            /*Buscar directamente el aula en la bd y guardarla como unico elemento en listaAulas*/
+            Aula a = gestor.buscarAula(idAula);
+            if (a != null) {
+                listaAulas.add(a);
+            }
         } else {
             if (tipo != null) {
                 /*Traer de la BD aulas por tipo y guardar en listaAulas*/
@@ -198,17 +204,16 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
                 tipoA = TipoDeAula.SINRECURSOS;
             }
             String habilitacion = null;
-            if(a.getHabilitada()){
+            if (a.getHabilitada()) {
                 habilitacion = "Habilitada";
-            }
-            else{
+            } else {
                 habilitacion = "No habilitada";
             }
             Object[] v = {a.getId(), a.getUbicacion(), tipoA, a.getCapacidad(), habilitacion};
             model.addRow(v);
         }
-        
-        if(listaAulas.isEmpty()){
+
+        if (listaAulas.isEmpty()) {
             NO_HAY_AULAS aviso = new NO_HAY_AULAS();
             aviso.setVisible(true);
         }

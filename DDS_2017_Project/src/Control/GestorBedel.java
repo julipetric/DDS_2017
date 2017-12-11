@@ -63,7 +63,7 @@ public class GestorBedel {
             error = true; 
         }
 
-        //llamada a dao si esta todo piola
+        //llamada a dao si esta todo correcto
         if (error == false && errorp == false) {
             UsuarioDAO dao = new UsuarioDAO();
             Bedel b1 = new Bedel(usuario, Arrays.toString(contra), nombre, apellido, turno.toString());
