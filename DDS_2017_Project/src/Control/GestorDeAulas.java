@@ -6,7 +6,11 @@
 package Control;
 
 import Clases.Aula;
-import Clases.AulaMultimedia;
+import DAO.AulaDAO;
+import bd.dto.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -16,29 +20,28 @@ public class GestorDeAulas {
 
     public GestorDeAulas() {
     }
-    
-    public Aula buscarAula(){
-      //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
-    return new AulaMultimedia();}
-    
-    public void modificarAulaSinRecursos(){
-     //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
+
+    public Aula buscarAula(String id) {
+        AulaDAO dao = new AulaDAO();
+        Aula a = dao.read(id);
+        return a;
     }
-    
-    public void modificarAulaInformatica(){
-     //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
+
+    public void modificarAulaSinRecursos() {
+        //IMPLEMENTAR GATITOS
+        //IMPLEMENTAR GATITOS 
+        //IMPLEMENTAR GATITOS
     }
-    
-    public void modificarAulaMultimedios(){
-     //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
+
+    public void modificarAulaInformatica() {
+        //IMPLEMENTAR GATITOS
+        //IMPLEMENTAR GATITOS 
+        //IMPLEMENTAR GATITOS
+    }
+
+    public void modificarAulaMultimedios() {
+        //IMPLEMENTAR GATITOS
+        //IMPLEMENTAR GATITOS 
+        //IMPLEMENTAR GATITOS
     }
 }
-

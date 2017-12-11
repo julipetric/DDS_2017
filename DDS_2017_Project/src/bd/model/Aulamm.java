@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 27-oct-2017 10:12:53 by Hibernate Tools 4.3.1
+// Generated 11-dic-2017 13:46:36 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,13 +11,8 @@ import java.util.Set;
 public class Aulamm  implements java.io.Serializable {
 
 
-     private Integer id;
-     private int capacidad;
-     private String pizzaron;
-     private byte[] habilitada;
-     private byte[] cañon;
-     private byte[] ac;
-     private byte[] ubicacion;
+     private int id;
+     private Aula aula;
      private byte[] computadora;
      private byte[] televisor;
      private byte[] dvd;
@@ -27,78 +22,33 @@ public class Aulamm  implements java.io.Serializable {
     }
 
 	
-    public Aulamm(int capacidad, String pizzaron, byte[] habilitada, byte[] cañon, byte[] ac, byte[] ubicacion, byte[] computadora, byte[] televisor, byte[] dvd) {
-        this.capacidad = capacidad;
-        this.pizzaron = pizzaron;
-        this.habilitada = habilitada;
-        this.cañon = cañon;
-        this.ac = ac;
-        this.ubicacion = ubicacion;
+    public Aulamm(Aula aula, byte[] computadora, byte[] televisor, byte[] dvd) {
+        this.aula = aula;
         this.computadora = computadora;
         this.televisor = televisor;
         this.dvd = dvd;
     }
-    public Aulamm(int capacidad, String pizzaron, byte[] habilitada, byte[] cañon, byte[] ac, byte[] ubicacion, byte[] computadora, byte[] televisor, byte[] dvd, Set posees) {
-       this.capacidad = capacidad;
-       this.pizzaron = pizzaron;
-       this.habilitada = habilitada;
-       this.cañon = cañon;
-       this.ac = ac;
-       this.ubicacion = ubicacion;
+    public Aulamm(Aula aula, byte[] computadora, byte[] televisor, byte[] dvd, Set posees) {
+       this.aula = aula;
        this.computadora = computadora;
        this.televisor = televisor;
        this.dvd = dvd;
        this.posees = posees;
     }
    
-    public Integer getId() {
+    public int getId() {
         return this.id;
     }
     
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
-    public int getCapacidad() {
-        return this.capacidad;
+    public Aula getAula() {
+        return this.aula;
     }
     
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
-    }
-    public String getPizzaron() {
-        return this.pizzaron;
-    }
-    
-    public void setPizzaron(String pizzaron) {
-        this.pizzaron = pizzaron;
-    }
-    public byte[] getHabilitada() {
-        return this.habilitada;
-    }
-    
-    public void setHabilitada(byte[] habilitada) {
-        this.habilitada = habilitada;
-    }
-    public byte[] getCañon() {
-        return this.cañon;
-    }
-    
-    public void setCañon(byte[] cañon) {
-        this.cañon = cañon;
-    }
-    public byte[] getAc() {
-        return this.ac;
-    }
-    
-    public void setAc(byte[] ac) {
-        this.ac = ac;
-    }
-    public byte[] getUbicacion() {
-        return this.ubicacion;
-    }
-    
-    public void setUbicacion(byte[] ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setAula(Aula aula) {
+        this.aula = aula;
     }
     public byte[] getComputadora() {
         return this.computadora;

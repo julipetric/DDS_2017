@@ -52,14 +52,13 @@ public class UsuarioDAO {
     }
 
     public void consultaNombreUsuario(String usuario) {
-
         consulta = usuario;
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
         Criteria criterio = session.createCriteria(Bedel.class);
-        criterio.add(Restrictions.eq("nombreUsuario", consulta));
-        System.out.println(criterio.list());
+        List<Bedel> lista = criterio.add(Restrictions.eq("apellido", consulta)).list();
+        System.out.println(lista);
         tx.commit();
         session.close();
     }
