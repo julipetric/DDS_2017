@@ -41,17 +41,17 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="roomguard"/>
-  <table-filter match-name="posee"/>
-  <table-filter match-name="hace"/>
-  <table-filter match-name="diareserva"/>
-  <table-filter match-name="aulasr"/>
-  <table-filter match-name="tienedocente"/>
-  <table-filter match-name="reserva"/>
-  <table-filter match-name="admin"/>
-  <table-filter match-name="docente"/>
-  <table-filter match-name="aulamm"/>
   <table-filter match-name="aulainf"/>
   <table-filter match-name="aula"/>
+  <table-filter match-name="hace"/>
+  <table-filter match-name="posee"/>
+  <table-filter match-name="reserva"/>
+  <table-filter match-name="admin"/>
   <table-filter match-name="tienediareserva"/>
+  <table-filter match-name="tienedocente"/>
+  <table-filter match-name="aulamm"/>
   <table-filter match-name="bedel"/>
+  <table-filter match-name="diareserva"/>
+  <table-filter match-name="aulasr"/>
+  <table-filter match-name="docente"/>
 </hibernate-reverse-engineering>
