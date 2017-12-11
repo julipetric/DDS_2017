@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-dic-2017 13:46:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bd.model.Aula" table="aula" catalog="roomguard" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="capacidad" type="int">
+            <column name="capacidad" not-null="true" />
+        </property>
+        <property name="pizzaron" type="string">
+            <column name="pizzaron" length="6" not-null="true" />
+        </property>
+        <property name="habilitada" type="binary">
+            <column name="habilitada" not-null="true" />
+        </property>
+        <property name="canion" type="binary">
+            <column name="canion" not-null="true" />
+        </property>
+        <property name="ac" type="binary">
+            <column name="ac" not-null="true" />
+        </property>
+        <property name="ubicacion" type="binary">
+            <column name="ubicacion" not-null="true" />
+        </property>
+        <one-to-one name="aulasr" class="bd.model.Aulasr"></one-to-one>
+        <one-to-one name="aulainf" class="bd.model.Aulainf"></one-to-one>
+        <one-to-one name="aulamm" class="bd.model.Aulamm"></one-to-one>
+    </class>
+</hibernate-mapping>

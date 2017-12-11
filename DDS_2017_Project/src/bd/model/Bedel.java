@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 27-oct-2017 10:12:53 by Hibernate Tools 4.3.1
+// Generated 11-dic-2017 13:46:36 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -22,14 +22,14 @@ public class Bedel  implements java.io.Serializable {
     }
 
 	
-    public Bedel(String nombreUsuario, String password, String nombre, String apellido, String turno) {
+    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno) {
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.password = password;
         this.turno = turno;
     }
-    public Bedel(String nombreUsuario, String password, String nombre, String apellido, String turno, Set haces) {
+    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno, Set haces) {
        this.nombreUsuario = nombreUsuario;
        this.nombre = nombre;
        this.apellido = apellido;

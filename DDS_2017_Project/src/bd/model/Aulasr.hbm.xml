@@ -1,31 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 27-oct-2017 10:12:54 by Hibernate Tools 4.3.1 -->
+<!-- Generated 11-dic-2017 13:46:37 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="bd.model.Aulasr" table="aulasr" catalog="roomguard" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
+        <id name="id" type="int">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="foreign">
+                <param name="property">aula</param>
+            </generator>
         </id>
-        <property name="capacidad" type="int">
-            <column name="capacidad" not-null="true" />
-        </property>
-        <property name="pizzaron" type="string">
-            <column name="pizzaron" length="6" not-null="true" />
-        </property>
-        <property name="habilitada" type="binary">
-            <column name="habilitada" not-null="true" />
-        </property>
-        <property name="ca&#241;on" type="binary">
-            <column name="ca&#241;on" not-null="true" />
-        </property>
-        <property name="ac" type="binary">
-            <column name="ac" not-null="true" />
-        </property>
-        <property name="ubicacion" type="binary">
-            <column name="ubicacion" not-null="true" />
-        </property>
+        <one-to-one name="aula" class="bd.model.Aula" constrained="true"></one-to-one>
         <property name="ventilador" type="binary">
             <column name="ventilador" not-null="true" />
         </property>

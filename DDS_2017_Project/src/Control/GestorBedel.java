@@ -90,8 +90,9 @@ public class GestorBedel {
     
     public List buscarBedel (String apellido, Turno turno){
         UsuarioDAO dao = new UsuarioDAO();
-        List bedelesdao = dao.read(apellido, turno);
+        /*List bedelesdao =*/ dao.consultaNombreUsuario(apellido);
         //filtrar de la lista de bedeles cuales cumplen las caract
-        return bedelesdao;
+        
+        return new ArrayList() ; //bedelesdao;
     }
 }
