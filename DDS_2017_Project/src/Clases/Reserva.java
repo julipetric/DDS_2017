@@ -23,6 +23,7 @@ public class Reserva {
 
     public Reserva() {
         diasReserva = new ArrayList<>();
+        diasReservaEsporadica = new ArrayList<>();
     }
     
     public Reserva( TipoDeAula tipo, Periodo periodo, Integer cantidadAlumnos, String nombreCurso){

@@ -8,6 +8,7 @@ package Interfaces;
 import Clases.DiaReserva;
 import Clases.Periodo;
 import Clases.Reserva;
+import Clases.TablaDiasEsporadicosTableModel;
 import Clases.TipoDeAula;
 import Clases.horariosAUX;
 import java.text.ParseException;
@@ -34,25 +35,48 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Date fin2C;
     private TipoDeAula tipo;
     private ArrayList<Integer> diasDeSemana;
-    private Reserva reserva;
+    public Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
-    private ArrayList<DiaReserva> diasReserva;
-    private ArrayList<DiaReserva> diasReservaEsporadica;
-    private DefaultTableModel modelo;
+    
+    private TablaDiasEsporadicosTableModel modelo;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     
     public REGISTRAR_RESERVA() {
         initComponents();
-        diasReserva = new ArrayList<>();
-        diasReservaEsporadica = new ArrayList<>();
-        modelo = (DefaultTableModel) jTable1.getModel();
-        jTable1.setModel(modelo);
+        
+        modelo = new TablaDiasEsporadicosTableModel();
+
+        jTable1.setModel(this.modelo);
+        
         jRadioButton1.setSelected(false);
         jRadioButton4.setSelected(true);
         jButton3.setEnabled(false);
         jTable1.setEnabled(false);
         reserva = new Reserva();
+        
+        try {
+            inicio1C = sdf.parse("15/03/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fin1C = sdf.parse("9/06/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            inicio2C = sdf.parse("08/07/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fin2C = sdf.parse("25/12/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       //Las fechas están verificadas
         
     }
 
@@ -119,9 +143,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jLabel7.setText("Horarios");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45\t" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45\t" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
@@ -164,25 +188,23 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jLabel8.setText("Agregar nuevo día");
 
-        jTable1.setModel(this.modelo
-        );
         jScrollPane1.setViewportView(jTable1);
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
+        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
+        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
+        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
+        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "10:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
+        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "10:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
 
         jLabel9.setText("Lunes");
 
@@ -450,8 +472,19 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
     
     
+    public void actualizarDiasReservaEsporadica(){
+        
+        
+        modelo.setDiasReservaEsporadica(this.reserva.diasReservaEsporadica);
+        for(int i=0; i<this.reserva.diasReservaEsporadica.size(); i++){
+            System.out.println(this.reserva.diasReservaEsporadica.get(i).fecha.toString() + this.reserva.diasReservaEsporadica.get(i).horaInicio + this.reserva.diasReservaEsporadica.get(i).horaFin);
+        }
+        
+    }
     
-    
+       public void metodo1(){
+           System.out.println(this.reserva.diasReservaEsporadica.size());
+       }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
         Date inicio = new Date();
@@ -479,26 +512,26 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         //HASTA ACA SE GUARDA TODO CORRECTO EN LOS ARREGLOS DE LOS DIAS Y HORARIOS  
         
         
-        try {
-            inicio1C = sdf.parse("15/03/2017");
-        } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            fin1C = sdf.parse("9/06/2017");
-        } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            inicio2C = sdf.parse("08/07/2017");
-        } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            fin2C = sdf.parse("25/12/2017");
-        } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            inicio1C = sdf.parse("15/03/2017");
+//        } catch (ParseException ex) {
+//            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        try {
+//            fin1C = sdf.parse("9/06/2017");
+//        } catch (ParseException ex) {
+//            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        try {
+//            inicio2C = sdf.parse("08/07/2017");
+//        } catch (ParseException ex) {
+//            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        try {
+//            fin2C = sdf.parse("25/12/2017");
+//        } catch (ParseException ex) {
+//            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
        //Las fechas están verificadas
        
@@ -564,15 +597,14 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         //IMPLEMENTAR
     }
         
-        
-        
-        
+       
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //ACCION DE NUEVO DIA
-        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(reserva.diasReservaEsporadica);
+       
+        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(reserva, this.inicio1C, this.fin2C, this);
         ventana_NUEVO_DIA.setVisible(true);
         
         
