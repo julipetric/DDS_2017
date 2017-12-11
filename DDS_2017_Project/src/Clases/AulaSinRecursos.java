@@ -19,22 +19,6 @@ public class AulaSinRecursos extends Aula{
         return ventilador;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public Integer getCapacidad() {
-        return capacidad;
-    }
-
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public Boolean getHabilitada() {
-        return habilitada;
-    }
-
     public Boolean getAc() {
         return ac;
     }
@@ -51,20 +35,8 @@ public class AulaSinRecursos extends Aula{
         this.ventilador = ventilador;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setCapacidad(Integer capacidad) {
-        this.capacidad = capacidad;
-    }
-
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
-    }
-
-    public void setHabilitada(Boolean habilitada) {
-        this.habilitada = habilitada;
     }
 
     public void setAc(Boolean ac) {
