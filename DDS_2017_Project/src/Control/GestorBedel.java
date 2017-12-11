@@ -88,9 +88,11 @@ public class GestorBedel {
         return true;
     }
     
-    public List buscarBedel (String apellido, String turno){
+    public List buscarBedel (String apellido, Turno turno){
         UsuarioDAO dao = new UsuarioDAO();
-        List<Bedel> bedelesdao = dao.read(apellido,turno);
-        return bedelesdao;
+        /*List bedelesdao =*/ dao.consultaNombreUsuario(apellido);
+        //filtrar de la lista de bedeles cuales cumplen las caract
+        
+        return new ArrayList() ; //bedelesdao;
     }
 }

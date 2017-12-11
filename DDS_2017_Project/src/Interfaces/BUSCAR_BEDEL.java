@@ -5,12 +5,9 @@
  */
 package Interfaces;
 
- 
-
+import Clases.Turno;
 import Control.GestorBedel;
-import bd.model.Bedel;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,18 +25,6 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
 
     }
 
-    public void agregarFilaATabla(Bedel bedel){
-        
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[4];
-        rowData[0] = bedel.getApellido();
-        rowData[1] = bedel.getNombre();
-        rowData[2] = bedel.getTurno();
-        rowData[3] = bedel.getNombreUsuario();
-        modelo.addRow(rowData);
-    }
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -236,35 +221,27 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
             if(!jTextField1.getText().isEmpty()){
             jLabel4.setText(" ");
             String apellbusq = jTextField1.getText();   
-            String turnobusqueda =  jComboBox2.getSelectedItem().toString();
-            
-            List<Bedel> salida = controlador.buscarBedel(apellbusq, turnobusqueda);  //puede devolver multiples bedeles
+            Turno turnobusqueda = (Turno) jComboBox2.getSelectedItem();
+  
+            List salida = controlador.buscarBedel(apellbusq, turnobusqueda);  //puede devolver multiples bedeles
             //setear lista salida a la tabla
-            for(Bedel b: salida){
-                      this.agregarFilaATabla(b);
-                   }
- 
+            
+           
            }else{ jLabel4.setText("Complete el apellido");}
         }
         if(jCheckBox3.isSelected() && !jCheckBox4.isSelected()){  //checkbox apellido
               if(!jTextField1.getText().isEmpty()){
                    String apellbusq = jTextField1.getText();    //a controlador
-                   List<Bedel> salida = controlador.buscarBedel(apellbusq, null);
-                   
-                   for(Bedel b: salida){
-                       this.agregarFilaATabla(b);
-                   }
+                   List salida = controlador.buscarBedel(apellbusq, null);
+                    //setear lista salida a la tabla
          
                jLabel4.setText(" ");
               }else{ jLabel4.setText("Complete el apellido");}
         }
          if(!jCheckBox3.isSelected() && jCheckBox4.isSelected()){  //checkbox turno
-            String turnobusqueda =  jComboBox2.getSelectedItem().toString();
-            List<Bedel> salida = controlador.buscarBedel(null, turnobusqueda); //a controlador
-             for(Bedel b: salida){
-                       this.agregarFilaATabla(b);
-                   }
-         
+            Turno turnobusqueda = (Turno) jComboBox2.getSelectedItem();
+            List salida = controlador.buscarBedel(null, turnobusqueda); //a controlador
+             //setear lista salida a la tabla
              jLabel4.setText(" ");
         }
          if(!jCheckBox3.isSelected() && !jCheckBox4.isSelected()){  //ninguno
