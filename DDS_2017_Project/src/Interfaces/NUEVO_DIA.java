@@ -15,12 +15,12 @@ import java.util.Date;
  */
 public class NUEVO_DIA extends javax.swing.JFrame {
 
-    private ArrayList<DiaReserva> diasReserva;
-    private REGISTRAR_RESERVA ventana;
+    private ArrayList<DiaReserva> diasReservaEsporadica;
     
-    public NUEVO_DIA(REGISTRAR_RESERVA vent) {
+    public NUEVO_DIA(ArrayList<DiaReserva> dias) {
         initComponents();
-        ventana = vent;
+        diasReservaEsporadica = dias;
+        
         
     }
 

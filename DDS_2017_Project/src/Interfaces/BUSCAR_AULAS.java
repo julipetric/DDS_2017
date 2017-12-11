@@ -5,6 +5,15 @@
  */
 package Interfaces;
 
+import Clases.Aula;
+import Clases.AulaInformatica;
+import Clases.AulaMultimedia;
+import Clases.AulaSinRecursos;
+import Clases.TipoDeAula;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author rodri
@@ -31,14 +40,14 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        aulaNum = new javax.swing.JComboBox<>();
+        aulaTipo = new javax.swing.JComboBox<>();
+        aulaCapacidad = new javax.swing.JComboBox<>();
+        buscarButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        tablaAulas = new javax.swing.JTable();
+        modificarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BUSCAR AULAS");
@@ -55,23 +64,28 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
 
         jLabel4.setText("Capacidad");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un numero" }));
+        aulaNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un numero" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo" }));
+        aulaTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo" }));
+        aulaCapacidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo" }));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setText("Buscar");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        buscarButton.setBackground(new java.awt.Color(0, 102, 255));
+        buscarButton.setText("Buscar");
+        buscarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        buscarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarButtonActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jScrollPane1.setMinimumSize(new java.awt.Dimension(453, 700));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(453, 700));
 
-        jTable1.setBackground(new java.awt.Color(153, 153, 153));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaAulas.setBackground(new java.awt.Color(153, 153, 153));
+        tablaAulas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -80,13 +94,21 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
             new String [] {
                 "Numero", "Piso", "Tipo", "Capacidad", "Estado"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
 
-        jButton2.setBackground(new java.awt.Color(51, 204, 0));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jButton2.setText("Modificar");
-        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaAulas);
+
+        modificarButton.setBackground(new java.awt.Color(51, 204, 0));
+        modificarButton.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        modificarButton.setText("Modificar");
+        modificarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,20 +124,20 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addGap(260, 260, 260))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(282, 282, 282))
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(modificarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(aulaNum, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(aulaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aulaCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
                 .addGap(56, 56, 56))
         );
@@ -131,22 +153,66 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(aulaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aulaNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aulaCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(modificarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
+        String idAula = (String) aulaNum.getSelectedItem();
+        Integer capacidad = Integer.parseInt((String) aulaCapacidad.getSelectedItem());
+        TipoDeAula tipo = (TipoDeAula) aulaTipo.getSelectedItem();
+        ArrayList<Aula> listaAulas = new ArrayList<>();
+        if (idAula != null) {
+            /*Buscar directamente el aula en la bd y guardarla como unico elemento en listaAulas*/
+        } else {
+            if (tipo != null) {
+                /*Traer de la BD aulas por tipo y guardar en listaAulas*/
+            }
+            if (capacidad != null) {
+                /*filtrar  listaAulas para solo las de capacidad mayor a especificada*/
+            }
+        }
+        DefaultTableModel model = (DefaultTableModel) tablaAulas.getModel();
+        TipoDeAula tipoA = null;
+        for (Aula a : listaAulas) {
+            if (a.getClass() == AulaInformatica.class) {
+                tipoA = TipoDeAula.INFORMATICA;
+            }
+            if (a.getClass() == AulaMultimedia.class) {
+                tipoA = TipoDeAula.MULTIMEDIOS;
+            }
+            if (a.getClass() == AulaSinRecursos.class) {
+                tipoA = TipoDeAula.SINRECURSOS;
+            }
+            String habilitacion = null;
+            if(a.getHabilitada()){
+                habilitacion = "Habilitada";
+            }
+            else{
+                habilitacion = "No habilitada";
+            }
+            Object[] v = {a.getId(), a.getUbicacion(), tipoA, a.getCapacidad(), habilitacion};
+            model.addRow(v);
+        }
+        
+        if(listaAulas.isEmpty()){
+            NO_HAY_AULAS aviso = new NO_HAY_AULAS();
+            aviso.setVisible(true);
+        }
+    }//GEN-LAST:event_buscarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,17 +250,17 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> aulaCapacidad;
+    private javax.swing.JComboBox<String> aulaNum;
+    private javax.swing.JComboBox<String> aulaTipo;
+    private javax.swing.JButton buscarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton modificarButton;
+    private javax.swing.JTable tablaAulas;
     // End of variables declaration//GEN-END:variables
 }

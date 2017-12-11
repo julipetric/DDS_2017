@@ -37,6 +37,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
     private ArrayList<DiaReserva> diasReserva;
+    private ArrayList<DiaReserva> diasReservaEsporadica;
     private DefaultTableModel modelo;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
@@ -44,12 +45,14 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     public REGISTRAR_RESERVA() {
         initComponents();
         diasReserva = new ArrayList<>();
+        diasReservaEsporadica = new ArrayList<>();
         modelo = (DefaultTableModel) jTable1.getModel();
         jTable1.setModel(modelo);
         jRadioButton1.setSelected(false);
         jRadioButton4.setSelected(true);
         jButton3.setEnabled(false);
         jTable1.setEnabled(false);
+        reserva = new Reserva();
         
     }
 
@@ -161,24 +164,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jLabel8.setText("Agregar nuevo día");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Fecha", "Inicia", "Finaliza"
-            }
-        ));
+        jTable1.setModel(this.modelo
+        );
         jScrollPane1.setViewportView(jTable1);
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
@@ -480,7 +467,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         else{periodo = Periodo.NONE;}
         
         //SE INICIALIZA LA RESERVA CON LOS DATOS BÁSICOS, FALTA DOCENTE yTIPO DE AULA
-        reserva= new Reserva(tipo, periodo, Integer.parseInt(jComboBox6.getSelectedItem().toString()), jTextField3.getText());//faltaría construir el docente y otras cosas
+        
 //        calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
        //SE AGREGAN LOS DIAS DE LA SEMANA - EN ENTEROS - QUE ESTÁN SELECCIONADOS
         if(jCheckBox8.isSelected()){ diasDeSemana.add(1);horariosPorDia.add(new horariosAUX(jComboBox3.getSelectedItem().toString(),jComboBox4.getSelectedItem().toString() ));}//lunes
@@ -585,8 +572,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //ACCION DE NUEVO DIA
-        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(this);
+        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(reserva.diasReservaEsporadica);
         ventana_NUEVO_DIA.setVisible(true);
+        
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
