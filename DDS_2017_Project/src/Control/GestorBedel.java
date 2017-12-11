@@ -10,12 +10,9 @@ import bd.model.Bedel;
 import Clases.Turno;
 import DAO.UsuarioDAO;
 import Interfaces.REGISTRAR_BEDEL;
-import bd.dto.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import java.util.List;
 
 /**
  *
@@ -71,17 +68,7 @@ public class GestorBedel {
         }
         return error;
     }
-
-    public Bedel buscarBedel(String n, Turno t) {
-        SessionFactory sesion = HibernateUtil.getSessionFactory();
-        Session session = sesion.openSession();
-        Transaction tx = session.beginTransaction();
-        Bedel bedel = (Bedel) session.get(Bedel.class, 1);
-        tx.commit();
-        session.close();
-        return bedel;
-    }
-
+       
     private void eliminarBedel(Bedel bedel) {
         //IMPLEMENTAR GATITOS
         //IMPLEMENTAR GATITOS 
@@ -99,5 +86,12 @@ public class GestorBedel {
         //IMPLEMENTAR GATITOS 
         //IMPLEMENTAR GATITOS
         return true;
+    }
+    
+    public List buscarBedel (String apellido, Turno turno){
+        UsuarioDAO dao = new UsuarioDAO();
+        List bedelesdao = dao.read(apellido, turno);
+        //filtrar de la lista de bedeles cuales cumplen las caract
+        return bedelesdao;
     }
 }

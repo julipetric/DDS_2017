@@ -5,17 +5,21 @@
  */
 package DAO;
 
+import Clases.Turno;
 import Interfaces.TODO_OK;
 import bd.dto.HibernateUtil;
 import bd.model.Bedel;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -52,6 +56,21 @@ public class UsuarioDAO {
         System.out.println(criterio.list());
         tx.commit();
         session.close();
+    }
+    
+    public List read(String apellido, Turno turno){
+        
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session = sesion.openSession();
+        
+        String hql = "FROM Bedel";
+        Query query = session.createQuery(hql);
+        List bedeles = query.list();
+        
+        System.out.println(bedeles);
+        
+
+        return bedeles;
     }
 
 }

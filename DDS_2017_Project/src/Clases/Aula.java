@@ -17,4 +17,33 @@ public abstract class Aula {
     public Boolean ac;
     public Boolean cañon;
     public TipoPizarron pizzaron; 
+    
+    public String getId() {
+        return id;
+    }
+    
+    public String getUbicacion() {
+        return ubicacion;
+    }
+       
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Integer getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(Integer capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public Boolean getHabilitada() {
+        return habilitada;
+    }
+
+    public void setHabilitada(Boolean habilitada) {
+        this.habilitada = habilitada;
+    }
+
 }
