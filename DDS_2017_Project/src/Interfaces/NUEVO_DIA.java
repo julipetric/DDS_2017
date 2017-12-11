@@ -6,7 +6,9 @@
 package Interfaces;
 
 import Clases.DiaReserva;
+import Clases.Reserva;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -15,11 +17,58 @@ import java.util.Date;
  */
 public class NUEVO_DIA extends javax.swing.JFrame {
 
-    private ArrayList<DiaReserva> diasReservaEsporadica;
     
-    public NUEVO_DIA(ArrayList<DiaReserva> dias) {
+    private Date fechaInicio;
+    private Date fechaFin;
+    private REGISTRAR_RESERVA ventana;
+    private Reserva reserva;
+   
+    private final ArrayList<String> cola;
+    
+    public NUEVO_DIA(Reserva res, Date inicio, Date fin, REGISTRAR_RESERVA vent) {
         initComponents();
-        diasReservaEsporadica = dias;
+        reserva = res;
+        fechaInicio = inicio;
+        fechaFin = fin;        
+        jLabel2.setVisible(false);
+        jLabel3.setVisible(false);
+        jDateChooser1.setCalendar(Calendar.getInstance());
+        cola = new ArrayList<>();
+        ventana = vent;
+        
+        
+        
+        this.cola.add("08:00");
+        this.cola.add("08:45");
+        this.cola.add("09:30");
+        this.cola.add("10:15");
+        this.cola.add("10:30");
+        this.cola.add("11:15");
+        this.cola.add("12:00");
+        this.cola.add("12:45");
+        this.cola.add("13:15");
+        this.cola.add("13:30");
+        this.cola.add("14:00");
+        this.cola.add("14:15");
+        this.cola.add("14:45");
+        this.cola.add("15:30");
+        this.cola.add("16:15");
+        this.cola.add("16:30");
+        this.cola.add("17:15");
+        this.cola.add("18:00");
+        this.cola.add("18:45");
+        this.cola.add("19:00");
+        this.cola.add("19:45");
+        this.cola.add("20:30");
+        this.cola.add("21:15");
+        this.cola.add("21:30");
+        this.cola.add("22:15");
+        this.cola.add("23:00");
+        this.cola.add("23:45");
+        
+        
+        
+        
         
         
     }
@@ -42,6 +91,8 @@ public class NUEVO_DIA extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -72,9 +123,16 @@ public class NUEVO_DIA extends javax.swing.JFrame {
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inicia" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45\t" }));
+        jComboBox3.setPreferredSize(new java.awt.Dimension(74, 20));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Finaliza" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
+        jComboBox4.setPreferredSize(new java.awt.Dimension(74, 20));
 
         jLabel1.setText("Fecha");
 
@@ -87,13 +145,19 @@ public class NUEVO_DIA extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
+        jButton2.setText("Cerrar\n");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jLabel2.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel2.setText("Error de fecha");
+
+        jLabel3.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel3.setText("Error de horario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,28 +170,37 @@ public class NUEVO_DIA extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3))))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(jLabel1))
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -143,16 +216,43 @@ public class NUEVO_DIA extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // COMPORTAMIENTO DEL BOTÓN ACEPTAR
-        System.out.println(jDateChooser1.getDate());
-        System.out.println(jComboBox3.getSelectedItem().toString());
-        System.out.println(jComboBox4.getSelectedItem().toString());
-        System.out.println(jDateChooser1.getDate());
-        Date fecha = jDateChooser1.getDate();//VER
-        DiaReserva dia = new DiaReserva(fecha, jComboBox3.getSelectedItem().toString(), jComboBox4.getSelectedItem().toString());
+        
+        
+        if (jDateChooser1.getDate().compareTo(this.fechaInicio)!= 1 || jDateChooser1.getDate().compareTo(this.fechaFin) != -1  ){
+            //ERROR DE FECHA, SOLO INFORMO
+            jLabel2.setVisible(true);
+            if (this.cola.indexOf(jComboBox3.getSelectedItem().toString()) >= this.cola.indexOf(jComboBox4.getSelectedItem().toString())){
+                jLabel3.setVisible(true); //TODO MAL, 2 ERRORES EN PANTALLA
+            }
+            else{
+                jLabel3.setVisible(false);                 
+            }
+        }
+        else{
+            jLabel2.setVisible(false);
+            
+            if (this.cola.indexOf(jComboBox3.getSelectedItem().toString()) >= this.cola.indexOf(jComboBox4.getSelectedItem().toString())){
+                jLabel3.setVisible(true);
+            }
+            else{
+                jLabel3.setVisible(false); //TODO OK, FECHA Y HORA, AGREGAR DIARESERVA A LA LISTA
+                
+                
+                DiaReserva dia = new DiaReserva(jDateChooser1.getDate(),jComboBox3.getSelectedItem().toString(),jComboBox4.getSelectedItem().toString() );
+                reserva.diasReservaEsporadica.add(dia);//agrego el dia
+                ventana.agregarFilaATabla(dia);
+            }
+                       
+        }
+        
         
         //ventana.actualizarDiasReserva(diasReserva);//se actualiza la lista en la ventana original
-        this.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,5 +269,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
