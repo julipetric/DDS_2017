@@ -29,11 +29,13 @@ public class GestorDeReservas {
                //IMPLEMENTAR GATITOS
     }
     
-    public ArrayList listaReservasDia(Reserva reserva){
-     //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
-    return new ArrayList();}
+    public ArrayList listaReservasDia(String dia, String tipo, String aula){
+   
+        
+        
+        
+    return new ArrayList();
+    }
     
     public ArrayList listarReservasCurso(String curso){
     //IMPLEMENTAR GATITOS
