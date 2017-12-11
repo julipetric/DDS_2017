@@ -7,28 +7,22 @@ package Interfaces;
 
 import Clases.Turno;
 import Control.GestorBedel;
-import bd.dto.HibernateUtil;
-import bd.model.Bedel;
 import java.util.List;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author rodri
  */
 public class BUSCAR_BEDEL extends javax.swing.JFrame {
-
     /**
      * Creates new form BUSCAR_BEDEL
      */
     public BUSCAR_BEDEL() {
         initComponents();
+        
         jLabel4.setText(" ");
+        
+
     }
 
     /**
@@ -235,7 +229,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        GestorBedel controlador = new GestorBedel();
+       GestorBedel controlador = new GestorBedel();
         
         if(jCheckBox3.isSelected() && jCheckBox4.isSelected()){    //checkbox apellido+ turn
             if(!jTextField1.getText().isEmpty()){
