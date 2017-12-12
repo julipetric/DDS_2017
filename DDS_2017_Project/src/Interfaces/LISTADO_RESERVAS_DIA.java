@@ -5,7 +5,7 @@
  */
 package Interfaces;
 
-import Control.GestorDeReservas;
+import Control.GestorReserva;
 
 /**
  *
@@ -13,10 +13,10 @@ import Control.GestorDeReservas;
  */
 public class LISTADO_RESERVAS_DIA extends javax.swing.JFrame {
 
-    private GestorDeReservas gestor;
+    private GestorReserva gestor;
     public LISTADO_RESERVAS_DIA() {
         initComponents();
-        gestor = new GestorDeReservas();
+        gestor = new GestorReserva();
         jLabel5.setVisible(false);
     }
 

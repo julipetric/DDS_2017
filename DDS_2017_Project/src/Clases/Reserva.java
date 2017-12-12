@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import DAO.ReservaDAO;
 import java.util.ArrayList;
 
 /**
@@ -17,13 +18,33 @@ public class Reserva {
     public Integer cantidadAlumnos;
     public String nombreCurso;
     public Docente docente;
+    public Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Docente getDocente() {
+        return docente;
+    }
     public ArrayList<DiaReserva> diasReserva;
     public ArrayList<DiaReserva> diasReservaEsporadica;
     
 
     public Reserva() {
+        ReservaDAO dao = new ReservaDAO();
+        id = dao.getIdReserva();
         diasReserva = new ArrayList<>();
         diasReservaEsporadica = new ArrayList<>();
+        
+    }
+
+    public ArrayList<DiaReserva> getDiasReserva() {
+        return diasReserva;
+    }
+
+    public ArrayList<DiaReserva> getDiasReservaEsporadica() {
+        return diasReservaEsporadica;
     }
     
     public Reserva( TipoDeAula tipo, Periodo periodo, Integer cantidadAlumnos, String nombreCurso){

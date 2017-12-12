@@ -28,10 +28,10 @@ CREATE TABLE IF NOT EXISTS `admin` (
 -- Data exporting was unselected.
 -- Dumping structure for table roomguard.aula
 CREATE TABLE IF NOT EXISTS `aula` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(50) NOT NULL,
   `capacidad` int(11) NOT NULL,
   `pizzaron` enum('TIZA','BLANCO') NOT NULL,
-  `habilitada` binary(1) NOT NULL,
+  `habilitada` bit(1) NOT NULL,
   `canion` binary(1) NOT NULL,
   `ac` binary(1) NOT NULL,
   `ubicacion` binary(1) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `aula` (
 -- Data exporting was unselected.
 -- Dumping structure for table roomguard.aulainf
 CREATE TABLE IF NOT EXISTS `aulainf` (
-  `id` int(11) NOT NULL,
+  `id` varchar(50) NOT NULL,
   `cantPc` int(5) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FK_idInf_idAulaPadre` FOREIGN KEY (`id`) REFERENCES `aula` (`id`)
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `aulainf` (
 -- Data exporting was unselected.
 -- Dumping structure for table roomguard.aulamm
 CREATE TABLE IF NOT EXISTS `aulamm` (
-  `id` int(11) NOT NULL,
+  `id` varchar(50) NOT NULL,
   `computadora` binary(1) NOT NULL,
   `televisor` binary(1) NOT NULL,
   `dvd` binary(1) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `aulamm` (
 -- Data exporting was unselected.
 -- Dumping structure for table roomguard.aulasr
 CREATE TABLE IF NOT EXISTS `aulasr` (
-  `id` int(11) NOT NULL,
+  `id` varchar(50) NOT NULL,
   `ventilador` binary(1) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FK_idSR_idAulaPadre` FOREIGN KEY (`id`) REFERENCES `aula` (`id`)
@@ -84,7 +84,13 @@ CREATE TABLE IF NOT EXISTS `diareserva` (
   `fecha` varchar(10) NOT NULL,
   `horaInicio` varchar(6) NOT NULL,
   `horaFin` varchar(6) NOT NULL,
-  PRIMARY KEY (`fecha`,`horaInicio`,`horaFin`)
+  `idReserva` int(11) NOT NULL,
+  `idAula` varchar(50) NOT NULL,
+  PRIMARY KEY (`fecha`,`horaInicio`,`horaFin`),
+  KEY `FK_idReserva_diaReserva` (`idReserva`),
+  KEY `FK_idAula_diaReserva` (`idAula`),
+  CONSTRAINT `FK_idAula_diaReserva` FOREIGN KEY (`idAula`) REFERENCES `aula` (`id`),
+  CONSTRAINT `FK_idReserva_diaReserva` FOREIGN KEY (`idReserva`) REFERENCES `reserva` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
@@ -114,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `hace` (
 -- Dumping structure for table roomguard.posee
 CREATE TABLE IF NOT EXISTS `posee` (
   `idMaster` int(11) NOT NULL AUTO_INCREMENT,
-  `id` int(11) NOT NULL,
+  `id` varchar(50) NOT NULL,
   `fecha` varchar(10) NOT NULL,
   `horaInicio` varchar(6) NOT NULL,
   `horaFin` varchar(6) NOT NULL,
@@ -130,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `posee` (
 -- Data exporting was unselected.
 -- Dumping structure for table roomguard.reserva
 CREATE TABLE IF NOT EXISTS `reserva` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `tipoAula` enum('MULTIMEDIOS','INFORMATICA','SINRECURSOS') NOT NULL,
   `cantidadAlumnos` int(10) NOT NULL,
   `nombreCurso` varchar(50) NOT NULL,

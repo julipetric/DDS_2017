@@ -10,6 +10,7 @@ import Clases.Periodo;
 import Clases.Reserva;
 import Clases.TipoDeAula;
 import Clases.horariosAUX;
+import Control.GestorReserva;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -109,7 +110,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        aceptarButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -166,12 +167,12 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jLabel16.setText("E-mail de contacto");
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setText("Aceptar");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        aceptarButton.setBackground(new java.awt.Color(0, 102, 255));
+        aceptarButton.setText("Aceptar");
+        aceptarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        aceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                aceptarButtonActionPerformed(evt);
             }
         });
 
@@ -265,7 +266,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(aceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,7 +437,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
@@ -508,7 +509,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     }
     
        
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
        
         Date inicio = new Date();
         Date fin = new Date();
@@ -615,6 +616,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
             //se va a incrementar i, se vuelve al dia de hor, se acomoda en el siguiente dia seleccionado y se agregan todos los dias reserva
         }
        //aca ya estan generados todos los diasreserva iniciales de nuestra reserva periodica
+       GestorReserva gestor = new GestorReserva();       
+       gestor.obtenerDisponibilidadPeriodica(reserva);
     } 
     else{//SI ES ESPORÁDICA
         //IMPLEMENTAR
@@ -622,7 +625,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         
        
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_aceptarButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //ACCION DE NUEVO DIA
@@ -669,7 +672,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton aceptarButton;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox10;

@@ -5,7 +5,9 @@
  */
 package Control;
 
+import Clases.Aula;
 import Clases.Reserva;
+import DAO.AulaDAO;
 import DAO.ReservaDAO;
 import bd.model.Bedel;
 import java.util.ArrayList;
@@ -15,9 +17,9 @@ import java.util.List;
  *
  * @author Tomas
  */
-public class GestorDeReservas {
+public class GestorReserva {
 
-    public GestorDeReservas() {
+    public GestorReserva() {
     }
     
     public void nuevaReserva(){
@@ -26,10 +28,18 @@ public class GestorDeReservas {
                //IMPLEMENTAR GATITOS
     }
     
-    private void obtenerDisponibilidad(){
-     //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS 
-               //IMPLEMENTAR GATITOS
+    public ArrayList<Aula> obtenerDisponibilidadPeriodica(Reserva res){
+        ArrayList<Aula> posibles;        
+        AulaDAO aulaDao = new AulaDAO();
+        
+        posibles = (ArrayList<Aula>) aulaDao.read(res.getTipoDeAula(), res.getCantidadAlumnos());
+        
+        ArrayList<Aula> disponibles;
+        ReservaDAO resDao = new ReservaDAO();
+        
+        disponibles = resDao.read(res.getPeriodo(), res.getDiasReserva(), res.getTipoDeAula(), res.getCantidadAlumnos(), posibles);
+        
+        return disponibles;
     }
     
     public List listaReservasDia(String dia, String tipo, String aula){

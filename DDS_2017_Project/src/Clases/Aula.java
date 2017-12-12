@@ -5,6 +5,7 @@
  */
 package Clases;
 
+
 /**
  *
  * @author Tomas
@@ -16,6 +17,9 @@ public abstract class Aula {
     public Boolean habilitada;
     public Boolean ac;
     public Boolean cañon;
+
+    public Aula() {
+    }
     public TipoPizarron pizzaron; 
     
     public String getId() {

@@ -6,10 +6,15 @@
 package DAO;
 
 import Clases.Aula;
+import Clases.TipoDeAula;
 import bd.dto.HibernateUtil;
+import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -23,5 +28,22 @@ public class AulaDAO {
         Transaction tx = session.beginTransaction();
         Aula a = (Aula) session.get(Aula.class, idAula);
         return a;
+    }
+    
+    public List<Aula> read(TipoDeAula tipo, Integer cant){
+        List<Aula> posibles;
+        
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session = sesion.openSession();
+        Transaction tx = session.beginTransaction();
+        Criteria criterio = session.createCriteria(Aula.class);
+        criterio.add(Restrictions.ge("capacidad", cant));
+        criterio.add(Restrictions.eq("tipo", tipo));
+        criterio.add(Restrictions.eq("hablitida", 1));
+        posibles=criterio.list();
+        tx.commit();
+        session.close();
+        
+        return posibles;
     }
 }
