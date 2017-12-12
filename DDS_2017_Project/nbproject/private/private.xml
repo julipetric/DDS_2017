@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
 <<<<<<< Updated upstream
             <file>file:/C:/Users/Tomas/Desktop/tpdds/DDS_2017/DDS_2017_Project/src/bd/dto/HibernateUtil.java</file>
@@ -14,5 +15,8 @@
             <file>file:/C:/Users/rodri/Desktop/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/LOGIN.java</file>
 >>>>>>> Stashed changes
         </group>
+=======
+        <group/>
+>>>>>>> master
     </open-files>
 </project-private>
