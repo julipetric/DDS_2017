@@ -5,8 +5,7 @@
  */
 package Interfaces;
 
- 
-
+import Clases.Turno;
 import Control.GestorBedel;
 import bd.model.Bedel;
 import java.util.List;
@@ -28,18 +27,6 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
 
     }
 
-    public void agregarFilaATabla(Bedel bedel){
-        
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[4];
-        rowData[0] = bedel.getApellido();
-        rowData[1] = bedel.getNombre();
-        rowData[2] = bedel.getTurno();
-        rowData[3] = bedel.getNombreUsuario();
-        modelo.addRow(rowData);
-    }
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -228,6 +215,28 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
+    private void llenarTabla(List<Bedel> listabedeles){
+        
+        if(!listabedeles.isEmpty())  {
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo = (DefaultTableModel) jTable1.getModel();
+            Object rowData[] = new Object[4];
+
+            for (int i = 0; i<listabedeles.size(); i++){
+                rowData[0] = listabedeles.get(i).getApellido();                        
+                rowData[1] = listabedeles.get(i).getNombre();
+                rowData[2] = listabedeles.get(i).getTurno();
+                rowData[3] = listabedeles.get(i).getNombreUsuario();
+                modelo.addRow(rowData);
+            }
+        }
+        else{
+            //si esta vacía la lista
+        }
+        
+        
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
        GestorBedel controlador = new GestorBedel();
@@ -236,14 +245,11 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
             if(!jTextField1.getText().isEmpty()){
             jLabel4.setText(" ");
             String apellbusq = jTextField1.getText();   
-            String turnobusqueda =  jComboBox2.getSelectedItem().toString();
+            Turno turnobusqueda = (Turno) jComboBox2.getSelectedItem();  
+            List<Bedel> salida = controlador.buscarBedel(apellbusq, turnobusqueda);  
             
-            List<Bedel> salida = controlador.buscarBedel(apellbusq, turnobusqueda);  //puede devolver multiples bedeles
-            //setear lista salida a la tabla
-            for(Bedel b: salida){
-                      this.agregarFilaATabla(b);
-                   }
- 
+            this.llenarTabla(salida);
+           
            }else{ jLabel4.setText("Complete el apellido");}
         }
         if(jCheckBox3.isSelected() && !jCheckBox4.isSelected()){  //checkbox apellido
@@ -251,20 +257,15 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
                    String apellbusq = jTextField1.getText();    //a controlador
                    List<Bedel> salida = controlador.buscarBedel(apellbusq, null);
                    
-                   for(Bedel b: salida){
-                       this.agregarFilaATabla(b);
-                   }
+                   this.llenarTabla(salida);
          
-               jLabel4.setText(" ");
+                   jLabel4.setText(" ");
               }else{ jLabel4.setText("Complete el apellido");}
         }
          if(!jCheckBox3.isSelected() && jCheckBox4.isSelected()){  //checkbox turno
-            String turnobusqueda =  jComboBox2.getSelectedItem().toString();
+            Turno turnobusqueda = (Turno) jComboBox2.getSelectedItem();//NO SE PUEDE CONVERTIR ASI EL TURNO
             List<Bedel> salida = controlador.buscarBedel(null, turnobusqueda); //a controlador
-             for(Bedel b: salida){
-                       this.agregarFilaATabla(b);
-                   }
-         
+             //setear lista salida a la tabla
              jLabel4.setText(" ");
         }
          if(!jCheckBox3.isSelected() && !jCheckBox4.isSelected()){  //ninguno

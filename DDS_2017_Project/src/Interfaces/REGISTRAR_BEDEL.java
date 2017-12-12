@@ -21,8 +21,8 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
     public String usuario;
     public String apellido;
     public String nombre;
-    public char[] contra;
-    public char[] contra2;
+    public String contra;
+    public String contra2;
     public Turno turno;
     //arreglo booleano para identificar que dio error
     public ArrayList<Boolean> datosError;
@@ -219,8 +219,8 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         nombre = nombreTextField.getText();
         apellido = lastnameTextField.getText();
         usuario = usernameTextField.getText();
-        contra = pass1TextField.getPassword();
-        contra2 = pass2TextField.getPassword();
+        contra = pass1TextField.getText();
+        contra2 = pass2TextField.getText();
         turno = Turno.valueOf(turnoComboBox.getSelectedItem().toString());
         datosError = new ArrayList<>();
         
@@ -242,6 +242,7 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         if(!datosInvalidos){
             TODO_OK bien = new TODO_OK();
             bien.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_aceptarButtonActionPerformed
 

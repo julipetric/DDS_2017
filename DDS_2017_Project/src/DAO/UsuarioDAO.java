@@ -26,6 +26,7 @@ public class UsuarioDAO {
     private Connection con;
     private ResultSet rs;
     private ResultSetMetaData rsmd;
+    private String consulta;
 
     public UsuarioDAO() {
     }
@@ -39,33 +40,14 @@ public class UsuarioDAO {
         session.close();
     }
 
-    public void consultaNombreUsuario(String usuario) {
-        //
-    }
-    
-    public List read(String apellido, String turno){ 
-        List<Bedel> lista = null;
+    public List consultaNombreUsuario(String usuario) {
+        consulta = usuario;
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
-        if (turno==null) {
-            lista = session.createCriteria(Bedel.class)
-                     .add(Restrictions.eq("apellido",apellido))
-                     .list();
-        }
-        if (apellido == null) {
-            lista = session.createCriteria(Bedel.class)
-                     .add(Restrictions.eq("turno",turno))
-                     .list(); 
-        }
-        
-        if (apellido != null && turno != null) {
-            lista = session.createCriteria(Bedel.class)
-                     .add(Restrictions.eq("turno",turno))
-                     .add(Restrictions.eq("apellido",apellido))
-                     .list(); 
-        }
-        
+        Criteria criterio = session.createCriteria(Bedel.class);
+        List<Bedel> lista = criterio.add(Restrictions.eq("apellido", consulta)).list();
+        System.out.println(lista);
         tx.commit();
         session.close();
         return lista;
@@ -92,6 +74,21 @@ public class UsuarioDAO {
         tx.commit();
         session.close();
         return verif;
+    }
+    
+    public List read(String apellido, Turno turno){
+        
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session = sesion.openSession();
+        
+        String hql = "FROM Bedel";
+        Query query = session.createQuery(hql);
+        List bedeles = query.list();
+        
+        System.out.println(bedeles);
+        
+
+        return bedeles;
     }
 
 }
