@@ -5,6 +5,9 @@
  */
 package Control;
 
+import DAO.UsuarioDAO;
+import java.util.Arrays;
+
 /**
  *
  * @author Tomas
@@ -14,12 +17,10 @@ public class GestorDeAutenticacion {
     public GestorDeAutenticacion() {
     }
    
-    public Boolean autenticar(){
-       
-        //IMPLEMENTAR GATITOS
-         //IMPLEMENTAR GATITOS
-          //IMPLEMENTAR GATITOS
-          
-        return true;
+    public Boolean autenticar(String usuario, char[] password){
+       UsuarioDAO dao = new UsuarioDAO();
+
+       return dao.readLog(usuario, Arrays.toString(password));
+             
     }
 }

@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import Control.GestorDeAutenticacion;
+
 /**
  *
  * @author rodri
@@ -56,6 +58,7 @@ public class LOGIN extends javax.swing.JFrame {
         });
 
         jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPasswordField1.setToolTipText("");
 
         jButton1.setBackground(new java.awt.Color(0, 102, 255));
         jButton1.setText("Aceptar");
@@ -137,14 +140,25 @@ public class LOGIN extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // boton aceptar
+        boolean verif = false;
         if( !jTextField1.getText().isEmpty() && jPasswordField1.getPassword().length!=0 ){   
             jLabel3.setText("");   
-            //a controlador luego a dao
+            String usuario = jTextField1.getText();
+            char[] pass = jPasswordField1.getPassword();
+            GestorDeAutenticacion control = new GestorDeAutenticacion();
+            verif = control.autenticar(usuario, pass);
         }
         else{
             jLabel3.setText("Complete todos los datos");
         }
         
+        if(verif==true){
+            PRINCIPAL_ADMIN v1 = new PRINCIPAL_ADMIN();
+            v1.setVisible(true);
+        }
+        else{
+              jLabel3.setText("Datos incorrectos");
+        }
     
     }//GEN-LAST:event_jButton1ActionPerformed
 

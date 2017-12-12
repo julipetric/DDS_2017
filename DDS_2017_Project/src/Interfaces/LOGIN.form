@@ -109,6 +109,7 @@
     <Component class="javax.swing.JPasswordField" name="jPasswordField1">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

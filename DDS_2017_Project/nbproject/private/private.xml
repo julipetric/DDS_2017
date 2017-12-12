@@ -2,41 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/DAO/UsuarioDAO.java</file>
-            <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/Control/GestorBedel.java</file>
-            <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/Interfaces/BUSCAR_BEDEL.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/rodri/Desktop/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/NUEVO_DIA.java</file>
-            <file>file:/C:/Users/rodri/Desktop/DDS/DDS_2017/DDS_2017_Project/src/Clases/Reserva.java</file>
-            <file>file:/C:/Users/rodri/Desktop/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/REGISTRAR_RESERVA.java</file>
-=======
-<<<<<<< HEAD
             <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/Interfaces/LOGIN.java</file>
+            <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/bd/model/Admin.java</file>
             <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/DAO/UsuarioDAO.java</file>
-            <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/Control/GestorBedel.java</file>
-            <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/Interfaces/BUSCAR_BEDEL.java</file>
-            <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/Interfaces/PRINCIPAL_ADMIN.java</file>
-=======
-            <file>file:/C:/Users/Julian/Documents/Facu/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/NO_HAY_AULAS.java</file>
-            <file>file:/C:/Users/Julian/Documents/Facu/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/REGISTRAR_BEDEL.java</file>
-            <file>file:/C:/Users/Julian/Documents/Facu/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/BUSCAR_AULAS.java</file>
->>>>>>> master
->>>>>>> master
->>>>>>> master
-=======
-            <file>file:/C:/Users/Tomas/Desktop/tpdds/DDS_2017/DDS_2017_Project/src/bd/dto/HibernateUtil.java</file>
-            <file>file:/C:/Users/Tomas/Desktop/tpdds/DDS_2017/DDS_2017_Project/src/Control/GestorBedel.java</file>
-            <file>file:/C:/Users/Tomas/Desktop/tpdds/DDS_2017/DDS_2017_Project/src/DAO/UsuarioDAO.java</file>
-            <file>file:/C:/Users/Tomas/Desktop/tpdds/DDS_2017/DDS_2017_Project/src/Interfaces/BUSCAR_BEDEL.java</file>
->>>>>>> master
+            <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/Control/GestorDeAutenticacion.java</file>
+            <file>file:/C:/Users/santi_000/Desktop/santoo/Facultad/utn/Diseño%20de%20sist/Gitkrakentp/sync%20dds/DDS_2017/DDS_2017_Project/src/Clases/Admin.java</file>
         </group>
-=======
-        <group/>
->>>>>>> master
     </open-files>
 </project-private>
