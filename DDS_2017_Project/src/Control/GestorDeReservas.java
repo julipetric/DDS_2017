@@ -35,7 +35,7 @@ public class GestorDeReservas {
     public List listaReservasDia(String dia, String tipo, String aula){
    
         ReservaDAO dao = new ReservaDAO();
-        List<Reserva> reservasdao = dao.read(dia,tipo, aula);
+        List<Reserva> reservasdao = dao.read(dia,tipo, aula);//o bien envío datos, o bien asterisco
         return reservasdao;
     
         

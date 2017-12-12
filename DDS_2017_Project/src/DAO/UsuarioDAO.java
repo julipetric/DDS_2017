@@ -45,7 +45,7 @@ public class UsuarioDAO {
         session.close();
     }
 
-    public void consultaNombreUsuario(String usuario) {
+    public List consultaNombreUsuario(String usuario) {
         consulta = usuario;
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
@@ -55,6 +55,7 @@ public class UsuarioDAO {
         System.out.println(lista);
         tx.commit();
         session.close();
+        return lista;
     }
     
     public List read(String apellido, Turno turno){

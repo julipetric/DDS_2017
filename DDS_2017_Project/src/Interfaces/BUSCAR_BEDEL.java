@@ -7,7 +7,9 @@ package Interfaces;
 
 import Clases.Turno;
 import Control.GestorBedel;
+import bd.model.Bedel;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -213,6 +215,28 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
+    private void llenarTabla(List<Bedel> listabedeles){
+        
+        if(!listabedeles.isEmpty())  {
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo = (DefaultTableModel) jTable1.getModel();
+            Object rowData[] = new Object[4];
+
+            for (int i = 0; i<listabedeles.size(); i++){
+                rowData[0] = listabedeles.get(i).getApellido();                        
+                rowData[1] = listabedeles.get(i).getNombre();
+                rowData[2] = listabedeles.get(i).getTurno();
+                rowData[3] = listabedeles.get(i).getNombreUsuario();
+                modelo.addRow(rowData);
+            }
+        }
+        else{
+            //si esta vacía la lista
+        }
+        
+        
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
        GestorBedel controlador = new GestorBedel();
@@ -221,26 +245,26 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
             if(!jTextField1.getText().isEmpty()){
             jLabel4.setText(" ");
             String apellbusq = jTextField1.getText();   
-            Turno turnobusqueda = (Turno) jComboBox2.getSelectedItem();
-  
-            List salida = controlador.buscarBedel(apellbusq, turnobusqueda);  //puede devolver multiples bedeles
-            //setear lista salida a la tabla
+            Turno turnobusqueda = (Turno) jComboBox2.getSelectedItem();  
+            List<Bedel> salida = controlador.buscarBedel(apellbusq, turnobusqueda);  
             
+            this.llenarTabla(salida);
            
            }else{ jLabel4.setText("Complete el apellido");}
         }
         if(jCheckBox3.isSelected() && !jCheckBox4.isSelected()){  //checkbox apellido
               if(!jTextField1.getText().isEmpty()){
                    String apellbusq = jTextField1.getText();    //a controlador
-                   List salida = controlador.buscarBedel(apellbusq, null);
-                    //setear lista salida a la tabla
+                   List<Bedel> salida = controlador.buscarBedel(apellbusq, null);
+                   
+                   this.llenarTabla(salida);
          
-               jLabel4.setText(" ");
+                   jLabel4.setText(" ");
               }else{ jLabel4.setText("Complete el apellido");}
         }
          if(!jCheckBox3.isSelected() && jCheckBox4.isSelected()){  //checkbox turno
-            Turno turnobusqueda = (Turno) jComboBox2.getSelectedItem();
-            List salida = controlador.buscarBedel(null, turnobusqueda); //a controlador
+            Turno turnobusqueda = (Turno) jComboBox2.getSelectedItem();//NO SE PUEDE CONVERTIR ASI EL TURNO
+            List<Bedel> salida = controlador.buscarBedel(null, turnobusqueda); //a controlador
              //setear lista salida a la tabla
              jLabel4.setText(" ");
         }

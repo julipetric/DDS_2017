@@ -43,13 +43,13 @@ public class ReservaDAO {
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         
-        String hql = "FROM Bedel";
+        String hql = "FROM aula";
         Query query = session.createQuery(hql);
-        List bedeles = query.list();
+        List aulas = query.list();
         
-        System.out.println(bedeles);
+        System.out.println(aulas);
         
 
-        return bedeles;
+        return aulas;
     }
 }

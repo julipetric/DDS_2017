@@ -25,7 +25,7 @@ public class GestorBedel {
     public GestorBedel() {
     }
 
-    public boolean validar(String nombre, String apellido, String usuario, Turno turno, char[] contra, char[] contra2, ArrayList<Boolean> errores) {
+    public boolean validar(String nombre, String apellido, String usuario, Turno turno, String contra, String contra2, ArrayList<Boolean> errores) {
         PoliticaSeguridad politica;
         politica = new PoliticaSeguridad();
 
@@ -60,13 +60,22 @@ public class GestorBedel {
             error = true; 
         }
 
+        System.out.println(error);
+        System.out.println(errorp);
         //llamada a dao si esta todo correcto
         if (error == false && errorp == false) {
+            System.out.println("1");
             UsuarioDAO dao = new UsuarioDAO();
-            Bedel b1 = new Bedel(usuario, Arrays.toString(contra), nombre, apellido, turno.toString());
+            System.out.println("2");
+            Bedel b1 = new Bedel(usuario,nombre, apellido, contra, turno.toString());
+            System.out.println("3");
             dao.crear(b1);
+            System.out.println("4");
+            return false;
         }
-        return error;
+        else{
+             return true;
+        }
     }
        
     private void eliminarBedel(Bedel bedel) {
@@ -90,9 +99,9 @@ public class GestorBedel {
     
     public List buscarBedel (String apellido, Turno turno){
         UsuarioDAO dao = new UsuarioDAO();
-        /*List bedelesdao =*/ dao.consultaNombreUsuario(apellido);
+        List bedelesdao = dao.consultaNombreUsuario(apellido);
         //filtrar de la lista de bedeles cuales cumplen las caract
         
-        return new ArrayList() ; //bedelesdao;
+        return bedelesdao ; //bedelesdao;
     }
 }
