@@ -142,10 +142,20 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
 
         jButton12.setText("BUSCAR BEDEL");
         jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("CAMBIAR DE USUARIO");
 
         jButton2.setText("CERRAR SESION");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/roomguard2.png"))); // NOI18N
         jLabel5.setText("jLabel5");
@@ -205,6 +215,15 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
         REGISTRAR_BEDEL ventana = new REGISTRAR_BEDEL();
         ventana.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        BUSCAR_BEDEL v1 = new BUSCAR_BEDEL();
+        v1.setVisible(true);
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments

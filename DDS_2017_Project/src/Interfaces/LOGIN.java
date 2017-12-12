@@ -144,7 +144,7 @@ public class LOGIN extends javax.swing.JFrame {
         if( !jTextField1.getText().isEmpty() && jPasswordField1.getPassword().length!=0 ){   
             jLabel3.setText("");   
             String usuario = jTextField1.getText();
-            char[] pass = jPasswordField1.getPassword();
+            String pass = jPasswordField1.getText();
             GestorDeAutenticacion control = new GestorDeAutenticacion();
             verif = control.autenticar(usuario, pass);
         }
@@ -155,6 +155,7 @@ public class LOGIN extends javax.swing.JFrame {
         if(verif==true){
             PRINCIPAL_ADMIN v1 = new PRINCIPAL_ADMIN();
             v1.setVisible(true);
+            
         }
         else{
               jLabel3.setText("Datos incorrectos");

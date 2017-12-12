@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Clases.Turno;
 import bd.dto.HibernateUtil;
 import bd.model.Admin;
 import bd.model.Bedel;
@@ -13,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -61,7 +64,7 @@ public class UsuarioDAO {
 
     }
     
-    public boolean readLog(String usuario, String pass){
+    public boolean readLogAdmin(String usuario, String pass){
         System.out.println("flag1");
         boolean verif = false;
         List<Admin> lista = null;

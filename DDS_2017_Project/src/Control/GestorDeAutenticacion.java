@@ -17,10 +17,10 @@ public class GestorDeAutenticacion {
     public GestorDeAutenticacion() {
     }
    
-    public Boolean autenticar(String usuario, char[] password){
+    public Boolean autenticar(String usuario, String password){
        UsuarioDAO dao = new UsuarioDAO();
 
-       return dao.readLog(usuario, Arrays.toString(password));
+       return dao.readLogAdmin(usuario, password);
              
     }
 }
