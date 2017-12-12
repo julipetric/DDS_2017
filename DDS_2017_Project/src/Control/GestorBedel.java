@@ -99,8 +99,46 @@ public class GestorBedel {
     
     public List buscarBedel (String apellido, Turno turno){
         UsuarioDAO dao = new UsuarioDAO();
-        List bedelesdao = dao.consultaNombreUsuario(apellido);
-        //filtrar de la lista de bedeles cuales cumplen las caract
+        
+        List<Bedel> bedelesdao = dao.consultaNombreUsuario(apellido);
+        List<Bedel> filtrado = new ArrayList<>();        //filtrar de la lista de bedeles cuales cumplen las caract:
+        
+        
+        for (int i=0; i<bedelesdao.size(); i++){
+                System.out.println(bedelesdao.get(i).getNombre()+ "   " + bedelesdao.get(i).getTurno());
+                System.out.println(bedelesdao.get(i).getTurno().equals("MAÑANA"));
+                
+            }
+        
+         
+        if(turno == Turno.MAÑANA){
+            for (int i=0; i<bedelesdao.size(); i++){
+                if (bedelesdao.get(i).getTurno().equals("MAÑANA")){
+                    filtrado.add(bedelesdao.get(i));
+                    
+                }
+            }
+            return filtrado;
+        }
+        if(turno == Turno.TARDE){
+            for (int i=0; i<bedelesdao.size(); i++){
+                if (bedelesdao.get(i).getTurno().equals("TARDE")){
+                    filtrado.add(bedelesdao.get(i));
+                   
+                }
+            }
+            return filtrado;
+        }
+        if(turno == Turno.NOCHE){
+            for (int i=0; i<bedelesdao.size(); i++){
+                if (bedelesdao.get(i).getTurno().equals("NOCHE")){
+                    filtrado.add(bedelesdao.get(i));
+                   
+                }
+            }
+            return filtrado;
+        }
+        
         
         return bedelesdao ; //bedelesdao;
     }

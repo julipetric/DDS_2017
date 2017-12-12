@@ -11,6 +11,7 @@ import bd.model.Bedel;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,7 +47,13 @@ public class UsuarioDAO {
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
         Criteria criterio = session.createCriteria(Bedel.class);
-        List<Bedel> lista = criterio.add(Restrictions.eq("apellido", consulta)).list();
+        List<Bedel> lista = new ArrayList();
+        if(!usuario.equals("*")){
+            lista = criterio.add(Restrictions.eq("apellido", consulta)).list();
+        }
+        else{
+             lista = criterio.list();
+        }
         System.out.println(lista);
         tx.commit();
         session.close();

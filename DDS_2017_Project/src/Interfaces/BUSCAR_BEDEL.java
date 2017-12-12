@@ -216,10 +216,12 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
     private void llenarTabla(List<Bedel> listabedeles){
-        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
         if(!listabedeles.isEmpty())  {
-            DefaultTableModel modelo = new DefaultTableModel();
-            modelo = (DefaultTableModel) jTable1.getModel();
+            
+            
             Object rowData[] = new Object[4];
 
             for (int i = 0; i<listabedeles.size(); i++){
@@ -231,7 +233,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
             }
         }
         else{
-            //si esta vacía la lista
+            jLabel4.setText("no se encontraron bedeles");
         }
         
         
@@ -245,7 +247,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
             if(!jTextField1.getText().isEmpty()){
             jLabel4.setText(" ");
             String apellbusq = jTextField1.getText();   
-            Turno turnobusqueda = (Turno) jComboBox2.getSelectedItem();  
+            Turno turnobusqueda = this.devolverTurno(jComboBox2.getSelectedIndex());
             List<Bedel> salida = controlador.buscarBedel(apellbusq, turnobusqueda);  
             
             this.llenarTabla(salida);
@@ -263,10 +265,11 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
               }else{ jLabel4.setText("Complete el apellido");}
         }
          if(!jCheckBox3.isSelected() && jCheckBox4.isSelected()){  //checkbox turno
-            Turno turnobusqueda = (Turno) jComboBox2.getSelectedItem();//NO SE PUEDE CONVERTIR ASI EL TURNO
-            List<Bedel> salida = controlador.buscarBedel(null, turnobusqueda); //a controlador
-             //setear lista salida a la tabla
-             jLabel4.setText(" ");
+            Turno turnobusqueda = this.devolverTurno(jComboBox2.getSelectedIndex());
+           
+            List<Bedel> salida = controlador.buscarBedel("*", turnobusqueda); //a controlador
+            this.llenarTabla(salida);
+            jLabel4.setText(" ");
         }
          if(!jCheckBox3.isSelected() && !jCheckBox4.isSelected()){  //ninguno
             jLabel4.setText("Seleccione una opcion");
@@ -332,4 +335,22 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    private Turno devolverTurno(Integer selectedItem) {
+        Turno turno = Turno.MAÑANA;
+        
+        
+        if(selectedItem.equals(0)){
+            turno = Turno.MAÑANA;
+        }
+        if(selectedItem.equals(1)){
+            turno = Turno.TARDE;
+        }
+        if(selectedItem.equals(2)){
+            turno = Turno.NOCHE;
+        }
+        
+        
+        return turno;
+    }
 }
