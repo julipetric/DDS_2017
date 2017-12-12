@@ -20,7 +20,15 @@ public class PoliticaSeguridad {
             error = true;
         } else {
             
-            if ((pass.equals(passv) && !pass.isEmpty() && !passv.isEmpty()) && pass.length() > 7 && pass.length() < 33 && passv.length() > 7 && passv.length() < 33) {
+            if (!pass.isEmpty() && !passv.isEmpty() && pass.length() > 7 && pass.length() < 33 && passv.length() > 7 && passv.length() < 33 && passv.length() == pass.length()) {
+            
+                for (int i = 0; i < pass.length(); i++) {
+                    if (pass.charAt(i)!= passv.charAt(i)) {
+                        error = true;
+                        break;
+                    }
+                }
+            
             } else {
                 error = true;
             }

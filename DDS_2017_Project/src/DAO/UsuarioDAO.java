@@ -15,6 +15,8 @@ import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.HibernateError;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,7 +41,15 @@ public class UsuarioDAO {
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
-        session.save(bedel);
+       
+        try{
+            session.save(bedel);
+        }catch(HibernateError e){
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
         tx.commit();
         session.close();
     }
@@ -61,7 +71,6 @@ public class UsuarioDAO {
         tx.commit();
         session.close();
         return lista;
-
     }
     
     public boolean readLogAdmin(String usuario, String pass){
@@ -90,18 +99,21 @@ public class UsuarioDAO {
         
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
+        Transaction tx = session.beginTransaction();
         
         String hql = "FROM Bedel";
         Query query = session.createQuery(hql);
         List bedeles = query.list();
         
         System.out.println(bedeles);
-        
+        tx.commit();
+        session.close();
 
         return bedeles;
     }
     
     public Bedel traerBedel(String ID){
+        
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
@@ -109,12 +121,25 @@ public class UsuarioDAO {
          List<Bedel>lista = session.createCriteria(Bedel.class)
                      .add(Restrictions.eq("nombreUsuario",ID))
                      .list(); 
-        for(Bedel b:lista){
-        Bedel bedel = b;
-        }
-        tx.commit();
-        session.close();
-    return new Bedel();
+        
+        
+    return lista.get(0);
     }
 
+     public void modificarBedel(Bedel bedel){
+      SessionFactory sesion = HibernateUtil.getSessionFactory();
+      Session session = sesion.openSession();
+      Transaction tx = session.beginTransaction();
+      try{
+       session.merge(bedel);
+      }catch(HibernateException e){
+          if (tx != null) {
+              tx.rollback();
+          }
+          e.printStackTrace();
+      }
+     
+      tx.commit();
+      session.close();
+     }
 }

@@ -6,6 +6,13 @@
 
 package Interfaces;
 
+import Clases.Turno;
+import Control.GestorBedel;
+import bd.model.Bedel;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author rodri
@@ -13,8 +20,63 @@ package Interfaces;
 public class MODIFICAR_BEDEL extends javax.swing.JFrame {
 
     /** Creates new form MODIFICAR_BEDEL */
-    public MODIFICAR_BEDEL() {
+    public MODIFICAR_BEDEL(Bedel bedel) {
         initComponents();
+        this.setVisible(true);
+        jTextField1.setText(bedel.getNombre());
+        jTextField2.setText(bedel.getApellido());
+        jTextField3.setText(bedel.getNombreUsuario());
+        jPasswordField1.setText(bedel.getPassword());
+        jPasswordField2.setText(bedel.getPassword());
+        String turno = bedel.getTurno().charAt(0)+""+bedel.getTurno().toLowerCase().subSequence(1,bedel.getTurno().length());
+        jComboBox2.setSelectedItem(turno);
+    }
+    public void errorNombre() {
+        jLabel2.setForeground(Color.red);
+    }
+
+    public void errorUsuario() {
+        jLabel5.setForeground(Color.red);
+    }
+
+    public void errorApellido() {
+        jLabel3.setForeground(Color.red);
+    }
+
+    public void errorContra() {
+        jLabel6.setForeground(Color.red);
+    }
+
+    public void errorContra2() {
+        jLabel7.setForeground(Color.red);
+    }
+
+    public void errorTurno() {
+        jLabel4.setForeground(Color.red);
+    }
+
+    public void nombreOk() {
+        jLabel2.setForeground(Color.black);
+    }
+
+    public void usuarioOk() {
+        jLabel5.setForeground(Color.black);
+    }
+
+    public void apellidoOk() {
+        jLabel3.setForeground(Color.black);
+    }
+
+    public void contraOk() {
+        jLabel6.setForeground(Color.black);
+    }
+
+    public void contra2Ok() {
+        jLabel7.setForeground(Color.black);
+    }
+
+    public void turnoOk() {
+        jLabel4.setForeground(Color.black);
     }
 
     /** This method is called from within the constructor to
@@ -42,7 +104,7 @@ public class MODIFICAR_BEDEL extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -92,9 +154,16 @@ public class MODIFICAR_BEDEL extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton1.setText("Modificar");
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,40 +250,36 @@ public class MODIFICAR_BEDEL extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MODIFICAR_BEDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MODIFICAR_BEDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MODIFICAR_BEDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MODIFICAR_BEDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MODIFICAR_BEDEL().setVisible(true);
-            }
-        });
-    }
+        ArrayList<Boolean> datosError = new ArrayList<>();
+        
+        //se inicializa el arreglo de tipos de error
+        for(int i=0; i<6; i++){
+            datosError.add(false);
+        }
+        GestorBedel controlador = new GestorBedel();
+        boolean datosInvalidos = controlador.validar(jTextField1.getText(),jTextField2.getText(), jTextField3.getText(), Turno.valueOf(jComboBox2.getSelectedItem().toString().toUpperCase()), jPasswordField1.getText(), jPasswordField2.getText(),datosError);
+        
+        //se colorean los datos invalidos
+        if(datosError.get(0)) errorNombre();
+        if(datosError.get(1)) errorApellido();
+        if(datosError.get(2)) errorUsuario();
+        if(datosError.get(3)) errorTurno();
+        if(datosError.get(4)) errorContra();
+        if(datosError.get(5)) errorContra2();
+        
+        
+        if(!datosInvalidos){
+            TODO_OK bien = new TODO_OK();
+            bien.setVisible(true);
+            
+            controlador.modificarBedel(jTextField3.getText(), jTextField1.getText(),jTextField2.getText(), jPasswordField1.getText(),Turno.valueOf(jComboBox2.getSelectedItem().toString().toUpperCase()).toString());
+            
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

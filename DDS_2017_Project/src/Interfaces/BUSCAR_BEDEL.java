@@ -10,6 +10,9 @@ import Control.GestorBedel;
 import bd.model.Bedel;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -70,6 +73,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
                 "Apellido", "Nombre", "Turno de trabajo", "ID"
             }
         ));
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -85,6 +89,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton1.setText("Modificar");
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -94,6 +99,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 102, 255));
         jButton2.setText("Buscar");
         jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -116,6 +122,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton3.setText("Eliminar");
         jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -281,17 +288,29 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int seleccion = jTable1.getSelectedRow(); 
+        int fila = jTable1.getSelectedRow(); 
+        int columna = 3;
+        JTableHeader th = jTable1.getTableHeader();
+        TableColumnModel tcm = jTable1.getColumnModel();
+        for (int i = 0; i < jTable1.getColumnCount() ; i++) {
+        TableColumn tcmn = tcm.getColumn(i);
+            if (tcmn.getHeaderValue() == "ID") {
+                columna = i;
+                break;
+            }
+        }
         
-        if(seleccion != -1){
+        
+        System.out.println();
+        if(fila != -1){
            jLabel4.setText("");
            GestorBedel controlador = new GestorBedel();
-           String ID = (String) jTable1.getValueAt(seleccion, 3);
-           System.out.print(ID);
+           String ID = (String) jTable1.getValueAt(fila,columna);
+           System.out.println(ID);
            Bedel bedel = controlador.modificarBedel(ID);
            
-           System.out.print(bedel.getApellido());
-           
+           MODIFICAR_BEDEL modificar = new MODIFICAR_BEDEL(bedel);
+
         }else{
             jLabel4.setText("Seleccione un bedel");
         }

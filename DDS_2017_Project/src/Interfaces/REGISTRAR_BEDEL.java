@@ -242,6 +242,7 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         if(!datosInvalidos){
             TODO_OK bien = new TODO_OK();
             bien.setVisible(true);
+            controlador.crearBedel(usuario,nombre,apellido,contra,turno.toString());
             this.dispose();
         }
     }//GEN-LAST:event_aceptarButtonActionPerformed
