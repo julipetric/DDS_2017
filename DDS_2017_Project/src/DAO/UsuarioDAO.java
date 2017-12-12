@@ -100,5 +100,21 @@ public class UsuarioDAO {
 
         return bedeles;
     }
+    
+    public Bedel traerBedel(String ID){
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session = sesion.openSession();
+        Transaction tx = session.beginTransaction();
+        
+         List<Bedel>lista = session.createCriteria(Bedel.class)
+                     .add(Restrictions.eq("nombreUsuario",ID))
+                     .list(); 
+        for(Bedel b:lista){
+        Bedel bedel = b;
+        }
+        tx.commit();
+        session.close();
+    return new Bedel();
+    }
 
 }

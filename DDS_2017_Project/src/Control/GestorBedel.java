@@ -84,10 +84,10 @@ public class GestorBedel {
         //IMPLEMENTAR GATITOS
     }
 
-    private void modificarBedel(Bedel bedel, String nombre, String apellido, String email, Turno turno) {
-        //IMPLEMENTAR GATITOS
-        //IMPLEMENTAR GATITOS 
-        //IMPLEMENTAR GATITOS
+    public Bedel modificarBedel(String ID) {
+       UsuarioDAO dao = new UsuarioDAO();
+       Bedel bedel = dao.traerBedel(ID);
+       return bedel;
     }
 
     private Boolean validarDatos(String id, String password1, String password2, String nombre, String apellido, Turno turno) {

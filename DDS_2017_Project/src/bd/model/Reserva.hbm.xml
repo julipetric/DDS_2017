@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 11-dic-2017 15:58:20 by Hibernate Tools 4.3.1 -->
+<!-- Generated 12-dic-2017 17:00:21 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="bd.model.Reserva" table="reserva" catalog="roomguard" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
+        <id name="id" type="int">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="assigned" />
         </id>
         <property name="tipoAula" type="string">
             <column name="tipoAula" length="12" not-null="true" />
@@ -20,6 +20,12 @@
         <property name="periodo" type="string">
             <column name="periodo" length="8" not-null="true" />
         </property>
+        <set name="diareservas" table="diareserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idReserva" not-null="true" />
+            </key>
+            <one-to-many class="bd.model.Diareserva" />
+        </set>
         <set name="haces" table="hace" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idReserva" not-null="true" />

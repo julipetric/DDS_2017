@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 11-dic-2017 15:58:19 by Hibernate Tools 4.3.1
+// Generated 12-dic-2017 17:00:20 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Aulasr  implements java.io.Serializable {
 
 
-     private int id;
+     private String id;
      private Aula aula;
      private byte[] ventilador;
      private Set posees = new HashSet(0);
@@ -30,11 +30,11 @@ public class Aulasr  implements java.io.Serializable {
        this.posees = posees;
     }
    
-    public int getId() {
+    public String getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     public Aula getAula() {

@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 11-dic-2017 15:58:19 by Hibernate Tools 4.3.1
+// Generated 12-dic-2017 17:00:20 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,6 +12,8 @@ public class Diareserva  implements java.io.Serializable {
 
 
      private DiareservaId id;
+     private Aula aula;
+     private Reserva reserva;
      private Set posees = new HashSet(0);
      private Set tienediareservas = new HashSet(0);
 
@@ -19,11 +21,15 @@ public class Diareserva  implements java.io.Serializable {
     }
 
 	
-    public Diareserva(DiareservaId id) {
+    public Diareserva(DiareservaId id, Aula aula, Reserva reserva) {
         this.id = id;
+        this.aula = aula;
+        this.reserva = reserva;
     }
-    public Diareserva(DiareservaId id, Set posees, Set tienediareservas) {
+    public Diareserva(DiareservaId id, Aula aula, Reserva reserva, Set posees, Set tienediareservas) {
        this.id = id;
+       this.aula = aula;
+       this.reserva = reserva;
        this.posees = posees;
        this.tienediareservas = tienediareservas;
     }
@@ -34,6 +40,20 @@ public class Diareserva  implements java.io.Serializable {
     
     public void setId(DiareservaId id) {
         this.id = id;
+    }
+    public Aula getAula() {
+        return this.aula;
+    }
+    
+    public void setAula(Aula aula) {
+        this.aula = aula;
+    }
+    public Reserva getReserva() {
+        return this.reserva;
+    }
+    
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
     public Set getPosees() {
         return this.posees;

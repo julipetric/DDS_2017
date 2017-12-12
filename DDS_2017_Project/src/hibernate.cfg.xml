@@ -47,18 +47,18 @@ Contributor(s):
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.show_sql">true</property>
-    <mapping resource="bd/model/Tienedocente.hbm.xml"/>
-    <mapping resource="bd/model/Diareserva.hbm.xml"/>
-    <mapping resource="bd/model/Aula.hbm.xml"/>
-    <mapping resource="bd/model/Aulamm.hbm.xml"/>
-    <mapping resource="bd/model/Reserva.hbm.xml"/>
-    <mapping resource="bd/model/Hace.hbm.xml"/>
     <mapping resource="bd/model/Aulainf.hbm.xml"/>
     <mapping resource="bd/model/Docente.hbm.xml"/>
-    <mapping resource="bd/model/Admin.hbm.xml"/>
-    <mapping resource="bd/model/Aulasr.hbm.xml"/>
-    <mapping resource="bd/model/Posee.hbm.xml"/>
-    <mapping resource="bd/model/Tienediareserva.hbm.xml"/>
     <mapping resource="bd/model/Bedel.hbm.xml"/>
+    <mapping resource="bd/model/Tienediareserva.hbm.xml"/>
+    <mapping resource="bd/model/Posee.hbm.xml"/>
+    <mapping resource="bd/model/Tienedocente.hbm.xml"/>
+    <mapping resource="bd/model/Aulasr.hbm.xml"/>
+    <mapping resource="bd/model/Aula.hbm.xml"/>
+    <mapping resource="bd/model/Admin.hbm.xml"/>
+    <mapping resource="bd/model/Hace.hbm.xml"/>
+    <mapping resource="bd/model/Reserva.hbm.xml"/>
+    <mapping resource="bd/model/Aulamm.hbm.xml"/>
+    <mapping resource="bd/model/Diareserva.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
