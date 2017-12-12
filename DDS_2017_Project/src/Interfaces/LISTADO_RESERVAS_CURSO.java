@@ -38,7 +38,7 @@ public class LISTADO_RESERVAS_CURSO extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 

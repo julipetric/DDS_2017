@@ -133,7 +133,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         jRadioButton4 = new javax.swing.JRadioButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("REGISTRAR UNA NUEVA RESERVA");
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
@@ -178,6 +178,11 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jButton2.setText("Cancelar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(0, 204, 0));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -635,6 +640,10 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -74,7 +74,6 @@ public class UsuarioDAO {
     }
     
     public boolean readLogAdmin(String usuario, String pass){
-        System.out.println("flag1");
         boolean verif = false;
         List<Admin> lista = null;
         
@@ -88,8 +87,6 @@ public class UsuarioDAO {
                      .list(); 
         
         verif = !lista.isEmpty();
-        System.out.println("verif");
-        
         tx.commit();
         session.close();
         return verif;

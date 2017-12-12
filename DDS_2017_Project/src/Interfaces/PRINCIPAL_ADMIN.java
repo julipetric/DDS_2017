@@ -64,7 +64,7 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario:");
 
-        jTextField1.setText("UserXX");
+        jTextField1.setText("1");
         jTextField1.setEnabled(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +74,7 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre:");
 
-        jTextField2.setText("Nombre");
+        jTextField2.setText("admin");
         jTextField2.setEnabled(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +84,7 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
 
         jLabel3.setText("Apellido:");
 
-        jTextField3.setText("Apellido");
+        jTextField3.setText("admin");
         jTextField3.setEnabled(false);
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +150,8 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
 
         jButton1.setText("CAMBIAR DE USUARIO");
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 0));
+        jButton2.setForeground(new java.awt.Color(255, 0, 0));
         jButton2.setText("CERRAR SESION");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,7 +219,7 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed

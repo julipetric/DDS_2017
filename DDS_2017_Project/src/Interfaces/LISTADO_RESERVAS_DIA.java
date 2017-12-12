@@ -43,7 +43,7 @@ public class LISTADO_RESERVAS_DIA extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("BUSQUEDA DE RESERVAS POR DIA");
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
