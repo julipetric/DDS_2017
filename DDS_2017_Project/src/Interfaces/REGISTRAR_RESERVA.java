@@ -41,6 +41,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private ArrayList<Integer> diasDeSemana;
     public Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
+    private GestorReserva gestor; 
     
     
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -56,6 +57,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         jButton3.setEnabled(false);
         jTable1.setEnabled(false);
         reserva = new Reserva();
+        gestor = new GestorReserva(); 
         
         try {
             inicio1C = sdf.parse("15/03/2017");
@@ -621,11 +623,12 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
             //se va a incrementar i, se vuelve al dia de hor, se acomoda en el siguiente dia seleccionado y se agregan todos los dias reserva
         }
        //aca ya estan generados todos los diasreserva iniciales de nuestra reserva periodica
-       GestorReserva gestor = new GestorReserva();       
-       gestor.obtenerDisponibilidadPeriodica(reserva);
+             
+       gestor.obtenerDisponibilidadPeriodica(reserva);// asignar a una variable la lista que se devuelve
+       
     } 
     else{//SI ES ESPORÁDICA
-        //IMPLEMENTAR
+        gestor.obtenerDisponibilidadEsporadica(reserva);
     }
         
        

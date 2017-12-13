@@ -134,4 +134,23 @@ public class ReservaDAO {
         return (count + 1);
     }
 
+    public ArrayList<DiaReserva> getDiaReserva(String id, String fecha) {
+        
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session = sesion.openSession();
+        Transaction tx = session.beginTransaction();
+        
+        Criteria criterio1 = session.createCriteria(DiaReserva.class);
+        criterio1.add(Restrictions.eq("idAula", id));
+        criterio1.add(Restrictions.eq("fecha", fecha));
+        
+        ArrayList<DiaReserva> dias =  (ArrayList<DiaReserva>) criterio1.list();//para caa aula, me devuelve los dias reserva de ese dia
+        
+        return dias;
+        
+        
+    }
+
+   
+
 }

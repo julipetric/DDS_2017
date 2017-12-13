@@ -6,6 +6,7 @@
 package DAO;
 
 import Clases.Aula;
+import Clases.Reserva;
 import Clases.TipoDeAula;
 import bd.dto.HibernateUtil;
 import java.util.List;
@@ -37,7 +38,7 @@ public class AulaDAO {
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
         Criteria criterio = session.createCriteria(Aula.class);
-        criterio.add(Restrictions.ge("capacidad", cant));
+        criterio.add(Restrictions.ge("capacidad", cant));//ver que sea mayor o igual
         criterio.add(Restrictions.eq("tipo", tipo));
         criterio.add(Restrictions.eq("hablitida", 1));
         posibles=criterio.list();
@@ -45,5 +46,9 @@ public class AulaDAO {
         session.close();
         
         return posibles;
+    }
+
+    public void getAulas(Reserva reserva) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

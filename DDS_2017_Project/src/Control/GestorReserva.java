@@ -6,10 +6,12 @@
 package Control;
 
 import Clases.Aula;
+import Clases.DiaReserva;
 import Clases.Reserva;
 import DAO.AulaDAO;
 import DAO.ReservaDAO;
 import bd.model.Bedel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,4 +60,29 @@ public class GestorReserva {
           //IMPLEMENTAR GATITOS 
                //IMPLEMENTAR GATITOS
     return new ArrayList();}
+
+    public void obtenerDisponibilidadEsporadica(Reserva reserva) {
+        
+         ReservaDAO daoR = new ReservaDAO();
+         AulaDAO daoA = new AulaDAO();
+         String fecha = new String();
+         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+         ArrayList<DiaReserva> dias = new ArrayList<>();
+         List<Aula> posibles = new ArrayList<>();
+         dias = reserva.diasReservaEsporadica;
+         ArrayList<DiaReserva> diasPorAula = new ArrayList<>();
+         
+         posibles = daoA.read(reserva.tipoDeAula, reserva.cantidadAlumnos); //devuelve aulas compatibles con mi reserva
+         
+         for(int i=0 ; i<posibles.size(); i++){
+            //traer del dao, para cada dia, los aulas que cumplan el criterio y sus DiaReserva asignados con fecha igual al dia
+            fecha = sdf.format(dias.get(i).fecha);
+            diasPorAula = daoR.getDiaReserva(posibles.get(i).id, fecha);//que devuelva para ese aula y ese dia, los dias reserva
+            //SEGUIR ACA
+            
+            
+            
+        }
+        
+    }
 }
