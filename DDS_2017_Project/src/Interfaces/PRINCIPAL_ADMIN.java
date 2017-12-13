@@ -132,7 +132,10 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        jButton11.setBackground(new java.awt.Color(204, 204, 204));
         jButton11.setText("NUEVO BEDEL");
+        jButton11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +143,10 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
             }
         });
 
+        jButton12.setBackground(new java.awt.Color(204, 204, 204));
         jButton12.setText("BUSCAR BEDEL");
+        jButton12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,9 +156,11 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
 
         jButton1.setText("CAMBIAR DE USUARIO");
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 0));
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setForeground(new java.awt.Color(255, 0, 0));
         jButton2.setText("CERRAR SESION");
+        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
