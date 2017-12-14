@@ -430,9 +430,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -602,6 +602,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        
     } 
     else{//SI ES ESPORÁDICA
+       reserva.setCantidadAlumnos(jComboBox6.getSelectedIndex());
+       reserva.setTipoDeAula(tipo);
+        System.out.println("pasamos a la ventana nueva");
         OBTENER_DISPONIBILIDAD_DE_AULAS vent =  new OBTENER_DISPONIBILIDAD_DE_AULAS(reserva);
         vent.setVisible(true);
         

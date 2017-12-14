@@ -107,7 +107,14 @@ public class GestorReserva {
          ArrayList<Aula> aulasDisponibles = new ArrayList<>();
          ArrayList<EstructAUX> struct =  new ArrayList<>();
         
+         System.out.println("estamos en el gestor");
+         System.out.println(reserva.tipoDeAula);
+         System.out.println(reserva.cantidadAlumnos);
          posibles = daoA.read(reserva.tipoDeAula, reserva.cantidadAlumnos); //devuelve aulas compatibles con mi reserva
+         System.out.println(posibles.size());
+         for (int i = 0; i<posibles.size(); i++){
+             System.out.println(posibles.get(i).id);
+         }
          
         
          for (int i=0;i<dias.size();i++){ //recorro dias 
