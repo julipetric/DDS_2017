@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 14-dic-2017 17:53:50 by Hibernate Tools 4.3.1
+// Generated 14-dic-2017 19:22:56 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -18,6 +18,7 @@ public class Aula  implements java.io.Serializable {
      private boolean canion;
      private boolean ac;
      private String ubicacion;
+     private String tipo;
      private Set diareservas = new HashSet(0);
      private Aulasr aulasr;
      private Aulainf aulainf;
@@ -36,7 +37,7 @@ public class Aula  implements java.io.Serializable {
         this.ac = ac;
         this.ubicacion = ubicacion;
     }
-    public Aula(String id, int capacidad, String pizzaron, boolean habilitada, boolean canion, boolean ac, String ubicacion, Set diareservas, Aulasr aulasr, Aulainf aulainf, Aulamm aulamm) {
+    public Aula(String id, int capacidad, String pizzaron, boolean habilitada, boolean canion, boolean ac, String ubicacion, String tipo, Set diareservas, Aulasr aulasr, Aulainf aulainf, Aulamm aulamm) {
        this.id = id;
        this.capacidad = capacidad;
        this.pizzaron = pizzaron;
@@ -44,6 +45,7 @@ public class Aula  implements java.io.Serializable {
        this.canion = canion;
        this.ac = ac;
        this.ubicacion = ubicacion;
+       this.tipo = tipo;
        this.diareservas = diareservas;
        this.aulasr = aulasr;
        this.aulainf = aulainf;
@@ -98,6 +100,13 @@ public class Aula  implements java.io.Serializable {
     
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
+    }
+    public String getTipo() {
+        return this.tipo;
+    }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     public Set getDiareservas() {
         return this.diareservas;
