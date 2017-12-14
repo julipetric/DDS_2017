@@ -22,13 +22,11 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `apellido` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla roomguard.admin: ~0 rows (aproximadamente)
 DELETE FROM `admin`;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` (`id`, `nombre`, `apellido`, `password`) VALUES
-	(1, 'admin', 'admin', 'root');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 
@@ -104,16 +102,9 @@ CREATE TABLE IF NOT EXISTS `bedel` (
   PRIMARY KEY (`nombreUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.bedel: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.bedel: ~0 rows (aproximadamente)
 DELETE FROM `bedel`;
 /*!40000 ALTER TABLE `bedel` DISABLE KEYS */;
-INSERT INTO `bedel` (`nombre`, `apellido`, `nombreUsuario`, `password`, `turno`) VALUES
-	('santiago', 'magneto', 'mgnet', 'qwertyui', 'TARDE'),
-	('ddtfd|', 'uygytdfu||', 'ntddnmlguk', '123456789', 'MAÑANA'),
-	('Juliano', 'Petric', 'patric', '12345678', 'NOCHE'),
-	('carlos', 'pereyra', 'perey', '12121212', 'MAÑANA'),
-	('jose', 'rodriguez', 'rodri', '11222222', 'TARDE'),
-	('sant0', 'roa', 'santo', '11111111', 'MAÑANA');
 /*!40000 ALTER TABLE `bedel` ENABLE KEYS */;
 
 
@@ -178,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `politicaseguridad` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.politicaseguridad: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.politicaseguridad: ~0 rows (aproximadamente)
 DELETE FROM `politicaseguridad`;
 /*!40000 ALTER TABLE `politicaseguridad` DISABLE KEYS */;
 INSERT INTO `politicaseguridad` (`longmin`, `longmax`, `id`) VALUES

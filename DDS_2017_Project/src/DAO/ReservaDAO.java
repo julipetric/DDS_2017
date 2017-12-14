@@ -9,7 +9,7 @@ import Clases.Aula;
 import Clases.DiaReserva;
 import Clases.Docente;
 import Clases.Periodo;
-import Clases.Reserva;
+import bd.model.Reserva;
 import Clases.TipoDeAula;
 import bd.dto.HibernateUtil;
 import bd.model.Bedel;
@@ -126,7 +126,7 @@ public class ReservaDAO {
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
 
-        Integer count = ((Number) session.createCriteria("reserva").setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        Integer count = ((Number) session.createCriteria(Reserva.class).setProjection(Projections.rowCount()).uniqueResult()).intValue();
 
         tx.commit();
         session.close();
