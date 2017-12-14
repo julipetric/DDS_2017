@@ -279,8 +279,8 @@ public class PRINCIPAL_COMUN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        //REGISTRAR_RESERVA v1 = new REGISTRAR_RESERVA();
-        //v1.setVisible(true);
+        REGISTRAR_RESERVA v1 = new REGISTRAR_RESERVA();
+        v1.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
