@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Clases.DiaReserva;
+import Clases.EstructAUX;
 import Clases.Periodo;
 import Clases.Reserva;
 import Clases.TipoDeAula;
@@ -42,6 +43,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     public Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
     private GestorReserva gestor; 
+    private ArrayList<EstructAUX> struct;
     
     
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -57,7 +59,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         jButton3.setEnabled(false);
         jTable1.setEnabled(false);
         reserva = new Reserva();
-        gestor = new GestorReserva(); 
+        gestor = new GestorReserva();
+        struct = new ArrayList<>();
+        
         
         try {
             inicio1C = sdf.parse("15/03/2017");
@@ -542,31 +546,6 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         
         //HASTA ACA SE GUARDA TODO CORRECTO EN LOS ARREGLOS DE LOS DIAS Y HORARIOS  
         
-        
-//        try {
-//            inicio1C = sdf.parse("15/03/2017");
-//        } catch (ParseException ex) {
-//            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        try {
-//            fin1C = sdf.parse("9/06/2017");
-//        } catch (ParseException ex) {
-//            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        try {
-//            inicio2C = sdf.parse("08/07/2017");
-//        } catch (ParseException ex) {
-//            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        try {
-//            fin2C = sdf.parse("25/12/2017");
-//        } catch (ParseException ex) {
-//            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        
-       //Las fechas están verificadas
-       
-       
        
       //SETEO DE LAS FECHAS INICIAL Y FINAL DE LAS RESERVAS A REALIZAR
       //VER BIEN LAS FECHAS ESTAS
@@ -628,7 +607,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        
     } 
     else{//SI ES ESPORÁDICA
-        gestor.obtenerDisponibilidadEsporadica(reserva);
+        struct = gestor.obtenerDisponibilidadEsporadica(reserva);
+        
     }
         
        
