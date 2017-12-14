@@ -44,14 +44,16 @@ public class UsuarioDAO {
        
         try{
             session.save(bedel);
+            tx.commit();
+            session.close();
         }catch(HibernateError e){
             if (tx != null) {
                 tx.rollback();
             }
             e.printStackTrace();
+            session.close();
         }
-        tx.commit();
-        session.close();
+        
     }
 
     public List consultaNombreUsuario(String usuario) {
@@ -62,7 +64,7 @@ public class UsuarioDAO {
         Criteria criterio = session.createCriteria(Bedel.class);
         List<Bedel> lista = new ArrayList();
         if(!usuario.equals("*")){
-            lista = criterio.add(Restrictions.eq("apellido", consulta)).list();
+            lista = criterio.add(Restrictions.eq("nombreUsuario", consulta)).list();
         }
         else{
              lista = criterio.list();

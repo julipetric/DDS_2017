@@ -263,12 +263,12 @@ public class MODIFICAR_BEDEL extends javax.swing.JFrame {
         boolean datosInvalidos = controlador.validar(jTextField1.getText(),jTextField2.getText(), jTextField3.getText(), Turno.valueOf(jComboBox2.getSelectedItem().toString().toUpperCase()), jPasswordField1.getText(), jPasswordField2.getText(),datosError);
         
         //se colorean los datos invalidos
-        if(datosError.get(0)) errorNombre();
-        if(datosError.get(1)) errorApellido();
-        if(datosError.get(2)) errorUsuario();
-        if(datosError.get(3)) errorTurno();
-        if(datosError.get(4)) errorContra();
-        if(datosError.get(5)) errorContra2();
+        if(datosError.get(0)) errorNombre(); else nombreOk();
+        if(datosError.get(1)) errorApellido(); else apellidoOk();
+        if(datosError.get(2)) errorUsuario(); else usuarioOk();
+        if(datosError.get(3)) errorTurno(); else turnoOk();
+        if(datosError.get(4)) errorContra(); else contraOk();
+        if(datosError.get(5)) errorContra2(); else contra2Ok();
         
         
         if(!datosInvalidos){
