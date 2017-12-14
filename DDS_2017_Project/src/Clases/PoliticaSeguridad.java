@@ -38,13 +38,11 @@ public class PoliticaSeguridad {
 
             if (!pass.isEmpty() && !passv.isEmpty() && pass.length() > (min - 1) && pass.length() < (max + 1) && passv.length() > (min - 1) && passv.length() < (max + 1) && passv.length() == pass.length()) {
 
-                for (int i = 0; i < pass.length(); i++) {
-                    if (pass.charAt(i) != passv.charAt(i)) {
-                        error = true;
-                        break;
-                    }
-                }
 
+                    if (!pass.equals(passv)) {
+                        error = true;                        
+                    }
+                
             } else {
                 error = true;
             }
