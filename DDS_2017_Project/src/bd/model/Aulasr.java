@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 14-dic-2017 17:25:57 by Hibernate Tools 4.3.1
+// Generated 14-dic-2017 17:33:49 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,18 +13,18 @@ public class Aulasr  implements java.io.Serializable {
 
      private String id;
      private Aula aula;
-     private byte[] ventilador;
+     private boolean ventilador;
      private Set posees = new HashSet(0);
 
     public Aulasr() {
     }
 
 	
-    public Aulasr(Aula aula, byte[] ventilador) {
+    public Aulasr(Aula aula, boolean ventilador) {
         this.aula = aula;
         this.ventilador = ventilador;
     }
-    public Aulasr(Aula aula, byte[] ventilador, Set posees) {
+    public Aulasr(Aula aula, boolean ventilador, Set posees) {
        this.aula = aula;
        this.ventilador = ventilador;
        this.posees = posees;
@@ -44,11 +44,11 @@ public class Aulasr  implements java.io.Serializable {
     public void setAula(Aula aula) {
         this.aula = aula;
     }
-    public byte[] getVentilador() {
+    public boolean isVentilador() {
         return this.ventilador;
     }
     
-    public void setVentilador(byte[] ventilador) {
+    public void setVentilador(boolean ventilador) {
         this.ventilador = ventilador;
     }
     public Set getPosees() {

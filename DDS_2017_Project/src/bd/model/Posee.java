@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 14-dic-2017 17:25:57 by Hibernate Tools 4.3.1
+// Generated 14-dic-2017 17:33:49 by Hibernate Tools 4.3.1
 
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-dic-2017 17:25:58 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14-dic-2017 17:33:49 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="bd.model.Aulasr" table="aulasr" catalog="roomguard" optimistic-lock="version">
         <id name="id" type="string">
@@ -11,7 +11,7 @@
             </generator>
         </id>
         <one-to-one name="aula" class="bd.model.Aula" constrained="true"></one-to-one>
-        <property name="ventilador" type="binary">
+        <property name="ventilador" type="boolean">
             <column name="ventilador" not-null="true" />
         </property>
         <set name="posees" table="posee" inverse="true" lazy="true" fetch="select">

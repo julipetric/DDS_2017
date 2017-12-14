@@ -36,9 +36,9 @@ CREATE TABLE IF NOT EXISTS `aula` (
   `capacidad` int(11) NOT NULL,
   `pizzaron` enum('TIZA','BLANCO') NOT NULL,
   `habilitada` bit(1) NOT NULL,
-  `canion` binary(1) NOT NULL,
-  `ac` binary(1) NOT NULL,
-  `ubicacion` binary(1) NOT NULL,
+  `canion` bit(1) NOT NULL,
+  `ac` bit(1) NOT NULL,
+  `ubicacion` bit(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -65,9 +65,9 @@ DELETE FROM `aulainf`;
 -- Volcando estructura para tabla roomguard.aulamm
 CREATE TABLE IF NOT EXISTS `aulamm` (
   `id` varchar(50) NOT NULL,
-  `computadora` binary(1) NOT NULL,
-  `televisor` binary(1) NOT NULL,
-  `dvd` binary(1) NOT NULL,
+  `computadora` bit(1) NOT NULL,
+  `televisor` bit(1) NOT NULL,
+  `dvd` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FK_idMM_idAulaPadre` FOREIGN KEY (`id`) REFERENCES `aula` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -81,7 +81,7 @@ DELETE FROM `aulamm`;
 -- Volcando estructura para tabla roomguard.aulasr
 CREATE TABLE IF NOT EXISTS `aulasr` (
   `id` varchar(50) NOT NULL,
-  `ventilador` binary(1) NOT NULL,
+  `ventilador` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FK_idSR_idAulaPadre` FOREIGN KEY (`id`) REFERENCES `aula` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `politicaseguridad` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.politicaseguridad: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.politicaseguridad: ~1 rows (aproximadamente)
 DELETE FROM `politicaseguridad`;
 /*!40000 ALTER TABLE `politicaseguridad` DISABLE KEYS */;
 INSERT INTO `politicaseguridad` (`longmin`, `longmax`, `id`) VALUES

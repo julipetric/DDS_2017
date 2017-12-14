@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 14-dic-2017 17:25:57 by Hibernate Tools 4.3.1
+// Generated 14-dic-2017 17:33:49 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,22 +13,22 @@ public class Aulamm  implements java.io.Serializable {
 
      private String id;
      private Aula aula;
-     private byte[] computadora;
-     private byte[] televisor;
-     private byte[] dvd;
+     private boolean computadora;
+     private boolean televisor;
+     private boolean dvd;
      private Set posees = new HashSet(0);
 
     public Aulamm() {
     }
 
 	
-    public Aulamm(Aula aula, byte[] computadora, byte[] televisor, byte[] dvd) {
+    public Aulamm(Aula aula, boolean computadora, boolean televisor, boolean dvd) {
         this.aula = aula;
         this.computadora = computadora;
         this.televisor = televisor;
         this.dvd = dvd;
     }
-    public Aulamm(Aula aula, byte[] computadora, byte[] televisor, byte[] dvd, Set posees) {
+    public Aulamm(Aula aula, boolean computadora, boolean televisor, boolean dvd, Set posees) {
        this.aula = aula;
        this.computadora = computadora;
        this.televisor = televisor;
@@ -50,25 +50,25 @@ public class Aulamm  implements java.io.Serializable {
     public void setAula(Aula aula) {
         this.aula = aula;
     }
-    public byte[] getComputadora() {
+    public boolean isComputadora() {
         return this.computadora;
     }
     
-    public void setComputadora(byte[] computadora) {
+    public void setComputadora(boolean computadora) {
         this.computadora = computadora;
     }
-    public byte[] getTelevisor() {
+    public boolean isTelevisor() {
         return this.televisor;
     }
     
-    public void setTelevisor(byte[] televisor) {
+    public void setTelevisor(boolean televisor) {
         this.televisor = televisor;
     }
-    public byte[] getDvd() {
+    public boolean isDvd() {
         return this.dvd;
     }
     
-    public void setDvd(byte[] dvd) {
+    public void setDvd(boolean dvd) {
         this.dvd = dvd;
     }
     public Set getPosees() {
