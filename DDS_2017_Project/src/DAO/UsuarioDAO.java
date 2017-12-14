@@ -74,7 +74,24 @@ public class UsuarioDAO {
         session.close();
         return lista;
     }
-    
+    public List consultarApellidoUsuario(String apellido) {
+        consulta = apellido;
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session = sesion.openSession();
+        Transaction tx = session.beginTransaction();
+        Criteria criterio = session.createCriteria(Bedel.class);
+        List<Bedel> lista = new ArrayList();
+        if(!apellido.equals("*")){
+            lista = criterio.add(Restrictions.eq("apellido", consulta)).list();
+        }
+        else{
+             lista = criterio.list();
+        }
+        System.out.println(lista);
+        tx.commit();
+        session.close();
+        return lista;
+    }
     public boolean readLogAdmin(String usuario, String pass){
         boolean verif = false;
         List<Admin> lista = null;

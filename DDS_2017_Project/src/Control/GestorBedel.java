@@ -97,7 +97,7 @@ public class GestorBedel {
     public List buscarBedel (String apellido, Turno turno){
         UsuarioDAO dao = new UsuarioDAO();
         
-        List<Bedel> bedelesdao = dao.consultaNombreUsuario(apellido);
+        List<Bedel> bedelesdao = dao.consultarApellidoUsuario(apellido);
         List<Bedel> filtrado = new ArrayList<>();        //filtrar de la lista de bedeles cuales cumplen las caract:
         
         
