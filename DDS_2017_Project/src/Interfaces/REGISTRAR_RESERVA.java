@@ -43,7 +43,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     public Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
     private GestorReserva gestor; 
-    private ArrayList<EstructAUX> struct;
+    
     
     
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -60,7 +60,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         jTable1.setEnabled(false);
         reserva = new Reserva();
         gestor = new GestorReserva();
-        struct = new ArrayList<>();
+        
         
         
         try {
@@ -607,7 +607,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
        
     } 
     else{//SI ES ESPORÁDICA
-        struct = gestor.obtenerDisponibilidadEsporadica(reserva);
+        OBTENER_DISPONIBILIDAD_DE_AULAS vent =  new OBTENER_DISPONIBILIDAD_DE_AULAS(reserva);
+        vent.setVisible(true);
+        
         
     }
         
