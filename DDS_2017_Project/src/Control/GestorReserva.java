@@ -114,14 +114,14 @@ public class GestorReserva {
         posibles = daoA.read(reserva.tipoDeAula, reserva.cantidadAlumnos); //devuelve aulas compatibles con mi reserva
         //System.out.println(posibles.size());
         for (int i = 0; i < posibles.size(); i++) {
-            System.out.println(posibles.get(i).id);
+            System.out.println(posibles.get(i).getId());
         }
 
         for (int i = 0; i < dias.size(); i++) { //recorro dias 
             fecha = sdf.format(dias.get(i).fecha);
             for (int j = 0; j < posibles.size(); j++) {
                 //traer del dao, para cada dia, los aulas que cumplan el criterio y sus DiaReserva asignados con fecha igual al dia
-                diasPorAula = daoR.getDiaReserva(posibles.get(j).id, fecha);//que devuelva para ese aula y ese dia, los dias reserva
+                diasPorAula = daoR.getDiaReserva(posibles.get(j).getId(), fecha);//que devuelva para ese aula y ese dia, los dias reserva
                 //SEGUIR ACA
 
                 if (this.verSuperposicicion(diasPorAula, dias.get(i))) {//agrego el aula a la lista final si está isponible

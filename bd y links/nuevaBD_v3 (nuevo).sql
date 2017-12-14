@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `aula` (
   `habilitada` bit(1) NOT NULL,
   `canion` bit(1) NOT NULL,
   `ac` bit(1) NOT NULL,
-  `ubicacion` bit(1) NOT NULL,
+  `ubicacion` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -102,9 +102,11 @@ CREATE TABLE IF NOT EXISTS `bedel` (
   PRIMARY KEY (`nombreUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.bedel: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.bedel: ~1 rows (aproximadamente)
 DELETE FROM `bedel`;
 /*!40000 ALTER TABLE `bedel` DISABLE KEYS */;
+INSERT INTO `bedel` (`nombre`, `apellido`, `nombreUsuario`, `password`, `turno`) VALUES
+	('Tomas', 'Fleitas', 'ElTomaa', '123456789', 'MAÑANA');
 /*!40000 ALTER TABLE `bedel` ENABLE KEYS */;
 
 
@@ -169,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `politicaseguridad` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.politicaseguridad: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.politicaseguridad: ~0 rows (aproximadamente)
 DELETE FROM `politicaseguridad`;
 /*!40000 ALTER TABLE `politicaseguridad` DISABLE KEYS */;
 INSERT INTO `politicaseguridad` (`longmin`, `longmax`, `id`) VALUES
