@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Clases.Aula;
+import bd.model.Aula;
 import Clases.Reserva;
 import Clases.TipoDeAula;
 import bd.dto.HibernateUtil;
@@ -33,8 +33,8 @@ public class AulaDAO {
     }
     
     public List<Aula> read(TipoDeAula tipo, Integer cant){
-        System.out.println("read");
-        System.out.println(cant);
+        //System.out.println("read");
+        //System.out.println(cant);
         List<Aula> posibles;
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();

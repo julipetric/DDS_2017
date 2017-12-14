@@ -5,10 +5,10 @@
  */
 package Interfaces;
 
-import Clases.Aula;
-import Clases.AulaInformatica;
-import Clases.AulaMultimedia;
-import Clases.AulaSinRecursos;
+import bd.model.Aula;
+import bd.model.Aulainf;
+import bd.model.Aulamm;
+import bd.model.Aulasr;
 import Clases.TipoDeAula;
 import Control.GestorDeAulas;
 import java.util.ArrayList;
@@ -194,17 +194,17 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tablaAulas.getModel();
         TipoDeAula tipoA = null;
         for (Aula a : listaAulas) {
-            if (a.getClass() == AulaInformatica.class) {
+            if (a.getAulainf() != null) {
                 tipoA = TipoDeAula.INFORMATICA;
             }
-            if (a.getClass() == AulaMultimedia.class) {
+            if (a.getAulamm() != null) {
                 tipoA = TipoDeAula.MULTIMEDIOS;
             }
-            if (a.getClass() == AulaSinRecursos.class) {
+            if (a.getAulasr() != null) {
                 tipoA = TipoDeAula.SINRECURSOS;
             }
             String habilitacion = null;
-            if (a.getHabilitada()) {
+            if (a.isHabilitada()) {
                 habilitacion = "Habilitada";
             } else {
                 habilitacion = "No habilitada";

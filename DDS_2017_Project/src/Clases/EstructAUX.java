@@ -6,6 +6,7 @@
 package Clases;
 
 import java.util.ArrayList;
+import bd.model.Aula;
 
 /**
  *

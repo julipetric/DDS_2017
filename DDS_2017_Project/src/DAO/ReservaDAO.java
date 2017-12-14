@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Clases.Aula;
+import bd.model.Aula;
 import Clases.DiaReserva;
 import Clases.Docente;
 import Clases.Periodo;
