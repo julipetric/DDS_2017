@@ -5,10 +5,11 @@
  */
 package DAO;
 
-import Clases.Aula;
+import bd.model.Aula;
 import Clases.Reserva;
 import Clases.TipoDeAula;
 import bd.dto.HibernateUtil;
+
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -32,16 +33,17 @@ public class AulaDAO {
     }
     
     public List<Aula> read(TipoDeAula tipo, Integer cant){
+        //System.out.println("read");
+        //System.out.println(cant);
         List<Aula> posibles;
-        
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
         Criteria criterio = session.createCriteria(Aula.class);
-        criterio.add(Restrictions.ge("capacidad", cant));//ver que sea mayor o igual
-        criterio.add(Restrictions.eq("tipo", tipo));
-        criterio.add(Restrictions.eq("hablitida", 1));
-        posibles=criterio.list();
+        //criterio.add(Restrictions.ge("capacidad", cant));//ver que sea mayor o igual
+        //criterio.add(Restrictions.eq("tipo", tipo));
+        //criterio.add(Restrictions.eq("hablitida", 1));
+        posibles = criterio.list();
         tx.commit();
         session.close();
         

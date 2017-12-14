@@ -5,7 +5,7 @@
  */
 package Control;
 
-import Clases.Aula;
+import bd.model.Aula;
 import DAO.AulaDAO;
 import bd.dto.HibernateUtil;
 import org.hibernate.Session;
