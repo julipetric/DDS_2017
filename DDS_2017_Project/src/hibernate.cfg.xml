@@ -52,6 +52,7 @@ Contributor(s):
     <mapping resource="bd/model/Bedel.hbm.xml"/>
     <mapping resource="bd/model/Tienediareserva.hbm.xml"/>
     <mapping resource="bd/model/Posee.hbm.xml"/>
+    <mapping resource="bd/model/Politicaseguridad.hbm.xml"/>
     <mapping resource="bd/model/Tienedocente.hbm.xml"/>
     <mapping resource="bd/model/Aulasr.hbm.xml"/>
     <mapping resource="bd/model/Aula.hbm.xml"/>

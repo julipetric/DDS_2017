@@ -6,6 +6,7 @@
 package Clases;
 
 import bd.dto.HibernateUtil;
+import bd.model.Politicaseguridad;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,17 +20,19 @@ public class PoliticaSeguridad {
 
     public boolean validar(String pass, String passv) {
         boolean error = false;
-        List<Integer> lista = null;
+        List<Politicaseguridad> lista = null;
 
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
 
-        lista = session.createCriteria(Integer.class).list();
-        tx.commit();
-        session.close();
-        int min = lista.get(0);
-        int max = lista.get(1);
+        lista = session.createCriteria(Politicaseguridad.class).list();
+        
+        
+        Politicaseguridad politica = lista.get(0);
+        
+        int min = politica.getLongmin();
+        int max = politica.getLongmax();
 
 
        if ((pass.length() < min || pass.length() > max) || (passv.length() < min || passv.length() > max)) {
@@ -47,6 +50,10 @@ public class PoliticaSeguridad {
                 error = true;
             }
         }
+       
+       tx.commit();
+       session.close();
+       
         return error;
     }
 
