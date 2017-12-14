@@ -6,7 +6,6 @@
 package Interfaces;
 
 import Clases.DiaReserva;
-import Clases.EstructAUX;
 import Clases.Periodo;
 import Clases.Reserva;
 import Clases.TipoDeAula;
@@ -19,11 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
