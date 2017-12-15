@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 14-dic-2017 19:22:56 by Hibernate Tools 4.3.1
+// Generated Dec 15, 2017 3:18:15 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,36 +12,35 @@ public class Reserva  implements java.io.Serializable {
 
 
      private int id;
+     private Docente docente;
      private String tipoAula;
      private int cantidadAlumnos;
      private String nombreCurso;
      private String periodo;
      private Set diareservas = new HashSet(0);
      private Set haces = new HashSet(0);
-     private Set tienediareservas = new HashSet(0);
-     private Set tienedocentes = new HashSet(0);
 
     public Reserva() {
     }
 
 	
-    public Reserva(int id, String tipoAula, int cantidadAlumnos, String nombreCurso, String periodo) {
+    public Reserva(int id, Docente docente, String tipoAula, int cantidadAlumnos, String nombreCurso, String periodo) {
         this.id = id;
+        this.docente = docente;
         this.tipoAula = tipoAula;
         this.cantidadAlumnos = cantidadAlumnos;
         this.nombreCurso = nombreCurso;
         this.periodo = periodo;
     }
-    public Reserva(int id, String tipoAula, int cantidadAlumnos, String nombreCurso, String periodo, Set diareservas, Set haces, Set tienediareservas, Set tienedocentes) {
+    public Reserva(int id, Docente docente, String tipoAula, int cantidadAlumnos, String nombreCurso, String periodo, Set diareservas, Set haces) {
        this.id = id;
+       this.docente = docente;
        this.tipoAula = tipoAula;
        this.cantidadAlumnos = cantidadAlumnos;
        this.nombreCurso = nombreCurso;
        this.periodo = periodo;
        this.diareservas = diareservas;
        this.haces = haces;
-       this.tienediareservas = tienediareservas;
-       this.tienedocentes = tienedocentes;
     }
    
     public int getId() {
@@ -50,6 +49,13 @@ public class Reserva  implements java.io.Serializable {
     
     public void setId(int id) {
         this.id = id;
+    }
+    public Docente getDocente() {
+        return this.docente;
+    }
+    
+    public void setDocente(Docente docente) {
+        this.docente = docente;
     }
     public String getTipoAula() {
         return this.tipoAula;
@@ -92,20 +98,6 @@ public class Reserva  implements java.io.Serializable {
     
     public void setHaces(Set haces) {
         this.haces = haces;
-    }
-    public Set getTienediareservas() {
-        return this.tienediareservas;
-    }
-    
-    public void setTienediareservas(Set tienediareservas) {
-        this.tienediareservas = tienediareservas;
-    }
-    public Set getTienedocentes() {
-        return this.tienedocentes;
-    }
-    
-    public void setTienedocentes(Set tienedocentes) {
-        this.tienedocentes = tienedocentes;
     }
 
 

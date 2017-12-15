@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 15, 2017 3:18:15 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bd.model.Historialdecontrasenia" table="historialdecontrasenia" catalog="roomguard" optimistic-lock="version">
+        <id name="value" type="int">
+            <column name="value" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="bedel" class="bd.model.Bedel" fetch="select">
+            <column name="nombreUsuario" length="50" />
+        </many-to-one>
+        <property name="fecha" type="java.lang.Integer">
+            <column name="fecha" />
+        </property>
+        <property name="actual" type="java.lang.Integer">
+            <column name="actual" />
+        </property>
+    </class>
+</hibernate-mapping>

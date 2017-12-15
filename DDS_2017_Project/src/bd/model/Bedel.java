@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 14-dic-2017 19:22:56 by Hibernate Tools 4.3.1
+// Generated Dec 15, 2017 3:18:15 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class Bedel  implements java.io.Serializable {
      private String apellido;
      private String password;
      private String turno;
+     private Set historialdecontrasenias = new HashSet(0);
      private Set haces = new HashSet(0);
 
     public Bedel() {
@@ -29,12 +30,13 @@ public class Bedel  implements java.io.Serializable {
         this.password = password;
         this.turno = turno;
     }
-    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno, Set haces) {
+    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno, Set historialdecontrasenias, Set haces) {
        this.nombreUsuario = nombreUsuario;
        this.nombre = nombre;
        this.apellido = apellido;
        this.password = password;
        this.turno = turno;
+       this.historialdecontrasenias = historialdecontrasenias;
        this.haces = haces;
     }
    
@@ -72,6 +74,13 @@ public class Bedel  implements java.io.Serializable {
     
     public void setTurno(String turno) {
         this.turno = turno;
+    }
+    public Set getHistorialdecontrasenias() {
+        return this.historialdecontrasenias;
+    }
+    
+    public void setHistorialdecontrasenias(Set historialdecontrasenias) {
+        this.historialdecontrasenias = historialdecontrasenias;
     }
     public Set getHaces() {
         return this.haces;

@@ -1,5 +1,5 @@
 package bd.model;
-// Generated 14-dic-2017 19:22:56 by Hibernate Tools 4.3.1
+// Generated Dec 15, 2017 3:18:15 PM by Hibernate Tools 4.3.1
 
 
 
@@ -12,14 +12,16 @@ public class DiareservaId  implements java.io.Serializable {
      private String fecha;
      private String horaInicio;
      private String horaFin;
+     private int idReserva;
 
     public DiareservaId() {
     }
 
-    public DiareservaId(String fecha, String horaInicio, String horaFin) {
+    public DiareservaId(String fecha, String horaInicio, String horaFin, int idReserva) {
        this.fecha = fecha;
        this.horaInicio = horaInicio;
        this.horaFin = horaFin;
+       this.idReserva = idReserva;
     }
    
     public String getFecha() {
@@ -43,6 +45,13 @@ public class DiareservaId  implements java.io.Serializable {
     public void setHoraFin(String horaFin) {
         this.horaFin = horaFin;
     }
+    public int getIdReserva() {
+        return this.idReserva;
+    }
+    
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
 
 
    public boolean equals(Object other) {
@@ -53,7 +62,8 @@ public class DiareservaId  implements java.io.Serializable {
          
 		 return ( (this.getFecha()==castOther.getFecha()) || ( this.getFecha()!=null && castOther.getFecha()!=null && this.getFecha().equals(castOther.getFecha()) ) )
  && ( (this.getHoraInicio()==castOther.getHoraInicio()) || ( this.getHoraInicio()!=null && castOther.getHoraInicio()!=null && this.getHoraInicio().equals(castOther.getHoraInicio()) ) )
- && ( (this.getHoraFin()==castOther.getHoraFin()) || ( this.getHoraFin()!=null && castOther.getHoraFin()!=null && this.getHoraFin().equals(castOther.getHoraFin()) ) );
+ && ( (this.getHoraFin()==castOther.getHoraFin()) || ( this.getHoraFin()!=null && castOther.getHoraFin()!=null && this.getHoraFin().equals(castOther.getHoraFin()) ) )
+ && (this.getIdReserva()==castOther.getIdReserva());
    }
    
    public int hashCode() {
@@ -62,6 +72,7 @@ public class DiareservaId  implements java.io.Serializable {
          result = 37 * result + ( getFecha() == null ? 0 : this.getFecha().hashCode() );
          result = 37 * result + ( getHoraInicio() == null ? 0 : this.getHoraInicio().hashCode() );
          result = 37 * result + ( getHoraFin() == null ? 0 : this.getHoraFin().hashCode() );
+         result = 37 * result + this.getIdReserva();
          return result;
    }   
 
