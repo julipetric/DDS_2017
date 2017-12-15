@@ -143,14 +143,15 @@ public class ReservaDAO {
         Criteria criterio1 = session.createCriteria(DiaReserva.class);
         criterio1.add(Restrictions.eq("idAula", id));
         criterio1.add(Restrictions.eq("fecha", fecha));
+        ArrayList<DiaReserva> Dias = null;
+        List<DiaReserva> dias =   criterio1.list();//para caa aula, me devuelve los dias reserva de ese dia
         
-        ArrayList<DiaReserva> dias =  (ArrayList<DiaReserva>) criterio1.list();//para caa aula, me devuelve los dias reserva de ese dia
+        for(DiaReserva d : dias){
+         Dias.add(d);
+        }
         
-        return dias;
-        
-        
+        tx.commit();
+        session.close();
+        return Dias;    
     }
-
-   
-
 }

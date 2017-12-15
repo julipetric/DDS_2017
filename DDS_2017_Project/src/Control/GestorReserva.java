@@ -144,7 +144,7 @@ public class GestorReserva {
         Boolean flag = true;
         List<String> horarios1 = cola.subList(cola.indexOf(inicio), cola.indexOf(fin));
         List<String> horarios2;
-
+      if (diasPorAula != null) {
         for (int i = 0; i < diasPorAula.size(); i++) {//recorro todos los dias por aula
 
             horarios2 = cola.subList(cola.indexOf(diasPorAula.get(i).horaInicio), cola.indexOf(diasPorAula.get(i).horaFin));
@@ -158,7 +158,7 @@ public class GestorReserva {
             }
 
         }
-
+}
         return flag;
 
     }
