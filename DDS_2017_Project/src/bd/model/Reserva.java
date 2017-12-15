@@ -17,7 +17,7 @@ public class Reserva  implements java.io.Serializable {
      private int cantidadAlumnos;
      private String nombreCurso;
      private String periodo;
-     private Set diareservas = new HashSet(0);
+     public Set diareservas = new HashSet(0);
      private Set haces = new HashSet(0);
 
     public Reserva() {

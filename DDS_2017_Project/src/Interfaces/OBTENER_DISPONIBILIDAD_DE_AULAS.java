@@ -6,7 +6,7 @@
 package Interfaces;
 
 import Clases.EstructAUX;
-import Clases.Reserva;
+import bd.model.Reserva;
 import Control.GestorReserva;
 import java.util.ArrayList;
 
@@ -18,8 +18,11 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
 
     Reserva reserva;
     GestorReserva gestor;
-    private ArrayList<EstructAUX> struct;
-    
+    public ArrayList<EstructAUX> struct;
+
+    public void setStruct(ArrayList<EstructAUX> struct) {
+        this.struct = struct;
+    }
 
     OBTENER_DISPONIBILIDAD_DE_AULAS(Reserva r) {
         initComponents();
@@ -27,8 +30,8 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
         gestor = new GestorReserva();
         struct = new ArrayList<>();
         //System.out.println("vamos al gestor");
-        struct = gestor.obtenerDisponibilidadEsporadica(reserva);
-        
+        this.setStruct(gestor.obtenerDisponibilidadEsporadica(reserva));
+
     }
 
     /**
@@ -118,7 +121,6 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
