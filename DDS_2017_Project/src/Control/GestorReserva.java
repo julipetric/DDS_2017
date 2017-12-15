@@ -67,7 +67,7 @@ public class GestorReserva {
         ArrayList<Aula> posibles;
         AulaDAO aulaDao = new AulaDAO();
 
-        posibles = (ArrayList<Aula>) aulaDao.read(res.getTipoDeAula(), res.getCantidadAlumnos());
+        posibles = (ArrayList<Aula>) aulaDao.obtenerDisponibles(res.getTipoDeAula(), res.getCantidadAlumnos());
 
         ArrayList<Aula> disponibles;
         ReservaDAO resDao = new ReservaDAO();
@@ -111,14 +111,14 @@ public class GestorReserva {
         //System.out.println("estamos en el gestor");
         //System.out.println(reserva.tipoDeAula);
         //System.out.println(reserva.cantidadAlumnos);
-        posibles = daoA.read(reserva.tipoDeAula, reserva.cantidadAlumnos); //devuelve aulas compatibles con mi reserva
+        posibles = daoA.obtenerDisponibles(reserva.tipoDeAula, reserva.cantidadAlumnos); //devuelve aulas compatibles con mi reserva
         //System.out.println(posibles.size());
         for (int i = 0; i < posibles.size(); i++) {
             System.out.println(posibles.get(i).getId());
         }
 
         for (int i = 0; i < dias.size(); i++) { //recorro dias 
-            fecha = sdf.format(dias.get(i).fecha);
+            fecha = sdf.format(dias.get(i).getFecha());
             for (int j = 0; j < posibles.size(); j++) {
                 //traer del dao, para cada dia, los aulas que cumplan el criterio y sus DiaReserva asignados con fecha igual al dia
                 diasPorAula = daoR.getDiaReserva(posibles.get(j).getId(), fecha);//que devuelva para ese aula y ese dia, los dias reserva

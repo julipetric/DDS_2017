@@ -5,10 +5,12 @@
  */
 package DAO;
 
+import Clases.DiaReserva;
 import bd.model.Aula;
 import Clases.Reserva;
 import Clases.TipoDeAula;
 import bd.dto.HibernateUtil;
+import java.util.ArrayList;
 
 import java.util.List;
 import org.hibernate.Criteria;
@@ -23,31 +25,47 @@ import org.hibernate.criterion.Restrictions;
  * @author santi_000
  */
 public class AulaDAO {
-    
-    public Aula read(String idAula){
+
+    public Aula read(String idAula) {
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
         Aula a = (Aula) session.get(Aula.class, idAula);
         return a;
     }
-    
-    public List<Aula> read(TipoDeAula tipo, Integer cant){
-        //System.out.println("read");
+
+    public List<Aula> obtenerDisponibles(TipoDeAula tipo, Integer cant) {
+        //System.out.println("obtenerDisponibles");
         //System.out.println(cant);
-        List<Aula> posibles;
+
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
-        Criteria criterio = session.createCriteria(Aula.class);
-        //criterio.add(Restrictions.ge("capacidad", cant));//ver que sea mayor o igual
-        //criterio.add(Restrictions.eq("tipo", tipo));
-        //criterio.add(Restrictions.eq("hablitida", 1));
-        posibles = criterio.list();
+        List<Aula> posibles = session.createCriteria(Aula.class)
+                //.add(Restrictions.ge("capacidad", cant))
+                //.add(Restrictions.eq("tipo", tipo.toString()))
+                //.add(Restrictions.eq("hablitida", true))
+                .list();
         tx.commit();
         session.close();
         
-        return posibles;
+        ArrayList<Aula> aulaFinal = new ArrayList<>();
+        ArrayList<Aula> aulaAux1 = new ArrayList<>();
+        ArrayList<Aula> aulaAux2 = new ArrayList<>();
+        
+        posibles.stream().filter((a) -> (a.getCapacidad() >= cant)).forEachOrdered((a) -> {
+            aulaAux1.add(a);
+        });
+        
+        aulaAux1.stream().filter((a) -> (a.getTipo().equals(tipo.toString()))).forEachOrdered((a) -> {
+            aulaAux2.add(a);
+        });
+        
+        aulaAux2.stream().filter((a) -> (a.isHabilitada())).forEachOrdered((a) -> {
+            aulaFinal.add(a);
+        });
+        
+        return aulaFinal;
     }
 
     public void getAulas(Reserva reserva) {

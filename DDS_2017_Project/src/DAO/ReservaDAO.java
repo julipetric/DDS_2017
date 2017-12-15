@@ -66,7 +66,7 @@ public class ReservaDAO {
     }
 
     public ArrayList<Aula> read(Periodo periodo, ArrayList<DiaReserva> diasReserva, TipoDeAula tipoDeAula, Integer cantidadAlumnos, ArrayList<Aula> disp) {
-        
+
         //En un principio clonamos las disponibles o posibles a las isponibles finales
         ArrayList<Aula> disponibles = (ArrayList<Aula>) disp.clone();
 
@@ -87,35 +87,35 @@ public class ReservaDAO {
         criterio1.add(Restrictions.ge("cantidadAlumnos", cantidadAlumnos));
 
         ArrayList<Reserva> reservasCoincidentes = (ArrayList<Reserva>) criterio1.list();
-        
+
         //Obtenemos los IDs de dichas reservas para usar despues
         ArrayList<Integer> idReservas = new ArrayList<>();
         for (int i = 0; i < disp.size(); i++) {
             idReservas.add(reservasCoincidentes.get(i).getId());
         }
-        
+
         //Encontramos los DiaReserva correspondientes a las reservas que pueden generar conflicto encontradas anteriormente
         Criteria criterio2 = session.createCriteria(DiaReserva.class);
         criterio2.add(Restrictions.in("id", idReservas));
-        
+
         ArrayList<DiaReserva> diasCoincidentes = (ArrayList<DiaReserva>) criterio2.list();
-        
+
         //Obtenemos los IDs de aulas no disponibles segun los objetos DiaReserva que encontramos antes
         ArrayList<String> idAulasNoDisp = new ArrayList<>();
         for (int i = 0; i < diasCoincidentes.size(); i++) {
             idAulasNoDisp.add(diasCoincidentes.get(i).getAula().getId());
         }
-        
+
         //Lo pasamos a Set y lo volvemos para no tener repetidos
         Set<String> aux = new HashSet<>(idAulasNoDisp);
         idAulasNoDisp = new ArrayList<>(aux);
-        
+
         //Obtenemos los objetos aula correspondiente a los IDs encontrados antes
         Criteria criterio3 = session.createCriteria(Aula.class);
         criterio3.add(Restrictions.in("idAula", idAulasNoDisp));
-        
-        ArrayList<Aula>noDisp = (ArrayList<Aula>) criterio3.list();
-        
+
+        ArrayList<Aula> noDisp = (ArrayList<Aula>) criterio3.list();
+
         //A las disponibles en primer lugar, le "restamos" las no disponibles encontradas y las devolvemos
         disponibles.removeAll(noDisp);
         return disponibles;
@@ -135,23 +135,31 @@ public class ReservaDAO {
     }
 
     public ArrayList<DiaReserva> getDiaReserva(String id, String fecha) {
-        
+
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
+
+        List<DiaReserva> dias = session.createCriteria(DiaReserva.class)
+                //.add(Restrictions.eq("idAula", id))
+                //.add(Restrictions.eq("fecha", fecha))
+                .list();
         
-        Criteria criterio1 = session.createCriteria(DiaReserva.class);
-        criterio1.add(Restrictions.eq("idAula", id));
-        criterio1.add(Restrictions.eq("fecha", fecha));
-        ArrayList<DiaReserva> Dias = null;
-        List<DiaReserva> dias =   criterio1.list();//para caa aula, me devuelve los dias reserva de ese dia
+        ArrayList<DiaReserva> auxDias = new ArrayList<>();
+        ArrayList<DiaReserva> Dias = new ArrayList<>();
         
-        for(DiaReserva d : dias){
-         Dias.add(d);
-        }
+        dias.stream().filter((d) -> (d.getAula().getId().equals(id))).forEachOrdered((d) -> {
+            auxDias.add(d);
+        });
         
+        auxDias.stream().filter((d) -> (d.getFecha().toString().equals(fecha))).forEachOrdered((d) -> {
+            Dias.add(d);
+        });
+        
+        //para caa aula, me devuelve los dias reserva de ese dia
+
         tx.commit();
         session.close();
-        return Dias;    
+        return Dias;
     }
 }
