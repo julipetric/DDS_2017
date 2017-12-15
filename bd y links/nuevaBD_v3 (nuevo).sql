@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `aula` (
   `canion` bit(1) NOT NULL,
   `ac` bit(1) NOT NULL,
   `ubicacion` varchar(50) NOT NULL,
+  `tipo` enum('MULTIMEDIOS','INFORMATICA','SINRECURSOS') DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -102,11 +103,14 @@ CREATE TABLE IF NOT EXISTS `bedel` (
   PRIMARY KEY (`nombreUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.bedel: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.bedel: ~4 rows (aproximadamente)
 DELETE FROM `bedel`;
 /*!40000 ALTER TABLE `bedel` DISABLE KEYS */;
 INSERT INTO `bedel` (`nombre`, `apellido`, `nombreUsuario`, `password`, `turno`) VALUES
-	('Tomas', 'Fleitas', 'ElTomaa', '123456789', 'MAÑANA');
+	('asdasdasd', 'asdasd', 'asdas', '123456789', 'MAÑANA'),
+	('asdasdasd', 'asdasd', 'asdasd', '123456789', 'MAÑANA'),
+	('Tomas', 'Fleitas', 'ElTomaa', '123456789', 'MAÑANA'),
+	('adasd', 'dsadas', 'pepe', '123456789', 'MAÑANA');
 /*!40000 ALTER TABLE `bedel` ENABLE KEYS */;
 
 
