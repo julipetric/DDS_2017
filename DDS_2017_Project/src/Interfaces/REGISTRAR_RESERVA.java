@@ -21,6 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,15 +44,32 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private GestorReserva gestor;
     private DocenteDAO DocenteDAO;
     private ArrayList<Docente> listaDocentes;
-
+    private ArrayList<String> docentesArreglo;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public REGISTRAR_RESERVA() {
         initComponents();
         DocenteDAO = new DocenteDAO();
+        docentesArreglo = new ArrayList<>();
         listaDocentes = DocenteDAO.read();
-               
-
+        
+        for (int i=0 ; i<listaDocentes.size(); i++){
+            
+            docentesArreglo.add(listaDocentes.get(i).getNombre() + " " + listaDocentes.get(i).getApellido());
+            
+        }
+        
+        
+        DefaultComboBoxModel modelito = new DefaultComboBoxModel();
+        jComboBox2.setModel(modelito);
+        
+        for (int i=0 ; i<docentesArreglo.size(); i++){
+            
+            modelito.addElement(docentesArreglo.get(i));
+            
+        }
+        
+        
         esporadicaRadioButton.setSelected(false);
         periodicaRadioButton.setSelected(true);
         jButton3.setEnabled(false);
@@ -251,8 +269,6 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANUAL", "PRIMERO", "SEGUNDO", "NONE", " " }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -595,6 +611,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         } else {//SI ES ESPORÁDICA
             reserva.setCantidadAlumnos(cantAlumnosComboBox.getSelectedIndex());
             reserva.setTipoAula(tipo.toString());
+            reserva.setDocente(listaDocentes.get(jComboBox2.getSelectedIndex()));
+            
             //System.out.println("pasamos a la ventana nueva");
             OBTENER_DISPONIBILIDAD_DE_AULAS vent;
             try {

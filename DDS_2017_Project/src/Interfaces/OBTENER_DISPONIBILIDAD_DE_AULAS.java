@@ -27,6 +27,7 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
 
     OBTENER_DISPONIBILIDAD_DE_AULAS(Reserva r) throws ParseException {
         initComponents();
+        
         reserva = r;
         gestor = new GestorReserva();
 
