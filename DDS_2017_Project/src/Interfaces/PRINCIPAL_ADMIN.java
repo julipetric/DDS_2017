@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import bd.model.Admin;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -227,7 +229,9 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.exit(0);
+        LOGIN login = new LOGIN();
+        this.dispose();
+        login.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -272,4 +276,10 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+    void setNombreApellido(List<Admin> lista) {
+         jTextField1.setText(lista.get(0).getId().toString());
+         jTextField2.setText(lista.get(0).getNombre());
+         jTextField3.setText(lista.get(0).getApellido());
+    }
 }

@@ -95,7 +95,7 @@ public class UsuarioDAO {
         session.close();
         return lista;
     }
-    public boolean readLogAdmin(String usuario, String pass){
+    public List readLogAdmin(String usuario, String pass){
         boolean verif = false;
         List<Admin> lista = null;
         
@@ -107,10 +107,9 @@ public class UsuarioDAO {
                      .add(Restrictions.eq("nombre",usuario))
                      .add(Restrictions.eq("password",pass))
                      .list(); 
-        verif = !lista.isEmpty();
         tx.commit();
         session.close();
-        return verif;
+        return lista;
     }
     
     public List read(String apellido, Turno turno){
