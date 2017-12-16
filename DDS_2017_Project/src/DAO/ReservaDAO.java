@@ -139,7 +139,7 @@ public class ReservaDAO {
         ArrayList<Diareserva> Dias = new ArrayList<>();
         ArrayList<Diareserva> diasAux2 = new ArrayList<>();
         List<Diareserva> diasAux1 = session.createCriteria(Diareserva.class)
-                .add(Restrictions.eq("idAula", id))
+                //.add(Restrictions.eq("idAula", id))
                 //.add(Restrictions.eq("fecha", fecha))
                 .list();//para cada aula, me devuelve los diasAux1 reserva de ese dia
         

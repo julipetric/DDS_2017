@@ -115,51 +115,14 @@ public class GestorReserva {
         //System.out.println(posibles.size());
         
 
-        for (int i = 0; i < dias.size(); i++) { //recorro dias 
-            String fecha = dias.get(i).getId().getFecha();
+        for (int i = 0; i < dias.size(); i++) { //recorro dias             
             
-            for (int j = 0; j < posibles.size(); j++) {
-                //traer del dao, para cada dia, los aulas que cumplan el criterio y sus DiaReserva asignados con fecha igual al dia
-                System.out.println(posibles.get(i).getId());
-                diasPorAula = daoR.getDiaReserva(posibles.get(j).getId(), fecha);//que devuelva para ese aula y ese dia, los dias reserva
-                //SEGUIR ACA
-
-                if (this.verSuperposicicion(diasPorAula, dias.get(i))) {//agrego el aula a la lista final si está isponible
-                    // tengo que hacer una estructura de datos nueva
-                    aulasDisponibles.add(posibles.get(j));
-
-                }
-                struct.add(new EstructAUX(dias.get(i), aulasDisponibles));
-                aulasDisponibles.clear();
-            }
+            struct.add(new EstructAUX(dias.get(i), (ArrayList<Aula>)posibles));
+            aulasDisponibles.clear();
         }
         System.out.println(struct);
         return struct;
     }
 
-    private Boolean verSuperposicicion(ArrayList<Diareserva> diasPorAula, Diareserva dia) {
-
-        String inicio = dia.getId().getHoraInicio();
-        String fin = dia.getId().getHoraFin();
-        Boolean flag = true;
-        List<String> horarios1 = cola.subList(cola.indexOf(inicio), cola.indexOf(fin));
-        List<String> horarios2;
-        if (diasPorAula != null) {
-            for (int i = 0; i < diasPorAula.size(); i++) {//recorro todos los dias por aula
-
-            horarios2 = cola.subList(cola.indexOf(diasPorAula.get(i).getId().getHoraInicio()), cola.indexOf(diasPorAula.get(i).getId().getHoraFin()));
-
-                for (int j = 0; j < horarios1.size(); j++) {//comparamos que horarios  1 tenga algun elemento compatible con horarios  2, en ese caso se chocan
-
-                    if (horarios2.contains(horarios1.get(i))) {
-                        flag = false;
-                    }
-
-                }
-
-            }
-        }
-        return flag;
-
-    }
+    
 }
