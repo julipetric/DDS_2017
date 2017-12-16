@@ -142,13 +142,13 @@ public class ReservaDAO {
                 //.add(Restrictions.eq("fecha", fecha))
                 .list();//para cada aula, me devuelve los diasAux1 reserva de ese dia
         
-        for (Diareserva d : diasAux1){
-            if(d.getIdAula().getId().equals(id)) diasAux2.add(d);
-        }
+        diasAux1.stream().filter((d) -> (d.getIdAula().getId().equals(id))).forEachOrdered((d) -> {
+            diasAux2.add(d);
+        });
         
-        for (Diareserva d : diasAux2){
-            if(d.getId().getFecha().equals(fecha)) Dias.add(d);
-        }
+        diasAux2.stream().filter((d) -> (d.getId().getFecha().equals(fecha))).forEachOrdered((d) -> {
+            Dias.add(d);
+        });
 
         tx.commit();
         session.close();

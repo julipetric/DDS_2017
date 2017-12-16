@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import Clases.DiaReserva;
 import bd.model.Aula;
 import bd.model.Reserva;
 import bd.dto.HibernateUtil;
@@ -36,13 +35,30 @@ public class AulaDAO {
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
-        List<Aula> posibles = session.createCriteria(Aula.class)
-                .add(Restrictions.ge("capacidad", cant))//ver que sea mayor o igual
-                .add(Restrictions.eq("tipo", tipo))
-                .add(Restrictions.eq("habilitada", true))
+        ArrayList<Aula>posibles = new ArrayList<>();
+        ArrayList<Aula>posiblesAux2 = new ArrayList<>();
+        ArrayList<Aula>posiblesAux3 = new ArrayList<>();
+        List<Aula> posiblesAux1 = session.createCriteria(Aula.class)
+                //.add(Restrictions.ge("capacidad", cant))//ver que sea mayor o igual
+                //.add(Restrictions.eq("tipo", tipo))
+                //.add(Restrictions.eq("habilitada", true))
                 .list();
         tx.commit();
         session.close();
+        
+        
+        posiblesAux1.stream().filter((a) -> (a.getCapacidad()>=cant)).forEachOrdered((a) -> {
+            posiblesAux2.add(a);
+        });
+        
+        posiblesAux2.stream().filter((a) -> (a.getTipo().equals(tipo))).forEachOrdered((a) -> {
+            posiblesAux3.add(a);
+        });
+        
+        posiblesAux3.stream().filter((a) -> (a.isHabilitada())).forEachOrdered((a) -> {
+            posibles.add(a);
+        });
+
 
         return posibles;
     }

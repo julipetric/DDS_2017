@@ -13,6 +13,7 @@ import DAO.ReservaDAO;
 import bd.model.Diareserva;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -100,7 +101,7 @@ public class GestorReserva {
         //
         String fecha = new String();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        ArrayList<Diareserva> dias = new ArrayList<>( reserva.getDiareservas());
+        ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
         List<Aula> posibles;
         ArrayList<Diareserva> diasPorAula = new ArrayList<>();
         ArrayList<Aula> aulasDisponibles = new ArrayList<>();
@@ -109,7 +110,9 @@ public class GestorReserva {
         //System.out.println("estamos en el gestor");
         //System.out.println(reserva.tipoDeAula);
         //System.out.println(reserva.cantidadAlumnos);
-        posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos()); //devuelve aulas compatibles con mi reserva
+        
+        //obtenemos compatibles con mi reserva
+        posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos());
         //System.out.println(posibles.size());
         
 

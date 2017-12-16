@@ -30,7 +30,7 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
         gestor = new GestorReserva();
         struct = new ArrayList<>();
         //System.out.println("vamos al gestor");
-        this.setStruct(gestor.obtenerDisponibilidadEsporadica(reserva));
+        struct = gestor.obtenerDisponibilidadEsporadica(reserva);
 
     }
 
