@@ -5,12 +5,12 @@
  */
 package Clases;
 
-
 /**
  *
  * @author Tomas
  */
 public abstract class Aula {
+
     public String id;
     public Integer capacidad;
     public String ubicacion;
@@ -20,16 +20,16 @@ public abstract class Aula {
 
     public Aula() {
     }
-    public TipoPizarron pizzaron; 
-    
+    public TipoPizarron pizzaron;
+
     public String getId() {
         return id;
     }
-    
+
     public String getUbicacion() {
         return ubicacion;
     }
-       
+
     public void setId(String id) {
         this.id = id;
     }

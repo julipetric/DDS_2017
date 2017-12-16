@@ -97,7 +97,7 @@ public class GestorReserva {
         //Se crean DAOs para los objetos
         ReservaDAO daoR = new ReservaDAO();
         AulaDAO daoA = new AulaDAO();
-        
+
         //
         String fecha = new String();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -113,9 +113,11 @@ public class GestorReserva {
         //System.out.println(reserva.cantidadAlumnos);
         posibles = daoA.obtenerDisponibles(reserva.tipoDeAula, reserva.cantidadAlumnos); //devuelve aulas compatibles con mi reserva
         //System.out.println(posibles.size());
+        /*
         for (int i = 0; i < posibles.size(); i++) {
             System.out.println(posibles.get(i).getId());
         }
+         */
 
         for (int i = 0; i < dias.size(); i++) { //recorro dias 
             fecha = sdf.format(dias.get(i).getFecha());
@@ -144,21 +146,21 @@ public class GestorReserva {
         Boolean flag = true;
         List<String> horarios1 = cola.subList(cola.indexOf(inicio), cola.indexOf(fin));
         List<String> horarios2;
-      if (diasPorAula != null) {
-        for (int i = 0; i < diasPorAula.size(); i++) {//recorro todos los dias por aula
+        if (diasPorAula != null) {
+            for (int i = 0; i < diasPorAula.size(); i++) {//recorro todos los dias por aula
 
-            horarios2 = cola.subList(cola.indexOf(diasPorAula.get(i).horaInicio), cola.indexOf(diasPorAula.get(i).horaFin));
+                horarios2 = cola.subList(cola.indexOf(diasPorAula.get(i).horaInicio), cola.indexOf(diasPorAula.get(i).horaFin));
 
-            for (int j = 0; j < horarios1.size(); j++) {//comparamos que horarios  1 tenga algun elemento compatible con horarios  2, en ese caso se chocan
+                for (int j = 0; j < horarios1.size(); j++) {//comparamos que horarios  1 tenga algun elemento compatible con horarios  2, en ese caso se chocan
 
-                if (horarios2.contains(horarios1.get(i))) {
-                    flag = false;
+                    if (horarios2.contains(horarios1.get(i))) {
+                        flag = false;
+                    }
+
                 }
 
             }
-
         }
-}
         return flag;
 
     }
