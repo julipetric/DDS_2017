@@ -607,8 +607,14 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
             reserva.setCantidadAlumnos(cantAlumnosComboBox.getSelectedIndex());
             reserva.setTipoAula(tipo.toString());
             //System.out.println("pasamos a la ventana nueva");
-            OBTENER_DISPONIBILIDAD_DE_AULAS vent = new OBTENER_DISPONIBILIDAD_DE_AULAS(reserva);
-            vent.setVisible(true);
+            OBTENER_DISPONIBILIDAD_DE_AULAS vent;
+            try {
+                vent = new OBTENER_DISPONIBILIDAD_DE_AULAS(reserva); 
+                vent.setVisible(true);
+            } catch (ParseException ex) {
+                Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
 
         }
 

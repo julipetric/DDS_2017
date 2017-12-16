@@ -11,6 +11,7 @@ import bd.model.Reserva;
 import DAO.AulaDAO;
 import DAO.ReservaDAO;
 import bd.model.Diareserva;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,7 +93,7 @@ public class GestorReserva {
         return new ArrayList();
     }
 
-    public ArrayList<EstructAUX> obtenerDisponibilidadEsporadica(Reserva reserva) {
+    public ArrayList<EstructAUX> obtenerDisponibilidadEsporadica(Reserva reserva) throws ParseException {
 
         //Se crean DAOs para los objetos
         ReservaDAO daoR = new ReservaDAO();
@@ -118,6 +119,11 @@ public class GestorReserva {
 
         for (int i = 0; i < dias.size(); i++) { //recorro dias 
             fecha = dias.get(i).getId().getFecha();
+            SimpleDateFormat formatoNuevo = new SimpleDateFormat("DDD MMM d HH:mm:ss z yyyy");
+            System.out.println("FECHAAAAA  "+fecha);
+            Date fechaNuevaParaformato = formatoNuevo.parse(fecha);
+            System.out.println("FECHAAAAA  "+ new SimpleDateFormat("dd/MM/yyyy").format(fechaNuevaParaformato));
+            
             for (int j = 0; j < posibles.size(); j++) {
                 //traer del dao, para cada dia, los aulas que cumplan el criterio y sus DiaReserva asignados con fecha igual al dia
                 diasPorAula = daoR.getDiaReserva(posibles.get(j).getId(), fecha);//que devuelva para ese aula y ese dia, los dias reserva

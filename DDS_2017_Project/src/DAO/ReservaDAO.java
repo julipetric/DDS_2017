@@ -145,6 +145,7 @@ public class ReservaDAO {
         diasAux1.stream().filter((d) -> (d.getIdAula().getId().equals(id))).forEachOrdered((d) -> {
             diasAux2.add(d);
         });
+       
         
         diasAux2.stream().filter((d) -> (d.getId().getFecha().equals(fecha))).forEachOrdered((d) -> {
             Dias.add(d);

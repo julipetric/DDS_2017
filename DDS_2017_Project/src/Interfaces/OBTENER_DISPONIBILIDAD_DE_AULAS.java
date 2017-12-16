@@ -8,6 +8,7 @@ package Interfaces;
 import Clases.EstructAUX;
 import bd.model.Reserva;
 import Control.GestorReserva;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +25,7 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
         this.struct = struct;
     }
 
-    OBTENER_DISPONIBILIDAD_DE_AULAS(Reserva r) {
+    OBTENER_DISPONIBILIDAD_DE_AULAS(Reserva r) throws ParseException {
         initComponents();
         reserva = r;
         gestor = new GestorReserva();
