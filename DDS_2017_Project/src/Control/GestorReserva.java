@@ -120,6 +120,7 @@ public class GestorReserva {
             
             for (int j = 0; j < posibles.size(); j++) {
                 //traer del dao, para cada dia, los aulas que cumplan el criterio y sus DiaReserva asignados con fecha igual al dia
+                System.out.println(posibles.get(i).getId());
                 diasPorAula = daoR.getDiaReserva(posibles.get(j).getId(), fecha);//que devuelva para ese aula y ese dia, los dias reserva
                 //SEGUIR ACA
 

@@ -135,12 +135,15 @@ public class ReservaDAO {
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
+        
         ArrayList<Diareserva> Dias = new ArrayList<>();
         ArrayList<Diareserva> diasAux2 = new ArrayList<>();
         List<Diareserva> diasAux1 = session.createCriteria(Diareserva.class)
-                //.add(Restrictions.eq("idAula", id))
+                .add(Restrictions.eq("idAula", id))
                 //.add(Restrictions.eq("fecha", fecha))
                 .list();//para cada aula, me devuelve los diasAux1 reserva de ese dia
+        
+        System.out.println(diasAux1);
         
         diasAux1.stream().filter((d) -> (d.getIdAula().getId().equals(id))).forEachOrdered((d) -> {
             diasAux2.add(d);
