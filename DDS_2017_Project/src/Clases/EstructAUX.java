@@ -7,6 +7,7 @@ package Clases;
 
 import java.util.ArrayList;
 import bd.model.Aula;
+import bd.model.Diareserva;
 
 /**
  *
@@ -14,10 +15,10 @@ import bd.model.Aula;
  */
 public class EstructAUX {
     
-    DiaReserva dia;
+    Diareserva dia;
     ArrayList<Aula> aulasDisponibles;
 
-    public EstructAUX(DiaReserva d, ArrayList<Aula> a){
+    public EstructAUX(Diareserva d, ArrayList<Aula> a){
         
         dia = d;
         aulasDisponibles = a;

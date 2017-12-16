@@ -6,13 +6,10 @@
 package DAO;
 
 import bd.model.Aula;
-import Clases.DiaReserva;
-import Clases.Docente;
 import Clases.Periodo;
 import bd.model.Reserva;
-import Clases.TipoDeAula;
 import bd.dto.HibernateUtil;
-import bd.model.Bedel;
+import bd.model.Diareserva;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -20,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Vector;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -65,7 +61,7 @@ public class ReservaDAO {
         return aulas;
     }
 
-    public ArrayList<Aula> read(Periodo periodo, ArrayList<DiaReserva> diasReserva, TipoDeAula tipoDeAula, Integer cantidadAlumnos, ArrayList<Aula> disp) {
+    public ArrayList<Aula> read(String periodo, ArrayList<Diareserva> diasReserva, String tipoDeAula, Integer cantidadAlumnos, ArrayList<Aula> disp) {
 
         //En un principio clonamos las disponibles o posibles a las isponibles finales
         ArrayList<Aula> disponibles = (ArrayList<Aula>) disp.clone();
@@ -82,7 +78,7 @@ public class ReservaDAO {
 
         //Encontramos las reservas que cumplen nuestras condiciones de busqueda para la nueva reserva
         Criteria criterio1 = session.createCriteria(Reserva.class);
-        criterio1.add(Restrictions.or(Restrictions.eq("periodo", Periodo.ANUAL), Restrictions.eq("periodo", periodo)));
+        criterio1.add(Restrictions.or(Restrictions.eq("periodo", Periodo.ANUAL.toString()), Restrictions.eq("periodo", periodo)));
         criterio1.add(Restrictions.eq("tipo", tipoDeAula));
         criterio1.add(Restrictions.ge("cantidadAlumnos", cantidadAlumnos));
 
@@ -95,10 +91,10 @@ public class ReservaDAO {
         }
 
         //Encontramos los DiaReserva correspondientes a las reservas que pueden generar conflicto encontradas anteriormente
-        Criteria criterio2 = session.createCriteria(DiaReserva.class);
+        Criteria criterio2 = session.createCriteria(Diareserva.class);
         criterio2.add(Restrictions.in("id", idReservas));
 
-        ArrayList<DiaReserva> diasCoincidentes = (ArrayList<DiaReserva>) criterio2.list();
+        ArrayList<Diareserva> diasCoincidentes = (ArrayList<Diareserva>) criterio2.list();
 
         //Obtenemos los IDs de aulas no disponibles segun los objetos DiaReserva que encontramos antes
         ArrayList<String> idAulasNoDisp = new ArrayList<>();
@@ -134,32 +130,29 @@ public class ReservaDAO {
         return (count + 1);
     }
 
-    public ArrayList<DiaReserva> getDiaReserva(String id, String fecha) {
+    public ArrayList<Diareserva> getDiaReserva(String id, String fecha) {
 
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
-
-        List<DiaReserva> dias = session.createCriteria(DiaReserva.class)
+        ArrayList<Diareserva> Dias = new ArrayList<>();
+        ArrayList<Diareserva> diasAux2 = new ArrayList<>();
+        List<Diareserva> diasAux1 = session.createCriteria(Diareserva.class)
                 //.add(Restrictions.eq("idAula", id))
                 //.add(Restrictions.eq("fecha", fecha))
-                .list();
+                .list();//para cada aula, me devuelve los diasAux1 reserva de ese dia
         
-        ArrayList<DiaReserva> auxDias = new ArrayList<>();
-        ArrayList<DiaReserva> Dias = new ArrayList<>();
+        for (Diareserva d : diasAux1){
+            if(d.getIdAula().getId().equals(id)) diasAux2.add(d);
+        }
         
-        dias.stream().filter((d) -> (d.getAula().getId().equals(id))).forEachOrdered((d) -> {
-            auxDias.add(d);
-        });
-        
-        auxDias.stream().filter((d) -> (d.getFecha().toString().equals(fecha))).forEachOrdered((d) -> {
-            Dias.add(d);
-        });
-        
-        //para caa aula, me devuelve los dias reserva de ese dia
+        for (Diareserva d : diasAux2){
+            if(d.getId().getFecha().equals(fecha)) Dias.add(d);
+        }
 
         tx.commit();
         session.close();
-        return Dias;
+        System.out.println(Dias);
+        return (ArrayList<Diareserva>) Dias;
     }
 }

@@ -7,17 +7,13 @@ package DAO;
 
 import Clases.DiaReserva;
 import bd.model.Aula;
-import Clases.Reserva;
-import Clases.TipoDeAula;
+import bd.model.Reserva;
 import bd.dto.HibernateUtil;
 import java.util.ArrayList;
-
 import java.util.List;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -34,38 +30,21 @@ public class AulaDAO {
         return a;
     }
 
-    public List<Aula> obtenerDisponibles(TipoDeAula tipo, Integer cant) {
-        //System.out.println("obtenerDisponibles");
+    public List<Aula> getPosibles(String tipo, int cant) {
+        //System.out.println("read");
         //System.out.println(cant);
-
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
         List<Aula> posibles = session.createCriteria(Aula.class)
-                //.add(Restrictions.ge("capacidad", cant))
-                //.add(Restrictions.eq("tipo", tipo.toString()))
-                //.add(Restrictions.eq("hablitida", true))
+                .add(Restrictions.ge("capacidad", cant))//ver que sea mayor o igual
+                .add(Restrictions.eq("tipo", tipo))
+                .add(Restrictions.eq("habilitada", true))
                 .list();
         tx.commit();
         session.close();
-        
-        ArrayList<Aula> aulaFinal = new ArrayList<>();
-        ArrayList<Aula> aulaAux1 = new ArrayList<>();
-        ArrayList<Aula> aulaAux2 = new ArrayList<>();
-        
-        posibles.stream().filter((a) -> (a.getCapacidad() >= cant)).forEachOrdered((a) -> {
-            aulaAux1.add(a);
-        });
-        
-        aulaAux1.stream().filter((a) -> (a.getTipo().equals(tipo.toString()))).forEachOrdered((a) -> {
-            aulaAux2.add(a);
-        });
-        
-        aulaAux2.stream().filter((a) -> (a.isHabilitada())).forEachOrdered((a) -> {
-            aulaFinal.add(a);
-        });
-        
-        return aulaFinal;
+
+        return posibles;
     }
 
     public void getAulas(Reserva reserva) {

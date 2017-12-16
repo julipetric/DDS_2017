@@ -6,7 +6,9 @@
 package Clases;
 
 import DAO.ReservaDAO;
+import bd.model.Diareserva;
 import java.util.ArrayList;
+import bd.model.Docente;
 
 /**
  *
@@ -17,7 +19,7 @@ public class Reserva {
     public TipoDeAula tipoDeAula;
     public Integer cantidadAlumnos;
     public String nombreCurso;
-    public Docente docente;
+    public bd.model.Docente docente;
     public Integer id;
 
     public Integer getId() {
@@ -27,8 +29,8 @@ public class Reserva {
     public Docente getDocente() {
         return docente;
     }
-    public ArrayList<DiaReserva> diasReserva;
-    public ArrayList<DiaReserva> diasReservaEsporadica;
+    public ArrayList<Diareserva> diasReserva;
+    public ArrayList<Diareserva> diasReservaEsporadica;
     
 
     public Reserva() {
@@ -39,11 +41,11 @@ public class Reserva {
         
     }
 
-    public ArrayList<DiaReserva> getDiasReserva() {
+    public ArrayList<Diareserva> getDiasReserva() {
         return diasReserva;
     }
 
-    public ArrayList<DiaReserva> getDiasReservaEsporadica() {
+    public ArrayList<Diareserva> getDiasReservaEsporadica() {
         return diasReservaEsporadica;
     }
     
