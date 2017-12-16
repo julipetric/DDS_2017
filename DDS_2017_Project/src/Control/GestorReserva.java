@@ -100,11 +100,9 @@ public class GestorReserva {
         AulaDAO daoA = new AulaDAO();
 
         //
-        String fecha = new String();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
         List<Aula> posibles;
-        ArrayList<Diareserva> diasPorAula = new ArrayList<>();
+        ArrayList<Diareserva> diasPorAula;
         ArrayList<Aula> aulasDisponibles = new ArrayList<>();
         ArrayList<EstructAUX> struct = new ArrayList<>();
 
@@ -118,11 +116,7 @@ public class GestorReserva {
         
 
         for (int i = 0; i < dias.size(); i++) { //recorro dias 
-            fecha = dias.get(i).getId().getFecha();
-            SimpleDateFormat formatoNuevo = new SimpleDateFormat("DDD MMM d HH:mm:ss z yyyy");
-            System.out.println("FECHAAAAA  "+fecha);
-            Date fechaNuevaParaformato = formatoNuevo.parse(fecha);
-            System.out.println("FECHAAAAA  "+ new SimpleDateFormat("dd/MM/yyyy").format(fechaNuevaParaformato));
+            String fecha = dias.get(i).getId().getFecha();
             
             for (int j = 0; j < posibles.size(); j++) {
                 //traer del dao, para cada dia, los aulas que cumplan el criterio y sus DiaReserva asignados con fecha igual al dia

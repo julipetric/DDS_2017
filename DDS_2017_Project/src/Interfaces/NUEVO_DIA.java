@@ -8,6 +8,8 @@ package Interfaces;
 import bd.model.Reserva;
 import bd.model.Diareserva;
 import bd.model.DiareservaId;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,27 +20,24 @@ import java.util.Date;
  */
 public class NUEVO_DIA extends javax.swing.JFrame {
 
-    
     private Date fechaInicio;
     private Date fechaFin;
     private REGISTRAR_RESERVA ventana;
     private Reserva reserva;
-   
+
     private final ArrayList<String> cola;
-    
+
     public NUEVO_DIA(Reserva res, Date inicio, Date fin, REGISTRAR_RESERVA vent) {
         initComponents();
         reserva = res;
         fechaInicio = inicio;
-        fechaFin = fin;        
+        fechaFin = fin;
         jLabel2.setVisible(false);
         jLabel3.setVisible(false);
         fechaDateChooser.setCalendar(Calendar.getInstance());
         cola = new ArrayList<>();
         ventana = vent;
-        
-        
-        
+
         this.cola.add("08:00");
         this.cola.add("08:45");
         this.cola.add("09:30");
@@ -66,12 +65,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
         this.cola.add("22:15");
         this.cola.add("23:00");
         this.cola.add("23:45");
-        
-        
-        
-        
-        
-        
+
     }
 
     /**
@@ -217,40 +211,41 @@ public class NUEVO_DIA extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // COMPORTAMIENTO DEL BOTÓN ACEPTAR
-        
-        
-        if (fechaDateChooser.getDate().compareTo(this.fechaInicio)!= 1 || fechaDateChooser.getDate().compareTo(this.fechaFin) != -1  ){
+
+        if (fechaDateChooser.getDate().compareTo(this.fechaInicio) != 1 || fechaDateChooser.getDate().compareTo(this.fechaFin) != -1) {
             //ERROR DE FECHA, SOLO INFORMO
             jLabel2.setVisible(true);
-            if (this.cola.indexOf(horaInicioComboBox.getSelectedItem().toString()) >= this.cola.indexOf(horaFinCombobox.getSelectedItem().toString())){
+            if (this.cola.indexOf(horaInicioComboBox.getSelectedItem().toString()) >= this.cola.indexOf(horaFinCombobox.getSelectedItem().toString())) {
                 jLabel3.setVisible(true); //TODO MAL, 2 ERRORES EN PANTALLA
+            } else {
+                jLabel3.setVisible(false);
             }
-            else{
-                jLabel3.setVisible(false);                 
-            }
-        }
-        else{
+        } else {
             jLabel2.setVisible(false);
-            
-            if (this.cola.indexOf(horaInicioComboBox.getSelectedItem().toString()) >= this.cola.indexOf(horaFinCombobox.getSelectedItem().toString())){
+
+            if (this.cola.indexOf(horaInicioComboBox.getSelectedItem().toString()) >= this.cola.indexOf(horaFinCombobox.getSelectedItem().toString())) {
                 jLabel3.setVisible(true);
-            }
-            else{
+            } else {
                 jLabel3.setVisible(false); //TODO OK, FECHA Y HORA, AGREGAR DIARESERVA A LA LISTA
-                
-                DiareservaId idAux = new DiareservaId(fechaDateChooser.getDate().toString(),horaInicioComboBox.getSelectedItem().toString(),horaFinCombobox.getSelectedItem().toString(), ventana.reserva.getId());
-                
+
+                Date fechaAux = fechaDateChooser.getDate();
+
+                // Display a date in day, month, year format
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String fecha = formatter.format(fechaAux);
+
+                DiareservaId idAux = new DiareservaId(fecha, horaInicioComboBox.getSelectedItem().toString(), horaFinCombobox.getSelectedItem().toString(), ventana.reserva.getId());
+
                 Diareserva dia = new Diareserva(idAux);
                 reserva.diareservas.add(dia);//agrego el dia
-                
+
                 ventana.agregarFilaATabla(dia);
             }
-                       
+
         }
-        
-        
+
         //ventana.actualizarDiasReserva(diasReserva);//se actualiza la lista en la ventana original
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void horaInicioComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaInicioComboBoxActionPerformed
@@ -260,7 +255,6 @@ public class NUEVO_DIA extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser fechaDateChooser;

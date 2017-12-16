@@ -153,7 +153,7 @@ public class ReservaDAO {
 
         tx.commit();
         session.close();
-        System.out.println(Dias);
+        //System.out.println(Dias);
         return (ArrayList<Diareserva>) Dias;
     }
 }
