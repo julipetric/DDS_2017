@@ -75,6 +75,54 @@ public class GestorBedel {
              return true;
         }
     }
+    
+    public boolean validar(String nombre, String apellido, Turno turno, String contra, String contra2, ArrayList<Boolean> errores,String IDUSUARIO) {
+        PoliticaSeguridad politica;
+        politica = new PoliticaSeguridad();
+        Boolean contraseñaRepetida = false;
+        boolean error, errorp;
+        error = false;
+        errorp = politica.validar(contra, contra2);
+        if (errorp) {
+            errores.set(4, true);
+            errores.set(5, true);
+        }
+        
+        //contraseña no repetida por el usuario
+        UsuarioDAO dao = new UsuarioDAO();
+        Boolean existe = dao.consultarContraseña(IDUSUARIO,contra);
+        
+        if (existe) {
+            errores.set(4, true);
+            errores.set(5, true);
+            contraseñaRepetida = true;
+        }
+        
+        
+        if (nombre.equals("")) {
+            errores.set(0, true);
+            error = true;
+        }
+
+        if (apellido.equals("")) {
+            errores.set(1, true);
+            error = true;
+        }
+  
+        if(turno == null){
+           errores.set(3, true);
+            error = true; 
+        }
+        
+        System.out.println(errorp);
+        //llamada a dao si esta todo correcto
+        if (error == false && errorp == false && !contraseñaRepetida) {
+            return false;
+        }
+        else{
+             return true;
+        }
+    }
        
     private void eliminarBedel(Bedel bedel) {
         //IMPLEMENTAR GATITOS
@@ -88,9 +136,9 @@ public class GestorBedel {
        return bedel;
     }
 
-     public void modificarBedel(String usuario,String nombre,String apellido,String contra,String turno) {
+     public void modificarBedel(String usuario,String nombre,String apellido,String contra,String turno,String fecha) {
        UsuarioDAO dao = new UsuarioDAO();
-       Bedel b1 = new Bedel(usuario,nombre,apellido,contra,turno);
+       Bedel b1 = new Bedel(usuario,nombre,apellido,contra,turno,fecha);
        dao.modificarBedel(b1);
     }
     
@@ -140,9 +188,9 @@ public class GestorBedel {
         return bedelesdao ; //bedelesdao;
     }
     
-    public void crearBedel(String usuario,String nombre,String apellido,String contra,String turno){
+    public void crearBedel(String usuario,String nombre,String apellido,String contra,String turno,String fecha){
     UsuarioDAO dao = new UsuarioDAO();
-    Bedel b1 = new Bedel(usuario,nombre,apellido,contra,turno);
+    Bedel b1 = new Bedel(usuario,nombre,apellido,contra,turno,fecha);
     dao.crear(b1);
     }
    

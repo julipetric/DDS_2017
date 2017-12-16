@@ -5,12 +5,13 @@
  */
 package Interfaces;
 
-import Clases.DiaReserva;
 import Clases.Periodo;
-import Clases.Reserva;
+import bd.model.Reserva;
 import Clases.TipoDeAula;
 import Clases.horariosAUX;
 import Control.GestorReserva;
+import bd.model.Diareserva;
+import bd.model.DiareservaId;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -491,14 +492,14 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         jComboBox14.setEnabled(false);
     }//GEN-LAST:event_esporadicaRadioButtonActionPerformed
 
-    public void agregarFilaATabla(DiaReserva dia) {
+    public void agregarFilaATabla(Diareserva dia) {
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[3];
-        rowData[0] = dia.fecha.toString();
+        rowData[0] = dia.getId().getFecha().toString();
 
-        rowData[1] = dia.horaInicio;
-        rowData[2] = dia.horaFin;
+        rowData[1] = dia.getId().getHoraInicio();
+        rowData[2] = dia.getId().getHoraFin();
         modelo.addRow(rowData);
 
     }
@@ -586,7 +587,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                 }
                 while (h) {//while para agregar los dias de reserva
                     System.out.println("2");
-                    reserva.diasReserva.add(new DiaReserva(aux.getTime(), horariosPorDia.get(i).horainicio, horariosPorDia.get(i).horafin));
+                    DiareservaId idAux = new DiareservaId(aux.getTime().toString(), horariosPorDia.get(i).getHorainicio(), horariosPorDia.get(i).getHorafin(), reserva.getId());
+                    reserva.getDiareservas().add(new Diareserva(idAux));
                     aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
                     //SE CHEQUEA h
                     if (aux.getTime().compareTo(fin) < 0) {
@@ -603,7 +605,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         } else {//SI ES ESPORÁDICA
             reserva.setCantidadAlumnos(cantAlumnosComboBox.getSelectedIndex());
-            reserva.setTipoDeAula(tipo);
+            reserva.setTipoAula(tipo.toString());
             //System.out.println("pasamos a la ventana nueva");
             OBTENER_DISPONIBILIDAD_DE_AULAS vent = new OBTENER_DISPONIBILIDAD_DE_AULAS(reserva);
             vent.setVisible(true);

@@ -10,7 +10,9 @@ import Clases.Turno;
 import Control.GestorBedel;
 import bd.model.Bedel;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -165,6 +167,11 @@ public class MODIFICAR_BEDEL extends javax.swing.JFrame {
         jButton2.setText("Cancelar");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,13 +261,13 @@ public class MODIFICAR_BEDEL extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         ArrayList<Boolean> datosError = new ArrayList<>();
-        
+        boolean datosInvalidos = true;
         //se inicializa el arreglo de tipos de error
         for(int i=0; i<6; i++){
             datosError.add(false);
         }
         GestorBedel controlador = new GestorBedel();
-        boolean datosInvalidos = controlador.validar(jTextField1.getText(),jTextField2.getText(), jTextField3.getText(), Turno.valueOf(jComboBox2.getSelectedItem().toString().toUpperCase()), jPasswordField1.getText(), jPasswordField2.getText(),datosError);
+        datosInvalidos = controlador.validar(jTextField1.getText(),jTextField2.getText(), Turno.valueOf(jComboBox2.getSelectedItem().toString().toUpperCase()), jPasswordField1.getText(), jPasswordField2.getText(),datosError,jTextField3.getText());
         
         //se colorean los datos invalidos
         if(datosError.get(0)) errorNombre(); else nombreOk();
@@ -274,12 +281,18 @@ public class MODIFICAR_BEDEL extends javax.swing.JFrame {
         if(!datosInvalidos){
             TODO_OK bien = new TODO_OK();
             bien.setVisible(true);
-            
-            controlador.modificarBedel(jTextField3.getText(), jTextField1.getText(),jTextField2.getText(), jPasswordField1.getText(),Turno.valueOf(jComboBox2.getSelectedItem().toString().toUpperCase()).toString());
-            
+            java.util.Date fecha = new Date();
+            String fechaFormat = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
+            controlador.modificarBedel(jTextField3.getText(), jTextField1.getText(),jTextField2.getText(), jPasswordField1.getText(),Turno.valueOf(jComboBox2.getSelectedItem().toString().toUpperCase()).toString(),fechaFormat);
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+               CONFIRMACION_CANCELACION v3 = new CONFIRMACION_CANCELACION(this);
+               v3.setVisible(true);
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

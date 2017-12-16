@@ -1,5 +1,5 @@
 package bd.model;
-// Generated Dec 15, 2017 3:18:15 PM by Hibernate Tools 4.3.1
+// Generated 16-dic-2017 9:38:19 by Hibernate Tools 4.3.1
 
 
 
@@ -20,6 +20,10 @@ public class Diareserva  implements java.io.Serializable {
        this.id = id;
        this.aula = aula;
        this.reserva = reserva;
+    }
+
+    public Diareserva(DiareservaId idAux) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
     public DiareservaId getId() {

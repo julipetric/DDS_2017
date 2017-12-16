@@ -1,5 +1,5 @@
 package bd.model;
-// Generated Dec 15, 2017 3:18:15 PM by Hibernate Tools 4.3.1
+// Generated 16-dic-2017 9:38:19 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class Bedel  implements java.io.Serializable {
      private String apellido;
      private String password;
      private String turno;
+     private String fecha;
      private Set historialdecontrasenias = new HashSet(0);
      private Set haces = new HashSet(0);
 
@@ -23,19 +24,21 @@ public class Bedel  implements java.io.Serializable {
     }
 
 	
-    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno) {
+    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno, String fecha) {
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.password = password;
         this.turno = turno;
+        this.fecha = fecha;
     }
-    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno, Set historialdecontrasenias, Set haces) {
+    public Bedel(String nombreUsuario, String nombre, String apellido, String password, String turno, String fecha, Set historialdecontrasenias, Set haces) {
        this.nombreUsuario = nombreUsuario;
        this.nombre = nombre;
        this.apellido = apellido;
        this.password = password;
        this.turno = turno;
+       this.fecha = fecha;
        this.historialdecontrasenias = historialdecontrasenias;
        this.haces = haces;
     }
@@ -74,6 +77,13 @@ public class Bedel  implements java.io.Serializable {
     
     public void setTurno(String turno) {
         this.turno = turno;
+    }
+    public String getFecha() {
+        return this.fecha;
+    }
+    
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
     public Set getHistorialdecontrasenias() {
         return this.historialdecontrasenias;

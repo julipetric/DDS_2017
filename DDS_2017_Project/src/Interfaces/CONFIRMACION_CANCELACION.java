@@ -10,8 +10,8 @@ package Interfaces;
  * @author rodri
  */
 public class CONFIRMACION_CANCELACION extends javax.swing.JFrame {
-        REGISTRAR_BEDEL ventana;
-       
+        REGISTRAR_BEDEL REGISTRAR;
+        MODIFICAR_BEDEL MODIFICAR;
     /**
      * Creates new form CONFIRMACION_CANCELACION
      * @param v
@@ -19,9 +19,15 @@ public class CONFIRMACION_CANCELACION extends javax.swing.JFrame {
     public CONFIRMACION_CANCELACION(REGISTRAR_BEDEL v) {
         initComponents();
         this.setAlwaysOnTop(true);
-         ventana=v;
+         REGISTRAR=v;
     }
 
+    public CONFIRMACION_CANCELACION(MODIFICAR_BEDEL v) {
+        initComponents();
+        this.setAlwaysOnTop(true);
+         MODIFICAR=v;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,7 +99,13 @@ public class CONFIRMACION_CANCELACION extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ventana.dispose();
+        if (REGISTRAR!=null) {
+            REGISTRAR.dispose();
+        }
+        
+        if (MODIFICAR!=null) {
+            MODIFICAR.dispose();
+        }
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -5,13 +5,12 @@
  */
 package Control;
 
-import bd.model.Aula;
-import Clases.DiaReserva;
 import Clases.EstructAUX;
-import Clases.Reserva;
+import bd.model.Aula;
+import bd.model.Reserva;
 import DAO.AulaDAO;
 import DAO.ReservaDAO;
-import bd.model.Bedel;
+import bd.model.Diareserva;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,12 +66,12 @@ public class GestorReserva {
         ArrayList<Aula> posibles;
         AulaDAO aulaDao = new AulaDAO();
 
-        posibles = (ArrayList<Aula>) aulaDao.obtenerDisponibles(res.getTipoDeAula(), res.getCantidadAlumnos());
+        posibles = (ArrayList<Aula>) aulaDao.getPosibles(res.getTipoAula(), res.getCantidadAlumnos());
 
         ArrayList<Aula> disponibles;
         ReservaDAO resDao = new ReservaDAO();
 
-        disponibles = resDao.read(res.getPeriodo(), res.getDiasReserva(), res.getTipoDeAula(), res.getCantidadAlumnos(), posibles);
+        disponibles = resDao.read(res.getPeriodo(), (ArrayList)res.getDiareservas(), res.getTipoAula(), res.getCantidadAlumnos(), posibles);
 
         return disponibles;
     }
@@ -97,30 +96,25 @@ public class GestorReserva {
         //Se crean DAOs para los objetos
         ReservaDAO daoR = new ReservaDAO();
         AulaDAO daoA = new AulaDAO();
-
+        
         //
         String fecha = new String();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        ArrayList<DiaReserva> dias = new ArrayList<>();
-        List<Aula> posibles = new ArrayList<>();
-        dias = reserva.diasReservaEsporadica;
-        ArrayList<DiaReserva> diasPorAula = new ArrayList<>();
+        ArrayList<Diareserva> dias = new ArrayList<>( reserva.getDiareservas());
+        List<Aula> posibles;
+        ArrayList<Diareserva> diasPorAula = new ArrayList<>();
         ArrayList<Aula> aulasDisponibles = new ArrayList<>();
         ArrayList<EstructAUX> struct = new ArrayList<>();
 
         //System.out.println("estamos en el gestor");
         //System.out.println(reserva.tipoDeAula);
         //System.out.println(reserva.cantidadAlumnos);
-        posibles = daoA.obtenerDisponibles(reserva.tipoDeAula, reserva.cantidadAlumnos); //devuelve aulas compatibles con mi reserva
+        posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos()); //devuelve aulas compatibles con mi reserva
         //System.out.println(posibles.size());
-        /*
-        for (int i = 0; i < posibles.size(); i++) {
-            System.out.println(posibles.get(i).getId());
-        }
-         */
+        
 
         for (int i = 0; i < dias.size(); i++) { //recorro dias 
-            fecha = sdf.format(dias.get(i).getFecha());
+            fecha = dias.get(i).getId().getFecha();
             for (int j = 0; j < posibles.size(); j++) {
                 //traer del dao, para cada dia, los aulas que cumplan el criterio y sus DiaReserva asignados con fecha igual al dia
                 diasPorAula = daoR.getDiaReserva(posibles.get(j).getId(), fecha);//que devuelva para ese aula y ese dia, los dias reserva
@@ -135,32 +129,32 @@ public class GestorReserva {
                 aulasDisponibles.clear();
             }
         }
-
+        System.out.println(struct);
         return struct;
     }
 
-    private Boolean verSuperposicicion(ArrayList<DiaReserva> diasPorAula, DiaReserva dia) {
+    private Boolean verSuperposicicion(ArrayList<Diareserva> diasPorAula, Diareserva dia) {
 
-        String inicio = dia.horaInicio;
-        String fin = dia.horaFin;
+        String inicio = dia.getId().getHoraInicio();
+        String fin = dia.getId().getHoraFin();
         Boolean flag = true;
         List<String> horarios1 = cola.subList(cola.indexOf(inicio), cola.indexOf(fin));
         List<String> horarios2;
-        if (diasPorAula != null) {
-            for (int i = 0; i < diasPorAula.size(); i++) {//recorro todos los dias por aula
+      if (diasPorAula != null) {
+        for (int i = 0; i < diasPorAula.size(); i++) {//recorro todos los dias por aula
 
-                horarios2 = cola.subList(cola.indexOf(diasPorAula.get(i).horaInicio), cola.indexOf(diasPorAula.get(i).horaFin));
+            horarios2 = cola.subList(cola.indexOf(diasPorAula.get(i).getId().getHoraInicio()), cola.indexOf(diasPorAula.get(i).getId().getHoraFin()));
 
-                for (int j = 0; j < horarios1.size(); j++) {//comparamos que horarios  1 tenga algun elemento compatible con horarios  2, en ese caso se chocan
+            for (int j = 0; j < horarios1.size(); j++) {//comparamos que horarios  1 tenga algun elemento compatible con horarios  2, en ese caso se chocan
 
-                    if (horarios2.contains(horarios1.get(i))) {
-                        flag = false;
-                    }
-
+                if (horarios2.contains(horarios1.get(i))) {
+                    flag = false;
                 }
 
             }
+
         }
+}
         return flag;
 
     }
