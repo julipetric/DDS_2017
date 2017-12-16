@@ -32,6 +32,7 @@ public class MODIFICAR_BEDEL extends javax.swing.JFrame {
         jPasswordField2.setText(bedel.getPassword());
         String turno = bedel.getTurno().charAt(0)+""+bedel.getTurno().toLowerCase().subSequence(1,bedel.getTurno().length());
         jComboBox2.setSelectedItem(turno);
+        this.setLocationRelativeTo(null);
     }
     public void errorNombre() {
         jLabel2.setForeground(Color.red);

@@ -20,12 +20,14 @@ public class CONFIRMACION_CANCELACION extends javax.swing.JFrame {
         initComponents();
         this.setAlwaysOnTop(true);
          REGISTRAR=v;
+         this.setLocationRelativeTo(null);
     }
 
     public CONFIRMACION_CANCELACION(MODIFICAR_BEDEL v) {
         initComponents();
         this.setAlwaysOnTop(true);
          MODIFICAR=v;
+         this.setLocationRelativeTo(null);
     }
     
     /**

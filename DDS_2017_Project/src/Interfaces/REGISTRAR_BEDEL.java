@@ -32,6 +32,7 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
     public REGISTRAR_BEDEL() {
         controlador = new GestorBedel();
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public void errorNombre() {
