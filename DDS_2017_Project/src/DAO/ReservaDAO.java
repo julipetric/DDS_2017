@@ -44,22 +44,20 @@ public class ReservaDAO {
         Transaction tx = session.beginTransaction();
         session.save(reserva);
         tx.commit();
-        
-        
-        System.out.println("ahora los diasReserva");
-        
-        for(int i=0;i<dias.size();i++){
-            
-            session.save(dias.get(i));
-            
-        }
         session.close();
         
-
+        System.out.println("ahora los diasReserva");
+        sesion = HibernateUtil.getSessionFactory();
+        session = sesion.openSession();
+        tx = session.beginTransaction();
         
+        for(int i=0;i<dias.size();i++){
+            Diareserva diaAux = dias.get(i);
+            session.save(diaAux);
+        }
         
-       
-        
+        tx.commit();
+        session.close();  
     }
 
     public List read(String dia, String tipo, String aula) {

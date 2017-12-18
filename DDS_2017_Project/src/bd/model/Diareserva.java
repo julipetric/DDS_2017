@@ -27,8 +27,9 @@ public class Diareserva implements java.io.Serializable {
         this.idAula = idAula;
     }
 
-    public Diareserva(DiareservaId id) {
+    public Diareserva(DiareservaId id, Reserva reserva) {
         this.id = id;
+        this.reserva = reserva;
     }
 
     public DiareservaId getId() {

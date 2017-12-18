@@ -36,42 +36,40 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
     OBTENER_DISPONIBILIDAD_DE_AULAS(Reserva r) throws ParseException {
         initComponents();
 
-        
         reserva = r;
         dias = new ArrayList<>();
         gestor = new GestorReserva();
         diasArreglo = new ArrayList<>();
-        jComboBox1.addItemListener(new ItemChangeListener(this));
+        selectDiasComboBox.addItemListener(new ItemChangeListener(this));
 
-        
         struct = new ArrayList<>();
         struct = gestor.obtenerDisponibilidadEsporadica(reserva);
         //todo andando dentro del struct
-        
-        for (int i=0 ; i<struct.size(); i++){
+
+        for (int i = 0; i < struct.size(); i++) {
             dias.add(struct.get(i).getDia());
         }
-        
+
         reserva.getDiareservas().clear();//se vacía la lista de DiaReserva de la reserva
-        for(int i = 0 ; i<struct.size() ; i++){
-            diasArreglo.add(struct.get(i).getDia().getId().getFecha());                    
+        for (int i = 0; i < struct.size(); i++) {
+            diasArreglo.add(struct.get(i).getDia().getId().getFecha());
         }
-        
+
         DefaultComboBoxModel modelito = new DefaultComboBoxModel();
-        jComboBox1.setModel(modelito);
-        
-        for (int i=0 ; i<diasArreglo.size(); i++){
-            
+        selectDiasComboBox.setModel(modelito);
+
+        for (int i = 0; i < diasArreglo.size(); i++) {
+
             modelito.addElement(diasArreglo.get(i));
-            
+
         }
-        
-        for (int i=0 ; i<struct.get(0).getAulasDisponibles().size() ; i++){
+
+        for (int i = 0; i < struct.get(0).getAulasDisponibles().size(); i++) {
             this.agregarFilaATabla(struct.get(0).getAulasDisponibles().get(i));
         }
 
     }
-    
+
     public void agregarFilaATabla(Aula aula) {
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
@@ -83,17 +81,12 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
         modelo.addRow(rowData);
 
     }
-    
-     public void vaciarTabla() {
-         
-        
-         jTable1.clearSelection();
-       
+
+    public void vaciarTabla() {
+
+        jTable1.clearSelection();
+
     }
-     
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,7 +98,7 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        selectDiasComboBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
@@ -169,7 +162,7 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selectDiasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -181,7 +174,7 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectDiasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -194,27 +187,23 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
-        
+
         System.out.println("11");
-        dias.get(jComboBox1.getSelectedIndex()).setAula(struct.get(0).getAulasDisponibles().get(jTable1.getSelectedRow()));
-        
-        
-        
-         
-         
+        dias.get(selectDiasComboBox.getSelectedIndex()).setAula(struct.get(0).getAulasDisponibles().get(jTable1.getSelectedRow()));
+
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        for (int i=0 ; i<dias.size(); i++){
+
+        for (int i = 0; i < dias.size(); i++) {
             reserva.diareservas.add(dias.get(i));
         }
-        
+
         gestor.nuevaReserva(reserva, dias);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -222,11 +211,10 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<String> selectDiasComboBox;
     // End of variables declaration//GEN-END:variables
 
-   
 }

@@ -593,7 +593,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                 while (h) {//while para agregar los dias de reserva
                     System.out.println("2");
                     DiareservaId idAux = new DiareservaId(aux.getTime().toString(), horariosPorDia.get(i).getHorainicio(), horariosPorDia.get(i).getHorafin(), reserva.getId());
-                    reserva.diareservas.add(new Diareserva(idAux));
+                    reserva.diareservas.add(new Diareserva(idAux, reserva));
                     aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
                     //SE CHEQUEA h
                     if (aux.getTime().compareTo(fin) < 0) {
