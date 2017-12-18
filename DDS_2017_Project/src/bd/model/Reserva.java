@@ -2,6 +2,7 @@ package bd.model;
 // Generated Dec 15, 2017 3:18:15 PM by Hibernate Tools 4.3.1
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -86,7 +87,7 @@ public class Reserva  implements java.io.Serializable {
         this.periodo = periodo;
     }
     public Set getDiareservas() {
-        return this.diareservas;
+        return  this.diareservas;
     }
     
     public void setDiareservas(Set diareservas) {

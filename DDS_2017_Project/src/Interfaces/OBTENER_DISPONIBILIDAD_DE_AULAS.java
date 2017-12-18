@@ -6,10 +6,15 @@
 package Interfaces;
 
 import Clases.EstructAUX;
+import Clases.ItemChangeListener;
 import bd.model.Reserva;
 import Control.GestorReserva;
+import bd.model.Aula;
+import bd.model.Diareserva;
 import java.text.ParseException;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,7 +24,8 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
 
     Reserva reserva;
     GestorReserva gestor;
-    public ArrayList<EstructAUX> struct;
+    private ArrayList<EstructAUX> struct;
+    private ArrayList<String> diasArreglo;
 
     public void setStruct(ArrayList<EstructAUX> struct) {
         this.struct = struct;
@@ -27,18 +33,61 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
 
     OBTENER_DISPONIBILIDAD_DE_AULAS(Reserva r) throws ParseException {
         initComponents();
+
         
         reserva = r;
+        
         gestor = new GestorReserva();
+        diasArreglo = new ArrayList<>();
+        jComboBox1.addItemListener(new ItemChangeListener(this));
 
         
         struct = new ArrayList<>();
         struct = gestor.obtenerDisponibilidadEsporadica(reserva);
         //todo andando dentro del struct
         
+        reserva.getDiareservas().clear();//se vacía la lista de DiaReserva de la reserva
+        for(int i = 0 ; i<struct.size() ; i++){
+            diasArreglo.add(struct.get(i).getDia().getId().getFecha());                    
+        }
         
+        DefaultComboBoxModel modelito = new DefaultComboBoxModel();
+        jComboBox1.setModel(modelito);
+        
+        for (int i=0 ; i<diasArreglo.size(); i++){
+            
+            modelito.addElement(diasArreglo.get(i));
+            
+        }
+        
+        for (int i=0 ; i<struct.get(0).getAulasDisponibles().size() ; i++){
+            this.agregarFilaATabla(struct.get(0).getAulasDisponibles().get(i));
+        }
 
     }
+    
+    public void agregarFilaATabla(Aula aula) {
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        Object rowData[] = new Object[4];
+        rowData[0] = aula.getId();
+        rowData[1] = aula.getTipo();
+        rowData[2] = aula.getCapacidad();
+        rowData[3] = aula.getUbicacion();
+        modelo.addRow(rowData);
+
+    }
+    
+     public void vaciarTabla() {
+         
+        
+         jTable1.clearSelection();
+       
+    }
+     
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,7 +105,7 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("DISPONIBILIDAD DE AULAS");
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
@@ -64,22 +113,23 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Aulas disponibles");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE DÍA", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "1", "2", "3", "4", "5", "6" }));
-
         jScrollPane1.setMinimumSize(new java.awt.Dimension(453, 700));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(453, 700));
 
         jTable1.setBackground(new java.awt.Color(153, 153, 153));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Aula", "Tipo", "Capacidad", "Ubicación"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setText("Cancelar");
@@ -127,6 +177,19 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       
+        
+        Diareserva dia = new Diareserva();
+        dia = struct.get(jComboBox1.getSelectedIndex()).getDia();
+        dia.setAula(struct.get(0).getAulasDisponibles().get(jTable1.getSelectedRow()));
+        
+        reserva.diareservas.add(dia);
+        
+         
+         
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -136,4 +199,6 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+   
 }

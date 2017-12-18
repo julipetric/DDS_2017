@@ -112,13 +112,13 @@ public class GestorReserva {
         
         //obtenemos compatibles con mi reserva
         posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos());
-        //System.out.println(posibles.size());
+        //posibles está bien, trae todo
         
 
         for (int i = 0; i < dias.size(); i++) { //recorro dias             
             
             struct.add(new EstructAUX(dias.get(i), (ArrayList<Aula>)posibles));
-            aulasDisponibles.clear();
+            
         }
         System.out.println(struct);
         return struct;

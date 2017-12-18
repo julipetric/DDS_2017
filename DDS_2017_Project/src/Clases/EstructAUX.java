@@ -25,8 +25,16 @@ public class EstructAUX {
         
     }
 
-    public EstructAUX() {
+    
+
+    public Diareserva getDia() {
+        return dia;
     }
 
+    public ArrayList<Aula> getAulasDisponibles() {
+        return aulasDisponibles;
+    }
+    
+    
     
 }
