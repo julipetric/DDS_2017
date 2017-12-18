@@ -123,6 +123,29 @@ public class GestorReserva {
         return struct;
     }
 
+    public ArrayList<Aula> obtenerDisponibilidadDia(Reserva reserva, Diareserva dia) {
+        //Se crean DAOs para los objetos
+        ReservaDAO daoR = new ReservaDAO();
+        AulaDAO daoA = new AulaDAO();
+
+        //
+        ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
+        List<Aula> posibles;
+        ArrayList<Diareserva> diasPorAula;
+        ArrayList<Aula> aulasDisponibles = new ArrayList<>();
+        ArrayList<Aula> struct = new ArrayList<>();
+
+        //System.out.println("estamos en el gestor");
+        //System.out.println(reserva.tipoDeAula);
+        //System.out.println(reserva.cantidadAlumnos);
+        
+        //obtenemos compatibles con mi reserva
+        posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos());
+        //posibles está bien, trae todo
+        
+        return (ArrayList<Aula>) posibles;
+    }
+
     
 
     

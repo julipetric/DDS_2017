@@ -14,6 +14,8 @@ import DAO.DocenteDAO;
 import bd.model.Diareserva;
 import bd.model.DiareservaId;
 import bd.model.Docente;
+import static java.lang.Thread.sleep;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,30 +48,28 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private ArrayList<Docente> listaDocentes;
     private ArrayList<String> docentesArreglo;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
+    public Integer reservaNumero = 0;
     public REGISTRAR_RESERVA() {
         initComponents();
         DocenteDAO = new DocenteDAO();
         docentesArreglo = new ArrayList<>();
         listaDocentes = DocenteDAO.read();
-        
-        for (int i=0 ; i<listaDocentes.size(); i++){
-            
+
+        for (int i = 0; i < listaDocentes.size(); i++) {
+
             docentesArreglo.add(listaDocentes.get(i).getNombre() + " " + listaDocentes.get(i).getApellido());
-            
+
         }
-        
-        
+
         DefaultComboBoxModel modelito = new DefaultComboBoxModel();
         jComboBox2.setModel(modelito);
-        
-        for (int i=0 ; i<docentesArreglo.size(); i++){
-            
+
+        for (int i = 0; i < docentesArreglo.size(); i++) {
+
             modelito.addElement(docentesArreglo.get(i));
-            
+
         }
-        
-        
+
         esporadicaRadioButton.setSelected(false);
         periodicaRadioButton.setSelected(true);
         jButton3.setEnabled(false);
@@ -180,6 +180,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         aceptarButton.setBackground(new java.awt.Color(0, 102, 255));
         aceptarButton.setText("Aceptar");
         aceptarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        aceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         aceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarButtonActionPerformed(evt);
@@ -512,6 +513,12 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
 
+        
+        if (reservaNumero >= reserva.getDiareservas().size()+1){
+            this.Guardar();
+        }
+        
+        
         Date inicio = new Date();
         Date fin = new Date();
         Calendar aux = Calendar.getInstance();
@@ -525,6 +532,13 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         } else {
             periodo = Periodo.ANUAL;
         }
+
+        //DATOS BASICOS DE LA RESERVA, VALIDAR
+        reserva.setCantidadAlumnos(cantAlumnosComboBox.getSelectedIndex());
+        reserva.setTipoAula(tipo.toString());
+        reserva.setNombreCurso(jTextField3.getText());
+        reserva.setDocente(listaDocentes.get(jComboBox2.getSelectedIndex()));
+        reserva.setPeriodo(periodo.name());
 
         //SE INICIALIZA LA RESERVA CON LOS DATOS BÁSICOS, FALTA DOCENTE yTIPO DE AULA
 //        calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
@@ -592,7 +606,12 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                 }
                 while (h) {//while para agregar los dias de reserva
                     System.out.println("2");
-                    DiareservaId idAux = new DiareservaId(aux.getTime().toString(), horariosPorDia.get(i).getHorainicio(), horariosPorDia.get(i).getHorafin(), reserva.getId());
+                    Date fechaAux = aux.getTime();
+
+                    // Display a date in day, month, year format
+                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    String fecha = formatter.format(fechaAux);
+                    DiareservaId idAux = new DiareservaId(fecha, horariosPorDia.get(i).getHorainicio(), horariosPorDia.get(i).getHorafin(), reserva.getId());
                     reserva.diareservas.add(new Diareserva(idAux, reserva));
                     aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
                     //SE CHEQUEA h
@@ -606,31 +625,56 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
             }
             //aca ya estan generados todos los diasreserva iniciales de nuestra reserva periodica
 
-            gestor.obtenerDisponibilidadPeriodica(reserva);// asignar a una variable la lista que se devuelve
-
-        } else {//SI ES ESPORÁDICA
-            reserva.setCantidadAlumnos(cantAlumnosComboBox.getSelectedIndex());
-            reserva.setTipoAula(tipo.toString());
-            reserva.setNombreCurso(jTextField3.getText());
-            reserva.setDocente(listaDocentes.get(jComboBox2.getSelectedIndex()));
-            reserva.setPeriodo(periodo.name());
-            
-            
             //System.out.println("pasamos a la ventana nueva");
             OBTENER_DISPONIBILIDAD_DE_AULAS vent;
             try {
-                vent = new OBTENER_DISPONIBILIDAD_DE_AULAS(reserva); 
+                vent = new OBTENER_DISPONIBILIDAD_DE_AULAS(reserva);
                 vent.setVisible(true);
             } catch (ParseException ex) {
                 Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
 
+        } else {//SI ES ESPORÁDICA
+            ArrayList<Diareserva> diasReserva = new ArrayList<>(reserva.getDiareservas());
+            this.GenerarElegirAula(diasReserva);       
         }
 
 
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
+    public Reserva getReserva() {
+        return reserva;
+    }
+ 
+    public void GenerarElegirAula(ArrayList<Diareserva> diasReserva){
+    //System.out.println("pasamos a la ventana nueva");
+       if (reservaNumero < reserva.getDiareservas().size()) {
+                ELEGIR_AULA vent;
+                try {
+                    vent = new ELEGIR_AULA(reserva, diasReserva.get(reservaNumero),reservaNumero,this,diasReserva);
+                    vent.setVisible(true);     
+                } catch (ParseException ex) {
+                    Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+                }
+     }
+     reservaNumero++;
+     
+     if (reservaNumero == reserva.getDiareservas().size()+1){
+            aceptarButton.setText("Guardar");
+        }
+       
+    }
+    
+    private void Guardar(){
+    if (reservaNumero == reserva.getDiareservas().size()+1){
+            ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
+            gestor.nuevaReserva(reserva, arrayAux);
+            
+            aceptarButton.setEnabled(false);
+            
+        }
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //ACCION DE NUEVO DIA
 

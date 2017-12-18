@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rodri/Desktop/DDS/DDS_2017/DDS_2017_Project/src/bd/model/Reserva.java</file>
-            <file>file:/C:/Users/rodri/Desktop/DDS/DDS_2017/DDS_2017_Project/src/Clases/ItemChangeListener.java</file>
-            <file>file:/C:/Users/rodri/Desktop/DDS/DDS_2017/DDS_2017_Project/src/Control/GestorReserva.java</file>
-            <file>file:/C:/Users/rodri/Desktop/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/OBTENER_DISPONIBILIDAD_DE_AULAS.java</file>
-            <file>file:/C:/Users/rodri/Desktop/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/REGISTRAR_RESERVA.java</file>
+            <file>file:/C:/Users/Julian/Documents/Facu/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/OBTENER_DISPONIBILIDAD_DE_AULAS.java</file>
+            <file>file:/C:/Users/Julian/Documents/Facu/DDS/DDS_2017/DDS_2017_Project/src/bd/model/Diareserva.java</file>
+            <file>file:/C:/Users/Julian/Documents/Facu/DDS/DDS_2017/DDS_2017_Project/src/DAO/ReservaDAO.java</file>
+            <file>file:/C:/Users/Julian/Documents/Facu/DDS/DDS_2017/DDS_2017_Project/src/bd/model/Aula.java</file>
+            <file>file:/C:/Users/Julian/Documents/Facu/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/REGISTRAR_RESERVA.java</file>
+            <file>file:/C:/Users/Julian/Documents/Facu/DDS/DDS_2017/DDS_2017_Project/src/Control/GestorReserva.java</file>
+            <file>file:/C:/Users/Julian/Documents/Facu/DDS/DDS_2017/DDS_2017_Project/src/Interfaces/NUEVO_DIA.java</file>
         </group>
     </open-files>
 </project-private>

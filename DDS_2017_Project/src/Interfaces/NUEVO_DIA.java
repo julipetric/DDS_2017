@@ -83,7 +83,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
         horaInicioComboBox = new javax.swing.JComboBox<>();
         horaFinCombobox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        AceptarButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         fechaDateChooser = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
@@ -131,12 +131,12 @@ public class NUEVO_DIA extends javax.swing.JFrame {
 
         jLabel1.setText("Fecha");
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setText("Aceptar");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AceptarButton.setBackground(new java.awt.Color(0, 102, 255));
+        AceptarButton.setText("Aceptar");
+        AceptarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        AceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AceptarButtonActionPerformed(evt);
             }
         });
 
@@ -164,7 +164,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(AceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +197,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -209,7 +209,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarButtonActionPerformed
         // COMPORTAMIENTO DEL BOTÓN ACEPTAR
 
         if (fechaDateChooser.getDate().compareTo(this.fechaInicio) != 1 || fechaDateChooser.getDate().compareTo(this.fechaFin) != -1) {
@@ -226,6 +226,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
             if (this.cola.indexOf(horaInicioComboBox.getSelectedItem().toString()) >= this.cola.indexOf(horaFinCombobox.getSelectedItem().toString())) {
                 jLabel3.setVisible(true);
             } else {
+
                 jLabel3.setVisible(false); //TODO OK, FECHA Y HORA, AGREGAR DIARESERVA A LA LISTA
 
                 Date fechaAux = fechaDateChooser.getDate();
@@ -238,16 +239,23 @@ public class NUEVO_DIA extends javax.swing.JFrame {
 
                 Diareserva dia = new Diareserva(idAux, reserva);
                 dia.getId().setIdReserva(reserva.getId());
-                reserva.diareservas.add(dia);//agrego el dia
 
-                ventana.agregarFilaATabla(dia);
+                ArrayList<Diareserva> listaIds1 = new ArrayList<>(reserva.getDiareservas());
+                ArrayList<DiareservaId> listaIds2 = new ArrayList<>();
+                for (int i = 0; i < listaIds1.size(); i++) {
+                    listaIds2.add(listaIds1.get(i).getId());
+                }
+                if (listaIds2.contains(dia.getId())) {
+                    DIA_YA_EXISTE vent = new DIA_YA_EXISTE();
+                    vent.setVisible(true);
+                } else {
+                    reserva.diareservas.add(dia);//agrego el dia
+                    ventana.agregarFilaATabla(dia);
+                }
             }
-
         }
-
         //ventana.actualizarDiasReserva(diasReserva);//se actualiza la lista en la ventana original
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AceptarButtonActionPerformed
 
     private void horaInicioComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaInicioComboBoxActionPerformed
         // TODO add your handling code here:
@@ -258,10 +266,10 @@ public class NUEVO_DIA extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AceptarButton;
     private com.toedter.calendar.JDateChooser fechaDateChooser;
     private javax.swing.JComboBox<String> horaFinCombobox;
     private javax.swing.JComboBox<String> horaInicioComboBox;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JDialog jDialog1;
