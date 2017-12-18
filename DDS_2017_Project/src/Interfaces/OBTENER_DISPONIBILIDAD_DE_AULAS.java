@@ -13,6 +13,7 @@ import bd.model.Aula;
 import bd.model.Diareserva;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,6 +27,7 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
     GestorReserva gestor;
     private ArrayList<EstructAUX> struct;
     private ArrayList<String> diasArreglo;
+    private ArrayList<Diareserva> dias;
 
     public void setStruct(ArrayList<EstructAUX> struct) {
         this.struct = struct;
@@ -36,7 +38,7 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
 
         
         reserva = r;
-        
+        dias = new ArrayList<>();
         gestor = new GestorReserva();
         diasArreglo = new ArrayList<>();
         jComboBox1.addItemListener(new ItemChangeListener(this));
@@ -45,6 +47,10 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
         struct = new ArrayList<>();
         struct = gestor.obtenerDisponibilidadEsporadica(reserva);
         //todo andando dentro del struct
+        
+        for (int i=0 ; i<struct.size(); i++){
+            dias.add(struct.get(i).getDia());
+        }
         
         reserva.getDiareservas().clear();//se vacía la lista de DiaReserva de la reserva
         for(int i = 0 ; i<struct.size() ; i++){
@@ -134,10 +140,20 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
 
         jButton2.setText("Cancelar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(0, 102, 255));
         jButton1.setText("Aceptar");
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,15 +196,27 @@ public class OBTENER_DISPONIBILIDAD_DE_AULAS extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
        
         
-        Diareserva dia = new Diareserva();
-        dia = struct.get(jComboBox1.getSelectedIndex()).getDia();
-        dia.setAula(struct.get(0).getAulasDisponibles().get(jTable1.getSelectedRow()));
+        System.out.println("11");
+        dias.get(jComboBox1.getSelectedIndex()).setAula(struct.get(0).getAulasDisponibles().get(jTable1.getSelectedRow()));
         
-        reserva.diareservas.add(dia);
+        
         
          
          
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        for (int i=0 ; i<dias.size(); i++){
+            reserva.diareservas.add(dias.get(i));
+        }
+        
+        gestor.nuevaReserva(reserva, dias);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

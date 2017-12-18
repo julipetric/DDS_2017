@@ -58,10 +58,9 @@ public class GestorReserva {
 
     }
 
-    public void nuevaReserva() {
-        //IMPLEMENTAR GATITOS
-        //IMPLEMENTAR GATITOS 
-        //IMPLEMENTAR GATITOS
+    public void nuevaReserva(Reserva reserva, ArrayList<Diareserva> dias) {//<--------------GUARDA RESERVA
+        ReservaDAO resDao = new ReservaDAO();
+        resDao.crear(reserva, dias);
     }
 
     public ArrayList<Aula> obtenerDisponibilidadPeriodica(Reserva res) {
@@ -123,6 +122,8 @@ public class GestorReserva {
         System.out.println(struct);
         return struct;
     }
+
+    
 
     
 }

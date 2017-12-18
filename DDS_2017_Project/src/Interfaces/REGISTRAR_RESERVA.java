@@ -523,7 +523,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         if (periodicaRadioButton.isSelected()) {//Asignación del período según sea periodica o esporádica
             periodo = Periodo.valueOf(jComboBox1.getSelectedItem().toString());
         } else {
-            periodo = Periodo.NONE;
+            periodo = Periodo.ANUAL;
         }
 
         //SE INICIALIZA LA RESERVA CON LOS DATOS BÁSICOS, FALTA DOCENTE yTIPO DE AULA
@@ -611,7 +611,10 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         } else {//SI ES ESPORÁDICA
             reserva.setCantidadAlumnos(cantAlumnosComboBox.getSelectedIndex());
             reserva.setTipoAula(tipo.toString());
+            reserva.setNombreCurso(jTextField3.getText());
             reserva.setDocente(listaDocentes.get(jComboBox2.getSelectedIndex()));
+            reserva.setPeriodo(periodo.name());
+            
             
             //System.out.println("pasamos a la ventana nueva");
             OBTENER_DISPONIBILIDAD_DE_AULAS vent;

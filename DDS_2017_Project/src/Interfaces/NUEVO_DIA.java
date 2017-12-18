@@ -237,6 +237,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
                 DiareservaId idAux = new DiareservaId(fecha, horaInicioComboBox.getSelectedItem().toString(), horaFinCombobox.getSelectedItem().toString(), ventana.reserva.getId());
 
                 Diareserva dia = new Diareserva(idAux);
+                dia.getId().setIdReserva(reserva.getId());
                 reserva.diareservas.add(dia);//agrego el dia
 
                 ventana.agregarFilaATabla(dia);

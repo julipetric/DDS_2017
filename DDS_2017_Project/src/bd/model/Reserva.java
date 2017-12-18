@@ -2,6 +2,7 @@ package bd.model;
 // Generated Dec 15, 2017 3:18:15 PM by Hibernate Tools 4.3.1
 
 
+import DAO.ReservaDAO;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +23,8 @@ public class Reserva  implements java.io.Serializable {
      private Set haces = new HashSet(0);
 
     public Reserva() {
+        ReservaDAO dao = new ReservaDAO();
+        this.id = dao.getIdReserva();
     }
 
 	

@@ -38,13 +38,28 @@ public class ReservaDAO {
     public ReservaDAO() {
     }
 
-    public void crear(Reserva reserva) {
+    public void crear(Reserva reserva, ArrayList<Diareserva> dias) {
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
         session.save(reserva);
         tx.commit();
+        
+        
+        System.out.println("ahora los diasReserva");
+        
+        for(int i=0;i<dias.size();i++){
+            
+            session.save(dias.get(i));
+            
+        }
         session.close();
+        
+
+        
+        
+       
+        
     }
 
     public List read(String dia, String tipo, String aula) {
@@ -143,7 +158,7 @@ public class ReservaDAO {
                 //.add(Restrictions.eq("fecha", fecha))
                 .list();//para cada aula, me devuelve los diasAux1 reserva de ese dia
         
-        System.out.println(diasAux1);
+   
         
         diasAux1.stream().filter((d) -> (d.getIdAula().getId().equals(id))).forEachOrdered((d) -> {
             diasAux2.add(d);
