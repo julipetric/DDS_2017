@@ -14,6 +14,7 @@ import DAO.DocenteDAO;
 import bd.model.Diareserva;
 import bd.model.DiareservaId;
 import bd.model.Docente;
+import java.awt.Color;
 import static java.lang.Thread.sleep;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -54,10 +55,11 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     public Integer reservaNumero = 0;
     private Integer cantidadDiasPeriodica = 0;
-    ArrayList<Diareserva> diasReserva;
+    ArrayList<Diareserva> diasReserva = new ArrayList<>();
 
     public REGISTRAR_RESERVA() {
         initComponents();
+        jLabel2.setText("");
         DocenteDAO = new DocenteDAO();
         docentesArreglo = new ArrayList<>();
         listaDocentes = DocenteDAO.read();
@@ -106,7 +108,6 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         }
 
         //Las fechas están verificadas
-        
         this.setLocationRelativeTo(null);
     }
 
@@ -155,6 +156,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         periodicaRadioButton = new javax.swing.JRadioButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("REGISTRAR UNA NUEVA RESERVA");
@@ -169,20 +171,20 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         jLabel7.setText("Horarios");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45\t" }));
-        jComboBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
-        jComboBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCheckBox8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCheckBox9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCheckBox10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCheckBox11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCheckBox12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
@@ -190,20 +192,20 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jLabel12.setText("Tipo de aula");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar tipo", "MULTIMEDIOS", "INFORMATICA", "SINRECURSOS" }));
-        jComboBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MULTIMEDIOS", "INFORMATICA", "SINRECURSOS" }));
+        jComboBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel14.setText("Cantidad de alumnos");
 
-        cantAlumnosComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar cantidad", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", " " }));
-        cantAlumnosComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cantAlumnosComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "" }));
+        cantAlumnosComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel15.setText("Nombre del curso / catedra / seminario");
 
         aceptarButton.setBackground(new java.awt.Color(204, 204, 204));
         aceptarButton.setText("Aceptar");
         aceptarButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        aceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        aceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         aceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarButtonActionPerformed(evt);
@@ -212,7 +214,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         jButton2.setText("Cancelar");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -222,7 +224,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         nuevoDiaButton.setBackground(new java.awt.Color(0, 204, 0));
         nuevoDiaButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         nuevoDiaButton.setText("+");
-        nuevoDiaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nuevoDiaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         nuevoDiaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoDiaButtonActionPerformed(evt);
@@ -255,28 +257,28 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         }
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
-        jComboBox7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
-        jComboBox8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
-        jComboBox9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
-        jComboBox10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
-        jComboBox11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
-        jComboBox12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "10:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
-        jComboBox13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "11:15", "10:30", "10:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
-        jComboBox14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel9.setText("Lunes");
 
@@ -289,7 +291,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         jLabel20.setText("Jueves");
 
         esporadicaRadioButton.setText("Esporádica");
-        esporadicaRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        esporadicaRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         esporadicaRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 esporadicaRadioButtonActionPerformed(evt);
@@ -297,7 +299,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         });
 
         periodicaRadioButton.setText("Periodica");
-        periodicaRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        periodicaRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         periodicaRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 periodicaRadioButtonActionPerformed(evt);
@@ -305,100 +307,108 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANUAL", "PRIMERO", "SEGUNDO", "NONE", " " }));
-        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jComboBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jComboBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(aceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cantAlumnosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(58, 58, 58)
-                                .addComponent(jLabel7))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCheckBox8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel9))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCheckBox9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel17))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCheckBox10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel18)))
-                                .addGap(72, 72, 72)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel19))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel20))
-                            .addComponent(periodicaRadioButton)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(aceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(100, 100, 100)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(esporadicaRadioButton)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cantAlumnosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(nuevoDiaButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addComponent(jLabel6)
+                                        .addGap(58, 58, 58)
+                                        .addComponent(jLabel7))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jCheckBox8)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel9))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jCheckBox9)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel17))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jCheckBox10)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel18)))
+                                        .addGap(72, 72, 72)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jCheckBox12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel19))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jCheckBox11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel20))
+                                    .addComponent(periodicaRadioButton)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(100, 100, 100)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(esporadicaRadioButton)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(nuevoDiaButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jLabel2)))
                 .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
@@ -415,7 +425,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(nuevoDiaButton)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -548,147 +560,197 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
-
-        if (esporadicaRadioButton.isSelected()) {
-            if (reservaNumero >= reserva.getDiareservas().size() + 1) {
-                this.Guardar();
-            }
-        }
-
-        this.inicio = new Date();
-        this.fin = new Date();
-        Calendar aux = Calendar.getInstance();
-        //comportamiento del botón aceptar
-        calendario = Calendar.getInstance();
-        diasDeSemana = new ArrayList<>();
-        horariosPorDia = new ArrayList<>();
-        tipo = TipoDeAula.valueOf(jComboBox5.getSelectedItem().toString());
-        if (periodicaRadioButton.isSelected()) {//Asignación del período según sea periodica o esporádica
-            periodo = Periodo.valueOf(jComboBox1.getSelectedItem().toString());
+        boolean horario = true;
+        if (jTextField3.getText().equals("")) {
+            jLabel15.setForeground(Color.red);
         } else {
-            periodo = Periodo.ANUAL;
-        }
-
-        //DATOS BASICOS DE LA RESERVA, VALIDAR
-        reserva.setCantidadAlumnos(cantAlumnosComboBox.getSelectedIndex());
-        reserva.setTipoAula(tipo.toString());
-        reserva.setNombreCurso(jTextField3.getText());
-        reserva.setDocente(listaDocentes.get(jComboBox2.getSelectedIndex()));
-        reserva.setPeriodo(periodo.name());
-
-        //SE INICIALIZA LA RESERVA CON LOS DATOS BÁSICOS, FALTA DOCENTE yTIPO DE AULA
-//        calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
-        //SE AGREGAN LOS DIAS DE LA SEMANA - EN ENTEROS - QUE ESTÁN SELECCIONADOS
-        if (jCheckBox8.isSelected()) {
-            diasDeSemana.add(1);
-            horariosPorDia.add(new horariosAUX(jComboBox3.getSelectedItem().toString(), jComboBox4.getSelectedItem().toString()));
-            cantidadDiasPeriodica++;
-        }//lunes
-        if (jCheckBox9.isSelected()) {
-            diasDeSemana.add(2);
-            horariosPorDia.add(new horariosAUX(jComboBox7.getSelectedItem().toString(), jComboBox8.getSelectedItem().toString()));
-            cantidadDiasPeriodica++;
-        }//martes
-        if (jCheckBox10.isSelected()) {
-            diasDeSemana.add(3);
-            horariosPorDia.add(new horariosAUX(jComboBox9.getSelectedItem().toString(), jComboBox10.getSelectedItem().toString()));
-            cantidadDiasPeriodica++;
-        }//miercoles
-        if (jCheckBox11.isSelected()) {
-            diasDeSemana.add(4);
-            horariosPorDia.add(new horariosAUX(jComboBox11.getSelectedItem().toString(), jComboBox12.getSelectedItem().toString()));
-            cantidadDiasPeriodica++;
-        }//jueves
-        if (jCheckBox12.isSelected()) {
-            diasDeSemana.add(5);
-            horariosPorDia.add(new horariosAUX(jComboBox13.getSelectedItem().toString(), jComboBox14.getSelectedItem().toString()));
-            cantidadDiasPeriodica++;
-        }//viernes
-
-        //HASTA ACA SE GUARDA TODO CORRECTO EN LOS ARREGLOS DE LOS DIAS Y HORARIOS  
-        //SETEO DE LAS FECHAS INICIAL Y FINAL DE LAS RESERVAS A REALIZAR
-        //VER BIEN LAS FECHAS ESTAS
-        if (periodicaRadioButton.isSelected()) {
-            if (jComboBox1.getSelectedIndex() == 0) {
-                inicio = inicio1C;
-                fin = fin2C;
+            jLabel15.setForeground(Color.black);
+            if (esporadicaRadioButton.isSelected()) {
+                if (reservaNumero >= reserva.getDiareservas().size() + 1) {
+                    this.Guardar();
+                }
             }
-            if (jComboBox1.getSelectedIndex() == 1) {
-                inicio = inicio1C;
-                fin = fin1C;
-            }
-            if (jComboBox1.getSelectedIndex() == 2) {
-                inicio = inicio2C;
-                fin = fin2C;
-            }
-        }
 
-        //SE AGREGAN LOS DIASRESERVA, LUEGO SE USAN PARA BUSCAR LOS AULAS DISPONIBLES   
-        if (periodicaRadioButton.isSelected()) {//<------RESERV PERIODICA
-
-            Boolean h;
-            if (reserva.diareservas.size() > 0) {
-                //Ya se cargaron los dias anteriormente
+            this.inicio = new Date();
+            this.fin = new Date();
+            Calendar aux = Calendar.getInstance();
+            //comportamiento del botón aceptar
+            calendario = Calendar.getInstance();
+            diasDeSemana = new ArrayList<>();
+            horariosPorDia = new ArrayList<>();
+            tipo = TipoDeAula.valueOf(jComboBox5.getSelectedItem().toString());
+            if (periodicaRadioButton.isSelected()) {//Asignación del período según sea periodica o esporádica
+                periodo = Periodo.valueOf(jComboBox1.getSelectedItem().toString());
             } else {
+                periodo = Periodo.ANUAL;
+            }
 
-                for (int i = 0; i < diasDeSemana.size(); i++) {
-                    System.out.println("for");
-                    aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial CAMBIAR
-                    //Seteo en primer dia de semana
-                    boolean j = true;
-                    while (j) {
-                        System.out.println("0");
-                        if (aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) {
-                            j = false;
-                        } else {
-                            aux.add(Calendar.DATE, 1);
+            //DATOS BASICOS DE LA RESERVA, VALIDAR
+            reserva.setCantidadAlumnos(cantAlumnosComboBox.getSelectedIndex());
+            reserva.setTipoAula(tipo.toString());
+            reserva.setNombreCurso(jTextField3.getText());
+            reserva.setDocente(listaDocentes.get(jComboBox2.getSelectedIndex()));
+            reserva.setPeriodo(periodo.name());
+
+            //SE INICIALIZA LA RESERVA CON LOS DATOS BÁSICOS, FALTA DOCENTE yTIPO DE AULA
+//        calendario.getTime().getDay();    para obtener entero como dia de la semana domingo=0
+            //SE AGREGAN LOS DIAS DE LA SEMANA - EN ENTEROS - QUE ESTÁN SELECCIONADOS
+            if(diasReserva.isEmpty()){
+            if (jCheckBox8.isSelected()) {
+
+                if (jComboBox3.getSelectedItem().toString().equals(jComboBox4.getSelectedItem().toString())) {
+                    jLabel2.setText("Inicio no puede ser igual a final");
+                    horario = false;
+                } else {
+                    horario = true;
+                    jLabel2.setText("");
+                    diasDeSemana.add(1);
+                    horariosPorDia.add(new horariosAUX(jComboBox3.getSelectedItem().toString(), jComboBox4.getSelectedItem().toString()));
+                    cantidadDiasPeriodica++;
+                }
+            }//lunes
+            if (jCheckBox9.isSelected()) {
+
+                if (jComboBox7.getSelectedItem().toString().equals(jComboBox8.getSelectedItem().toString())) {
+                    jLabel2.setText("Inicio no puede ser igual a final");
+                    horario = false;
+                } else {
+                    horario = true;
+                    diasDeSemana.add(2);
+                    jLabel2.setText("");
+                    horariosPorDia.add(new horariosAUX(jComboBox7.getSelectedItem().toString(), jComboBox8.getSelectedItem().toString()));
+                    cantidadDiasPeriodica++;
+                }
+            }//martes
+            if (jCheckBox10.isSelected()) {
+                if (jComboBox9.getSelectedItem().toString().equals(jComboBox10.getSelectedItem().toString())) {
+                    jLabel2.setText("Inicio no puede ser igual a final");
+                    horario = false;
+                } else {
+                    jLabel2.setText("");
+                    horario = true;
+                    diasDeSemana.add(3);
+                    horariosPorDia.add(new horariosAUX(jComboBox9.getSelectedItem().toString(), jComboBox10.getSelectedItem().toString()));
+                    cantidadDiasPeriodica++;
+                }
+            }//miercoles
+            if (jCheckBox11.isSelected()) {
+                if (jComboBox11.getSelectedItem().toString().equals(jComboBox12.getSelectedItem().toString())) {
+                    jLabel2.setText("Inicio no puede ser igual a final");
+                    horario = false;
+                } else {
+                    jLabel2.setText("");
+                    horario = true;
+                    diasDeSemana.add(4);
+                    horariosPorDia.add(new horariosAUX(jComboBox11.getSelectedItem().toString(), jComboBox12.getSelectedItem().toString()));
+                    cantidadDiasPeriodica++;
+                }
+            }//jueves
+            if (jCheckBox12.isSelected()) {
+                if (jComboBox13.getSelectedItem().toString().equals(jComboBox14.getSelectedItem().toString())) {
+                    jLabel2.setText("Inicio no puede ser igual a final");
+                    horario = false;
+                } else {
+                    jLabel2.setText("");
+                    horario = true;
+                    diasDeSemana.add(5);
+                    horariosPorDia.add(new horariosAUX(jComboBox13.getSelectedItem().toString(), jComboBox14.getSelectedItem().toString()));
+                    cantidadDiasPeriodica++;
+                }
+            }}//viernes
+            if (!jCheckBox8.isSelected() && !jCheckBox9.isSelected() && !jCheckBox10.isSelected() && !jCheckBox11.isSelected() && !jCheckBox12.isSelected()) {
+                jLabel6.setForeground(Color.red);
+            } else {
+                jLabel6.setForeground(Color.black);
+            
+                //HASTA ACA SE GUARDA TODO CORRECTO EN LOS ARREGLOS DE LOS DIAS Y HORARIOS  
+                //SETEO DE LAS FECHAS INICIAL Y FINAL DE LAS RESERVAS A REALIZAR
+                //VER BIEN LAS FECHAS ESTAS
+                if (horario) {  //si no hay choque entre inicio yh fin de reserva
+                    if (periodicaRadioButton.isSelected()) {
+                        if (jComboBox1.getSelectedIndex() == 0) {
+                            inicio = inicio1C;
+                            fin = fin2C;
+                        }
+                        if (jComboBox1.getSelectedIndex() == 1) {
+                            inicio = inicio1C;
+                            fin = fin1C;
+                        }
+                        if (jComboBox1.getSelectedIndex() == 2) {
+                            inicio = inicio2C;
+                            fin = fin2C;
                         }
                     }
-                    //Sale aux en el primer dia de la semana que coincide
-                    h = aux.getTime().compareTo(fin) < 0;
-                    while (h) {//while para agregar los dias de reserva
-                        System.out.println("2");
-                        Date fechaAux = aux.getTime();
 
-                        // Display a date in day, month, year format
-                        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                        String fecha = formatter.format(fechaAux);
-                        DiareservaId idAux = new DiareservaId(fecha, horariosPorDia.get(i).getHorainicio(), horariosPorDia.get(i).getHorafin(), reserva.getId());
-                        reserva.diareservas.add(new Diareserva(idAux, reserva));
-                        aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
-                        //SE CHEQUEA h
-                        h = aux.getTime().compareTo(fin) < 0;
-                    }
-                    //se va a incrementar i, se vuelve al dia de hor, se acomoda en el siguiente dia seleccionado y se agregan todos los dias reserva
-                }
-                diasReserva = new ArrayList<>(reserva.getDiareservas());
-            }
-            //aca ya estan generados todos los diasreserva iniciales de nuestra reserva periodica
+                    //SE AGREGAN LOS DIASRESERVA, LUEGO SE USAN PARA BUSCAR LOS AULAS DISPONIBLES   
+                    if (periodicaRadioButton.isSelected()) {//<------RESERV PERIODICA
 
-            //System.out.println("pasamos a la ventana nueva");
-            /*OBTENER_DISPONIBILIDAD_DE_AULAS vent;
+                        Boolean h;
+                        if (reserva.diareservas.size() > 0) {
+                            //Ya se cargaron los dias anteriormente
+                        } else {
+
+                            for (int i = 0; i < diasDeSemana.size(); i++) {
+                                System.out.println("for");
+                                aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial CAMBIAR
+                                //Seteo en primer dia de semana
+                                boolean j = true;
+                                while (j) {
+                                    System.out.println("0");
+                                    if (aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) {
+                                        j = false;
+                                    } else {
+                                        aux.add(Calendar.DATE, 1);
+                                    }
+                                }
+                                //Sale aux en el primer dia de la semana que coincide
+                                h = aux.getTime().compareTo(fin) < 0;
+                                while (h) {//while para agregar los dias de reserva
+                                    System.out.println("2");
+                                    Date fechaAux = aux.getTime();
+
+                                    // Display a date in day, month, year format
+                                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                                    String fecha = formatter.format(fechaAux);
+                                    DiareservaId idAux = new DiareservaId(fecha, horariosPorDia.get(i).getHorainicio(), horariosPorDia.get(i).getHorafin(), reserva.getId());
+                                    reserva.diareservas.add(new Diareserva(idAux, reserva));
+                                    aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
+                                    //SE CHEQUEA h
+                                    h = aux.getTime().compareTo(fin) < 0;
+                                }
+                                //se va a incrementar i, se vuelve al dia de hor, se acomoda en el siguiente dia seleccionado y se agregan todos los dias reserva
+                            }
+                            diasReserva = new ArrayList<>(reserva.getDiareservas());
+                        }
+                        //aca ya estan generados todos los diasreserva iniciales de nuestra reserva periodica
+
+                        //System.out.println("pasamos a la ventana nueva");
+                        /*OBTENER_DISPONIBILIDAD_DE_AULAS vent;
             try {
                 vent = new OBTENER_DISPONIBILIDAD_DE_AULAS(reserva);
                 vent.setVisible(true);
             } catch (ParseException ex) {
                 Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
             }*/
-            this.GenerarElegirAulaPeriodica(diasReserva);
+                        this.GenerarElegirAulaPeriodica(diasReserva);
 
-        } else {//SI ES ESPORÁDICA
-            diasReserva = new ArrayList<>(reserva.getDiareservas());
-            this.GenerarElegirAulaEsporadica(diasReserva);
+                    } else {//SI ES ESPORÁDICA
+                        diasReserva = new ArrayList<>(reserva.getDiareservas());
+                        this.GenerarElegirAulaEsporadica(diasReserva);
 
-        }
+                    }
 
-        System.out.println("final boton");
-        System.out.println("tamaño");
-        System.out.println(diasReserva.size());
-        System.out.println(reserva.getDiareservas().size());
-        
-        if (periodicaRadioButton.isSelected()) {
-            if (reservaNumero > diasDeSemana.size()) {
-                this.Guardar();
+                    System.out.println("final boton");
+                    System.out.println("tamaño");
+                    System.out.println(diasReserva.size());
+                    System.out.println(reserva.getDiareservas().size());
+
+                    if (periodicaRadioButton.isSelected()) {
+                        if (reservaNumero > diasDeSemana.size()) {
+                            this.Guardar();
+                        }
+                    }
+                }
             }
         }
     }//GEN-LAST:event_aceptarButtonActionPerformed
@@ -727,7 +789,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         } else {
             if (reservaNumero >= diasDeSemana.size() + 1) {
                 //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
-                reserva.diareservas=new HashSet<>(diasReserva);
+                reserva.diareservas = new HashSet<>(diasReserva);
                 gestor.nuevaReserva(reserva, diasReserva);
                 aceptarButton.setEnabled(false);
             }
@@ -813,6 +875,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
