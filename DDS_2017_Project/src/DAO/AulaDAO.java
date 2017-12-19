@@ -13,7 +13,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -26,6 +25,8 @@ public class AulaDAO {
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
         Aula a = (Aula) session.get(Aula.class, idAula);
+        tx.commit();
+        session.close();
         return a;
     }
 

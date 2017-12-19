@@ -74,62 +74,6 @@ public class ReservaDAO {
         return aulas;
     }
 
-    public ArrayList<Aula> read(String periodo, ArrayList<Diareserva> diasReserva, String tipoDeAula, Integer cantidadAlumnos, ArrayList<Aula> disp) {
-
-        //En un principio clonamos las disponibles o posibles a las isponibles finales
-        ArrayList<Aula> disponibles = (ArrayList<Aula>) disp.clone();
-
-        SessionFactory sesion = HibernateUtil.getSessionFactory();
-        Session session = sesion.openSession();
-        Transaction tx = session.beginTransaction();
-
-        //Obtenemos los IDs de las que tenemos como disponibles para usar luego
-        ArrayList<String> idAulasDisp = new ArrayList<>();
-        for (int i = 0; i < disp.size(); i++) {
-            idAulasDisp.add(disp.get(i).getId());
-        }
-
-        //Encontramos las reservas que cumplen nuestras condiciones de busqueda para la nueva reserva
-        Criteria criterio1 = session.createCriteria(Reserva.class);
-        criterio1.add(Restrictions.or(Restrictions.eq("periodo", Periodo.ANUAL.toString()), Restrictions.eq("periodo", periodo)));
-        criterio1.add(Restrictions.eq("tipo", tipoDeAula));
-        criterio1.add(Restrictions.ge("cantidadAlumnos", cantidadAlumnos));
-
-        ArrayList<Reserva> reservasCoincidentes = (ArrayList<Reserva>) criterio1.list();
-
-        //Obtenemos los IDs de dichas reservas para usar despues
-        ArrayList<Integer> idReservas = new ArrayList<>();
-        for (int i = 0; i < disp.size(); i++) {
-            idReservas.add(reservasCoincidentes.get(i).getId());
-        }
-
-        //Encontramos los DiaReserva correspondientes a las reservas que pueden generar conflicto encontradas anteriormente
-        Criteria criterio2 = session.createCriteria(Diareserva.class);
-        criterio2.add(Restrictions.in("id", idReservas));
-
-        ArrayList<Diareserva> diasCoincidentes = (ArrayList<Diareserva>) criterio2.list();
-
-        //Obtenemos los IDs de aulas no disponibles segun los objetos DiaReserva que encontramos antes
-        ArrayList<String> idAulasNoDisp = new ArrayList<>();
-        for (int i = 0; i < diasCoincidentes.size(); i++) {
-            idAulasNoDisp.add(diasCoincidentes.get(i).getAula().getId());
-        }
-
-        //Lo pasamos a Set y lo volvemos para no tener repetidos
-        Set<String> aux = new HashSet<>(idAulasNoDisp);
-        idAulasNoDisp = new ArrayList<>(aux);
-
-        //Obtenemos los objetos aula correspondiente a los IDs encontrados antes
-        Criteria criterio3 = session.createCriteria(Aula.class);
-        criterio3.add(Restrictions.in("idAula", idAulasNoDisp));
-
-        ArrayList<Aula> noDisp = (ArrayList<Aula>) criterio3.list();
-
-        //A las disponibles en primer lugar, le "restamos" las no disponibles encontradas y las devolvemos
-        disponibles.removeAll(noDisp);
-        return disponibles;
-    }
-
     public Integer getIdReserva() {
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
@@ -141,35 +85,5 @@ public class ReservaDAO {
         session.close();
 
         return (count + 1);
-    }
-
-    public ArrayList<Diareserva> getDiaReserva(String id, String fecha) {
-
-        SessionFactory sesion = HibernateUtil.getSessionFactory();
-        Session session = sesion.openSession();
-        Transaction tx = session.beginTransaction();
-        
-        ArrayList<Diareserva> Dias = new ArrayList<>();
-        ArrayList<Diareserva> diasAux2 = new ArrayList<>();
-        List<Diareserva> diasAux1 = session.createCriteria(Diareserva.class)
-                //.add(Restrictions.eq("idAula", id))
-                //.add(Restrictions.eq("fecha", fecha))
-                .list();//para cada aula, me devuelve los diasAux1 reserva de ese dia
-        
-   
-        
-        diasAux1.stream().filter((d) -> (d.getIdAula().getId().equals(id))).forEachOrdered((d) -> {
-            diasAux2.add(d);
-        });
-       
-        
-        diasAux2.stream().filter((d) -> (d.getId().getFecha().equals(fecha))).forEachOrdered((d) -> {
-            Dias.add(d);
-        });
-
-        tx.commit();
-        session.close();
-        //System.out.println(Dias);
-        return (ArrayList<Diareserva>) Dias;
     }
 }

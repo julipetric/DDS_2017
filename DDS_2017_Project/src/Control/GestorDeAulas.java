@@ -7,10 +7,6 @@ package Control;
 
 import bd.model.Aula;
 import DAO.AulaDAO;
-import bd.dto.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 /**
  *
@@ -28,20 +24,11 @@ public class GestorDeAulas {
     }
 
     public void modificarAulaSinRecursos() {
-        //IMPLEMENTAR GATITOS
-        //IMPLEMENTAR GATITOS 
-        //IMPLEMENTAR GATITOS
     }
 
     public void modificarAulaInformatica() {
-        //IMPLEMENTAR GATITOS
-        //IMPLEMENTAR GATITOS 
-        //IMPLEMENTAR GATITOS
     }
 
     public void modificarAulaMultimedios() {
-        //IMPLEMENTAR GATITOS
-        //IMPLEMENTAR GATITOS 
-        //IMPLEMENTAR GATITOS
     }
 }
