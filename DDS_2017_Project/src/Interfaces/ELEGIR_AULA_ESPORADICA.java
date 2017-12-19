@@ -5,15 +5,12 @@
  */
 package Interfaces;
 
-import Clases.EstructAUX;
-import Clases.ItemChangeListener;
 import Control.GestorReserva;
 import bd.model.Aula;
 import bd.model.Diareserva;
 import bd.model.Reserva;
 import java.text.ParseException;
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;

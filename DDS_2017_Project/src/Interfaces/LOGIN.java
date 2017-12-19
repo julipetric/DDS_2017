@@ -145,36 +145,33 @@ public class LOGIN extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // boton aceptar
-       
-        if( !jTextField1.getText().isEmpty() && jPasswordField1.getPassword().length!=0 ){   
-            jLabel3.setText("");   
+
+        if (!jTextField1.getText().isEmpty() && jPasswordField1.getPassword().length != 0) {
+            jLabel3.setText("");
             String usuario = jTextField1.getText();
             String pass = jPasswordField1.getText();
             GestorDeAutenticacion control = new GestorDeAutenticacion();
-           List lista = control.autenticar(usuario, pass);
-            
-            if(!lista.isEmpty()){
-            PRINCIPAL_ADMIN v1 = new PRINCIPAL_ADMIN();
-            v1.setNombreApellido(lista);
-            this.dispose();
-            v1.setVisible(true);
-            
-             }
-                else{
-                     jLabel3.setText("Datos incorrectos");
-                     }
-            
-        }
-        else{
+            List lista = control.autenticar(usuario, pass);
+
+            if (!lista.isEmpty()) {
+                PRINCIPAL_ADMIN v1 = new PRINCIPAL_ADMIN();
+                v1.setNombreApellido(lista);
+                this.dispose();
+                v1.setVisible(true);
+
+            } else {
+                jLabel3.setText("Datos incorrectos");
+            }
+
+        } else {
             jLabel3.setText("Complete todos los datos");
         }
-        
-        
-    
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       //boton cancelar
+        //boton cancelar
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 

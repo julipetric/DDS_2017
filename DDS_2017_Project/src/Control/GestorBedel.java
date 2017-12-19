@@ -36,13 +36,13 @@ public class GestorBedel {
             errores.set(5, true);
         }
 
-         //VEMOS SI YA EXISTE EL NOMBRE DE USUARIO
+        //VEMOS SI YA EXISTE EL NOMBRE DE USUARIO
         UsuarioDAO dao1 = new UsuarioDAO();
         List lista = null;
         lista = dao1.consultaNombreUsuario(usuario);
         System.out.println(lista.size());
         if (!lista.isEmpty()) {
-            error=true;
+            error = true;
             errores.set(2, true);
         }
         if (nombre.equals("")) {
@@ -54,15 +54,15 @@ public class GestorBedel {
             errores.set(1, true);
             error = true;
         }
-        
-        if(usuario.equals("")){
+
+        if (usuario.equals("")) {
             errores.set(2, true);
             error = true;
         }
-        
-        if(turno == null){
-           errores.set(3, true);
-            error = true; 
+
+        if (turno == null) {
+            errores.set(3, true);
+            error = true;
         }
 
         System.out.println(error + " Error de si existe el nombre de usuario");
@@ -70,13 +70,12 @@ public class GestorBedel {
         //llamada a dao si esta todo correcto
         if (error == false && errorp == false) {
             return false;
-        }
-        else{
-             return true;
+        } else {
+            return true;
         }
     }
-    
-    public boolean validar(String nombre, String apellido, Turno turno, String contra, String contra2, ArrayList<Boolean> errores,String IDUSUARIO) {
+
+    public boolean validar(String nombre, String apellido, Turno turno, String contra, String contra2, ArrayList<Boolean> errores, String IDUSUARIO) {
         PoliticaSeguridad politica;
         politica = new PoliticaSeguridad();
         Boolean contraseñaRepetida = false;
@@ -87,18 +86,17 @@ public class GestorBedel {
             errores.set(4, true);
             errores.set(5, true);
         }
-        
+
         //contraseña no repetida por el usuario
         UsuarioDAO dao = new UsuarioDAO();
-        Boolean existe = dao.consultarContraseña(IDUSUARIO,contra);
-        
+        Boolean existe = dao.consultarContraseña(IDUSUARIO, contra);
+
         if (existe) {
             errores.set(4, true);
             errores.set(5, true);
             contraseñaRepetida = true;
         }
-        
-        
+
         if (nombre.equals("")) {
             errores.set(0, true);
             error = true;
@@ -108,91 +106,83 @@ public class GestorBedel {
             errores.set(1, true);
             error = true;
         }
-  
-        if(turno == null){
-           errores.set(3, true);
-            error = true; 
+
+        if (turno == null) {
+            errores.set(3, true);
+            error = true;
         }
-        
+
         System.out.println(errorp);
         //llamada a dao si esta todo correcto
         if (error == false && errorp == false && !contraseñaRepetida) {
             return false;
-        }
-        else{
-             return true;
+        } else {
+            return true;
         }
     }
-       
+
     private void eliminarBedel(Bedel bedel) {
-        //IMPLEMENTAR GATITOS
-        //IMPLEMENTAR GATITOS 
-        //IMPLEMENTAR GATITOS
     }
 
     public Bedel modificarBedel(String ID) {
-       UsuarioDAO dao = new UsuarioDAO();
-       Bedel bedel = dao.traerBedel(ID);
-       return bedel;
+        UsuarioDAO dao = new UsuarioDAO();
+        Bedel bedel = dao.traerBedel(ID);
+        return bedel;
     }
 
-     public void modificarBedel(String usuario,String nombre,String apellido,String contra,String turno,String fecha) {
-       UsuarioDAO dao = new UsuarioDAO();
-       Bedel b1 = new Bedel(usuario,nombre,apellido,contra,turno,fecha);
-       dao.modificarBedel(b1);
-    }
-    
-    public List buscarBedel (String apellido, Turno turno){
+    public void modificarBedel(String usuario, String nombre, String apellido, String contra, String turno, String fecha) {
         UsuarioDAO dao = new UsuarioDAO();
-        
+        Bedel b1 = new Bedel(usuario, nombre, apellido, contra, turno, fecha);
+        dao.modificarBedel(b1);
+    }
+
+    public List buscarBedel(String apellido, Turno turno) {
+        UsuarioDAO dao = new UsuarioDAO();
+
         List<Bedel> bedelesdao = dao.consultarApellidoUsuario(apellido);
         List<Bedel> filtrado = new ArrayList<>();        //filtrar de la lista de bedeles cuales cumplen las caract:
-        
-        
-        for (int i=0; i<bedelesdao.size(); i++){
-                System.out.println(bedelesdao.get(i).getNombre()+ "   " + bedelesdao.get(i).getTurno());
-                System.out.println(bedelesdao.get(i).getTurno().equals("MAÑANA"));
-                
-            }
-        
-         
-        if(turno == Turno.MAÑANA){
-            for (int i=0; i<bedelesdao.size(); i++){
-                if (bedelesdao.get(i).getTurno().equals("MAÑANA")){
+
+        for (int i = 0; i < bedelesdao.size(); i++) {
+            System.out.println(bedelesdao.get(i).getNombre() + "   " + bedelesdao.get(i).getTurno());
+            System.out.println(bedelesdao.get(i).getTurno().equals("MAÑANA"));
+
+        }
+
+        if (turno == Turno.MAÑANA) {
+            for (int i = 0; i < bedelesdao.size(); i++) {
+                if (bedelesdao.get(i).getTurno().equals("MAÑANA")) {
                     filtrado.add(bedelesdao.get(i));
-                    
+
                 }
             }
             return filtrado;
         }
-        if(turno == Turno.TARDE){
-            for (int i=0; i<bedelesdao.size(); i++){
-                if (bedelesdao.get(i).getTurno().equals("TARDE")){
+        if (turno == Turno.TARDE) {
+            for (int i = 0; i < bedelesdao.size(); i++) {
+                if (bedelesdao.get(i).getTurno().equals("TARDE")) {
                     filtrado.add(bedelesdao.get(i));
-                   
+
                 }
             }
             return filtrado;
         }
-        if(turno == Turno.NOCHE){
-            for (int i=0; i<bedelesdao.size(); i++){
-                if (bedelesdao.get(i).getTurno().equals("NOCHE")){
+        if (turno == Turno.NOCHE) {
+            for (int i = 0; i < bedelesdao.size(); i++) {
+                if (bedelesdao.get(i).getTurno().equals("NOCHE")) {
                     filtrado.add(bedelesdao.get(i));
-                   
+
                 }
             }
             return filtrado;
         }
-        
-        
-        return bedelesdao ; //bedelesdao;
+
+        return bedelesdao; //bedelesdao;
     }
-    
-    public void crearBedel(String usuario,String nombre,String apellido,String contra,String turno,String fecha){
-    UsuarioDAO dao = new UsuarioDAO();
-    Bedel b1 = new Bedel(usuario,nombre,apellido,contra,turno,fecha);
-    dao.crear(b1);
+
+    public void crearBedel(String usuario, String nombre, String apellido, String contra, String turno, String fecha) {
+        UsuarioDAO dao = new UsuarioDAO();
+        Bedel b1 = new Bedel(usuario, nombre, apellido, contra, turno, fecha);
+        dao.crear(b1);
     }
-   
-    
+
 }

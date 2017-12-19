@@ -12,10 +12,7 @@ import DAO.AulaDAO;
 import DAO.ReservaDAO;
 import bd.model.Diareserva;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -70,11 +67,11 @@ public class GestorReserva {
         AulaDAO daoA = new AulaDAO();
 
         //
-        ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
+        //ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
         List<Aula> posibles;
-        ArrayList<Diareserva> diasPorAula;
-        ArrayList<Aula> aulasDisponibles = new ArrayList<>();
-        ArrayList<Aula> struct = new ArrayList<>();
+        //ArrayList<Diareserva> diasPorAula;
+        //ArrayList<Aula> aulasDisponibles = new ArrayList<>();
+        //ArrayList<Aula> struct = new ArrayList<>();
 
         //System.out.println("estamos en el gestor");
         //System.out.println(reserva.tipoDeAula);
@@ -97,49 +94,17 @@ public class GestorReserva {
 
     }
 
-    public ArrayList<EstructAUX> obtenerDisponibilidadEsporadica(Reserva reserva) throws ParseException {
-
-        //Se crean DAOs para los objetos
-        ReservaDAO daoR = new ReservaDAO();
-        AulaDAO daoA = new AulaDAO();
-
-        //
-        ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
-        List<Aula> posibles;
-        ArrayList<Diareserva> diasPorAula;
-        ArrayList<Aula> aulasDisponibles = new ArrayList<>();
-        ArrayList<EstructAUX> struct = new ArrayList<>();
-
-        //System.out.println("estamos en el gestor");
-        //System.out.println(reserva.tipoDeAula);
-        //System.out.println(reserva.cantidadAlumnos);
-        //obtenemos compatibles con mi reserva
-        posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos());
-        //posibles está bien, trae todo
-
-        //Ordenar aulas por capacidad descendentemente
-        posibles.sort((Aula a1, Aula a2) -> (int) (a2.getCapacidad() - a1.getCapacidad()));
-
-        for (int i = 0; i < dias.size(); i++) { //recorro dias             
-
-            struct.add(new EstructAUX(dias.get(i), (ArrayList<Aula>) posibles));
-
-        }
-        System.out.println(struct);
-        return struct;
-    }
-
     public ArrayList<Aula> obtenerDisponibilidadDia(Reserva reserva, Diareserva dia) {
         //Se crean DAOs para los objetos
         ReservaDAO daoR = new ReservaDAO();
         AulaDAO daoA = new AulaDAO();
 
         //
-        ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
+        //ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
         List<Aula> posibles;
-        ArrayList<Diareserva> diasPorAula;
-        ArrayList<Aula> aulasDisponibles = new ArrayList<>();
-        ArrayList<Aula> struct = new ArrayList<>();
+        //ArrayList<Diareserva> diasPorAula;
+        //ArrayList<Aula> aulasDisponibles = new ArrayList<>();
+        //ArrayList<Aula> struct = new ArrayList<>();
 
         //System.out.println("estamos en el gestor");
         //System.out.println(reserva.tipoDeAula);
@@ -153,5 +118,4 @@ public class GestorReserva {
         
         return (ArrayList<Aula>) posibles;
     }
-
 }
