@@ -14,6 +14,7 @@ import bd.model.Diareserva;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -82,6 +83,9 @@ public class GestorReserva {
         posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos());
         //posibles está bien, trae todo
 
+        //Ordenar aulas por capacidad descendentemente
+        posibles.sort((Aula a1, Aula a2) -> (int) (a2.getCapacidad() - a1.getCapacidad()));
+
         return (ArrayList<Aula>) posibles;
     }
 
@@ -98,7 +102,7 @@ public class GestorReserva {
         //Se crean DAOs para los objetos
         ReservaDAO daoR = new ReservaDAO();
         AulaDAO daoA = new AulaDAO();
-        
+
         //
         ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
         List<Aula> posibles;
@@ -112,6 +116,9 @@ public class GestorReserva {
         //obtenemos compatibles con mi reserva
         posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos());
         //posibles está bien, trae todo
+
+        //Ordenar aulas por capacidad descendentemente
+        posibles.sort((Aula a1, Aula a2) -> (int) (a2.getCapacidad() - a1.getCapacidad()));
 
         for (int i = 0; i < dias.size(); i++) { //recorro dias             
 
@@ -141,6 +148,9 @@ public class GestorReserva {
         posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos());
         //posibles está bien, trae todo
 
+        //Ordenar aulas por capacidad descendentemente
+        posibles.sort((Aula a1, Aula a2) -> (int) (a2.getCapacidad() - a1.getCapacidad()));
+        
         return (ArrayList<Aula>) posibles;
     }
 
