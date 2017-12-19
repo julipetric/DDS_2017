@@ -680,6 +680,10 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                             inicio = inicio2C;
                             fin = fin2C;
                         }
+                        Date hoy = new Date();
+                        if(hoy.after(inicio)){
+                            inicio = hoy;
+                        }
                     }
 
                     //SE AGREGAN LOS DIASRESERVA, LUEGO SE USAN PARA BUSCAR LOS AULAS DISPONIBLES   
