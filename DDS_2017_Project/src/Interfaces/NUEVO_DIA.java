@@ -39,32 +39,38 @@ public class NUEVO_DIA extends javax.swing.JFrame {
         ventana = vent;
 
         this.cola.add("08:00");
-        this.cola.add("08:45");
+        this.cola.add("08:30");
+        this.cola.add("09:00");
         this.cola.add("09:30");
-        this.cola.add("10:15");
+        this.cola.add("10:00");
         this.cola.add("10:30");
-        this.cola.add("11:15");
+        this.cola.add("11:00");
+        this.cola.add("11:30");
         this.cola.add("12:00");
-        this.cola.add("12:45");
-        this.cola.add("13:15");
+        this.cola.add("12:30");
+        this.cola.add("13:00");
         this.cola.add("13:30");
         this.cola.add("14:00");
-        this.cola.add("14:15");
-        this.cola.add("14:45");
+        this.cola.add("14:30");
+        this.cola.add("15:00");
         this.cola.add("15:30");
-        this.cola.add("16:15");
+        this.cola.add("16:00");
         this.cola.add("16:30");
-        this.cola.add("17:15");
+        this.cola.add("17:00");
+        this.cola.add("17:30");
         this.cola.add("18:00");
-        this.cola.add("18:45");
+        this.cola.add("18:30");
         this.cola.add("19:00");
-        this.cola.add("19:45");
+        this.cola.add("19:30");
+        this.cola.add("20:00");
         this.cola.add("20:30");
-        this.cola.add("21:15");
+        this.cola.add("21:00");
         this.cola.add("21:30");
-        this.cola.add("22:15");
+        this.cola.add("22:00");
+        this.cola.add("22:30");
         this.cola.add("23:00");
-        this.cola.add("23:45");
+        this.cola.add("23:30");
+        
     this.setLocationRelativeTo(null);
     }
 
@@ -118,8 +124,8 @@ public class NUEVO_DIA extends javax.swing.JFrame {
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
-        horaInicioComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45\t" }));
-        horaInicioComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        horaInicioComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30" }));
+        horaInicioComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         horaInicioComboBox.setPreferredSize(new java.awt.Dimension(74, 20));
         horaInicioComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,8 +133,8 @@ public class NUEVO_DIA extends javax.swing.JFrame {
             }
         });
 
-        horaFinCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:45", "09:30", "10:15", "10:30", "11:15", "12:00", "12:45", "13:15", "13:30", "14:00", "14:15", "14:45", "15:30", "16:15", "16:30", "17:15", "18:00", "18:45", "19:00", "19:45", "20:30", "21:15", "21:30", "22:15", "23:00", "23:45" }));
-        horaFinCombobox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        horaFinCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30" }));
+        horaFinCombobox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         horaFinCombobox.setPreferredSize(new java.awt.Dimension(74, 20));
 
         jLabel1.setText("Fecha");
@@ -136,7 +142,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
         AceptarButton.setBackground(new java.awt.Color(204, 204, 204));
         AceptarButton.setText("Aceptar");
         AceptarButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        AceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         AceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AceptarButtonActionPerformed(evt);
@@ -145,7 +151,7 @@ public class NUEVO_DIA extends javax.swing.JFrame {
 
         jButton2.setText("Cerrar\n");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

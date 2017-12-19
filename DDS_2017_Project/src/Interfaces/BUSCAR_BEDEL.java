@@ -290,6 +290,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         int fila = jTable1.getSelectedRow(); 
         int columna = 3;
         JTableHeader th = jTable1.getTableHeader();

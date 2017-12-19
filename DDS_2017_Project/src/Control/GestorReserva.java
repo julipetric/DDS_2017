@@ -27,32 +27,38 @@ public class GestorReserva {
 
         cola = new ArrayList<>();
         this.cola.add("08:00");
-        this.cola.add("08:45");
+        this.cola.add("08:00");
+        this.cola.add("08:30");
+        this.cola.add("09:00");
         this.cola.add("09:30");
-        this.cola.add("10:15");
+        this.cola.add("10:00");
         this.cola.add("10:30");
-        this.cola.add("11:15");
+        this.cola.add("11:00");
+        this.cola.add("11:30");
         this.cola.add("12:00");
-        this.cola.add("12:45");
-        this.cola.add("13:15");
+        this.cola.add("12:30");
+        this.cola.add("13:00");
         this.cola.add("13:30");
         this.cola.add("14:00");
-        this.cola.add("14:15");
-        this.cola.add("14:45");
+        this.cola.add("14:30");
+        this.cola.add("15:00");
         this.cola.add("15:30");
-        this.cola.add("16:15");
+        this.cola.add("16:00");
         this.cola.add("16:30");
-        this.cola.add("17:15");
+        this.cola.add("17:00");
+        this.cola.add("17:30");
         this.cola.add("18:00");
-        this.cola.add("18:45");
+        this.cola.add("18:30");
         this.cola.add("19:00");
-        this.cola.add("19:45");
+        this.cola.add("19:30");
+        this.cola.add("20:00");
         this.cola.add("20:30");
-        this.cola.add("21:15");
+        this.cola.add("21:00");
         this.cola.add("21:30");
-        this.cola.add("22:15");
+        this.cola.add("22:00");
+        this.cola.add("22:30");
         this.cola.add("23:00");
-        this.cola.add("23:45");
+        this.cola.add("23:30");
 
     }
 
