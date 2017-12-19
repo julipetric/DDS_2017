@@ -21,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -34,13 +36,15 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
     private ArrayList<Date> dias;
     private Calendar calendario;
-    private Date inicio1C;
-    private Date fin1C;
-    private Date inicio2C;
-    private Periodo periodo;
-    private Date fin2C;
+    public Date inicio1C;
+    public Date fin1C;
+    public Date inicio2C;
+    public Periodo periodo;
+    public Date inicio;
+    public Date fin;
+    public Date fin2C;
     private TipoDeAula tipo;
-    private ArrayList<Integer> diasDeSemana;
+    public ArrayList<Integer> diasDeSemana;
     public Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
     private GestorReserva gestor;
@@ -49,6 +53,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private ArrayList<String> docentesArreglo;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     public Integer reservaNumero = 0;
+    private Integer cantidadDiasPeriodica = 0;
+    ArrayList<Diareserva> diasReserva;
+
     public REGISTRAR_RESERVA() {
         initComponents();
         DocenteDAO = new DocenteDAO();
@@ -72,7 +79,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         esporadicaRadioButton.setSelected(false);
         periodicaRadioButton.setSelected(true);
-        jButton3.setEnabled(false);
+        nuevoDiaButton.setEnabled(false);
         jTable1.setEnabled(false);
         reserva = new Reserva();
         gestor = new GestorReserva();
@@ -125,7 +132,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         aceptarButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        nuevoDiaButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -195,12 +202,12 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 204, 0));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("+");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        nuevoDiaButton.setBackground(new java.awt.Color(0, 204, 0));
+        nuevoDiaButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        nuevoDiaButton.setText("+");
+        nuevoDiaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                nuevoDiaButtonActionPerformed(evt);
             }
         });
 
@@ -357,7 +364,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(esporadicaRadioButton)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton3)
+                                        .addComponent(nuevoDiaButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -375,7 +382,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jButton3)
+                    .addComponent(nuevoDiaButton)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -452,9 +459,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private void periodicaRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_periodicaRadioButtonActionPerformed
         esporadicaRadioButton.setSelected(false);
 
-        jButton3.setEnabled(false);
+        nuevoDiaButton.setEnabled(false);
         jTable1.setEnabled(false);
-
         jComboBox1.setEnabled(true);
         jCheckBox8.setEnabled(true);
         jCheckBox9.setEnabled(true);
@@ -477,7 +483,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         periodicaRadioButton.setSelected(false);
 
-        jButton3.setEnabled(true);
+        nuevoDiaButton.setEnabled(true);
         jTable1.setEnabled(true);
 
         jComboBox1.setEnabled(false);
@@ -502,8 +508,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[3];
-        rowData[0] = dia.getId().getFecha().toString();
-
+        rowData[0] = dia.getId().getFecha();
         rowData[1] = dia.getId().getHoraInicio();
         rowData[2] = dia.getId().getHoraFin();
         modelo.addRow(rowData);
@@ -513,14 +518,14 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
 
-        
-        if (reservaNumero >= reserva.getDiareservas().size()+1){
-            this.Guardar();
+        if (esporadicaRadioButton.isSelected()) {
+            if (reservaNumero >= reserva.getDiareservas().size() + 1) {
+                this.Guardar();
+            }
         }
-        
-        
-        Date inicio = new Date();
-        Date fin = new Date();
+
+        this.inicio = new Date();
+        this.fin = new Date();
         Calendar aux = Calendar.getInstance();
         //comportamiento del botón aceptar
         calendario = Calendar.getInstance();
@@ -546,22 +551,27 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         if (jCheckBox8.isSelected()) {
             diasDeSemana.add(1);
             horariosPorDia.add(new horariosAUX(jComboBox3.getSelectedItem().toString(), jComboBox4.getSelectedItem().toString()));
+            cantidadDiasPeriodica++;
         }//lunes
         if (jCheckBox9.isSelected()) {
             diasDeSemana.add(2);
             horariosPorDia.add(new horariosAUX(jComboBox7.getSelectedItem().toString(), jComboBox8.getSelectedItem().toString()));
+            cantidadDiasPeriodica++;
         }//martes
         if (jCheckBox10.isSelected()) {
             diasDeSemana.add(3);
             horariosPorDia.add(new horariosAUX(jComboBox9.getSelectedItem().toString(), jComboBox10.getSelectedItem().toString()));
+            cantidadDiasPeriodica++;
         }//miercoles
         if (jCheckBox11.isSelected()) {
             diasDeSemana.add(4);
             horariosPorDia.add(new horariosAUX(jComboBox11.getSelectedItem().toString(), jComboBox12.getSelectedItem().toString()));
+            cantidadDiasPeriodica++;
         }//jueves
         if (jCheckBox12.isSelected()) {
             diasDeSemana.add(5);
             horariosPorDia.add(new horariosAUX(jComboBox13.getSelectedItem().toString(), jComboBox14.getSelectedItem().toString()));
+            cantidadDiasPeriodica++;
         }//viernes
 
         //HASTA ACA SE GUARDA TODO CORRECTO EN LOS ARREGLOS DE LOS DIAS Y HORARIOS  
@@ -584,105 +594,123 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
 
         //SE AGREGAN LOS DIASRESERVA, LUEGO SE USAN PARA BUSCAR LOS AULAS DISPONIBLES   
         if (periodicaRadioButton.isSelected()) {//<------RESERV PERIODICA
-            Boolean h = false;
-            for (int i = 0; i < diasDeSemana.size(); i++) {
-                System.out.println("for");
-                aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial CAMBIAR
-                //Seteo en primer dia de semana
-                boolean j = true;
-                while (j) {
-                    System.out.println("0");
-                    if (aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) {
-                        j = false;
-                    } else {
-                        aux.add(Calendar.DATE, 1);
-                    }
-                }
-                //Sale aux en el primer dia de la semana que coincide
-                if (aux.getTime().compareTo(fin) < 0) {
-                    h = true;
-                } else {
-                    h = false;
-                }
-                while (h) {//while para agregar los dias de reserva
-                    System.out.println("2");
-                    Date fechaAux = aux.getTime();
 
-                    // Display a date in day, month, year format
-                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                    String fecha = formatter.format(fechaAux);
-                    DiareservaId idAux = new DiareservaId(fecha, horariosPorDia.get(i).getHorainicio(), horariosPorDia.get(i).getHorafin(), reserva.getId());
-                    reserva.diareservas.add(new Diareserva(idAux, reserva));
-                    aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
-                    //SE CHEQUEA h
-                    if (aux.getTime().compareTo(fin) < 0) {
-                        h = true;
-                    } else {
-                        h = false;
+            Boolean h;
+            if (reserva.diareservas.size() > 0) {
+                //Ya se cargaron los dias anteriormente
+            } else {
+
+                for (int i = 0; i < diasDeSemana.size(); i++) {
+                    System.out.println("for");
+                    aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial CAMBIAR
+                    //Seteo en primer dia de semana
+                    boolean j = true;
+                    while (j) {
+                        System.out.println("0");
+                        if (aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) {
+                            j = false;
+                        } else {
+                            aux.add(Calendar.DATE, 1);
+                        }
                     }
+                    //Sale aux en el primer dia de la semana que coincide
+                    h = aux.getTime().compareTo(fin) < 0;
+                    while (h) {//while para agregar los dias de reserva
+                        System.out.println("2");
+                        Date fechaAux = aux.getTime();
+
+                        // Display a date in day, month, year format
+                        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                        String fecha = formatter.format(fechaAux);
+                        DiareservaId idAux = new DiareservaId(fecha, horariosPorDia.get(i).getHorainicio(), horariosPorDia.get(i).getHorafin(), reserva.getId());
+                        reserva.diareservas.add(new Diareserva(idAux, reserva));
+                        aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
+                        //SE CHEQUEA h
+                        h = aux.getTime().compareTo(fin) < 0;
+                    }
+                    //se va a incrementar i, se vuelve al dia de hor, se acomoda en el siguiente dia seleccionado y se agregan todos los dias reserva
                 }
-                //se va a incrementar i, se vuelve al dia de hor, se acomoda en el siguiente dia seleccionado y se agregan todos los dias reserva
+                diasReserva = new ArrayList<>(reserva.getDiareservas());
             }
             //aca ya estan generados todos los diasreserva iniciales de nuestra reserva periodica
 
             //System.out.println("pasamos a la ventana nueva");
-            OBTENER_DISPONIBILIDAD_DE_AULAS vent;
+            /*OBTENER_DISPONIBILIDAD_DE_AULAS vent;
             try {
                 vent = new OBTENER_DISPONIBILIDAD_DE_AULAS(reserva);
                 vent.setVisible(true);
             } catch (ParseException ex) {
                 Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
+            this.GenerarElegirAulaPeriodica(diasReserva);
 
         } else {//SI ES ESPORÁDICA
-            ArrayList<Diareserva> diasReserva = new ArrayList<>(reserva.getDiareservas());
-            this.GenerarElegirAula(diasReserva);       
+            diasReserva = new ArrayList<>(reserva.getDiareservas());
+            this.GenerarElegirAulaEsporadica(diasReserva);
+
         }
 
-
+        System.out.println("final boton");
+        System.out.println("tamaño");
+        System.out.println(diasReserva.size());
+        System.out.println(reserva.getDiareservas().size());
+        
+        if (periodicaRadioButton.isSelected()) {
+            if (reservaNumero > diasDeSemana.size()) {
+                this.Guardar();
+            }
+        }
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
     public Reserva getReserva() {
         return reserva;
     }
- 
-    public void GenerarElegirAula(ArrayList<Diareserva> diasReserva){
-    //System.out.println("pasamos a la ventana nueva");
-       if (reservaNumero < reserva.getDiareservas().size()) {
-                ELEGIR_AULA vent;
-                try {
-                    vent = new ELEGIR_AULA(reserva, diasReserva.get(reservaNumero),reservaNumero,this,diasReserva);
-                    vent.setVisible(true);     
-                } catch (ParseException ex) {
-                    Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-                }
-     }
-     reservaNumero++;
-     
-     if (reservaNumero == reserva.getDiareservas().size()+1){
+
+    public void GenerarElegirAulaEsporadica(ArrayList<Diareserva> diasReserva) {
+        //System.out.println("pasamos a la ventana nueva");
+        if (reservaNumero < reserva.getDiareservas().size()) {
+            ELEGIR_AULA_ESPORADICA vent;
+            try {
+                vent = new ELEGIR_AULA_ESPORADICA(reserva, diasReserva.get(reservaNumero), reservaNumero, this, diasReserva);
+                vent.setVisible(true);
+            } catch (ParseException ex) {
+                Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        reservaNumero++;
+
+        if (reservaNumero > diasReserva.size()) {
             aceptarButton.setText("Guardar");
         }
-       
+
     }
-    
-    private void Guardar(){
-    if (reservaNumero == reserva.getDiareservas().size()+1){
-            ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
-            gestor.nuevaReserva(reserva, arrayAux);
-            
-            aceptarButton.setEnabled(false);
-            
+
+    private void Guardar() {
+        if (this.esporadicaRadioButton.isSelected()) {
+            if (reservaNumero >= reserva.getDiareservas().size() + 1) {
+                //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
+                gestor.nuevaReserva(reserva, diasReserva);
+
+                aceptarButton.setEnabled(false);
+            }
+        } else {
+            if (reservaNumero >= diasDeSemana.size() + 1) {
+                //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
+                reserva.diareservas=new HashSet<>(diasReserva);
+                gestor.nuevaReserva(reserva, diasReserva);
+                aceptarButton.setEnabled(false);
+            }
         }
     }
-    
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+    private void nuevoDiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoDiaButtonActionPerformed
         //ACCION DE NUEVO DIA
 
         NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(reserva, this.inicio1C, this.fin2C, this);
         ventana_NUEVO_DIA.setVisible(true);
 
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_nuevoDiaButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
@@ -728,7 +756,6 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cantAlumnosComboBox;
     private javax.swing.JRadioButton esporadicaRadioButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox12;
@@ -764,6 +791,26 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton nuevoDiaButton;
     private javax.swing.JRadioButton periodicaRadioButton;
     // End of variables declaration//GEN-END:variables
+
+    public void GenerarElegirAulaPeriodica(ArrayList<Diareserva> diasReserva) {
+        //System.out.println("pasamos a la ventana nueva");
+        if (reservaNumero < this.cantidadDiasPeriodica) {
+            ELEGIR_AULA_PERIODICA vent;
+            try {
+                vent = new ELEGIR_AULA_PERIODICA(reserva, reservaNumero, this, this.diasDeSemana.get(reservaNumero), this.cantidadDiasPeriodica);
+                vent.setVisible(true);
+            } catch (ParseException ex) {
+                Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        reservaNumero++;
+
+        if (reservaNumero == this.cantidadDiasPeriodica + 1) {
+            aceptarButton.setText("Guardar");
+        }
+
+    }
 }

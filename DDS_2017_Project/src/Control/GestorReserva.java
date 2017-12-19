@@ -63,18 +63,26 @@ public class GestorReserva {
         resDao.crear(reserva, dias);
     }
 
-    public ArrayList<Aula> obtenerDisponibilidadPeriodica(Reserva res) {
-        ArrayList<Aula> posibles;
-        AulaDAO aulaDao = new AulaDAO();
+    public ArrayList<Aula> obtenerDisponibilidadPeriodica(Reserva reserva) {
+        //Se crean DAOs para los objetos
+        ReservaDAO daoR = new ReservaDAO();
+        AulaDAO daoA = new AulaDAO();
 
-        posibles = (ArrayList<Aula>) aulaDao.getPosibles(res.getTipoAula(), res.getCantidadAlumnos());
+        //
+        ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
+        List<Aula> posibles;
+        ArrayList<Diareserva> diasPorAula;
+        ArrayList<Aula> aulasDisponibles = new ArrayList<>();
+        ArrayList<Aula> struct = new ArrayList<>();
 
-        ArrayList<Aula> disponibles;
-        ReservaDAO resDao = new ReservaDAO();
+        //System.out.println("estamos en el gestor");
+        //System.out.println(reserva.tipoDeAula);
+        //System.out.println(reserva.cantidadAlumnos);
+        //obtenemos compatibles con mi reserva
+        posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos());
+        //posibles está bien, trae todo
 
-        disponibles = resDao.read(res.getPeriodo(), (ArrayList)res.getDiareservas(), res.getTipoAula(), res.getCantidadAlumnos(), posibles);
-
-        return disponibles;
+        return (ArrayList<Aula>) posibles;
     }
 
     public List listaReservasDia(String dia, String tipo, String aula) {
@@ -83,13 +91,6 @@ public class GestorReserva {
         List<Reserva> reservasdao = dao.read(dia, tipo, aula);//o bien envío datos, o bien asterisco
         return reservasdao;
 
-    }
-
-    public ArrayList listarReservasCurso(String curso) {
-        //IMPLEMENTAR GATITOS
-        //IMPLEMENTAR GATITOS 
-        //IMPLEMENTAR GATITOS
-        return new ArrayList();
     }
 
     public ArrayList<EstructAUX> obtenerDisponibilidadEsporadica(Reserva reserva) throws ParseException {
@@ -108,16 +109,14 @@ public class GestorReserva {
         //System.out.println("estamos en el gestor");
         //System.out.println(reserva.tipoDeAula);
         //System.out.println(reserva.cantidadAlumnos);
-        
         //obtenemos compatibles con mi reserva
         posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos());
         //posibles está bien, trae todo
-        
 
         for (int i = 0; i < dias.size(); i++) { //recorro dias             
-            
-            struct.add(new EstructAUX(dias.get(i), (ArrayList<Aula>)posibles));
-            
+
+            struct.add(new EstructAUX(dias.get(i), (ArrayList<Aula>) posibles));
+
         }
         System.out.println(struct);
         return struct;
@@ -138,15 +137,11 @@ public class GestorReserva {
         //System.out.println("estamos en el gestor");
         //System.out.println(reserva.tipoDeAula);
         //System.out.println(reserva.cantidadAlumnos);
-        
         //obtenemos compatibles con mi reserva
         posibles = daoA.getPosibles(reserva.getTipoAula(), reserva.getCantidadAlumnos());
         //posibles está bien, trae todo
-        
+
         return (ArrayList<Aula>) posibles;
     }
 
-    
-
-    
 }

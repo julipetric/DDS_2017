@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Julian
  */
-public class ELEGIR_AULA extends javax.swing.JFrame {
+public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
 
     Reserva reserva;
     GestorReserva gestor;
@@ -36,12 +36,13 @@ public class ELEGIR_AULA extends javax.swing.JFrame {
     private String totalTitulo;
     private Boolean ejecutando = true;
     private REGISTRAR_RESERVA VentanaReserva;
-    ArrayList<Diareserva> Reservas;
-    
+    public ArrayList<Diareserva> diasReserva;
+    private Integer totalDias;
+
     /**
      * Creates new form ELEGIR_AULA
      */
-    public ELEGIR_AULA() {
+    public ELEGIR_AULA_ESPORADICA() {
         initComponents();
     }
 
@@ -49,17 +50,16 @@ public class ELEGIR_AULA extends javax.swing.JFrame {
         return aceptarButton;
     }
 
-    ELEGIR_AULA(Reserva reserva, Diareserva diaReserva, Integer actual,REGISTRAR_RESERVA VentanaReserva,ArrayList<Diareserva> Reservas) throws ParseException {
+    ELEGIR_AULA_ESPORADICA(Reserva reserva, Diareserva diaReserva, Integer actual, REGISTRAR_RESERVA VentanaReserva, ArrayList<Diareserva> diasReserva) throws ParseException {
         this.VentanaReserva = VentanaReserva;
-        this.Reservas = Reservas;
-        
+        this.diasReserva = diasReserva;
         this.diaTitulo = diaReserva.getId().getFecha();
         this.totalTitulo = Integer.toString(reserva.getDiareservas().size());
-        this.actualTitulo = Integer.toString(actual+1);
+        this.actualTitulo = Integer.toString(actual + 1);
         initComponents();
 
         this.setReserva(reserva);
-        this.setDia(diaReserva);
+        this.dia=diaReserva;
         gestor = new GestorReserva();
         diasArreglo = new ArrayList<>();
 
@@ -70,8 +70,8 @@ public class ELEGIR_AULA extends javax.swing.JFrame {
         for (int i = 0; i < this.getAulas().size(); i++) {
             this.agregarFilaATabla(this.getAulas().get(i));
         }
-        
-        fechaLabel.setText(this.diaTitulo );
+
+        fechaLabel.setText(this.diaTitulo);
     }
 
     public void agregarFilaATabla(Aula aula) {
@@ -321,7 +321,7 @@ public class ELEGIR_AULA extends javax.swing.JFrame {
         } else {
             this.getReserva().getDiareservas().add(this.getDia());
             this.setEjecutando(false);
-            VentanaReserva.GenerarElegirAula(Reservas);
+            VentanaReserva.GenerarElegirAulaEsporadica(diasReserva);
             this.dispose();
         }
     }//GEN-LAST:event_aceptarButtonActionPerformed
@@ -344,27 +344,30 @@ public class ELEGIR_AULA extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA.class
+            java.util.logging.Logger.getLogger(ELEGIR_AULA_ESPORADICA.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA.class
+            java.util.logging.Logger.getLogger(ELEGIR_AULA_ESPORADICA.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA.class
+            java.util.logging.Logger.getLogger(ELEGIR_AULA_ESPORADICA.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA.class
+            java.util.logging.Logger.getLogger(ELEGIR_AULA_ESPORADICA.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ELEGIR_AULA().setVisible(true);
+                new ELEGIR_AULA_ESPORADICA().setVisible(true);
             }
         });
     }
