@@ -16,6 +16,7 @@ public class DIA_YA_EXISTE extends javax.swing.JFrame {
      */
     public DIA_YA_EXISTE() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -31,6 +32,7 @@ public class DIA_YA_EXISTE extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Error en fecha ingresada");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Fecha y hora seleccionadas ya fueron ingresadas previamente");

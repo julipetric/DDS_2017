@@ -238,11 +238,11 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
             }
             System.out.println("CANTIDAD DE FILAS "+modelo.getRowCount());
             if (modelo.getRowCount()==0) {
-                jLabel4.setText("no se encontraron bedeles");
+                jLabel4.setText("No se encontraron bedeles");
             }else{jLabel4.setText("");}
         }
         else{
-            jLabel4.setText("no se encontraron bedeles");
+            jLabel4.setText("No se encontraron bedeles");
         }
         
         

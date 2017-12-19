@@ -44,6 +44,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
      */
     public ELEGIR_AULA_ESPORADICA() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public JButton getAceptarButton() {
@@ -72,6 +73,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
         }
 
         fechaLabel.setText(this.diaTitulo);
+        this.setLocationRelativeTo(null);
     }
 
     public void agregarFilaATabla(Aula aula) {
@@ -249,7 +251,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
         fechaLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         cancelarButton.setText("Cancelar");
-        cancelarButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cancelarButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cancelarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,9 +259,9 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
             }
         });
 
-        aceptarButton.setBackground(new java.awt.Color(0, 102, 255));
+        aceptarButton.setBackground(new java.awt.Color(204, 204, 204));
         aceptarButton.setText("Aceptar");
-        aceptarButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        aceptarButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         aceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         aceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
