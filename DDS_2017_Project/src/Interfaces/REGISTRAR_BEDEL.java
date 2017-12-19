@@ -8,7 +8,9 @@ package Interfaces;
 import Clases.Turno;
 import Control.GestorBedel;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -30,6 +32,7 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
     public REGISTRAR_BEDEL() {
         controlador = new GestorBedel();
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public void errorNombre() {
@@ -250,7 +253,11 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         if(!datosInvalidos){
             TODO_OK bien = new TODO_OK();
             bien.setVisible(true);
-            controlador.crearBedel(usuario,nombre,apellido,contra,turno.toString());
+            
+            java.util.Date fecha = new Date();
+            String fechaFormat = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
+            
+            controlador.crearBedel(usuario,nombre,apellido,contra,turno.toString(),fechaFormat);
         }
     }//GEN-LAST:event_aceptarButtonActionPerformed
 

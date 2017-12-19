@@ -7,6 +7,7 @@ package Control;
 
 import DAO.UsuarioDAO;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -17,7 +18,7 @@ public class GestorDeAutenticacion {
     public GestorDeAutenticacion() {
     }
    
-    public Boolean autenticar(String usuario, String password){
+    public List autenticar(String usuario, String password){
        UsuarioDAO dao = new UsuarioDAO();
 
        return dao.readLogAdmin(usuario, password);

@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Control.GestorDeAutenticacion;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,8 @@ public class LOGIN extends javax.swing.JFrame {
      */
     public LOGIN() {
         initComponents();
-        jLabel3.setText("");   
+        jLabel3.setText("");
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -60,17 +62,20 @@ public class LOGIN extends javax.swing.JFrame {
         jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPasswordField1.setToolTipText("");
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setText("Aceptar");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setText("Cancelar");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -140,26 +145,31 @@ public class LOGIN extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // boton aceptar
-        boolean verif = false;
+       
         if( !jTextField1.getText().isEmpty() && jPasswordField1.getPassword().length!=0 ){   
             jLabel3.setText("");   
             String usuario = jTextField1.getText();
             String pass = jPasswordField1.getText();
             GestorDeAutenticacion control = new GestorDeAutenticacion();
-            verif = control.autenticar(usuario, pass);
+           List lista = control.autenticar(usuario, pass);
+            
+            if(!lista.isEmpty()){
+            PRINCIPAL_ADMIN v1 = new PRINCIPAL_ADMIN();
+            v1.setNombreApellido(lista);
+            this.dispose();
+            v1.setVisible(true);
+            
+             }
+                else{
+                     jLabel3.setText("Datos incorrectos");
+                     }
+            
         }
         else{
             jLabel3.setText("Complete todos los datos");
         }
         
-        if(verif==true){
-            PRINCIPAL_ADMIN v1 = new PRINCIPAL_ADMIN();
-            v1.setVisible(true);
-            
-        }
-        else{
-              jLabel3.setText("Datos incorrectos");
-        }
+        
     
     }//GEN-LAST:event_jButton1ActionPerformed
 

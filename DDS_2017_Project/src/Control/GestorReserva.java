@@ -98,7 +98,7 @@ public class GestorReserva {
         //Se crean DAOs para los objetos
         ReservaDAO daoR = new ReservaDAO();
         AulaDAO daoA = new AulaDAO();
-
+        
         //
         ArrayList<Diareserva> dias = new ArrayList<>(reserva.getDiareservas());
         List<Aula> posibles;

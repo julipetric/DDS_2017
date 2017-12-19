@@ -9,11 +9,13 @@ import Clases.Turno;
 import bd.dto.HibernateUtil;
 import bd.model.Admin;
 import bd.model.Bedel;
+import bd.model.Historialdecontrasenia;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateError;
 import org.hibernate.HibernateException;
@@ -41,9 +43,10 @@ public class UsuarioDAO {
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
-       
+        Historialdecontrasenia historial = new Historialdecontrasenia(bedel,bedel.getFecha(),bedel.getPassword());
         try{
             session.save(bedel);
+            session.save(historial);
             tx.commit();
             session.close();
         }catch(HibernateError e){
@@ -92,7 +95,7 @@ public class UsuarioDAO {
         session.close();
         return lista;
     }
-    public boolean readLogAdmin(String usuario, String pass){
+    public List readLogAdmin(String usuario, String pass){
         boolean verif = false;
         List<Admin> lista = null;
         
@@ -104,11 +107,9 @@ public class UsuarioDAO {
                      .add(Restrictions.eq("nombre",usuario))
                      .add(Restrictions.eq("password",pass))
                      .list(); 
-        
-        verif = !lista.isEmpty();
         tx.commit();
         session.close();
-        return verif;
+        return lista;
     }
     
     public List read(String apellido, Turno turno){
@@ -146,16 +147,52 @@ public class UsuarioDAO {
       SessionFactory sesion = HibernateUtil.getSessionFactory();
       Session session = sesion.openSession();
       Transaction tx = session.beginTransaction();
+      Historialdecontrasenia historial = new Historialdecontrasenia(bedel,bedel.getFecha(),bedel.getPassword());
+      
       try{
        session.merge(bedel);
+       session.save(historial);
       }catch(HibernateException e){
           if (tx != null) {
               tx.rollback();
           }
           e.printStackTrace();
       }
-     
+
       tx.commit();
       session.close();
      }
+
+    public Boolean consultarContraseña(String IDUSUARIO, String contra) {
+      SessionFactory sesion = HibernateUtil.getSessionFactory();
+      Session session = sesion.openSession();
+      Transaction tx = session.beginTransaction();
+      
+       List<Bedel>lista = session.createCriteria(Bedel.class)
+                     .add(Restrictions.eq("nombreUsuario",IDUSUARIO))
+                     .list(); 
+       
+       
+        if (!lista.isEmpty()) { 
+         Set historial = lista.get(0).getHistorialdecontrasenias();
+         ArrayList<Historialdecontrasenia> contieneHistorial = new ArrayList();
+         ArrayList<String> Contraseñas = new ArrayList();
+         
+         contieneHistorial.addAll(historial);
+         
+         for(Historialdecontrasenia H : contieneHistorial){
+         Contraseñas.add(H.getValue());
+         }
+
+         System.out.println("CONTRAS "+lista.get(0).getHistorialdecontrasenias()+"tien que estar en true "+Contraseñas.contains(contra));
+        if (Contraseñas.contains(contra) ) {
+        return true;
+        }else{
+        return false;
+        }
+       }else{
+        return false;
+        }
+      
+    }
 }

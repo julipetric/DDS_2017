@@ -16,6 +16,7 @@ public class ERROR_EN_DATOS extends javax.swing.JFrame {
      */
     public ERROR_EN_DATOS() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

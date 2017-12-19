@@ -1,5 +1,5 @@
 package bd.model;
-// Generated Dec 15, 2017 3:18:15 PM by Hibernate Tools 4.3.1
+// Generated 16-dic-2017 9:38:19 by Hibernate Tools 4.3.1
 
 
 
@@ -9,31 +9,30 @@ package bd.model;
 public class Historialdecontrasenia  implements java.io.Serializable {
 
 
-     private int value;
+     private Integer id;
      private Bedel bedel;
-     private Integer fecha;
-     private Integer actual;
+     private String fecha;
+     private String value;
 
     public Historialdecontrasenia() {
     }
 
 	
-    public Historialdecontrasenia(int value) {
+    public Historialdecontrasenia(String value) {
         this.value = value;
     }
-    public Historialdecontrasenia(int value, Bedel bedel, Integer fecha, Integer actual) {
-       this.value = value;
+    public Historialdecontrasenia(Bedel bedel, String fecha, String value) {
        this.bedel = bedel;
        this.fecha = fecha;
-       this.actual = actual;
+       this.value = value;
     }
    
-    public int getValue() {
-        return this.value;
+    public Integer getId() {
+        return this.id;
     }
     
-    public void setValue(int value) {
-        this.value = value;
+    public void setId(Integer id) {
+        this.id = id;
     }
     public Bedel getBedel() {
         return this.bedel;
@@ -42,19 +41,19 @@ public class Historialdecontrasenia  implements java.io.Serializable {
     public void setBedel(Bedel bedel) {
         this.bedel = bedel;
     }
-    public Integer getFecha() {
+    public String getFecha() {
         return this.fecha;
     }
     
-    public void setFecha(Integer fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    public Integer getActual() {
-        return this.actual;
+    public String getValue() {
+        return this.value;
     }
     
-    public void setActual(Integer actual) {
-        this.actual = actual;
+    public void setValue(String value) {
+        this.value = value;
     }
 
 

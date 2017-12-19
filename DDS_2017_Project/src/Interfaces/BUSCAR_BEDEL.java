@@ -27,7 +27,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
         
         jLabel4.setText(" ");
         
-
+       this.setLocationRelativeTo(null);
     }
 
     /**
@@ -171,9 +171,9 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
                                 .addGap(97, 97, 97)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
@@ -226,9 +226,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setRowCount(0);
-        if(!listabedeles.isEmpty())  {
-            
-            
+        if(!listabedeles.isEmpty())  {  
             Object rowData[] = new Object[4];
 
             for (int i = 0; i<listabedeles.size(); i++){
@@ -238,6 +236,10 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
                 rowData[3] = listabedeles.get(i).getNombreUsuario();
                 modelo.addRow(rowData);
             }
+            System.out.println("CANTIDAD DE FILAS "+modelo.getRowCount());
+            if (modelo.getRowCount()==0) {
+                jLabel4.setText("no se encontraron bedeles");
+            }else{jLabel4.setText("");}
         }
         else{
             jLabel4.setText("no se encontraron bedeles");
@@ -256,7 +258,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
             String apellbusq = jTextField1.getText();   
             Turno turnobusqueda = this.devolverTurno(jComboBox2.getSelectedIndex());
             List<Bedel> salida = controlador.buscarBedel(apellbusq, turnobusqueda);  
-            
+ 
             this.llenarTabla(salida);
            
            }else{ jLabel4.setText("Complete el apellido");}
@@ -265,10 +267,10 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
               if(!jTextField1.getText().isEmpty()){
                    String apellbusq = jTextField1.getText();    //a controlador
                    List<Bedel> salida = controlador.buscarBedel(apellbusq, null);
-                   
+                
                    this.llenarTabla(salida);
          
-                   jLabel4.setText(" ");
+                   
               }else{ jLabel4.setText("Complete el apellido");}
         }
          if(!jCheckBox3.isSelected() && jCheckBox4.isSelected()){  //checkbox turno
@@ -276,7 +278,7 @@ public class BUSCAR_BEDEL extends javax.swing.JFrame {
            
             List<Bedel> salida = controlador.buscarBedel("*", turnobusqueda); //a controlador
             this.llenarTabla(salida);
-            jLabel4.setText(" ");
+            
         }
          if(!jCheckBox3.isSelected() && !jCheckBox4.isSelected()){  //ninguno
             jLabel4.setText("Seleccione una opcion");
