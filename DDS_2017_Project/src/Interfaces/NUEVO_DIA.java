@@ -22,12 +22,12 @@ public class NUEVO_DIA extends javax.swing.JFrame {
 
     private Date fechaInicio;
     private Date fechaFin;
-    private REGISTRAR_RESERVA ventana;
+    private REGISTRAR_RESERVA1 ventana;
     private Reserva reserva;
 
     private final ArrayList<String> cola;
 
-    public NUEVO_DIA(Reserva res, Date inicio, Date fin, REGISTRAR_RESERVA vent) {
+    public NUEVO_DIA(Reserva res, Date inicio, Date fin, REGISTRAR_RESERVA1 vent) {
         initComponents();
         reserva = res;
         fechaInicio = inicio;

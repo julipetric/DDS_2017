@@ -11,6 +11,8 @@ import bd.model.Diareserva;
 import bd.model.Reserva;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -32,7 +34,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
     private String actualTitulo;
     private String totalTitulo;
     private Boolean ejecutando = true;
-    private REGISTRAR_RESERVA VentanaReserva;
+    private REGISTRAR_RESERVA1 VentanaReserva;
     public ArrayList<Diareserva> diasReserva;
     private Integer totalDias;
 
@@ -48,7 +50,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
         return aceptarButton;
     }
 
-    ELEGIR_AULA_ESPORADICA(Reserva reserva, Diareserva diaReserva, Integer actual, REGISTRAR_RESERVA VentanaReserva, ArrayList<Diareserva> diasReserva) throws ParseException {
+    ELEGIR_AULA_ESPORADICA(Reserva reserva, Diareserva diaReserva, Integer actual, REGISTRAR_RESERVA1 VentanaReserva, ArrayList<Diareserva> diasReserva) throws ParseException {
         this.VentanaReserva = VentanaReserva;
         this.diasReserva = diasReserva;
         this.diaTitulo = diaReserva.getId().getFecha();
@@ -62,7 +64,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
         diasArreglo = new ArrayList<>();
 
         this.aulas = new ArrayList<>();
-        this.setAulas(gestor.obtenerDisponibilidadDia(reserva, this.getDia()));
+        this.aulas = gestor.obtenerDisponibilidadDia(reserva, this.getDia());
         //tengo todas las aulas
 
         for (int i = 0; i < this.getAulas().size(); i++) {
@@ -310,6 +312,9 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaAulasMouseClicked
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+       
+        VentanaReserva.reservaNumero = 0;
+        reserva.getDiareservas().clear();
         this.dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
@@ -318,9 +323,13 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
             ERROR_SELECCION_FILA vent = new ERROR_SELECCION_FILA();
             vent.setVisible(true);
         } else {
-            this.getReserva().getDiareservas().add(this.getDia());
+            reserva.getDiareservas().add(this.getDia());
             this.setEjecutando(false);
-            VentanaReserva.GenerarElegirAulaEsporadica(diasReserva);
+            try {
+                VentanaReserva.GenerarElegirAulaEsporadica(diasReserva);
+            } catch (ParseException ex) {
+                Logger.getLogger(ELEGIR_AULA_ESPORADICA.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_aceptarButtonActionPerformed
