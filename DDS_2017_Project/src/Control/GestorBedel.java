@@ -64,11 +64,22 @@ public class GestorBedel {
             errores.set(3, true);
             error = true;
         }
+        
+        for (int i = 0; i < nombre.length(); i++) {        
+            if ((nombre.charAt(i) >= 'A' && nombre.charAt(i)<='Z') || (nombre.charAt(i) >= 'a' && nombre.charAt(i) <= 'z')) { 
+            }else{errores.set(0,true);errores.set(6,true);break;}    
+        }
+        
+       for (int i = 0; i < apellido.length(); i++) {
+           if ((apellido.charAt(i)>= 'A' && apellido.charAt(i)<='Z') || ( apellido.charAt(i) >= 'a' && apellido.charAt(i) <= 'z')) { 
+            }else{errores.set(1,true);errores.set(7,true);break;}
+        }
+        
 
         System.out.println(error + " Error de si existe el nombre de usuario");
         System.out.println(errorp);
         //llamada a dao si esta todo correcto
-        if (error == false && errorp == false) {
+        if (error == false && errorp == false && !errores.get(0) && !errores.get(7)) {
             return false;
         } else {
             return true;
@@ -111,10 +122,21 @@ public class GestorBedel {
             errores.set(3, true);
             error = true;
         }
+        
+         for (int i = 0; i < nombre.length(); i++) {        
+            if ((nombre.charAt(i) >= 'A' && nombre.charAt(i)<='Z') || (nombre.charAt(i) >= 'a' && nombre.charAt(i) <= 'z')) { 
+            }else{errores.set(0,true);errores.set(6,true);break;}    
+        }
+        
+       for (int i = 0; i < apellido.length(); i++) {
+           if ((apellido.charAt(i)>= 'A' && apellido.charAt(i)<='Z') || ( apellido.charAt(i) >= 'a' && apellido.charAt(i) <= 'z')) { 
+            }else{errores.set(1,true);errores.set(7,true);break;}
+        }
+        
 
         System.out.println(errorp);
         //llamada a dao si esta todo correcto
-        if (error == false && errorp == false && !contraseñaRepetida) {
+        if (error == false && errorp == false && !contraseñaRepetida && !errores.get(0) && !errores.get(7)) {
             return false;
         } else {
             return true;

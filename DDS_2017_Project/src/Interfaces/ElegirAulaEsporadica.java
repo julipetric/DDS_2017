@@ -312,12 +312,13 @@ public class ElegirAulaEsporadica extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaAulasMouseClicked
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
-
         VentanaReserva.reservaNumero = 0;
         reserva.getDiareservas().clear();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo =(DefaultTableModel) VentanaReserva.getjTable1().getModel();
         modelo.setRowCount(0);
+        VentanaReserva.getCursoTextField().setText("");
+        reserva = new Reserva();
         this.dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 

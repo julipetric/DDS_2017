@@ -333,6 +333,11 @@ public class ElegirAulaPeriodica extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaAulasMouseClicked
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        ventanaReserva.reservaNumero = 0;
+        reserva.getDiareservas().clear();
+        ventanaReserva.getCursoTextField().setText("");
+        reserva = new Reserva();
+        ventanaReserva.restablecerDiasSeleccionados();
         this.dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 

@@ -290,35 +290,22 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         Boolean errorNombre= false;
         Boolean errorApellido= false;
         //se inicializa el arreglo de tipos de error
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 8; i++) {
             datosError.add(false);
         }
       
-        for (int i = 0; i < nombre.length(); i++) {        
-            if ((nombre.charAt(i) >= 'A' && nombre.charAt(i)<='Z') || (nombre.charAt(i) >= 'a' && nombre.charAt(i) <= 'z')) { 
-            }else{errorNombre=true;break;}    
-        }
-        
-       for (int i = 0; i < apellido.length(); i++) {
-           if ((apellido.charAt(i)>= 'A' && apellido.charAt(i)<='Z') || ( apellido.charAt(i) >= 'a' && apellido.charAt(i) <= 'z')) { 
-            }else{errorApellido=true;break;}
-        }
-        
-        
-        
-         if (errorNombre) {
+        boolean datosInvalidos = controlador.validar(nombre, apellido, usuario, turno, contra, contra2, datosError);
+ 
+            if (datosError.get(6)) {
                 jLabel9.setText("Solo letras");
                   jLabel2.setForeground(Color.red);
             }else{ jLabel9.setText("");  jLabel2.setForeground(Color.black);}
-            if (errorApellido) {
+            if (datosError.get(7)) {
                 jLabel10.setText("Solo letras");
                   jLabel3.setForeground(Color.red);
             }else{ jLabel10.setText("");  jLabel3.setForeground(Color.black);}
-        
-        
-        if (!errorNombre && !errorApellido) {
-            boolean datosInvalidos = controlador.validar(nombre, apellido, usuario, turno, contra, contra2, datosError);
-
+            
+           
             //se colorean los datos invalidos
             if (datosError.get(0)) {
                 errorNombre();
@@ -364,7 +351,7 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
                 usernameTextField.setText("");
                 turnoComboBox.setSelectedIndex(0);
             }
-        }
+        
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

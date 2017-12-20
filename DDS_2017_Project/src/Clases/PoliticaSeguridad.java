@@ -27,7 +27,7 @@ public class PoliticaSeguridad {
         Transaction tx = session.beginTransaction();
 
         lista = session.createCriteria(Politicaseguridad.class).list();
-       System.out.println(lista.size());
+        System.out.println(lista.size());
         Politicaseguridad politica = lista.get(0);
         
         int min = politica.getLongmin();

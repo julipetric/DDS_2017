@@ -42,7 +42,7 @@ public class ReservaDAO {
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
-        session.save(reserva);
+        session.save(reserva);   
         tx.commit();
         session.close();
         
@@ -53,7 +53,9 @@ public class ReservaDAO {
         
         for(int i=0;i<dias.size();i++){
             Diareserva diaAux = dias.get(i);
-            session.save(diaAux);
+            if (diaAux.getIdAula()!=null) {
+              session.save(diaAux);  
+            }    
         }
         
         tx.commit();
