@@ -8,9 +8,13 @@ package Interfaces;
 import Clases.Turno;
 import Control.GestorBedel;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -32,7 +36,34 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
     public REGISTRAR_BEDEL() {
         controlador = new GestorBedel();
         initComponents();
+        jLabel9.setText("");
+        jLabel10.setText("");
         this.setLocationRelativeTo(null);
+
+        nombreTextField.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (nombreTextField.getText().length() >= 12) {
+                    e.consume();
+                }
+            }
+        });
+
+        lastnameTextField.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (lastnameTextField.getText().length() >= 20) {
+                    e.consume();
+                }
+            }
+        });
+
+        usernameTextField.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (usernameTextField.getText().length() >= 32) {
+                    e.consume();
+                }
+            }
+        });
+
     }
 
     public void errorNombre() {
@@ -103,6 +134,8 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         aceptarButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NUEVO BEDEL");
@@ -113,6 +146,12 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Registrar un nuevo bedel");
+
+        nombreTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreTextFieldActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nombre/s");
 
@@ -133,7 +172,7 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         aceptarButton.setBackground(new java.awt.Color(204, 204, 204));
         aceptarButton.setText("Aceptar");
         aceptarButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        aceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        aceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         aceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarButtonActionPerformed(evt);
@@ -143,12 +182,16 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setText("Cancelar");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
+
+        jLabel10.setForeground(new java.awt.Color(255, 51, 51));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,7 +202,10 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(usernameTextField)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nombreTextField)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -173,7 +219,10 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
                         .addComponent(aceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pass2TextField, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10))
                     .addComponent(lastnameTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(turnoComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
@@ -187,11 +236,15 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lastnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -234,30 +287,83 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         contra2 = pass2TextField.getText();
         turno = Turno.valueOf(turnoComboBox.getSelectedItem().toString());
         datosError = new ArrayList<>();
-        
+        Boolean errorNombre= false;
+        Boolean errorApellido= false;
         //se inicializa el arreglo de tipos de error
-        for(int i=0; i<6; i++){
+        for (int i = 0; i < 6; i++) {
             datosError.add(false);
         }
+      
+        for (int i = 0; i < nombre.length(); i++) {        
+            if ((nombre.charAt(i) >= 'A' && nombre.charAt(i)<='Z') || (nombre.charAt(i) >= 'a' && nombre.charAt(i) <= 'z')) { 
+            }else{errorNombre=true;break;}    
+        }
+        
+       for (int i = 0; i < apellido.length(); i++) {
+           if ((apellido.charAt(i)>= 'A' && apellido.charAt(i)<='Z') || ( apellido.charAt(i) >= 'a' && apellido.charAt(i) <= 'z')) { 
+            }else{errorApellido=true;break;}
+        }
+        
+        
+        
+         if (errorNombre) {
+                jLabel9.setText("Solo letras");
+                  jLabel2.setForeground(Color.red);
+            }else{ jLabel9.setText("");  jLabel2.setForeground(Color.black);}
+            if (errorApellido) {
+                jLabel10.setText("Solo letras");
+                  jLabel3.setForeground(Color.red);
+            }else{ jLabel10.setText("");  jLabel3.setForeground(Color.black);}
+        
+        
+        if (!errorNombre && !errorApellido) {
+            boolean datosInvalidos = controlador.validar(nombre, apellido, usuario, turno, contra, contra2, datosError);
 
-        boolean datosInvalidos = controlador.validar(nombre, apellido, usuario, turno, contra, contra2, datosError);
-        
-        //se colorean los datos invalidos
-        if(datosError.get(0)) errorNombre(); else nombreOk();
-        if(datosError.get(1)) errorApellido(); else apellidoOk();
-        if(datosError.get(2)) errorUsuario(); else usuarioOk();
-        if(datosError.get(3)) errorTurno(); else turnoOk();
-        if(datosError.get(4)) errorContra(); else contraOk();
-        if(datosError.get(5)) errorContra2(); else contra2Ok();
-        
-        if(!datosInvalidos){
-            TODO_OK bien = new TODO_OK();
-            bien.setVisible(true);
-            
-            java.util.Date fecha = new Date();
-            String fechaFormat = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
-            
-            controlador.crearBedel(usuario,nombre,apellido,contra,turno.toString(),fechaFormat);
+            //se colorean los datos invalidos
+            if (datosError.get(0)) {
+                errorNombre();
+            } else {
+                nombreOk();
+            }
+            if (datosError.get(1)) {
+                errorApellido();
+            } else {
+                apellidoOk();
+            }
+            if (datosError.get(2)) {
+                errorUsuario();
+            } else {
+                usuarioOk();
+            }
+            if (datosError.get(3)) {
+                errorTurno();
+            } else {
+                turnoOk();
+            }
+            if (datosError.get(4)) {
+                errorContra();
+            } else {
+                contraOk();
+            }
+            if (datosError.get(5)) {
+                errorContra2();
+            } else {
+                contra2Ok();
+            }
+
+            if (!datosInvalidos) {
+                TODO_OK bien = new TODO_OK();
+                bien.setVisible(true);
+                java.util.Date fecha = new Date();
+                String fechaFormat = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
+                controlador.crearBedel(usuario, nombre, apellido, contra, turno.toString(), fechaFormat);
+                nombreTextField.setText("");
+                lastnameTextField.setText("");
+                pass1TextField.setText("");
+                pass2TextField.setText("");
+                usernameTextField.setText("");
+                turnoComboBox.setSelectedIndex(0);
+            }
         }
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
@@ -266,6 +372,10 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         v3.setVisible(true);
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void nombreTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,6 +417,7 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
     private javax.swing.JButton aceptarButton;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -314,6 +425,7 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField lastnameTextField;
     private javax.swing.JTextField nombreTextField;
     private javax.swing.JPasswordField pass1TextField;
