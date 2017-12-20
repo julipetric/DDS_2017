@@ -843,9 +843,8 @@ public class RegistrarReserva extends javax.swing.JFrame {
                 aceptarButton.setEnabled(false);
             }
         }
-        Exito bien = new Exito();
+        Exito bien = new Exito(this);
         bien.setVisible(true);
-        this.dispose();
     }
 
     private void nuevoDiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoDiaButtonActionPerformed

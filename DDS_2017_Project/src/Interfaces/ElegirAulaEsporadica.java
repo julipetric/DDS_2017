@@ -308,13 +308,16 @@ public class ElegirAulaEsporadica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaAulasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAulasMouseClicked
-        this.getDia().setAula(this.getAulas().get(tablaAulas.getSelectedRow()));
+        Integer select = tablaAulas.getSelectedRow();
+        this.getDia().setAula(this.getAulas().get(select));
+        System.out.println("stuff");
     }//GEN-LAST:event_tablaAulasMouseClicked
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
        
         VentanaReserva.reservaNumero = 0;
         reserva.getDiareservas().clear();
+        
         this.dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 

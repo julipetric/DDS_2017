@@ -11,12 +11,26 @@ package Interfaces;
  */
 public class Exito extends javax.swing.JFrame {
 
+    RegistrarReserva padre;
+
     /**
      * Creates new form TODO_OK
      */
     public Exito() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    Exito(RegistrarReserva padre) {
+        this.padre = padre;
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
+
+    public int cerrar() {
+        if (this.padre != null) padre.dispose();
+        this.dispose();
+        return 1;
     }
 
     /**
@@ -30,7 +44,9 @@ public class Exito extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(this.cerrar()
+        );
+        setTitle("Accion realizada con exito");
         setAlwaysOnTop(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -56,7 +72,6 @@ public class Exito extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
