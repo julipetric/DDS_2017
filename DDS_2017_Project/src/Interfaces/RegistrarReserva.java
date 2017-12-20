@@ -867,6 +867,13 @@ public class RegistrarReserva extends javax.swing.JFrame {
         } 
        
     }
+
+    public ArrayList<Diareserva> getDiasReserva() {
+        return diasReserva;
+    }
+    
+    
+    
  public Reserva getReserva() {
         return reserva;
     }

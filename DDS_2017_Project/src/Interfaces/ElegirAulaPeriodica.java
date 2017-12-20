@@ -338,6 +338,8 @@ public class ElegirAulaPeriodica extends javax.swing.JFrame {
         ventanaReserva.getCursoTextField().setText("");
         reserva = new Reserva();
         ventanaReserva.restablecerDiasSeleccionados();
+        ventanaReserva.diasDeSemana.clear();
+        ventanaReserva.getDiasReserva().clear();
         this.dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
