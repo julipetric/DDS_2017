@@ -22,11 +22,13 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `apellido` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla roomguard.admin: ~0 rows (aproximadamente)
 DELETE FROM `admin`;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` (`id`, `nombre`, `apellido`, `password`) VALUES
+	(1, 'Tomas', 'Fleitas', '123456789');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 
@@ -46,6 +48,8 @@ CREATE TABLE IF NOT EXISTS `aula` (
 -- Volcando datos para la tabla roomguard.aula: ~0 rows (aproximadamente)
 DELETE FROM `aula`;
 /*!40000 ALTER TABLE `aula` DISABLE KEYS */;
+INSERT INTO `aula` (`id`, `capacidad`, `pizzaron`, `habilitada`, `canion`, `ac`, `ubicacion`, `tipo`) VALUES
+	('1', 20, 'TIZA', b'1', b'1', b'1', 'piso 1', 'MULTIMEDIOS');
 /*!40000 ALTER TABLE `aula` ENABLE KEYS */;
 
 
@@ -104,18 +108,20 @@ CREATE TABLE IF NOT EXISTS `bedel` (
   PRIMARY KEY (`nombreUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.bedel: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.bedel: ~9 rows (aproximadamente)
 DELETE FROM `bedel`;
 /*!40000 ALTER TABLE `bedel` DISABLE KEYS */;
 INSERT INTO `bedel` (`nombre`, `apellido`, `nombreUsuario`, `password`, `turno`, `fecha`) VALUES
-	('terce', 'ahorasiPerro', '1245', 'sisisisisi', 'NOCHE', '16/12/2017'),
+	('terce', 'ahorasiPerro', '1245', '1597538522', 'TARDE', '19/12/2017'),
 	('TomasAndres', 'Fleitas', 'aewqd1', '789456123', 'NOCHE', '16/12/2017'),
-	('nuevonuevo', 'nuevonuevo', 'Ejeje', '123456789', 'MAÑANA', '16/12/2017'),
+	('nuevonuevo', 'nuevonuevo', 'Ejeje', '1234567892222', 'MAÑANA', '16/12/2017'),
 	('Tomas', 'Andres', 'ElCoco', 'ahoraanda', 'MAÑANA', '16/12/2017'),
-	('ElTomaa', 'Fleitas', 'ElTomaa', 'ahoraanda', 'MAÑANA', '16/12/2017'),
+	('ElTomaa', 'Fleitas', 'ElTomaa', '123456789', 'MAÑANA', '16/12/2017'),
 	('ElTomaaGG', 'Fleitas', 'ElTomaa2', '1234567892', 'MAÑANA', '16/12/2017'),
 	('asdsad', 'adasd', 'ElTomaaa', '123456789', 'MAÑANA', '16/12/2017'),
-	('Jose', 'Rodriguez', 'Jose', '123456789', 'MAÑANA', '16/12/2017');
+	('Jose', 'Rodriguez', 'Jose', '123456789', 'MAÑANA', '16/12/2017'),
+	('JulianSabe', 'Patriarca', 'Julian', '789456123', 'NOCHE', '16/12/2017'),
+	('tomas', 'fleitas', 'TomasFleitas', '1234567892', 'MAÑANA', '19/12/2017');
 /*!40000 ALTER TABLE `bedel` ENABLE KEYS */;
 
 
@@ -136,6 +142,19 @@ CREATE TABLE IF NOT EXISTS `diareserva` (
 -- Volcando datos para la tabla roomguard.diareserva: ~0 rows (aproximadamente)
 DELETE FROM `diareserva`;
 /*!40000 ALTER TABLE `diareserva` DISABLE KEYS */;
+INSERT INTO `diareserva` (`fecha`, `horaInicio`, `horaFin`, `idReserva`, `idAula`) VALUES
+	('01/12/2017', '08:00', '08:30', 1, '1'),
+	('01/12/2017', '08:00', '08:30', 2, '1'),
+	('02/12/2017', '08:00', '08:30', 1, '1'),
+	('03/12/2017', '08:00', '08:30', 1, '1'),
+	('04/12/2017', '08:00', '08:30', 1, '1'),
+	('05/12/2017', '08:00', '08:30', 1, '1'),
+	('14/12/2017', '08:00', '08:30', 2, '1'),
+	('16/12/2017', '08:00', '08:30', 2, '1'),
+	('22/12/2017', '08:30', '09:30', 2, '1'),
+	('22/12/2017', '10:00', '11:00', 2, '1'),
+	('23/12/2017', '08:30', '09:30', 2, '1'),
+	('24/12/2017', '08:30', '09:30', 2, '1');
 /*!40000 ALTER TABLE `diareserva` ENABLE KEYS */;
 
 
@@ -146,11 +165,13 @@ CREATE TABLE IF NOT EXISTS `docente` (
   `nombre` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla roomguard.docente: ~0 rows (aproximadamente)
 DELETE FROM `docente`;
 /*!40000 ALTER TABLE `docente` DISABLE KEYS */;
+INSERT INTO `docente` (`id`, `apellido`, `nombre`, `email`) VALUES
+	(1, 'Fleitas', 'Tomas', 'tomas_federal@hotmail.com');
 /*!40000 ALTER TABLE `docente` ENABLE KEYS */;
 
 
@@ -181,9 +202,9 @@ CREATE TABLE IF NOT EXISTS `historialdecontrasenia` (
   PRIMARY KEY (`ID`),
   KEY `FKaBedel` (`nombreUsuario`),
   CONSTRAINT `FKaBedel` FOREIGN KEY (`nombreUsuario`) REFERENCES `bedel` (`nombreUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.historialdecontrasenia: ~18 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.historialdecontrasenia: ~25 rows (aproximadamente)
 DELETE FROM `historialdecontrasenia`;
 /*!40000 ALTER TABLE `historialdecontrasenia` DISABLE KEYS */;
 INSERT INTO `historialdecontrasenia` (`nombreUsuario`, `fecha`, `value`, `ID`) VALUES
@@ -204,7 +225,17 @@ INSERT INTO `historialdecontrasenia` (`nombreUsuario`, `fecha`, `value`, `ID`) V
 	('aewqd1', '16/12/2017', '789456123', 21),
 	('ElTomaa2', '16/12/2017', '123456789', 22),
 	('ElTomaa2', '16/12/2017', '789456123', 23),
-	('ElTomaa2', '16/12/2017', '1234567892', 24);
+	('ElTomaa2', '16/12/2017', '1234567892', 24),
+	('1245', '16/12/2017', '159753852', 25),
+	('Julian', '16/12/2017', '123456789', 26),
+	('Julian', '16/12/2017', '789456123', 27),
+	('Ejeje', '16/12/2017', '1234567892', 28),
+	('Ejeje', '16/12/2017', '12345678922', 29),
+	('Ejeje', '16/12/2017', '123456789222', 30),
+	('Ejeje', '16/12/2017', '1234567892222', 31),
+	('TomasFleitas', '19/12/2017', '123456789', 32),
+	('TomasFleitas', '19/12/2017', '1234567892', 33),
+	('1245', '19/12/2017', '1597538522', 34);
 /*!40000 ALTER TABLE `historialdecontrasenia` ENABLE KEYS */;
 
 
@@ -216,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `politicaseguridad` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla roomguard.politicaseguridad: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla roomguard.politicaseguridad: ~0 rows (aproximadamente)
 DELETE FROM `politicaseguridad`;
 /*!40000 ALTER TABLE `politicaseguridad` DISABLE KEYS */;
 INSERT INTO `politicaseguridad` (`longmin`, `longmax`, `id`) VALUES
@@ -231,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   `tipoAula` enum('MULTIMEDIOS','INFORMATICA','SINRECURSOS') NOT NULL,
   `cantidadAlumnos` int(10) NOT NULL,
   `nombreCurso` varchar(50) NOT NULL,
-  `periodo` enum('PRIMERO','SEGUNDO','ANUAL') NOT NULL,
+  `periodo` enum('PRIMERO','SEGUNDO','ANUAL','ESPORADICA') NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_idDocente_idReserva` (`idDocente`),
   CONSTRAINT `FK_idDocente_idReserva` FOREIGN KEY (`idDocente`) REFERENCES `docente` (`id`)
@@ -240,6 +271,9 @@ CREATE TABLE IF NOT EXISTS `reserva` (
 -- Volcando datos para la tabla roomguard.reserva: ~0 rows (aproximadamente)
 DELETE FROM `reserva`;
 /*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
+INSERT INTO `reserva` (`id`, `idDocente`, `tipoAula`, `cantidadAlumnos`, `nombreCurso`, `periodo`) VALUES
+	(1, 1, 'MULTIMEDIOS', 1, 'adad', 'ESPORADICA'),
+	(2, 1, 'MULTIMEDIOS', 1, 'adadsa', 'ESPORADICA');
 /*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
