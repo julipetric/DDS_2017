@@ -707,7 +707,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
     }
 
     private void setearFechasPeriodicas() {
-        if (periodoComboBox.getSelectedIndex() == 0) {
+        /*if (periodoComboBox.getSelectedIndex() == 0) {
             inicio = inicio1C;
             fin = fin2C;
         }
@@ -722,7 +722,12 @@ public class RegistrarReserva extends javax.swing.JFrame {
         Date hoy = new Date();
         if (hoy.after(inicio)) {
             inicio = hoy;
-        }
+        }*/
+        
+        
+        //PARA PROBAR SOLAMENTE, ESTAMOS EN FIN DE AÑO, AGREGA POCOS DIAS
+        inicio = inicio1C;
+        fin = fin2C;
     }
 
     private void setearFechasEsporadicas() {
@@ -786,8 +791,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
 
         //VERIFICACIONES GENERALES
         if (!this.verificarErrores()) {
-            
-            
+
             this.registrarDatosReserva();
             if (periodicaRadioButton.isSelected()) {
                 this.setearFechasPeriodicas();
@@ -838,7 +842,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
         reservaNumero++;
 
         if (reservaNumero > this.diasDeSemana.size()) {
-            aceptarButton.setText("Guardar");
+            this.Guardar();
         }
 
     }
@@ -849,27 +853,27 @@ public class RegistrarReserva extends javax.swing.JFrame {
 
     private void Guardar() {
         if (this.esporadicaRadioButton.isSelected()) {
-            if (reservaNumero >= reserva.getDiareservas().size() + 1) {
+            if (reservaNumero > reserva.getDiareservas().size()) {
                 //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
                 gestor.nuevaReserva(reserva, diasReserva);
-                
+
                 this.reservaNumero = 0;
                 reserva.getDiareservas().clear();
                 DefaultTableModel modelo = new DefaultTableModel();
-                modelo =(DefaultTableModel) this.getjTable1().getModel();
+                modelo = (DefaultTableModel) this.getjTable1().getModel();
                 modelo.setRowCount(0);
-                 reserva = new Reserva();
+                reserva = new Reserva();
             }
         } else {
-            if (reservaNumero >= diasDeSemana.size() + 1) {
+            if (reservaNumero > diasDeSemana.size()) {
                 //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
                 reserva.diareservas = new HashSet<>(diasReserva);
                 gestor.nuevaReserva(reserva, diasReserva);
-                
+
                 this.reservaNumero = 0;
                 reserva.getDiareservas().clear();
                 DefaultTableModel modelo = new DefaultTableModel();
-                modelo =(DefaultTableModel) this.getjTable1().getModel();
+                modelo = (DefaultTableModel) this.getjTable1().getModel();
                 modelo.setRowCount(0);
                 reserva = new Reserva();
             }
@@ -888,7 +892,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevoDiaButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
-       System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
     public static void main(String args[]) {
