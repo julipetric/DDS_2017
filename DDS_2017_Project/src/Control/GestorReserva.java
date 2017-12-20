@@ -100,9 +100,8 @@ public class GestorReserva {
 
     }
 
-    public ArrayList<Aula> obtenerDisponibilidadDia(Reserva reserva, Diareserva dia) {
+    public ArrayList<Aula> obtenerDisponibilidad(Reserva reserva) {
         //Se crean DAOs para los objetos
-        ReservaDAO daoR = new ReservaDAO();
         AulaDAO daoA = new AulaDAO();
 
         //
@@ -120,7 +119,7 @@ public class GestorReserva {
         //posibles está bien, trae todo
 
         //Ordenar aulas por capacidad descendentemente
-        posibles.sort((Aula a1, Aula a2) -> (int) (a2.getCapacidad() - a1.getCapacidad()));
+        posibles.sort((Aula a1, Aula a2) -> (int) (a1.getCapacidad() - a2.getCapacidad()));
         
         return (ArrayList<Aula>) posibles;
     }

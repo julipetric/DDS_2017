@@ -16,22 +16,22 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author rodri
  */
-public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
+public class PrincipalAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form PRINCIPAL
      */
-    public PRINCIPAL_ADMIN() {
+    public PrincipalAdmin() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PRINCIPAL_ADMIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            Logger.getLogger(PRINCIPAL_ADMIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(PRINCIPAL_ADMIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(PRINCIPAL_ADMIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
        
         initComponents();
@@ -137,7 +137,7 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
         jButton11.setBackground(new java.awt.Color(204, 204, 204));
         jButton11.setText("NUEVO BEDEL");
         jButton11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +148,7 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
         jButton12.setBackground(new java.awt.Color(204, 204, 204));
         jButton12.setText("BUSCAR BEDEL");
         jButton12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +162,7 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 0, 0));
         jButton2.setText("CERRAR SESION");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -256,7 +256,7 @@ public class PRINCIPAL_ADMIN extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                
-                new PRINCIPAL_ADMIN().setVisible(true);
+                new PrincipalAdmin().setVisible(true);
                 
             }
         });

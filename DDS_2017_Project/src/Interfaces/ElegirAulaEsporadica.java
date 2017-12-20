@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Julian
  */
-public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
+public class ElegirAulaEsporadica extends javax.swing.JFrame {
 
     Reserva reserva;
     GestorReserva gestor;
@@ -34,14 +34,14 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
     private String actualTitulo;
     private String totalTitulo;
     private Boolean ejecutando = true;
-    private REGISTRAR_RESERVA1 VentanaReserva;
+    private RegistrarReserva VentanaReserva;
     public ArrayList<Diareserva> diasReserva;
     private Integer totalDias;
 
     /**
      * Creates new form ELEGIR_AULA
      */
-    public ELEGIR_AULA_ESPORADICA() {
+    public ElegirAulaEsporadica() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -50,7 +50,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
         return aceptarButton;
     }
 
-    ELEGIR_AULA_ESPORADICA(Reserva reserva, Diareserva diaReserva, Integer actual, REGISTRAR_RESERVA1 VentanaReserva, ArrayList<Diareserva> diasReserva) throws ParseException {
+    ElegirAulaEsporadica(Reserva reserva, Diareserva diaReserva, Integer actual, RegistrarReserva VentanaReserva, ArrayList<Diareserva> diasReserva) throws ParseException {
         this.VentanaReserva = VentanaReserva;
         this.diasReserva = diasReserva;
         this.diaTitulo = diaReserva.getId().getFecha();
@@ -64,7 +64,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
         diasArreglo = new ArrayList<>();
 
         this.aulas = new ArrayList<>();
-        this.aulas = gestor.obtenerDisponibilidadDia(reserva, this.getDia());
+        this.aulas = gestor.obtenerDisponibilidad(reserva);
         //tengo todas las aulas
 
         for (int i = 0; i < this.getAulas().size(); i++) {
@@ -251,7 +251,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
 
         cancelarButton.setText("Cancelar");
         cancelarButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        cancelarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarButtonActionPerformed(evt);
@@ -261,7 +261,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
         aceptarButton.setBackground(new java.awt.Color(204, 204, 204));
         aceptarButton.setText("Aceptar");
         aceptarButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        aceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        aceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         aceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarButtonActionPerformed(evt);
@@ -328,7 +328,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
             try {
                 VentanaReserva.GenerarElegirAulaEsporadica(diasReserva);
             } catch (ParseException ex) {
-                Logger.getLogger(ELEGIR_AULA_ESPORADICA.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ElegirAulaEsporadica.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.dispose();
         }
@@ -352,21 +352,25 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA_ESPORADICA.class
+            java.util.logging.Logger.getLogger(ElegirAulaEsporadica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA_ESPORADICA.class
+            java.util.logging.Logger.getLogger(ElegirAulaEsporadica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA_ESPORADICA.class
+            java.util.logging.Logger.getLogger(ElegirAulaEsporadica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA_ESPORADICA.class
+            java.util.logging.Logger.getLogger(ElegirAulaEsporadica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -375,7 +379,7 @@ public class ELEGIR_AULA_ESPORADICA extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ELEGIR_AULA_ESPORADICA().setVisible(true);
+                new ElegirAulaEsporadica().setVisible(true);
             }
         });
     }

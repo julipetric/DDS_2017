@@ -154,7 +154,7 @@ public class LOGIN extends javax.swing.JFrame {
             List lista = control.autenticar(usuario, pass);
 
             if (!lista.isEmpty()) {
-                PRINCIPAL_ADMIN v1 = new PRINCIPAL_ADMIN();
+                PrincipalAdmin v1 = new PrincipalAdmin();
                 v1.setNombreApellido(lista);
                 this.dispose();
                 v1.setVisible(true);

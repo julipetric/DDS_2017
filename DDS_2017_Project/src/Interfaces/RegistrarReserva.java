@@ -15,7 +15,6 @@ import bd.model.Diareserva;
 import bd.model.DiareservaId;
 import bd.model.Docente;
 import java.awt.Color;
-import static java.lang.Thread.sleep;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -33,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author rodri
  */
-public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
+public class RegistrarReserva extends javax.swing.JFrame {
 
     private ArrayList<Date> dias;
     private Calendar calendario;
@@ -54,11 +52,10 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
     private ArrayList<String> docentesArreglo;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     public Integer reservaNumero = 0;
-    private Integer cantidadDiasPeriodica = 0;
-    ArrayList<Diareserva> diasReserva = new ArrayList<>();
     private final ArrayList<String> cola;
+    public ArrayList<Diareserva> diasReserva;
 
-    public REGISTRAR_RESERVA1() {
+    public RegistrarReserva() {
         initComponents();
         jLabel2.setText("");
         DocenteDAO = new DocenteDAO();
@@ -129,22 +126,22 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
         try {
             inicio1C = sdf.parse("15/03/2017");
         } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             fin1C = sdf.parse("9/06/2017");
         } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             inicio2C = sdf.parse("08/07/2017");
         } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             fin2C = sdf.parse("25/12/2017");
         } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Las fechas están verificadas
@@ -168,13 +165,13 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        tipoComboBox = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         cantAlumnosComboBox = new javax.swing.JComboBox<>();
         cursoLabel = new javax.swing.JLabel();
         cursoTextField = new javax.swing.JTextField();
         aceptarButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cancelarButton = new javax.swing.JButton();
         nuevoDiaButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -194,7 +191,7 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         esporadicaRadioButton = new javax.swing.JRadioButton();
         periodicaRadioButton = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        periodoComboBox = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -233,8 +230,8 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
 
         jLabel12.setText("Tipo de aula");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MULTIMEDIOS", "INFORMATICA", "SINRECURSOS" }));
-        jComboBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tipoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MULTIMEDIOS", "INFORMATICA", "SINRECURSOS" }));
+        tipoComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel14.setText("Cantidad de alumnos");
 
@@ -253,16 +250,16 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancelarButton.setText("Cancelar");
+        cancelarButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cancelarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cancelarButtonActionPerformed(evt);
             }
         });
 
-        nuevoDiaButton.setBackground(new java.awt.Color(0, 204, 0));
+        nuevoDiaButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
         nuevoDiaButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         nuevoDiaButton.setText("+");
         nuevoDiaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -347,8 +344,8 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANUAL", "PRIMERO", "SEGUNDO", "NONE", " " }));
-        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        periodoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANUAL", "PRIMERO", "SEGUNDO", "NONE", " " }));
+        periodoComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -367,7 +364,7 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(aceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -376,7 +373,7 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(jLabel12)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
@@ -434,7 +431,7 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel20))
                             .addComponent(periodicaRadioButton)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(periodoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -467,7 +464,7 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(nuevoDiaButton)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(periodoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2))
                     .addComponent(jLabel3))
@@ -531,12 +528,12 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantAlumnosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -547,7 +544,7 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
         esporadicaRadioButton.setSelected(false);
         nuevoDiaButton.setEnabled(false);
         jTable1.setEnabled(false);
-        jComboBox1.setEnabled(true);
+        periodoComboBox.setEnabled(true);
         jCheckBox8.setEnabled(true);
         jCheckBox9.setEnabled(true);
         jCheckBox10.setEnabled(true);
@@ -570,7 +567,7 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
         periodicaRadioButton.setSelected(false);
         nuevoDiaButton.setEnabled(true);
         jTable1.setEnabled(true);
-        jComboBox1.setEnabled(false);
+        periodoComboBox.setEnabled(false);
         jCheckBox8.setEnabled(false);
         jCheckBox9.setEnabled(false);
         jCheckBox10.setEnabled(false);
@@ -705,15 +702,15 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
     }
 
     private void setearFechasPeriodicas() {
-        if (jComboBox1.getSelectedIndex() == 0) {
+        if (periodoComboBox.getSelectedIndex() == 0) {
             inicio = inicio1C;
             fin = fin2C;
         }
-        if (jComboBox1.getSelectedIndex() == 1) {
+        if (periodoComboBox.getSelectedIndex() == 1) {
             inicio = inicio1C;
             fin = fin1C;
         }
-        if (jComboBox1.getSelectedIndex() == 2) {
+        if (periodoComboBox.getSelectedIndex() == 2) {
             inicio = inicio2C;
             fin = fin2C;
         }
@@ -769,11 +766,15 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
     }
 
     private void registrarDatosReserva() {
-        reserva.setCantidadAlumnos(cantAlumnosComboBox.getSelectedIndex());
-        reserva.setTipoAula(tipo.toString());
+        reserva.setCantidadAlumnos(Integer.parseInt((String) cantAlumnosComboBox.getSelectedItem()));
+        reserva.setTipoAula((String) this.tipoComboBox.getSelectedItem());
         reserva.setNombreCurso(cursoTextField.getText());
         reserva.setDocente(listaDocentes.get(jComboBox2.getSelectedIndex()));
-        reserva.setPeriodo(periodo.name());
+        if (periodicaRadioButton.isSelected()) {
+            reserva.setPeriodo((String) periodoComboBox.getSelectedItem());
+        } else {
+            reserva.setPeriodo("ESPORADICA");
+        }
     }
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
@@ -793,10 +794,11 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
 
                 try {
                     //ya se agregaron los dias
-                    //ventana de
+                    //se crea la ventana elegir aula con diasReserva como arreglo
+                    diasReserva = new ArrayList<> (reserva.getDiareservas());
                     this.GenerarElegirAulaEsporadica(diasReserva);
                 } catch (ParseException ex) {
-                    Logger.getLogger(REGISTRAR_RESERVA1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RegistrarReserva.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
@@ -809,8 +811,8 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
     public void GenerarElegirAulaEsporadica(ArrayList<Diareserva> diasReserva) throws ParseException {
         //System.out.println("pasamos a la ventana nueva");
         if (reservaNumero < reserva.getDiareservas().size()) {
-            ELEGIR_AULA_ESPORADICA vent;
-            vent = new ELEGIR_AULA_ESPORADICA(reserva, diasReserva.get(reservaNumero), reservaNumero, this, diasReserva);
+            ElegirAulaEsporadica vent;
+            vent = new ElegirAulaEsporadica(reserva, diasReserva.get(reservaNumero), reservaNumero, this, diasReserva);
             vent.setVisible(true);
         }
         reservaNumero++;
@@ -841,20 +843,23 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
                 aceptarButton.setEnabled(false);
             }
         }
+        Exito bien = new Exito();
+        bien.setVisible(true);
+        this.dispose();
     }
 
     private void nuevoDiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoDiaButtonActionPerformed
         //ACCION DE NUEVO DIA
 
-        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(reserva, this.inicio1C, this.fin2C, this);
+        NuevoDia ventana_NUEVO_DIA = new NuevoDia(reserva, this.inicio1C, this.fin2C, this);
         ventana_NUEVO_DIA.setVisible(true);
 
 
     }//GEN-LAST:event_nuevoDiaButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_cancelarButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -870,38 +875,39 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_RESERVA1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_RESERVA1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_RESERVA1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_RESERVA1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new REGISTRAR_RESERVA1().setVisible(true);
+                new RegistrarReserva().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptarButton;
+    private javax.swing.JButton cancelarButton;
     private javax.swing.JComboBox<String> cantAlumnosComboBox;
     private javax.swing.JLabel cursoLabel;
     private javax.swing.JTextField cursoTextField;
     private javax.swing.JRadioButton esporadicaRadioButton;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox12;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox12;
@@ -910,7 +916,6 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
@@ -933,6 +938,8 @@ public class REGISTRAR_RESERVA1 extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JButton nuevoDiaButton;
     private javax.swing.JRadioButton periodicaRadioButton;
+    private javax.swing.JComboBox<String> periodoComboBox;
+    private javax.swing.JComboBox<String> tipoComboBox;
     // End of variables declaration//GEN-END:variables
 
 }

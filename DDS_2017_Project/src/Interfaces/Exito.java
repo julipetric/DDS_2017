@@ -9,12 +9,12 @@ package Interfaces;
  *
  * @author santi_000
  */
-public class TODO_OK extends javax.swing.JFrame {
+public class Exito extends javax.swing.JFrame {
 
     /**
      * Creates new form TODO_OK
      */
-    public TODO_OK() {
+    public Exito() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -51,7 +51,7 @@ public class TODO_OK extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();

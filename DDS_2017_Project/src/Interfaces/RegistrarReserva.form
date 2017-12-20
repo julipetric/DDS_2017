@@ -33,7 +33,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel1" min="-2" pref="311" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jButton2" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="cancelarButton" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="aceptarButton" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
@@ -43,7 +43,7 @@
                           <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jComboBox2" alignment="0" min="-2" pref="248" max="-2" attributes="0"/>
-                          <Component id="jComboBox5" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="tipoComboBox" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -118,7 +118,7 @@
                               <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="periodicaRadioButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="periodoComboBox" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -162,7 +162,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="nuevoDiaButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="periodoComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -246,13 +246,13 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jComboBox5" min="-2" max="-2" attributes="0"/>
+                  <Component id="tipoComboBox" min="-2" max="-2" attributes="0"/>
                   <Component id="cantAlumnosComboBox" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="aceptarButton" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="cancelarButton" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
@@ -317,7 +317,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -363,7 +363,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -373,35 +373,35 @@
     <Component class="javax.swing.JCheckBox" name="jCheckBox8">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox9">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox10">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox11">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox12">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
     </Component>
@@ -426,7 +426,7 @@
         <Property name="text" type="java.lang.String" value="Tipo de aula"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox5">
+    <Component class="javax.swing.JComboBox" name="tipoComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
@@ -436,7 +436,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -496,7 +496,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -522,14 +522,14 @@
           </Border>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aceptarButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="cancelarButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -538,24 +538,24 @@
           </Border>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="nuevoDiaButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="cc" red="0" type="rgb"/>
+          <Color blue="ff" green="ff" id="Button.highlight" palette="3" red="ff" type="palette"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="11" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="+"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -648,7 +648,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -694,7 +694,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -740,7 +740,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -786,7 +786,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -832,7 +832,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -878,7 +878,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -924,7 +924,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -970,7 +970,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -1006,7 +1006,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Espor&#xe1;dica"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -1017,14 +1017,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Periodica"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="periodicaRadioButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="periodoComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
@@ -1036,7 +1036,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -1049,7 +1049,7 @@
           <StringArray count="0"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>

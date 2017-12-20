@@ -280,7 +280,7 @@ public class MODIFICAR_BEDEL extends javax.swing.JFrame {
         
         
         if(!datosInvalidos){
-            TODO_OK bien = new TODO_OK();
+            Exito bien = new Exito();
             bien.setVisible(true);
             java.util.Date fecha = new Date();
             String fechaFormat = new SimpleDateFormat("dd/MM/yyyy").format(fecha);

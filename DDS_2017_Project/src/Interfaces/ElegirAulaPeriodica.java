@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Julian
  */
-public class ELEGIR_AULA_PERIODICA extends javax.swing.JFrame {
+public class ElegirAulaPeriodica extends javax.swing.JFrame {
 
     Reserva reserva;
     GestorReserva gestor;
@@ -32,7 +32,7 @@ public class ELEGIR_AULA_PERIODICA extends javax.swing.JFrame {
     private String actualTitulo;
     private String totalTitulo;
     private Boolean ejecutando = true;
-    private REGISTRAR_RESERVA VentanaReserva;
+    private RegistrarReservaCopia VentanaReserva;
     public ArrayList<Diareserva> diasReserva;
     private Integer totalDias;
     private Integer actual;
@@ -40,7 +40,7 @@ public class ELEGIR_AULA_PERIODICA extends javax.swing.JFrame {
     /**
      * Creates new form ELEGIR_AULA
      */
-    public ELEGIR_AULA_PERIODICA() {
+    public ElegirAulaPeriodica() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -49,7 +49,7 @@ public class ELEGIR_AULA_PERIODICA extends javax.swing.JFrame {
         return aceptarButton;
     }
 
-    ELEGIR_AULA_PERIODICA(Reserva reserva, Integer actual, REGISTRAR_RESERVA VentanaReserva, Integer diaSemana, Integer totalDias) throws ParseException {
+    ElegirAulaPeriodica(Reserva reserva, Integer actual, RegistrarReservaCopia VentanaReserva, Integer diaSemana, Integer totalDias) throws ParseException {
 
         String diaString = null;
         if (diaSemana == 1) {
@@ -274,7 +274,7 @@ public class ELEGIR_AULA_PERIODICA extends javax.swing.JFrame {
 
         cancelarButton.setText("Cancelar");
         cancelarButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        cancelarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarButtonActionPerformed(evt);
@@ -284,7 +284,7 @@ public class ELEGIR_AULA_PERIODICA extends javax.swing.JFrame {
         aceptarButton.setBackground(new java.awt.Color(204, 204, 204));
         aceptarButton.setText("Aceptar");
         aceptarButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        aceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        aceptarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         aceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarButtonActionPerformed(evt);
@@ -370,28 +370,30 @@ public class ELEGIR_AULA_PERIODICA extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA_PERIODICA.class
+            java.util.logging.Logger.getLogger(ElegirAulaPeriodica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA_PERIODICA.class
+            java.util.logging.Logger.getLogger(ElegirAulaPeriodica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA_PERIODICA.class
+            java.util.logging.Logger.getLogger(ElegirAulaPeriodica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ELEGIR_AULA_PERIODICA.class
+            java.util.logging.Logger.getLogger(ElegirAulaPeriodica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ELEGIR_AULA_PERIODICA().setVisible(true);
+                new ElegirAulaPeriodica().setVisible(true);
             }
         });
     }

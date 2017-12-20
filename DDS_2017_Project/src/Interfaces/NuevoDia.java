@@ -18,16 +18,16 @@ import java.util.Date;
  *
  * @author rodri
  */
-public class NUEVO_DIA extends javax.swing.JFrame {
+public class NuevoDia extends javax.swing.JFrame {
 
     private Date fechaInicio;
     private Date fechaFin;
-    private REGISTRAR_RESERVA1 ventana;
+    private RegistrarReserva ventana;
     private Reserva reserva;
 
     private final ArrayList<String> cola;
 
-    public NUEVO_DIA(Reserva res, Date inicio, Date fin, REGISTRAR_RESERVA1 vent) {
+    public NuevoDia(Reserva res, Date inicio, Date fin, RegistrarReserva vent) {
         initComponents();
         reserva = res;
         fechaInicio = inicio;

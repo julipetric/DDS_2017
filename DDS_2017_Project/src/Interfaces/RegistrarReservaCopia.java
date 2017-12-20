@@ -33,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author rodri
  */
-public class REGISTRAR_RESERVA extends javax.swing.JFrame {
+public class RegistrarReservaCopia extends javax.swing.JFrame {
 
     private ArrayList<Date> dias;
     private Calendar calendario;
@@ -57,7 +57,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private Integer cantidadDiasPeriodica = 0;
     ArrayList<Diareserva> diasReserva = new ArrayList<>();
 
-    public REGISTRAR_RESERVA() {
+    public RegistrarReservaCopia() {
         initComponents();
         jLabel2.setText("");
         DocenteDAO = new DocenteDAO();
@@ -89,22 +89,22 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
         try {
             inicio1C = sdf.parse("15/03/2017");
         } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarReservaCopia.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             fin1C = sdf.parse("9/06/2017");
         } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarReservaCopia.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             inicio2C = sdf.parse("08/07/2017");
         } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarReservaCopia.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             fin2C = sdf.parse("25/12/2017");
         } catch (ParseException ex) {
-            Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarReservaCopia.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Las fechas están verificadas
@@ -734,7 +734,7 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                 vent = new OBTENER_DISPONIBILIDAD_DE_AULAS(reserva);
                 vent.setVisible(true);
             } catch (ParseException ex) {
-                Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RegistrarReservaCopia.class.getName()).log(Level.SEVERE, null, ex);
             }*/
                         this.GenerarElegirAulaPeriodica(diasReserva);
 
@@ -766,13 +766,9 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     public void GenerarElegirAulaEsporadica(ArrayList<Diareserva> diasReserva) {
         //System.out.println("pasamos a la ventana nueva");
         if (reservaNumero < reserva.getDiareservas().size()) {
-            ELEGIR_AULA_ESPORADICA vent;
-            try {
-                vent = new ELEGIR_AULA_ESPORADICA(reserva, diasReserva.get(reservaNumero), reservaNumero, this, diasReserva);
-                vent.setVisible(true);
-            } catch (ParseException ex) {
-                Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            ElegirAulaEsporadica vent;
+            //vent = new ElegirAulaEsporadica(reserva, diasReserva.get(reservaNumero), reservaNumero, this, diasReserva);
+            //vent.setVisible(true);
         }
         reservaNumero++;
 
@@ -803,8 +799,8 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     private void nuevoDiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoDiaButtonActionPerformed
         //ACCION DE NUEVO DIA
 
-        NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(reserva, this.inicio1C, this.fin2C, this);
-        ventana_NUEVO_DIA.setVisible(true);
+        //NUEVO_DIA ventana_NUEVO_DIA = new NUEVO_DIA(reserva, this.inicio1C, this.fin2C, this);
+        //ventana_NUEVO_DIA.setVisible(true);
 
 
     }//GEN-LAST:event_nuevoDiaButtonActionPerformed
@@ -830,20 +826,21 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarReservaCopia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarReservaCopia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarReservaCopia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarReservaCopia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new REGISTRAR_RESERVA().setVisible(true);
+                new RegistrarReservaCopia().setVisible(true);
             }
         });
     }
@@ -896,12 +893,12 @@ public class REGISTRAR_RESERVA extends javax.swing.JFrame {
     public void GenerarElegirAulaPeriodica(ArrayList<Diareserva> diasReserva) {
         //System.out.println("pasamos a la ventana nueva");
         if (reservaNumero < this.cantidadDiasPeriodica) {
-            ELEGIR_AULA_PERIODICA vent;
+            ElegirAulaPeriodica vent;
             try {
-                vent = new ELEGIR_AULA_PERIODICA(reserva, reservaNumero, this, this.diasDeSemana.get(reservaNumero), this.cantidadDiasPeriodica);
+                vent = new ElegirAulaPeriodica(reserva, reservaNumero, this, this.diasDeSemana.get(reservaNumero), this.cantidadDiasPeriodica);
                 vent.setVisible(true);
             } catch (ParseException ex) {
-                Logger.getLogger(REGISTRAR_RESERVA.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RegistrarReservaCopia.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         reservaNumero++;
