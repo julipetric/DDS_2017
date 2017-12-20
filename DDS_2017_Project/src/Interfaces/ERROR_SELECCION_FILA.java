@@ -15,7 +15,9 @@ public class ERROR_SELECCION_FILA extends javax.swing.JFrame {
      * Creates new form DIA_YA_EXISTE
      */
     public ERROR_SELECCION_FILA() {
-        initComponents();
+       
+        initComponents(); 
+        this.setLocationRelativeTo(null);
     }
 
     /**
