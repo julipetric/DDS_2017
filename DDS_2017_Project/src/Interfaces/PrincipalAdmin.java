@@ -229,7 +229,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        LOGIN login = new LOGIN();
+        Login login = new Login();
         this.dispose();
         login.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed

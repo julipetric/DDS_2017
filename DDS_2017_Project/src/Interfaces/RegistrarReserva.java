@@ -11,7 +11,6 @@ import Clases.TipoDeAula;
 import Clases.horariosAUX;
 import Control.GestorDocente;
 import Control.GestorReserva;
-import DAO.DocenteDAO;
 import bd.model.Diareserva;
 import bd.model.DiareservaId;
 import bd.model.Docente;
@@ -57,6 +56,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
     public Integer reservaNumero = 0;
     private final ArrayList<String> cola;
     public ArrayList<Diareserva> diasReserva;
+    private Boolean modoPrueba = true;
 
     public JTable getjTable1() {
         return jTable1;
@@ -712,7 +712,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
         if (esporadicaRadioButton.isSelected()) {
             if (reserva.diareservas.isEmpty()) {
                 error = true;
-                jLabel3.setText("ingrese un dia");
+                jLabel3.setText("Ingrese al menos un dia");
             } else {
                 jLabel3.setText("");
             }
@@ -734,22 +734,31 @@ public class RegistrarReserva extends javax.swing.JFrame {
             inicio = inicio2C;
             fin = fin2C;
         }
-        Date hoy = new Date();
-        if (hoy.after(inicio)) {
+        if (!modoPrueba) {
+            Date hoy = new Date();
             inicio = hoy;
+            fin = fin2C;
+        } else {
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
         }
-        
-        
+
         //PARA PROBAR SOLAMENTE, ESTAMOS EN FIN DE AÑO, AGREGA POCOS DIAS
         //inicio = inicio1C;
         //fin = fin2C;
     }
 
-    private void setearFechasEsporadicas(){
-        Date hoy = new Date();
-        inicio = hoy;
-        fin = fin2C;
-
+    private void setearFechasEsporadicas() {
+        if (!modoPrueba) {
+            Date hoy = new Date();
+            inicio = hoy;
+            fin = fin2C;
+        } else {
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+        }
     }
 
     private void agregarDiasReservaPeriodicas() {
@@ -770,7 +779,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
             }
             //Sale aux en el primer dia de la semana que coincide
             boolean h = aux.getTime().compareTo(fin) < 0;
-            
+
             while (h) {//while para agregar los dias de reserva
                 //System.out.println("2");
                 Date fechaAux = aux.getTime();
@@ -844,9 +853,9 @@ public class RegistrarReserva extends javax.swing.JFrame {
 
     public void GenerarElegirAulaPeriodica(ArrayList<Diareserva> diasReserva) {
         //System.out.println("pasamos a la ventana nueva");
-       
-       if(this.diasReserva.size()>0 && reservaNumero < this.diasDeSemana.size()){
-           jLabel4.setText("");
+
+        if (this.diasReserva.size() > 0 && reservaNumero < this.diasDeSemana.size()) {
+            jLabel4.setText("");
             ElegirAulaPeriodica vent = null;
             try {
                 vent = new ElegirAulaPeriodica(reserva, reservaNumero, this, this.diasDeSemana.get(reservaNumero));
@@ -855,34 +864,30 @@ public class RegistrarReserva extends javax.swing.JFrame {
             }
             vent.setVisible(true);
             reservaNumero++;
-      }else{
-       diasDeSemana.clear();
-       jLabel4.setText("No hay aulas para este periodo");
-       
-       }  
-       
-       
-       if (reservaNumero > diasDeSemana.size()) {
+        } else {
+            diasDeSemana.clear();
+            jLabel4.setText("No hay aulas para este periodo");
+
+        }
+
+        if (reservaNumero > diasDeSemana.size()) {
             this.Guardar();
-        } 
-       
+        }
+
     }
 
     public ArrayList<Diareserva> getDiasReserva() {
         return diasReserva;
     }
-    
-    
-    
- public Reserva getReserva() {
+
+    public Reserva getReserva() {
         return reserva;
     }
 
     public JTextField getCursoTextField() {
         return cursoTextField;
     }
-   
- 
+
     private void Guardar() {
         if (this.esporadicaRadioButton.isSelected()) {
             if (reservaNumero > reserva.getDiareservas().size()) {
@@ -906,7 +911,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
                 DefaultTableModel modelo = new DefaultTableModel();
                 modelo = (DefaultTableModel) this.getjTable1().getModel();
                 modelo.setRowCount(0);
-                cursoTextField.setText(""); 
+                cursoTextField.setText("");
                 reserva = new Reserva();
                 this.restablecerDiasSeleccionados();
                 diasDeSemana.clear();
@@ -920,7 +925,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
         //ACCION DE NUEVO DIA
         Date hoy = new Date();
         inicio = hoy;
-        NuevoDia ventana_NUEVO_DIA = new NuevoDia(reserva,inicio, this.fin2C, this);
+        NuevoDia ventana_NUEVO_DIA = new NuevoDia(reserva, inicio, this.fin2C, this);
         ventana_NUEVO_DIA.setVisible(true);
 
 
@@ -1017,12 +1022,12 @@ public class RegistrarReserva extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void restablecerDiasSeleccionados() {
-            jLabel4.setText("");
-            jCheckBox8.setSelected(false);
-            jCheckBox9.setSelected(false);
-            jCheckBox10.setSelected(false);
-            jCheckBox11.setSelected(false);
-            jCheckBox12.setSelected(false);
+        jLabel4.setText("");
+        jCheckBox8.setSelected(false);
+        jCheckBox9.setSelected(false);
+        jCheckBox10.setSelected(false);
+        jCheckBox11.setSelected(false);
+        jCheckBox12.setSelected(false);
     }
 
 }

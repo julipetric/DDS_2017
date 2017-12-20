@@ -36,7 +36,6 @@ public class ElegirAulaEsporadica extends javax.swing.JFrame {
     private Boolean ejecutando = true;
     private RegistrarReserva VentanaReserva;
     public ArrayList<Diareserva> diasReserva;
-    private Integer totalDias;
 
     /**
      * Creates new form ELEGIR_AULA
@@ -57,8 +56,9 @@ public class ElegirAulaEsporadica extends javax.swing.JFrame {
         this.totalTitulo = Integer.toString(reserva.getDiareservas().size());
         this.actualTitulo = Integer.toString(actual + 1);
         initComponents();
-
-        this.setReserva(reserva);
+        fechaLabel.setText(this.diaTitulo);
+        this.setLocationRelativeTo(null);
+        this.reserva = reserva;
         this.dia = diaReserva;
         gestor = new GestorReserva();
         diasArreglo = new ArrayList<>();
@@ -67,12 +67,15 @@ public class ElegirAulaEsporadica extends javax.swing.JFrame {
         this.aulas = gestor.obtenerDisponibilidad(reserva);
         //tengo todas las aulas
 
-        for (int i = 0; i < this.getAulas().size(); i++) {
-            this.agregarFilaATabla(this.getAulas().get(i));
+        if (this.aulas.size() > 0) {
+            for (int i = 0; i < this.getAulas().size(); i++) {
+                this.agregarFilaATabla(this.getAulas().get(i));
+            }
+        } else {
+            NoSeEncontraronAulas warningAulas = new NoSeEncontraronAulas();
+            warningAulas.setVisible(true);
+            this.aceptarButton.setEnabled(false);
         }
-
-        fechaLabel.setText(this.diaTitulo);
-        this.setLocationRelativeTo(null);
     }
 
     public void agregarFilaATabla(Aula aula) {
@@ -315,7 +318,7 @@ public class ElegirAulaEsporadica extends javax.swing.JFrame {
         VentanaReserva.reservaNumero = 0;
         reserva.getDiareservas().clear();
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo =(DefaultTableModel) VentanaReserva.getjTable1().getModel();
+        modelo = (DefaultTableModel) VentanaReserva.getjTable1().getModel();
         modelo.setRowCount(0);
         VentanaReserva.getCursoTextField().setText("");
         reserva = new Reserva();

@@ -9,12 +9,12 @@ package Interfaces;
  *
  * @author santi_000
  */
-public class NO_HAY_AULAS extends javax.swing.JFrame {
+public class NoSeEncontraronAulas extends javax.swing.JFrame {
 
     /**
      * Creates new form TODO_OK
      */
-    public NO_HAY_AULAS() {
+    public NoSeEncontraronAulas() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -75,21 +75,23 @@ public class NO_HAY_AULAS extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NO_HAY_AULAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NoSeEncontraronAulas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NO_HAY_AULAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NoSeEncontraronAulas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NO_HAY_AULAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NoSeEncontraronAulas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NO_HAY_AULAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NoSeEncontraronAulas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NO_HAY_AULAS().setVisible(true);
+                new NoSeEncontraronAulas().setVisible(true);
             }
         });
     }
