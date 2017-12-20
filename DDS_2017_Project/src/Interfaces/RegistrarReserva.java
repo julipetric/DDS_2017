@@ -56,7 +56,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
     public Integer reservaNumero = 0;
     private final ArrayList<String> cola;
     public ArrayList<Diareserva> diasReserva;
-    private Boolean modoPrueba = true;
+    private Boolean modoPrueba = false;
 
     public JTable getjTable1() {
         return jTable1;
@@ -737,7 +737,6 @@ public class RegistrarReserva extends javax.swing.JFrame {
         if (!modoPrueba) {
             Date hoy = new Date();
             inicio = hoy;
-            fin = fin2C;
         } else {
             System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
             System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
@@ -765,12 +764,12 @@ public class RegistrarReserva extends javax.swing.JFrame {
         diasReserva = new ArrayList<>(); //<--- ESTP ESTABA MUY MAL DEFINIDA, ESTABA ADENTRO DE LOS BUCLES DE ABAJO...
         Calendar aux = Calendar.getInstance();
         for (int i = 0; i < diasDeSemana.size(); i++) {
-            System.out.println("for");
+            //System.out.println("for");
             aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial CAMBIAR
             //Seteo en primer dia de semana
             boolean j = true;
             while (j) {
-                System.out.println("0");
+                //System.out.println("0");
                 if (aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) {
                     j = false;
                 } else {
@@ -866,8 +865,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
             reservaNumero++;
         } else {
             diasDeSemana.clear();
-            jLabel4.setText("No hay aulas para este periodo");
-
+            jLabel4.setText("No se puede generar una reserva para este periodo");
         }
 
         if (reservaNumero > diasDeSemana.size()) {
