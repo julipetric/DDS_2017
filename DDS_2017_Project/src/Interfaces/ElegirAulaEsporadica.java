@@ -315,7 +315,9 @@ public class ElegirAulaEsporadica extends javax.swing.JFrame {
        
         VentanaReserva.reservaNumero = 0;
         reserva.getDiareservas().clear();
-        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo =(DefaultTableModel) VentanaReserva.getjTable1().getModel();
+        modelo.setRowCount(0);
         this.dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 

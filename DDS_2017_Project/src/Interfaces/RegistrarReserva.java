@@ -9,6 +9,7 @@ import Clases.Periodo;
 import bd.model.Reserva;
 import Clases.TipoDeAula;
 import Clases.horariosAUX;
+import Control.GestorDocente;
 import Control.GestorReserva;
 import DAO.DocenteDAO;
 import bd.model.Diareserva;
@@ -25,6 +26,7 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,7 +49,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
     public Reserva reserva;
     private ArrayList<horariosAUX> horariosPorDia;
     private GestorReserva gestor;
-    private DocenteDAO DocenteDAO;
+    private GestorDocente DocenteGestor;
     private ArrayList<Docente> listaDocentes;
     private ArrayList<String> docentesArreglo;
     public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -55,12 +57,17 @@ public class RegistrarReserva extends javax.swing.JFrame {
     private final ArrayList<String> cola;
     public ArrayList<Diareserva> diasReserva;
 
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
     public RegistrarReserva() {
         initComponents();
         jLabel2.setText("");
-        DocenteDAO = new DocenteDAO();
+        DocenteGestor = new GestorDocente();
         docentesArreglo = new ArrayList<>();
-        listaDocentes = DocenteDAO.read();
+        listaDocentes = DocenteGestor.read();
+        reserva = new Reserva();
         cola = new ArrayList<>();
         diasDeSemana = new ArrayList<>();
         horariosPorDia = new ArrayList<>();
@@ -120,7 +127,6 @@ public class RegistrarReserva extends javax.swing.JFrame {
         periodicaRadioButton.setSelected(true);
         nuevoDiaButton.setEnabled(false);
         jTable1.setEnabled(false);
-        reserva = new Reserva();
         gestor = new GestorReserva();
 
         try {
@@ -441,34 +447,33 @@ public class RegistrarReserva extends javax.swing.JFrame {
                                 .addGap(100, 100, 100)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(esporadicaRadioButton)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(nuevoDiaButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel3))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
                 .addComponent(jLabel1)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(esporadicaRadioButton)
+                    .addComponent(periodicaRadioButton))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(esporadicaRadioButton)
-                            .addComponent(periodicaRadioButton))
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(nuevoDiaButton)
-                            .addComponent(periodoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2))
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nuevoDiaButton)
+                    .addComponent(jLabel8)
+                    .addComponent(periodoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -512,8 +517,8 @@ public class RegistrarReserva extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -530,7 +535,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantAlumnosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
+                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -781,7 +786,8 @@ public class RegistrarReserva extends javax.swing.JFrame {
 
         //VERIFICACIONES GENERALES
         if (!this.verificarErrores()) {
-
+            
+            
             this.registrarDatosReserva();
 
             if (periodicaRadioButton.isSelected()) {
@@ -795,6 +801,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
                 try {
                     //ya se agregaron los dias
                     //se crea la ventana elegir aula con diasReserva como arreglo
+                    
                     diasReserva = new ArrayList<> (reserva.getDiareservas());
                     this.GenerarElegirAulaEsporadica(diasReserva);
                 } catch (ParseException ex) {
@@ -832,18 +839,29 @@ public class RegistrarReserva extends javax.swing.JFrame {
             if (reservaNumero >= reserva.getDiareservas().size() + 1) {
                 //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
                 gestor.nuevaReserva(reserva, diasReserva);
-
-                aceptarButton.setEnabled(false);
+                
+                this.reservaNumero = 0;
+                reserva.getDiareservas().clear();
+                DefaultTableModel modelo = new DefaultTableModel();
+                modelo =(DefaultTableModel) this.getjTable1().getModel();
+                modelo.setRowCount(0);
+                 reserva = new Reserva();
             }
         } else {
             if (reservaNumero >= diasDeSemana.size() + 1) {
                 //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
                 reserva.diareservas = new HashSet<>(diasReserva);
                 gestor.nuevaReserva(reserva, diasReserva);
-                aceptarButton.setEnabled(false);
+                
+                this.reservaNumero = 0;
+                reserva.getDiareservas().clear();
+                DefaultTableModel modelo = new DefaultTableModel();
+                modelo =(DefaultTableModel) this.getjTable1().getModel();
+                modelo.setRowCount(0);
+                reserva = new Reserva();
             }
         }
-        Exito bien = new Exito(this);
+        Exito bien = new Exito();
         bien.setVisible(true);
     }
 
@@ -857,7 +875,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevoDiaButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
-        this.dispose();
+       System.exit(0);
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
     public static void main(String args[]) {
