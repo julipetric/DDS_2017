@@ -894,12 +894,8 @@ public class RegistrarReservaCopia extends javax.swing.JFrame {
         //System.out.println("pasamos a la ventana nueva");
         if (reservaNumero < this.cantidadDiasPeriodica) {
             ElegirAulaPeriodica vent;
-            try {
-                vent = new ElegirAulaPeriodica(reserva, reservaNumero, this, this.diasDeSemana.get(reservaNumero), this.cantidadDiasPeriodica);
-                vent.setVisible(true);
-            } catch (ParseException ex) {
-                Logger.getLogger(RegistrarReservaCopia.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            //vent = new ElegirAulaPeriodica(reserva, reservaNumero, this, this.diasDeSemana.get(reservaNumero), this.cantidadDiasPeriodica);
+            //vent.setVisible(true);
         }
         reservaNumero++;
 

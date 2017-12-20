@@ -751,9 +751,9 @@ public class RegistrarReserva extends javax.swing.JFrame {
             }
             //Sale aux en el primer dia de la semana que coincide
             boolean h = aux.getTime().compareTo(fin) < 0;
-            diasReserva = new ArrayList<Diareserva>();
+            diasReserva = new ArrayList<>();
             while (h) {//while para agregar los dias de reserva
-                System.out.println("2");
+                //System.out.println("2");
                 Date fechaAux = aux.getTime();
 
                 // Display a date in day, month, year format
@@ -789,30 +789,25 @@ public class RegistrarReserva extends javax.swing.JFrame {
             
             
             this.registrarDatosReserva();
-
             if (periodicaRadioButton.isSelected()) {
                 this.setearFechasPeriodicas();
-                System.out.println(inicio.toString());
+                //System.out.println(inicio.toString());
                 this.agregarDiasReservaPeriodicas();
 
                 //ir a la ventana
+                this.GenerarElegirAulaPeriodica(diasReserva);
             } else {
-
                 try {
+                    this.setearFechasEsporadicas();
                     //ya se agregaron los dias
                     //se crea la ventana elegir aula con diasReserva como arreglo
-                    
-                    diasReserva = new ArrayList<> (reserva.getDiareservas());
+                    diasReserva = new ArrayList<>(reserva.getDiareservas());
                     this.GenerarElegirAulaEsporadica(diasReserva);
                 } catch (ParseException ex) {
                     Logger.getLogger(RegistrarReserva.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
             }
-
         }
-
-
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
     public void GenerarElegirAulaEsporadica(ArrayList<Diareserva> diasReserva) throws ParseException {
@@ -826,6 +821,24 @@ public class RegistrarReserva extends javax.swing.JFrame {
 
         if (reservaNumero > diasReserva.size()) {
             this.Guardar();
+        }
+    }
+
+    public void GenerarElegirAulaPeriodica(ArrayList<Diareserva> diasReserva) {
+        //System.out.println("pasamos a la ventana nueva");
+        if (reservaNumero < this.diasDeSemana.size()) {
+            ElegirAulaPeriodica vent = null;
+            try {
+                vent = new ElegirAulaPeriodica(reserva, reservaNumero, this, this.diasDeSemana.get(reservaNumero));
+            } catch (ParseException ex) {
+                Logger.getLogger(RegistrarReserva.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            vent.setVisible(true);
+        }
+        reservaNumero++;
+
+        if (reservaNumero > this.diasDeSemana.size()) {
+            aceptarButton.setText("Guardar");
         }
 
     }

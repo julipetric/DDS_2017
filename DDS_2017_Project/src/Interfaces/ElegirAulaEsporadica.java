@@ -59,7 +59,7 @@ public class ElegirAulaEsporadica extends javax.swing.JFrame {
         initComponents();
 
         this.setReserva(reserva);
-        this.dia=diaReserva;
+        this.dia = diaReserva;
         gestor = new GestorReserva();
         diasArreglo = new ArrayList<>();
 
@@ -312,7 +312,7 @@ public class ElegirAulaEsporadica extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaAulasMouseClicked
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
-       
+
         VentanaReserva.reservaNumero = 0;
         reserva.getDiareservas().clear();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -326,12 +326,10 @@ public class ElegirAulaEsporadica extends javax.swing.JFrame {
             ERROR_SELECCION_FILA vent = new ERROR_SELECCION_FILA();
             vent.setVisible(true);
         } else {
-            
-            Integer select = tablaAulas.getSelectedRow();
-            this.getDia().setAula(this.getAulas().get(select));
-            reserva.getDiareservas().add(this.getDia());
-            
             try {
+                Integer select = tablaAulas.getSelectedRow();
+                this.getDia().setAula(this.getAulas().get(select));
+                reserva.getDiareservas().add(this.getDia());
                 VentanaReserva.GenerarElegirAulaEsporadica(diasReserva);
             } catch (ParseException ex) {
                 Logger.getLogger(ElegirAulaEsporadica.class.getName()).log(Level.SEVERE, null, ex);
