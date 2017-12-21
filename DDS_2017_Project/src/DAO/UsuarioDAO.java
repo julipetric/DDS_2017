@@ -129,7 +129,6 @@ public class UsuarioDAO {
         Session session = sesion.openSession();
         Transaction tx = session.beginTransaction();
         Historialdecontrasenia historial = new Historialdecontrasenia(bedel, bedel.getFecha(), bedel.getPassword());
-
         try {
             session.merge(bedel);
             session.save(historial);
@@ -138,10 +137,25 @@ public class UsuarioDAO {
                 tx.rollback();
             }
         }
-
         tx.commit();
         session.close();
     }
+    
+    public void modificarBedelSinPass(Bedel bedel) {
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session = sesion.openSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            session.merge(bedel);
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        }
+        tx.commit();
+        session.close();
+    }
+
 
     public Boolean consultarContraseña(String IDUSUARIO, String contra) {
         SessionFactory sesion = HibernateUtil.getSessionFactory();

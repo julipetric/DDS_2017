@@ -157,6 +157,12 @@ public class GestorBedel {
         Bedel b1 = new Bedel(usuario, nombre, apellido, contra, turno, fecha);
         dao.modificarBedel(b1);
     }
+    
+    public void modificarBedelSinPass(String usuario, String nombre, String apellido, String contra, String turno, String fecha) {
+        UsuarioDAO dao = new UsuarioDAO();
+        Bedel b1 = new Bedel(usuario, nombre, apellido, contra, turno, fecha);
+        dao.modificarBedelSinPass(b1);
+    }
 
     public List buscarBedel(String apellido, Turno turno) {
         UsuarioDAO dao = new UsuarioDAO();

@@ -392,7 +392,7 @@ public class ModificarBedel extends javax.swing.JFrame {
             java.util.Date fecha = new Date();
             String fechaFormat = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
             if (passwordField1.getText().isEmpty() && passwordField1.getText().isEmpty()) {
-                controlador.modificarBedel(idTextField.getText(), nombreTextField.getText(), 
+                controlador.modificarBedelSinPass(idTextField.getText(), nombreTextField.getText(), 
                         apellidoTextField.getText(), passBedel, 
                         Turno.valueOf(jComboBox2.getSelectedItem().toString().toUpperCase()).toString(), fechaFormat);
             } else {

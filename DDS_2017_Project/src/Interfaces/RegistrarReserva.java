@@ -58,7 +58,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
     public Integer reservaNumero = 0;
     private final ArrayList<String> cola;
     public ArrayList<Diareserva> diasReserva;
-    private Boolean modoPrueba = false;
+    private Boolean modoPrueba = true;
 
     public JTable getjTable1() {
         return jTable1;
@@ -629,6 +629,11 @@ public class RegistrarReserva extends javax.swing.JFrame {
     public boolean verificarErrores() {
         boolean error = false; //con este verifico que TODO ESTE BIEN
 
+        if(!periodicaRadioButton.isSelected() && !esporadicaRadioButton.isSelected()){
+            error = true;
+            ElijaTipo ventE = new ElijaTipo();
+            ventE.setVisible(true);
+        }        
         if (cursoTextField.getText().equals("")) {
             cursoLabel.setForeground(Color.red);
             error = true;
