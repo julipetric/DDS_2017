@@ -42,7 +42,7 @@ public class Login extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("LOGIN");
+        setTitle("Login");
         setResizable(false);
         setSize(new java.awt.Dimension(760, 298));
         setType(java.awt.Window.Type.POPUP);

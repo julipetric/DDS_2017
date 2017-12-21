@@ -120,7 +120,7 @@ public class NuevoDia extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("NUEVO DIA");
+        setTitle("Nuevo dia");
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
