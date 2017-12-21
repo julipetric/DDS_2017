@@ -83,7 +83,8 @@ public class ElegirAulaPeriodica extends javax.swing.JFrame {
         this.actual = actual;
         this.diasReserva = new ArrayList<>(reserva.getDiareservas());
         initComponents();
-
+        fechaLabel.setText(this.diaTitulo);
+        this.setLocationRelativeTo(null);
         //this.setDia(diaReserva);
         gestor = new GestorReserva();
         diasArreglo = new ArrayList<>();
@@ -92,12 +93,15 @@ public class ElegirAulaPeriodica extends javax.swing.JFrame {
         this.aulas = gestor.obtenerDisponibilidadPeriodica(reserva);
         //tengo todas las aulas
 
-        for (int i = 0; i < this.getAulas().size(); i++) {
-            this.agregarFilaATabla(this.getAulas().get(i));
+        if (this.aulas.size() > 0) {
+            for (int i = 0; i < this.getAulas().size(); i++) {
+                this.agregarFilaATabla(this.getAulas().get(i));
+            }
+        } else {
+            NoSeEncontraronAulas warningAulas = new NoSeEncontraronAulas();
+            warningAulas.setVisible(true);
+            this.aceptarButton.setEnabled(false);
         }
-
-        fechaLabel.setText(this.diaTitulo);
-        this.setLocationRelativeTo(null);
     }
 
     public void agregarFilaATabla(Aula aula) {
@@ -338,6 +342,8 @@ public class ElegirAulaPeriodica extends javax.swing.JFrame {
         ventanaReserva.getCursoTextField().setText("");
         reserva = new Reserva();
         ventanaReserva.restablecerDiasSeleccionados();
+        ventanaReserva.diasDeSemana.clear();
+        ventanaReserva.getDiasReserva().clear();
         this.dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 

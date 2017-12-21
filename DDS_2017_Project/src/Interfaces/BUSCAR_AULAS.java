@@ -10,7 +10,7 @@ import bd.model.Aulainf;
 import bd.model.Aulamm;
 import bd.model.Aulasr;
 import Clases.TipoDeAula;
-import Control.GestorDeAulas;
+import Control.GestorAula;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -172,7 +172,7 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
-        GestorDeAulas gestor = new GestorDeAulas();
+        GestorAula gestor = new GestorAula();
 
         String idAula = (String) aulaNum.getSelectedItem();
         Integer capacidad = Integer.parseInt((String) aulaCapacidad.getSelectedItem());
@@ -214,7 +214,7 @@ public class BUSCAR_AULAS extends javax.swing.JFrame {
         }
 
         if (listaAulas.isEmpty()) {
-            NO_HAY_AULAS aviso = new NO_HAY_AULAS();
+            NoSeEncontraronAulas aviso = new NoSeEncontraronAulas();
             aviso.setVisible(true);
         }
     }//GEN-LAST:event_buscarButtonActionPerformed

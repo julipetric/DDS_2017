@@ -87,7 +87,7 @@ public class GestorReserva {
         //posibles está bien, trae todo
 
         //Ordenar aulas por capacidad descendentemente
-        posibles.sort((Aula a1, Aula a2) -> (int) (a2.getCapacidad() - a1.getCapacidad()));
+        posibles.sort((Aula a1, Aula a2) -> (int) (a1.getCapacidad() - a2.getCapacidad()));
 
         return (ArrayList<Aula>) posibles;
     }

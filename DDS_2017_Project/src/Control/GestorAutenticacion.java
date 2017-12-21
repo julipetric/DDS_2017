@@ -13,9 +13,9 @@ import java.util.List;
  *
  * @author Tomas
  */
-public class GestorDeAutenticacion {
+public class GestorAutenticacion {
 
-    public GestorDeAutenticacion() {
+    public GestorAutenticacion() {
     }
    
     public List autenticar(String usuario, String password){

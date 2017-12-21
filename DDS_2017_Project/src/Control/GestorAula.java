@@ -12,9 +12,9 @@ import DAO.AulaDAO;
  *
  * @author Tomas
  */
-public class GestorDeAulas {
+public class GestorAula {
 
-    public GestorDeAulas() {
+    public GestorAula() {
     }
 
     public Aula buscarAula(String id) {

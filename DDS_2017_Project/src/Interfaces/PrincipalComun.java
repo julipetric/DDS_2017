@@ -47,6 +47,7 @@ public class PrincipalComun extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ROOMGUARD System");
 
         cerrarSesionButton.setText("CERRAR SESION");
         cerrarSesionButton.addActionListener(new java.awt.event.ActionListener() {
