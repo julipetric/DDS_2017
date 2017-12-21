@@ -57,7 +57,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("PRINCIPAL");
+        setTitle("Principal");
         setBackground(new java.awt.Color(204, 255, 204));
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
@@ -159,7 +159,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jButton1.setText("CAMBIAR DE USUARIO");
 
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setForeground(new java.awt.Color(255, 0, 0));
         jButton2.setText("CERRAR SESION");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -224,7 +223,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        REGISTRAR_BEDEL ventana = new REGISTRAR_BEDEL();
+        RegistrarBedel ventana = new RegistrarBedel();
         ventana.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -235,7 +234,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        BUSCAR_BEDEL v1 = new BUSCAR_BEDEL();
+        BuscarBedel v1 = new BuscarBedel();
         v1.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 

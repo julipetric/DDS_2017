@@ -9,7 +9,7 @@ import Clases.PoliticaSeguridad;
 import bd.model.Bedel;
 import Clases.Turno;
 import DAO.UsuarioDAO;
-import Interfaces.REGISTRAR_BEDEL;
+import Interfaces.RegistrarBedel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class GestorBedel {
 
-    private REGISTRAR_BEDEL ventana;
+    private RegistrarBedel ventana;
 
     public GestorBedel() {
     }
@@ -134,7 +134,7 @@ public class GestorBedel {
         }
         
 
-        System.out.println(errorp);
+        //System.out.println(errorp);
         //llamada a dao si esta todo correcto
         if (error == false && errorp == false && !contraseñaRepetida && !errores.get(0) && !errores.get(7)) {
             return false;
@@ -164,11 +164,13 @@ public class GestorBedel {
         List<Bedel> bedelesdao = dao.consultarApellidoUsuario(apellido);
         List<Bedel> filtrado = new ArrayList<>();        //filtrar de la lista de bedeles cuales cumplen las caract:
 
+        /*
         for (int i = 0; i < bedelesdao.size(); i++) {
             System.out.println(bedelesdao.get(i).getNombre() + "   " + bedelesdao.get(i).getTurno());
             System.out.println(bedelesdao.get(i).getTurno().equals("MAÑANA"));
 
         }
+        */
 
         if (turno == Turno.MAÑANA) {
             for (int i = 0; i < bedelesdao.size(); i++) {
@@ -205,6 +207,44 @@ public class GestorBedel {
         UsuarioDAO dao = new UsuarioDAO();
         Bedel b1 = new Bedel(usuario, nombre, apellido, contra, turno, fecha);
         dao.crear(b1);
+    }
+
+    public boolean validar(String nombre, String apellido, Turno turno, ArrayList<Boolean> errores, String IDUSUARIO) {
+        boolean error;
+        error = false;
+
+        if (nombre.equals("")) {
+            errores.set(0, true);
+            error = true;
+        }
+
+        if (apellido.equals("")) {
+            errores.set(1, true);
+            error = true;
+        }
+
+        if (turno == null) {
+            errores.set(3, true);
+            error = true;
+        }
+        
+         for (int i = 0; i < nombre.length(); i++) {        
+            if ((nombre.charAt(i) >= 'A' && nombre.charAt(i)<='Z') || (nombre.charAt(i) >= 'a' && nombre.charAt(i) <= 'z')) { 
+            }else{errores.set(0,true);errores.set(6,true);break;}    
+        }
+        
+       for (int i = 0; i < apellido.length(); i++) {
+           if ((apellido.charAt(i)>= 'A' && apellido.charAt(i)<='Z') || ( apellido.charAt(i) >= 'a' && apellido.charAt(i) <= 'z')) { 
+            }else{errores.set(1,true);errores.set(7,true);break;}
+        }
+        
+
+        //llamada a dao si esta todo correcto
+        if (error == false && !errores.get(0) && !errores.get(7)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

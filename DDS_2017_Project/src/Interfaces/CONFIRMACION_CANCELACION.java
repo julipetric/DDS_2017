@@ -10,20 +10,20 @@ package Interfaces;
  * @author rodri
  */
 public class CONFIRMACION_CANCELACION extends javax.swing.JFrame {
-        REGISTRAR_BEDEL REGISTRAR;
-        MODIFICAR_BEDEL MODIFICAR;
+        RegistrarBedel REGISTRAR;
+        ModificarBedel MODIFICAR;
     /**
      * Creates new form CONFIRMACION_CANCELACION
      * @param v
      */
-    public CONFIRMACION_CANCELACION(REGISTRAR_BEDEL v) {
+    public CONFIRMACION_CANCELACION(RegistrarBedel v) {
         initComponents();
         this.setAlwaysOnTop(true);
          REGISTRAR=v;
          this.setLocationRelativeTo(null);
     }
 
-    public CONFIRMACION_CANCELACION(MODIFICAR_BEDEL v) {
+    public CONFIRMACION_CANCELACION(ModificarBedel v) {
         initComponents();
         this.setAlwaysOnTop(true);
          MODIFICAR=v;

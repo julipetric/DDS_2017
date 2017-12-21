@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  *
  * @author rodri
  */
-public class REGISTRAR_BEDEL extends javax.swing.JFrame {
+public class RegistrarBedel extends javax.swing.JFrame {
 
     GestorBedel controlador;
 
@@ -33,7 +33,7 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
     //arreglo booleano para identificar que dio error
     public ArrayList<Boolean> datosError;
 
-    public REGISTRAR_BEDEL() {
+    public RegistrarBedel() {
         controlador = new GestorBedel();
         initComponents();
         jLabel9.setText("");
@@ -59,6 +59,22 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         usernameTextField.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 if (usernameTextField.getText().length() >= 32) {
+                    e.consume();
+                }
+            }
+        });
+        
+        pass1TextField.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (pass1TextField.getText().length() >= 32) {
+                    e.consume();
+                }
+            }
+        });
+        
+        pass2TextField.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (pass2TextField.getText().length() >= 32) {
                     e.consume();
                 }
             }
@@ -138,7 +154,7 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("NUEVO BEDEL");
+        setTitle("Nuevo Bedel");
         setAlwaysOnTop(true);
         setMinimumSize(new java.awt.Dimension(760, 330));
         setResizable(false);
@@ -381,21 +397,23 @@ public class REGISTRAR_BEDEL extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_BEDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarBedel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_BEDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarBedel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_BEDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarBedel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(REGISTRAR_BEDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarBedel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new REGISTRAR_BEDEL().setVisible(true);
+                new RegistrarBedel().setVisible(true);
             }
         });
     }

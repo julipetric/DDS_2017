@@ -70,7 +70,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
         
         cursoTextField.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
-                if (cursoTextField.getText().length() >= 12) {
+                if (cursoTextField.getText().length() >= 40) {
                     e.consume();
                 }
             }
