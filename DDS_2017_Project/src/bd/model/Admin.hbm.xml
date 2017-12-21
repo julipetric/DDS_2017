@@ -4,7 +4,7 @@
 <!-- Generated 16-dic-2017 9:38:20 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="bd.model.Admin" table="admin" catalog="roomguard" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
+        <id name="id" type="string">
             <column name="id" />
             <generator class="identity" />
         </id>

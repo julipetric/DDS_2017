@@ -103,7 +103,7 @@ public class UsuarioDAO {
         Transaction tx = session.beginTransaction();
 
         lista = session.createCriteria(Admin.class)
-                .add(Restrictions.eq("nombre", usuario))
+                .add(Restrictions.eq("id", usuario))
                 .add(Restrictions.eq("password", pass))
                 .list();
         tx.commit();

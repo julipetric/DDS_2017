@@ -9,7 +9,7 @@ package bd.model;
 public class Admin  implements java.io.Serializable {
 
 
-     private Integer id;
+     private String id;
      private String nombre;
      private String apellido;
      private String password;
@@ -23,11 +23,11 @@ public class Admin  implements java.io.Serializable {
        this.password = password;
     }
    
-    public Integer getId() {
+    public String getId() {
         return this.id;
     }
     
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
     public String getNombre() {
