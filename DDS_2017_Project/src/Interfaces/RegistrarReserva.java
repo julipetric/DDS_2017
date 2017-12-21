@@ -16,6 +16,8 @@ import bd.model.Diareserva;
 import bd.model.DiareservaId;
 import bd.model.Docente;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,6 +67,14 @@ public class RegistrarReserva extends javax.swing.JFrame {
     public RegistrarReserva() {
         initComponents();
         jLabel2.setText("");
+        
+        cursoTextField.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (cursoTextField.getText().length() >= 12) {
+                    e.consume();
+                }
+            }
+        });
         DocenteGestor = new GestorDocente();
         docentesArreglo = new ArrayList<>();
         listaDocentes = DocenteGestor.read();
