@@ -55,7 +55,7 @@ public class ElegirAulaPeriodica extends javax.swing.JFrame {
         return aceptarButton;
     }
 
-    ElegirAulaPeriodica(Reserva reserva, Integer actual, RegistrarReserva VentanaReserva, Integer diaSemana) throws ParseException {
+    ElegirAulaPeriodica(ArrayList<Diareserva> diasReserva,Reserva reserva, Integer actual, RegistrarReserva VentanaReserva, Integer diaSemana) throws ParseException {
 
         String diaString = null;
         if (diaSemana == 1) {
@@ -73,7 +73,7 @@ public class ElegirAulaPeriodica extends javax.swing.JFrame {
         if (diaSemana == 5) {
             diaString = "Viernes";
         }
-
+        this.diasReserva = diasReserva;
         this.ventanaReserva = VentanaReserva;
         this.totalDias = ventanaReserva.diasDeSemana.size();
         this.totalTitulo = Integer.toString(this.totalDias);
@@ -340,7 +340,7 @@ public class ElegirAulaPeriodica extends javax.swing.JFrame {
         ventanaReserva.reservaNumero = 0;
         reserva.getDiareservas().clear();
         ventanaReserva.getCursoTextField().setText("");
-        reserva = new Reserva();
+        ventanaReserva.reserva = new Reserva();
         ventanaReserva.restablecerDiasSeleccionados();
         ventanaReserva.diasDeSemana.clear();
         ventanaReserva.getDiasReserva().clear();
@@ -359,7 +359,7 @@ public class ElegirAulaPeriodica extends javax.swing.JFrame {
                 Date fechaAux = null;
                 //parseamos la fecha de diaReserva(i)
                 try {
-                    fechaAux = formater.parse(ventanaReserva.diasReserva.get(i).getId().getFecha());
+                    fechaAux = formater.parse(diasReserva.get(i).getId().getFecha());
                 } catch (ParseException ex) {
                     Logger.getLogger(ElegirAulaPeriodica.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -369,7 +369,7 @@ public class ElegirAulaPeriodica extends javax.swing.JFrame {
                 Integer fechaReservaIteracion = fechaAux2.getTime().getDay();
                 //si el día de la semana de diaReserva(i) es igual al día actual que estamos procesando, asignamos aula
                 if (Objects.equals(fechaReservaIteracion, this.ventanaReserva.diasDeSemana.get(actual))) {
-                    this.ventanaReserva.diasReserva.get(i).setAula(this.getAulas().get(tablaAulas.getSelectedRow()));
+                    this.diasReserva.get(i).setAula(this.getAulas().get(tablaAulas.getSelectedRow()));
                 }
             }
             //this.getReserva().getDiareservas().add(this.getDia());

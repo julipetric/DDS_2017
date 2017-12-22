@@ -10,6 +10,7 @@ import Clases.Periodo;
 import bd.model.Reserva;
 import bd.dto.HibernateUtil;
 import bd.model.Diareserva;
+import bd.model.Docente;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -88,4 +89,6 @@ public class ReservaDAO {
 
         return (count + 1);
     }
+
 }
+

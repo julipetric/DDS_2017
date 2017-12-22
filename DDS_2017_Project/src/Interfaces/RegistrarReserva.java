@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -58,7 +59,7 @@ public class RegistrarReserva extends javax.swing.JFrame {
     public Integer reservaNumero = 0;
     private final ArrayList<String> cola;
     public ArrayList<Diareserva> diasReserva;
-    private Boolean modoPrueba = true;
+    private Boolean modoPrueba = false;
 
     public JTable getjTable1() {
         return jTable1;
@@ -736,33 +737,41 @@ public class RegistrarReserva extends javax.swing.JFrame {
         return error;
     }
 
-    private void setearFechasPeriodicas() {
-        if (periodoComboBox.getSelectedIndex() == 0) {
-            inicio = inicio1C;
-            fin = fin2C;
-        }
-        if (periodoComboBox.getSelectedIndex() == 1) {
-            inicio = inicio1C;
-            fin = fin1C;
-        }
-        if (periodoComboBox.getSelectedIndex() == 2) {
-            inicio = inicio2C;
-            fin = fin2C;
-        }
-        if (!modoPrueba) {
-            Date hoy = new Date();
-            inicio = hoy;
+   
+/*
+    
+    private void Guardar() {
+        if (this.esporadicaRadioButton.isSelected()) {
+            if (reservaNumero > reserva.getDiareservas().size()) {
+                //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
+                gestor.nuevaReserva(reserva, diasReserva);
+                this.reservaNumero = 0;
+                reserva.getDiareservas().clear();
+                DefaultTableModel modelo = new DefaultTableModel();
+                modelo = (DefaultTableModel) this.getjTable1().getModel();
+                modelo.setRowCount(0);
+                cursoTextField.setText("");
+                reserva = new Reserva();
+            }
         } else {
-            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
-            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
-            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            if (reservaNumero > diasDeSemana.size()) {
+                //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
+                reserva.diareservas = new HashSet<>(diasReserva);
+                gestor.nuevaReserva(reserva, diasReserva);
+                this.reservaNumero = 0;
+                reserva.getDiareservas().clear();
+                DefaultTableModel modelo = new DefaultTableModel();
+                modelo = (DefaultTableModel) this.getjTable1().getModel();
+                modelo.setRowCount(0);
+                cursoTextField.setText("");
+                reserva = new Reserva();
+                this.restablecerDiasSeleccionados();
+                diasDeSemana.clear();
+            }
         }
-
-        //PARA PROBAR SOLAMENTE, ESTAMOS EN FIN DE AÑO, AGREGA POCOS DIAS
-        //inicio = inicio1C;
-        //fin = fin2C;
+        Exito bien = new Exito();
+        bien.setVisible(true);
     }
-
     private void setearFechasEsporadicas() {
         if (!modoPrueba) {
             Date hoy = new Date();
@@ -774,7 +783,6 @@ public class RegistrarReserva extends javax.swing.JFrame {
             System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
         }
     }
-
     private void agregarDiasReservaPeriodicas() {
         diasReserva = new ArrayList<>(); //<--- ESTP ESTABA MUY MAL DEFINIDA, ESTABA ADENTRO DE LOS BUCLES DE ABAJO...
         Calendar aux = Calendar.getInstance();
@@ -812,6 +820,33 @@ public class RegistrarReserva extends javax.swing.JFrame {
         reserva.diareservas = new HashSet<>(diasReserva);
     }
 
+     private void setearFechasPeriodicas() {
+        if (periodoComboBox.getSelectedIndex() == 0) {
+            inicio = inicio1C;
+            fin = fin2C;
+        }
+        if (periodoComboBox.getSelectedIndex() == 1) {
+            inicio = inicio1C;
+            fin = fin1C;
+        }
+        if (periodoComboBox.getSelectedIndex() == 2) {
+            inicio = inicio2C;
+            fin = fin2C;
+        }
+        if (!modoPrueba) {
+            Date hoy = new Date();
+            inicio = hoy;
+        } else {
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+        }
+
+        //PARA PROBAR SOLAMENTE, ESTAMOS EN FIN DE AÑO, AGREGA POCOS DIAS
+        //inicio = inicio1C;
+        //fin = fin2C;
+    }
+
     private void registrarDatosReserva() {
         reserva.setCantidadAlumnos(Integer.parseInt((String) cantAlumnosComboBox.getSelectedItem()));
         reserva.setTipoAula((String) this.tipoComboBox.getSelectedItem());
@@ -823,22 +858,38 @@ public class RegistrarReserva extends javax.swing.JFrame {
             reserva.setPeriodo("ESPORADICA");
         }
     }
-
+    
+    Esto hace el gestor ahora, no lo hace mas Registrar Reserva
+    
+    *registrarDatosReserva*
+    *setearFechasPeriodicas*
+    *agregarDiasReservaPeriodicas*
+    *setearFechasEsporadicas*
+    *Guardar*
+    
+    
+*/
+    
+    
+    
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
-
+        ArrayList<Date> horarios = new ArrayList();
+        ArrayList diasDeReserva = new ArrayList();
         //VERIFICACIONES GENERALES
         if (!this.verificarErrores()) {
 
-            this.registrarDatosReserva();
+            reserva = gestor.registrarDatosReserva(reserva,(String) cantAlumnosComboBox.getSelectedItem(), (String) this.tipoComboBox.getSelectedItem(),cursoTextField.getText(),listaDocentes.get(jComboBox2.getSelectedIndex()),periodicaRadioButton.isSelected(),(String) periodoComboBox.getSelectedItem());
             if (periodicaRadioButton.isSelected()) {
-                this.setearFechasPeriodicas();
-                //System.out.println(inicio.toString());
-                this.agregarDiasReservaPeriodicas();
+                horarios = gestor.setearFechasPeriodicas(modoPrueba,inicio,inicio1C ,fin,fin2C,fin1C,inicio2C,periodoComboBox.getSelectedIndex());
+                //this.setearFechasPeriodicas();
+                reserva=gestor.agregarDiasReservaPeriodicas(reserva,diasReserva,diasDeSemana,horarios.get(0),horarios.get(1),horariosPorDia);
                 //ir a la ventana
-                this.GenerarElegirAulaPeriodica(diasReserva);
+                diasDeReserva.addAll(reserva.getDiareservas());
+                this.GenerarElegirAulaPeriodica(diasDeReserva);
             } else {
                 try {
-                    this.setearFechasEsporadicas();
+                    
+                horarios=gestor.setearFechasEsporadicas(inicio,fin2C,fin,modoPrueba);
                     //ya se agregaron los dias
                     //se crea la ventana elegir aula con diasReserva como arreglo
                     diasReserva = new ArrayList<>(reserva.getDiareservas());
@@ -861,18 +912,28 @@ public class RegistrarReserva extends javax.swing.JFrame {
         reservaNumero++;
 
         if (reservaNumero > diasReserva.size()) {
-            this.Guardar();
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo = (DefaultTableModel) this.getjTable1().getModel();
+            if (gestor.Guardar(this.esporadicaRadioButton.isSelected(),reservaNumero,reserva,diasReserva,modelo,diasDeSemana)) {
+                cursoTextField.setText("");
+                Exito bien = new Exito();
+                bien.setVisible(true);
+                reservaNumero = 0;
+                reserva.getDiareservas().clear();
+                reserva = new Reserva();
+                diasDeSemana.clear();
+            }
         }
     }
 
     public void GenerarElegirAulaPeriodica(ArrayList<Diareserva> diasReserva) {
         //System.out.println("pasamos a la ventana nueva");
 
-        if (this.diasReserva.size() > 0 && reservaNumero < this.diasDeSemana.size()) {
+        if (diasReserva.size() > 0 && reservaNumero < this.diasDeSemana.size()) {
             jLabel4.setText("");
             ElegirAulaPeriodica vent = null;
             try {
-                vent = new ElegirAulaPeriodica(reserva, reservaNumero, this, this.diasDeSemana.get(reservaNumero));
+                vent = new ElegirAulaPeriodica(diasReserva,reserva, reservaNumero, this, this.diasDeSemana.get(reservaNumero));
             } catch (ParseException ex) {
                 Logger.getLogger(RegistrarReserva.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -884,7 +945,19 @@ public class RegistrarReserva extends javax.swing.JFrame {
         }
 
         if (reservaNumero > diasDeSemana.size()) {
-            this.Guardar();
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo = (DefaultTableModel) this.getjTable1().getModel();
+            if (gestor.Guardar(this.esporadicaRadioButton.isSelected(),reservaNumero,reserva,diasReserva,modelo,diasDeSemana)) {
+                cursoTextField.setText("");
+                Exito bien = new Exito();
+                bien.setVisible(true);
+                reservaNumero = 0;
+                reserva.getDiareservas().clear();
+                reserva = new Reserva();
+                diasDeSemana.clear();
+                this.restablecerDiasSeleccionados();
+            }
+
         }
 
     }
@@ -899,39 +972,6 @@ public class RegistrarReserva extends javax.swing.JFrame {
 
     public JTextField getCursoTextField() {
         return cursoTextField;
-    }
-
-    private void Guardar() {
-        if (this.esporadicaRadioButton.isSelected()) {
-            if (reservaNumero > reserva.getDiareservas().size()) {
-                //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
-                gestor.nuevaReserva(reserva, diasReserva);
-                this.reservaNumero = 0;
-                reserva.getDiareservas().clear();
-                DefaultTableModel modelo = new DefaultTableModel();
-                modelo = (DefaultTableModel) this.getjTable1().getModel();
-                modelo.setRowCount(0);
-                cursoTextField.setText("");
-                reserva = new Reserva();
-            }
-        } else {
-            if (reservaNumero > diasDeSemana.size()) {
-                //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
-                reserva.diareservas = new HashSet<>(diasReserva);
-                gestor.nuevaReserva(reserva, diasReserva);
-                this.reservaNumero = 0;
-                reserva.getDiareservas().clear();
-                DefaultTableModel modelo = new DefaultTableModel();
-                modelo = (DefaultTableModel) this.getjTable1().getModel();
-                modelo.setRowCount(0);
-                cursoTextField.setText("");
-                reserva = new Reserva();
-                this.restablecerDiasSeleccionados();
-                diasDeSemana.clear();
-            }
-        }
-        Exito bien = new Exito();
-        bien.setVisible(true);
     }
 
     private void nuevoDiaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoDiaButtonActionPerformed

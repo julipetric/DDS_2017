@@ -66,12 +66,12 @@ public class GestorBedel {
         }
         
         for (int i = 0; i < nombre.length(); i++) {        
-            if ((nombre.charAt(i) >= 'A' && nombre.charAt(i)<='Z') || (nombre.charAt(i) >= 'a' && nombre.charAt(i) <= 'z')) { 
+            if ((nombre.charAt(i) >= 'A' && nombre.charAt(i)<='Z') || (nombre.charAt(i) >= 'a' && nombre.charAt(i) <= 'z') || (nombre.charAt(i) >= 'ü' && nombre.charAt(i) <= 'Ü') || (nombre.charAt(i) >= 'á' && nombre.charAt(i) <= 'Ñ')) { 
             }else{errores.set(0,true);errores.set(6,true);break;}    
         }
         
        for (int i = 0; i < apellido.length(); i++) {
-           if ((apellido.charAt(i)>= 'A' && apellido.charAt(i)<='Z') || ( apellido.charAt(i) >= 'a' && apellido.charAt(i) <= 'z')) { 
+           if ((apellido.charAt(i)>= 'A' && apellido.charAt(i)<='Z') || ( apellido.charAt(i) >= 'a' && apellido.charAt(i) <= 'z')|| (nombre.charAt(i) >= 'ü' && nombre.charAt(i) <= 'Ü') || (nombre.charAt(i) >= 'á' && nombre.charAt(i) <= 'Ñ')) { 
             }else{errores.set(1,true);errores.set(7,true);break;}
         }
         
@@ -124,12 +124,12 @@ public class GestorBedel {
         }
         
          for (int i = 0; i < nombre.length(); i++) {        
-            if ((nombre.charAt(i) >= 'A' && nombre.charAt(i)<='Z') || (nombre.charAt(i) >= 'a' && nombre.charAt(i) <= 'z')) { 
+            if ((nombre.charAt(i) >= 'A' && nombre.charAt(i)<='Z') || (nombre.charAt(i) >= 'a' && nombre.charAt(i) <= 'z')|| (nombre.charAt(i) >= 'ü' && nombre.charAt(i) <= 'Ü') || (nombre.charAt(i) >= 'á' && nombre.charAt(i) <= 'Ñ')) { 
             }else{errores.set(0,true);errores.set(6,true);break;}    
         }
         
        for (int i = 0; i < apellido.length(); i++) {
-           if ((apellido.charAt(i)>= 'A' && apellido.charAt(i)<='Z') || ( apellido.charAt(i) >= 'a' && apellido.charAt(i) <= 'z')) { 
+           if ((apellido.charAt(i)>= 'A' && apellido.charAt(i)<='Z') || ( apellido.charAt(i) >= 'a' && apellido.charAt(i) <= 'z')|| (nombre.charAt(i) >= 'ü' && nombre.charAt(i) <= 'Ü') || (nombre.charAt(i) >= 'á' && nombre.charAt(i) <= 'Ñ')) { 
             }else{errores.set(1,true);errores.set(7,true);break;}
         }
         

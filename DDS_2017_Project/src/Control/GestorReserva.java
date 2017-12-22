@@ -7,13 +7,23 @@ package Control;
 
 import bd.model.Aula;
 import Clases.EstructAUX;
+import Clases.horariosAUX;
 import bd.model.Reserva;
 import DAO.AulaDAO;
 import DAO.ReservaDAO;
+import Interfaces.Exito;
 import bd.model.Diareserva;
+import bd.model.DiareservaId;
+import bd.model.Docente;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -123,4 +133,137 @@ public class GestorReserva {
         
         return (ArrayList<Aula>) posibles;
     }
+    
+    
+    public Reserva registrarDatosReserva(Reserva reserva, String cantAlumnosComboBox, String tipoComboBox,String cursoTextField,Docente docente, Boolean periodicaRadioButton, String periodo) {
+        reserva.setCantidadAlumnos(Integer.parseInt(cantAlumnosComboBox));
+        reserva.setTipoAula(tipoComboBox);
+        reserva.setNombreCurso(cursoTextField);
+        reserva.setDocente(docente);
+        if (periodicaRadioButton) {
+            reserva.setPeriodo(periodo);
+        } else {
+            reserva.setPeriodo("ESPORADICA");
+        }
+        return reserva;
+    }
+    
+    public ArrayList setearFechasPeriodicas(Boolean modoPrueba,Date inicio, Date inicio1C ,Date fin,Date fin2C,Date fin1C,Date inicio2C,Integer periodoComboBox) {
+        ArrayList<Date> Aux = new ArrayList();
+        
+        for (int i = 0; i < 2; i++) {
+            Aux.add(new Date());
+        }
+        
+        if (periodoComboBox.equals(0)) {
+            inicio = inicio1C;
+            fin = fin2C;
+        }
+        if (periodoComboBox.equals(1)) {
+            inicio = inicio1C;
+            fin = fin1C;
+        }
+        if (periodoComboBox.equals(2)) {
+            inicio = inicio2C;
+            fin = fin2C;
+        }
+        if (!modoPrueba) {
+            Date hoy = new Date();
+            inicio = hoy;
+        } else {
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+        }
+        Aux.set(0,inicio);
+        Aux.set(1,fin); 
+        return Aux;
+    }
+  
+     public Reserva agregarDiasReservaPeriodicas(Reserva reserva,ArrayList<Diareserva> diasReserva,ArrayList<Integer> diasDeSemana,Date inicio,Date fin,ArrayList<horariosAUX> horariosPorDia) {
+        diasReserva = new ArrayList<>(); //<--- ESTP ESTABA MUY MAL DEFINIDA, ESTABA ADENTRO DE LOS BUCLES DE ABAJO...
+        Calendar aux = Calendar.getInstance();
+        for (int i = 0; i < diasDeSemana.size(); i++) {
+            //System.out.println("for");
+            aux.setTime(inicio);//se setea el calendario auxiliar en la fecha inicial CAMBIAR
+            //Seteo en primer dia de semana
+            boolean j = true;
+            while (j) {
+                //System.out.println("0");
+                if (aux.getTime().getDay() == Integer.parseInt(diasDeSemana.get(i).toString())) {
+                    j = false;
+                } else {
+                    aux.add(Calendar.DATE, 1);
+                }
+            }
+            //Sale aux en el primer dia de la semana que coincide
+            boolean h = aux.getTime().compareTo(fin) < 0;
+
+            while (h) {//while para agregar los dias de reserva
+                //System.out.println("2");
+                Date fechaAux = aux.getTime();
+
+                // Display a date in day, month, year format
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String fecha = formatter.format(fechaAux);
+                DiareservaId idAux = new DiareservaId(fecha, horariosPorDia.get(i).getHorainicio(), horariosPorDia.get(i).getHorafin(), reserva.getId());
+                diasReserva.add(new Diareserva(idAux, reserva));
+                aux.add(Calendar.DATE, 7);//Se incrementa en 1 semana el dia aux
+                //SE CHEQUEA h
+                h = aux.getTime().compareTo(fin) < 0;
+            }
+            //se va a incrementar i, se vuelve al dia de hor, se acomoda en el siguiente dia seleccionado y se agregan todos los dias reserva
+        }
+        reserva.diareservas = new HashSet<>(diasReserva);
+        
+        return reserva;
+        
+    }
+    
+    public ArrayList setearFechasEsporadicas(Date inicio,Date fin2C, Date fin, Boolean modoPrueba) {
+        ArrayList<Date> Aux = new ArrayList();
+        
+        for (int i = 0; i < 2; i++) {
+            Aux.add(new Date());
+        }
+        
+        if (!modoPrueba) {
+            Date hoy = new Date();
+            inicio = hoy;
+            fin = fin2C;
+        } else {
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+            System.out.println("FECHAS SETEADAS EN MODO PRUEBA");
+        }
+        
+        Aux.set(0,inicio);
+        Aux.set(1,fin); 
+        return Aux;
+        
+    }
+    
+    
+    public Boolean Guardar(Boolean esporadicaRadioButton,Integer reservaNumero, Reserva reserva,ArrayList<Diareserva> diasReserva,DefaultTableModel modelo,ArrayList<Integer> diasDeSemana) {
+        Boolean flag = false;
+        if (esporadicaRadioButton) {
+            if (reservaNumero > reserva.getDiareservas().size()) {
+                //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
+                this.nuevaReserva(reserva, diasReserva);
+                modelo.setRowCount(0);
+                flag=true;
+            }
+        } else {
+            if (reservaNumero > diasDeSemana.size()) {
+                //ArrayList<Diareserva> arrayAux = new ArrayList<>(reserva.getDiareservas());
+                reserva.diareservas = new HashSet<>(diasReserva);
+                this.nuevaReserva(reserva, diasReserva);
+                modelo.setRowCount(0);
+                flag=true;
+            }
+        }
+       return flag;
+    }
+    
+    
 }
